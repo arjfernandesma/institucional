@@ -3,29 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guia de Objeções — Vendas com PNL</title>
+<title>Manual Operacional — Modelo de Negócio &amp; Atendimento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black: #090909;
-  --surface: #111111;
-  --card: #161616;
-  --card-hover: #1d1d1d;
-  --gold: #E8A020;
-  --gold-light: #F5C842;
-  --gold-dim: rgba(232,160,32,0.15);
-  --red: #C0392B;
-  --red-dim: rgba(192,57,43,0.12);
-  --green: #27AE60;
-  --text: #F0EBE0;
-  --text-muted: #8a8070;
-  --text-dim: #4a4540;
-  --border: rgba(232,160,32,0.12);
-  --border-bright: rgba(232,160,32,0.35);
-  --ff-display: 'Bebas Neue', sans-serif;
-  --ff-body: 'Syne', sans-serif;
+  --bg: #FAF8F4;
+  --surface: #FFFFFF;
+  --surface-2: #F5F2EC;
+  --border: #E8E3D8;
+  --border-strong: #D4CEC0;
+  --text: #1A1715;
+  --text-2: #5A544A;
+  --text-3: #8A8275;
+  --gold: #B8830F;
+  --gold-light: #D4A53A;
+  --gold-bg: #FBF4E0;
+  --red: #B83A2C;
+  --red-bg: #FCEEE9;
+  --green: #1F7A4D;
+  --green-bg: #E8F4ED;
+  --blue: #1F5A8A;
+  --blue-bg: #E8F0F9;
+  --ff-display: 'Fraunces', serif;
+  --ff-body: 'DM Sans', sans-serif;
   --ff-mono: 'JetBrains Mono', monospace;
+  --sidebar-w: 280px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,958 +37,2089 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--ff-body);
-  background: var(--black);
+  background: var(--bg);
   color: var(--text);
-  overflow-x: hidden;
-  cursor: default;
+  line-height: 1.6;
+  font-size: 15px;
 }
 
-/* ── NOISE OVERLAY ── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* ── HERO ── */
-.hero {
+/* ━━━ LAYOUT ━━━ */
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
   min-height: 100vh;
+}
+
+/* ━━━ SIDEBAR ━━━ */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+}
+
+.brand {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  background: var(--text);
+  color: var(--gold-light);
+  border-radius: 4px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 4rem 2rem;
-  position: relative;
-  overflow: hidden;
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
 }
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(192,57,43,0.06) 0%, transparent 50%);
+.brand-info { flex: 1; }
+.brand-name {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.015em;
+  color: var(--text);
 }
-
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(232,160,32,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232,160,32,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
-}
-
-.hero-eyebrow {
+.brand-meta {
   font-family: var(--ff-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.35em;
-  color: var(--gold);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-3);
   text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.search-box {
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.2s forwards;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  padding: 0.55rem 0.85rem 0.55rem 2rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--ff-body);
+  font-size: 0.82rem;
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s;
+}
+.search-box input:focus {
+  border-color: var(--gold);
+  background: var(--surface);
+}
+.search-box::before {
+  content: '🔍';
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  opacity: 0.5;
 }
 
-.hero h1 {
-  font-family: var(--ff-display);
-  font-size: clamp(3.5rem, 10vw, 9rem);
-  line-height: 0.9;
-  letter-spacing: 0.02em;
+.toc-section {
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.4s forwards;
+}
+.toc-label {
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  padding: 0 0.5rem;
 }
 
-.hero h1 .line-gold { color: var(--gold); display: block; }
-.hero h1 .line-white { color: var(--text); display: block; }
-.hero h1 .line-dim { color: var(--text-dim); display: block; }
-
-.hero-sub {
-  font-size: 1rem;
-  color: var(--text-muted);
-  max-width: 480px;
-  line-height: 1.7;
-  margin-bottom: 3rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.6s forwards;
-}
-
-.hero-stats {
+.toc-item {
   display: flex;
-  gap: 3rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.8s forwards;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.83rem;
+  color: var(--text-2);
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+  margin-bottom: 1px;
 }
-
-.stat {
-  text-align: center;
+.toc-item:hover {
+  background: var(--surface-2);
+  color: var(--text);
 }
-.stat-num {
-  font-family: var(--ff-display);
-  font-size: 2.8rem;
+.toc-item.active {
+  background: var(--gold-bg);
   color: var(--gold);
-  line-height: 1;
+  font-weight: 500;
 }
-.stat-label {
+.toc-num {
   font-family: var(--ff-mono);
   font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: var(--text-muted);
-  margin-top: 0.3rem;
-  text-transform: uppercase;
+  color: var(--text-3);
+  min-width: 1.2rem;
+}
+.toc-item.active .toc-num { color: var(--gold); }
+
+/* ━━━ MAIN ━━━ */
+.main {
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-.scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  animation: fadeUp 0.8s 1.2s forwards;
+.content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 4rem 3rem 6rem;
+}
+
+/* ━━━ HEADER ━━━ */
+.doc-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2.5rem;
+  margin-bottom: 3rem;
+}
+.doc-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.doc-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.doc-title em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+.doc-sub {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  max-width: 580px;
+  line-height: 1.65;
+}
+
+.doc-meta {
   display: flex;
-  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--text-3);
+}
+.doc-meta span strong { color: var(--text); font-weight: 500; }
+
+/* ━━━ SECTION ━━━ */
+.section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 2rem;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--gold-bg);
+  color: var(--gold);
+  border-radius: 100px;
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.85rem;
+}
+.section-tag-num {
+  font-weight: 600;
+}
+
+.section h2 {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+.section h2 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-2);
+}
+.section-lead {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.section h3 {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+.section h4 {
+  font-family: var(--ff-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.section p {
+  margin-bottom: 1rem;
+  color: var(--text-2);
+}
+.section p strong { color: var(--text); font-weight: 600; }
+
+.section ul, .section ol {
+  margin-left: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-2);
+}
+.section li { margin-bottom: 0.5rem; }
+.section li strong { color: var(--text); font-weight: 600; }
+
+/* ━━━ CALLOUTS ━━━ */
+.callout {
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid;
+  border-radius: 0 4px 4px 0;
+  margin: 1.5rem 0;
+  background: var(--surface-2);
+}
+.callout-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-.scroll-hint span {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  color: var(--text-dim);
-  text-transform: uppercase;
-}
-.scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s infinite;
-}
+.callout-body { font-size: 0.9rem; color: var(--text-2); line-height: 1.6; }
+.callout.gold { border-color: var(--gold); background: var(--gold-bg); }
+.callout.gold .callout-title { color: var(--gold); }
+.callout.red { border-color: var(--red); background: var(--red-bg); }
+.callout.red .callout-title { color: var(--red); }
+.callout.green { border-color: var(--green); background: var(--green-bg); }
+.callout.green .callout-title { color: var(--green); }
+.callout.blue { border-color: var(--blue); background: var(--blue-bg); }
+.callout.blue .callout-title { color: var(--blue); }
 
-/* ── SECTION BASE ── */
-.section {
-  padding: 6rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
+/* ━━━ TABLES ━━━ */
+.table-wrap {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--surface);
 }
-
-.section-label {
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+thead { background: var(--surface-2); }
+th {
+  text-align: left;
+  padding: 0.85rem 1rem;
   font-family: var(--ff-mono);
   font-size: 0.65rem;
-  letter-spacing: 0.4em;
-  color: var(--gold);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
+  color: var(--text-2);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
+  vertical-align: top;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--surface-2); }
+td strong { color: var(--text); font-weight: 600; }
+
+/* ━━━ TIER CARDS (PRICING) ━━━ */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.tier {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  position: relative;
+}
+.tier.featured {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(184,131,15,0.08);
+}
+.tier.featured::before {
+  content: 'RECOMENDADO';
+  position: absolute;
+  top: -10px;
+  left: 1.5rem;
+  background: var(--gold);
+  color: white;
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+.tier-name {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.015em;
+}
+.tier-tagline {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  margin-bottom: 1rem;
+  min-height: 2.5rem;
+}
+.tier-price {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.02em;
+}
+.tier-price small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-3);
+}
+.tier-monthly {
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.tier-features {
+  list-style: none;
+  margin: 0 !important;
+}
+.tier-features li {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  padding: 0.35rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0 !important;
+}
+.tier-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ━━━ ADD-ON GRID ━━━ */
+.addon-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+.addon {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s;
+}
+.addon:hover { border-color: var(--gold); }
+.addon-info { flex: 1; }
+.addon-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.2rem;
+}
+.addon-desc {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+.addon-price {
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ━━━ TIMELINE / PROCESS ━━━ */
+.process {
+  margin: 1.5rem 0;
+}
+.process-step {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 1.25rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px dashed var(--border);
+  align-items: flex-start;
+}
+.process-step:last-child { border-bottom: none; }
+.process-num {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.process-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+.process-desc {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  line-height: 1.55;
+  margin-bottom: 0.3rem;
+}
+.process-meta {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+/* ━━━ FAQ ━━━ */
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.faq-q {
+  padding: 1.1rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--text);
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--gold); }
+.faq-q-icon {
+  width: 20px; height: 20px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  color: var(--text-2);
+  transition: all 0.2s;
+}
+.faq-item.open .faq-q-icon {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: white;
+  transform: rotate(45deg);
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.faq-item.open .faq-a { max-height: 500px; }
+.faq-a-inner {
+  padding: 0 0 1.25rem;
+  color: var(--text-2);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.faq-a-inner strong { color: var(--text); }
+
+/* ━━━ KEY POINTS ━━━ */
+.key-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+.key-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.9rem 1.1rem;
+}
+.key-label {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text-3);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.key-value {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.key-value small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--text-2);
+  margin-top: 0.15rem;
+}
+
+/* ━━━ SCRIPT BOX ━━━ */
+.script-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  padding: 1rem 1.25rem;
+  border-radius: 0 4px 4px 0;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+.script-box::before {
+  content: 'SCRIPT';
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  background: var(--green);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-style: normal;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  vertical-align: 1px;
+}
+
+/* ━━━ ROADMAP ━━━ */
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.phase {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  position: relative;
+}
+.phase-label {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.phase-1 .phase-label { color: var(--green); }
+.phase-2 .phase-label { color: var(--gold); }
+.phase-3 .phase-label { color: var(--blue); }
+.phase-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.phase-when {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+.phase-list {
+  list-style: none;
+  margin: 0 !important;
+  font-size: 0.83rem;
+}
+.phase-list li {
+  padding: 0.3rem 0;
+  color: var(--text-2);
+  margin-bottom: 0 !important;
+}
+
+/* ━━━ DIVIDER ━━━ */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 3rem 0;
+  position: relative;
+}
+.divider::after {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg);
+  padding: 0 1rem;
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+/* ━━━ OBJECTIONS ━━━ */
+.objection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.objection:hover { border-color: var(--gold); }
+
+.obj-bar {
   display: flex;
   align-items: center;
   gap: 1rem;
+  padding: 1.1rem 1.5rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
 }
-.section-label::after {
-  content: '';
-  flex: 1;
-  max-width: 60px;
-  height: 1px;
-  background: var(--gold);
-  opacity: 0.4;
-}
-
-.section-title {
+.obj-num {
   font-family: var(--ff-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  line-height: 0.95;
-  margin-bottom: 1rem;
-  letter-spacing: 0.02em;
-}
-
-.section-desc {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.8;
-  max-width: 520px;
-  margin-bottom: 4rem;
-}
-
-/* ── OBJECTION CARDS ── */
-.objections-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-}
-
-.obj-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-  transition: border-color 0.3s, background 0.3s;
-  position: relative;
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: opacity 0.5s, transform 0.5s, border-color 0.3s, background 0.3s;
-}
-.obj-card.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-.obj-card:hover {
-  border-color: var(--border-bright);
-  background: var(--card-hover);
-}
-.obj-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--gold);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.obj-card:hover::before { transform: scaleY(1); }
-
-.obj-header {
-  padding: 1.5rem 2rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  cursor: pointer;
-  user-select: none;
-}
-
-.obj-number {
-  font-family: var(--ff-display);
-  font-size: 3rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--gold);
   line-height: 1;
-  color: var(--text-dim);
-  flex-shrink: 0;
-  transition: color 0.3s;
-  min-width: 3rem;
+  min-width: 2rem;
 }
-.obj-card:hover .obj-number { color: var(--gold); }
-
-.obj-header-text { flex: 1; }
-
-.obj-tag {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 0.4rem;
-}
-
-.obj-title {
-  font-family: var(--ff-body);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.3;
-}
-
-.obj-toggle {
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.3s;
-  margin-top: 0.2rem;
-}
-.obj-toggle svg {
-  width: 14px;
-  height: 14px;
-  stroke: var(--text-muted);
-  transition: transform 0.3s, stroke 0.3s;
-}
-.obj-card.open .obj-toggle {
-  border-color: var(--gold);
-  background: var(--gold-dim);
-}
-.obj-card.open .obj-toggle svg {
-  transform: rotate(180deg);
-  stroke: var(--gold);
-}
-
-.obj-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.obj-card.open .obj-body { max-height: 600px; }
-
-.obj-inner {
-  padding: 0 2rem 2rem 6.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.obj-block {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 2px;
-  padding: 1.25rem;
-}
-
-.obj-block-label {
+.obj-meta { flex: 1; min-width: 0; }
+.obj-cat {
   font-family: var(--ff-mono);
   font-size: 0.58rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.2em;
+  color: var(--red);
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+  display: block;
+  font-weight: 500;
 }
-.obj-block-label.behind { color: var(--text-dim); }
-.obj-block-label.response { color: var(--gold); }
-.obj-block-label .dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.behind .dot { background: var(--text-dim); }
-.response .dot { background: var(--gold); }
-
-.obj-block p {
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: var(--text-muted);
-}
-.obj-block p strong { color: var(--text); font-weight: 600; }
-.obj-block blockquote {
+.obj-quote {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
   font-style: italic;
-  font-size: 0.875rem;
-  line-height: 1.7;
-  color: var(--text);
-  border-left: 2px solid var(--gold);
-  padding-left: 1rem;
 }
-
-.technique-badge {
-  margin-top: 1rem;
-  padding: 0.5rem 0.85rem;
-  background: var(--gold-dim);
-  border: 1px solid rgba(232,160,32,0.2);
-  border-radius: 2px;
+.obj-body {
+  padding: 1.25rem 1.5rem;
+}
+.obj-section {
+  margin-bottom: 1.1rem;
+}
+.obj-section:last-child { margin-bottom: 0; }
+.obj-label {
   font-family: var(--ff-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  color: var(--gold-light);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
   text-transform: uppercase;
-  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
 }
-
-/* ── PACER SECTION ── */
-.pacer-section {
-  padding: 5rem 2rem;
-  background: linear-gradient(135deg, rgba(232,160,32,0.04) 0%, transparent 50%);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.pacer-section::before {
-  content: 'PACER';
-  position: absolute;
-  right: -2rem;
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  font-family: var(--ff-display);
-  font-size: 12rem;
-  color: rgba(232,160,32,0.03);
-  letter-spacing: 0.1em;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.pacer-inner { max-width: 1100px; margin: 0 auto; }
-
-.pacer-steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-top: 3rem;
-}
-
-.pacer-step {
-  background: var(--card);
-  padding: 2rem 1.5rem;
-  position: relative;
-  transition: background 0.3s;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s, background 0.3s;
-}
-.pacer-step.visible { opacity: 1; transform: translateY(0); }
-.pacer-step:hover { background: var(--card-hover); }
-
-.pacer-letter {
-  font-family: var(--ff-display);
-  font-size: 4rem;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 0.75rem;
-  opacity: 0.9;
-}
-.pacer-word {
-  font-family: var(--ff-body);
-  font-weight: 800;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text);
-  margin-bottom: 0.75rem;
-}
-.pacer-desc {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+.obj-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-2);
   line-height: 1.6;
 }
-.pacer-step::after {
-  content: attr(data-n);
-  position: absolute;
-  bottom: 1rem;
-  right: 1.25rem;
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  color: var(--text-dim);
-  letter-spacing: 0.2em;
-}
-
-/* ── GOLD INSIGHT ── */
-.insight-box {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-.insight-inner {
-  background: var(--card);
-  border: 1px solid var(--border-bright);
-  border-radius: 2px;
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: scale(0.97);
-  transition: opacity 0.6s, transform 0.6s;
-}
-.insight-inner.visible { opacity: 1; transform: scale(1); }
-.insight-inner::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-
-.insight-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.25rem;
-}
-.insight-title {
-  font-family: var(--ff-display);
-  font-size: 2rem;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-}
-.insight-text {
-  font-size: 0.95rem;
-  line-height: 1.85;
-  color: var(--text-muted);
-  max-width: 700px;
-}
-.insight-text strong { color: var(--gold-light); font-weight: 600; }
-
-/* ── FOOTER ── */
-footer {
-  text-align: center;
-  padding: 3rem 2rem;
-  border-top: 1px solid var(--border);
-}
-footer p {
+.obj-tech-badge {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  background: var(--gold-bg);
+  border: 1px solid rgba(184,131,15,0.25);
+  border-radius: 100px;
   font-family: var(--ff-mono);
   font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  color: var(--text-dim);
-  text-transform: uppercase;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.2); }
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .obj-inner {
-    grid-template-columns: 1fr;
-    padding: 0 1.5rem 1.5rem 1.5rem;
-  }
-  .obj-header { gap: 1rem; padding: 1.25rem 1.5rem 0.75rem; }
-  .obj-number { font-size: 2rem; min-width: 2rem; }
-  .pacer-steps { grid-template-columns: 1fr 1fr; }
-  .pacer-steps .pacer-step:last-child { grid-column: span 2; }
-  .hero-stats { gap: 2rem; }
-  .stat-num { font-size: 2rem; }
-  .insight-inner { padding: 2rem; }
-}
-
-/* ── PROGRESS BAR ── */
-.progress-bar {
-  position: fixed;
-  top: 0; left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  width: 0%;
-  z-index: 10000;
-  transition: width 0.1s;
-}
-
-/* ── TOC NAV ── */
-.toc {
-  position: fixed;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 100;
-}
-.toc-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--text-dim);
-  transition: all 0.3s;
-  cursor: pointer;
-  position: relative;
-}
-.toc-dot:hover,
-.toc-dot.active { background: var(--gold); transform: scale(1.5); }
-.toc-dot::before {
-  content: attr(data-label);
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--ff-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--gold);
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
+  text-transform: uppercase;
+  font-weight: 500;
 }
-.toc-dot:hover::before { opacity: 1; }
 
-@media (max-width: 768px) { .toc { display: none; } }
+/* ━━━ PACER FRAMEWORK ━━━ */
+.pacer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin: 1.5rem 0 2rem;
+}
+.pacer-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 0.85rem;
+  text-align: center;
+  position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.pacer-step:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.pacer-letter {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.pacer-name {
+  font-weight: 700;
+  font-size: 0.72rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+.pacer-desc {
+  font-size: 0.74rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .pacer-grid { grid-template-columns: 1fr 1fr; }
+  .pacer-grid .pacer-step:last-child { grid-column: span 2; }
+}
+
+/* ━━━ FOOTER ━━━ */
+.doc-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  color: var(--text-3);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* ━━━ MOBILE ━━━ */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    position: fixed;
+    top: 0; left: -100%;
+    width: 280px;
+    z-index: 100;
+    transition: left 0.3s;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+  }
+  .sidebar.open { left: 0; }
+  .content { padding: 3rem 1.25rem 4rem; }
+  .tier-grid, .roadmap { grid-template-columns: 1fr; }
+  .addon-grid, .key-grid { grid-template-columns: 1fr; }
+  .menu-toggle {
+    display: flex !important;
+    position: fixed;
+    top: 1rem; right: 1rem;
+    z-index: 101;
+    width: 40px; height: 40px;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+  }
+}
+.menu-toggle { display: none; }
+
+/* ━━━ PRINT ━━━ */
+@media print {
+  .sidebar, .menu-toggle { display: none; }
+  .app { grid-template-columns: 1fr; }
+  .content { max-width: 100%; padding: 1rem; }
+  .section { break-inside: avoid; }
+  .tier, .phase, .key-item, .addon { break-inside: avoid; }
+  body { font-size: 11pt; }
+  .faq-a { max-height: none !important; }
+}
 </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progress"></div>
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 
-<nav class="toc" id="toc">
-  <div class="toc-dot active" data-label="Início" onclick="scrollTo('#hero')"></div>
-  <div class="toc-dot" data-label="Objeções" onclick="scrollTo('#objections')"></div>
-  <div class="toc-dot" data-label="PACER" onclick="scrollTo('#pacer')"></div>
-  <div class="toc-dot" data-label="Arma Secreta" onclick="scrollTo('#insight')"></div>
-</nav>
+<div class="app">
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-eyebrow">Guia de Vendas &amp; PNL · Sites para Negócios Locais</div>
-  <h1>
-    <span class="line-dim">Como Vencer</span>
-    <span class="line-gold">7 Objeções</span>
-    <span class="line-white">de Clientes</span>
-  </h1>
-  <p class="hero-sub">Cada "não" esconde um motivo. Este guia decodifica cada objeção e entrega a resposta certa — baseada em literatura de vendas e PNL.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">7</div>
-      <div class="stat-label">Objeções</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">5</div>
-      <div class="stat-label">Etapas PACER</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Arma Secreta</div>
+<!-- ════════ SIDEBAR ════════ -->
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div class="brand-info">
+      <div class="brand-name">Studio Manual</div>
+      <div class="brand-meta">v1.0 · Interno</div>
     </div>
   </div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+
+  <div class="search-box">
+    <input type="text" placeholder="Buscar no manual..." id="search" oninput="filterToc()">
   </div>
-</section>
 
-<!-- OBJECTIONS -->
-<div class="section" id="objections">
-  <div class="section-label">Mapa de Objeções</div>
-  <h2 class="section-title">O QUE ELES<br>DIZEM — E O<br>QUE PENSAM</h2>
-  <p class="section-desc">Clique em cada objeção para revelar o que está por trás dela, a resposta ideal e a técnica de PNL aplicada.</p>
-
-  <div class="objections-grid" id="objGrid">
-
-    <!-- OBJ 1 -->
-    <div class="obj-card" data-index="0">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">01</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Preço</div>
-          <div class="obj-title">"Tá caro" / "Não tenho orçamento"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p>Não veem o <strong>valor real</strong>, ou estão comparando com zero — o custo de não ter site. A âncora de referência está errada.</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"Entendo. Quantos clientes por semana buscam seu negócio no Google e não te encontram com informação completa? Se o site trouxer só 3 pedidos a mais por mês, em quanto tempo ele se paga?"</blockquote>
-            <div class="technique-badge">⚡ Reframe custo → ROI · Pergunta socrática</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJ 2 -->
-    <div class="obj-card" data-index="1">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">02</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Necessidade</div>
-          <div class="obj-title">"Já tenho Instagram, não preciso de site"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p>Não percebem a <strong>diferença funcional</strong>. Instagram e site resolvem problemas distintos em momentos distintos da jornada do consumidor.</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"O Instagram é perfeito para relacionamento — você já faz isso muito bem com 35k seguidores. O site resolve outro problema: quando alguém digita 'hamburgueria Natal' no Google, o Instagram não aparece."</blockquote>
-            <div class="technique-badge">⚡ Complementaridade · Nunca desvalorize o que o cliente já tem</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJ 3 -->
-    <div class="obj-card" data-index="2">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">03</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Risco</div>
-          <div class="obj-title">"Não sei se vai funcionar"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p>Medo de perder dinheiro. Pode haver experiência ruim anterior ou simples <strong>desconfiança em promessas abstratas</strong> sem entrega concreta.</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"Por isso eu já montei o PRD completo com seu cardápio real, sua logo, seus depoimentos do Google. Você já pode ver exatamente o que será entregue antes de confirmar. Não é promessa — é algo concreto na sua mão."</blockquote>
-            <div class="technique-badge">⚡ Prova antes da venda · Princípio da Reciprocidade (Cialdini)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJ 4 -->
-    <div class="obj-card" data-index="3">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">04</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Procrastinação</div>
-          <div class="obj-title">"Deixa eu pensar" / "Vou ver com meu sócio"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p>Não é recusa — é <strong>falta de urgência</strong> ou de clareza sobre o próximo passo. O cliente está confortável no status quo.</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"Claro. Só quero deixar claro: o PRD está pronto, o site pode ficar no ar em X dias. Enquanto esperamos, quantas pessoas estão buscando hambúrguer em Natal e encontrando outra hamburgueria?"</blockquote>
-            <div class="technique-badge">⚡ Âncora temporal negativa (PNL) · FOMO sem pressão explícita</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJ 5 -->
-    <div class="obj-card" data-index="4">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">05</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Competição</div>
-          <div class="obj-title">"Outro cara faz mais barato"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p>Comparação por preço porque <strong>não percebe diferença de valor</strong>. O cliente ainda não viu o que te diferencia concretamente do template genérico.</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"Provavelmente faz mesmo. A questão: o outro já chegou com seu cardápio real mapeado, sua logo analisada, seus reviews selecionados? Ou vai entregar um template com 'Lorem Ipsum' trocado pelo seu nome?"</blockquote>
-            <div class="technique-badge">⚡ Venda por contraste · Nunca ataque o concorrente diretamente</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJ 6 -->
-    <div class="obj-card" data-index="5">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">06</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Esforço</div>
-          <div class="obj-title">"Não tenho tempo para cuidar disso"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p>Creem que terão <strong>trabalho ou responsabilidade</strong> após contratar. O cliente já está sobrecarregado e não quer mais uma coisa na lista.</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"Justamente por isso o site é entregue pronto. O único momento que preciso de você são 20 minutos para confirmar os preços do cardápio. O resto está feito. Literalmente."</blockquote>
-            <div class="technique-badge">⚡ Pace &amp; Lead (PNL) · Eliminação da objeção por demonstração</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OBJ 7 -->
-    <div class="obj-card" data-index="6">
-      <div class="obj-header" onclick="toggleCard(this)">
-        <div class="obj-number">07</div>
-        <div class="obj-header-text">
-          <div class="obj-tag">Objeção de Conforto</div>
-          <div class="obj-title">"Meu negócio funciona bem sem site"</div>
-        </div>
-        <div class="obj-toggle">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </div>
-      </div>
-      <div class="obj-body">
-        <div class="obj-inner">
-          <div class="obj-block">
-            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
-            <p><strong>Zona de conforto.</strong> Sucesso atual cria cegueira para oportunidades. "Se não está quebrado, não precisa consertar."</p>
-          </div>
-          <div class="obj-block">
-            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
-            <blockquote>"Ótimo. Mas o Sushi Home do lado de vocês na Candelária também não funcionava bem. Imagina se ele lançar o site antes de você. Quem aparece primeiro no Google quando buscam 'hambúrguer Candelária'?"</blockquote>
-            <div class="technique-badge">⚡ Ancoragem competitiva local · FOMO de território (PNL)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="toc-section">
+    <div class="toc-label">Estratégia</div>
+    <a class="toc-item" href="#visao"><span class="toc-num">01</span> Visão Geral</a>
+    <a class="toc-item" href="#modelo"><span class="toc-num">02</span> Modelo de Negócio</a>
+    <a class="toc-item" href="#roadmap"><span class="toc-num">03</span> Roadmap de Expansão</a>
   </div>
-</div>
 
-<!-- PACER -->
-<section class="pacer-section" id="pacer">
-  <div class="pacer-inner">
-    <div class="section-label">Framework Universal</div>
-    <h2 class="section-title" style="margin-bottom:0.5rem;">O PADRÃO<br>DE OURO</h2>
-    <p class="section-desc">Use esta estrutura para <em>qualquer</em> objeção que aparecer. A ordem importa.</p>
+  <div class="toc-section">
+    <div class="toc-label">Produto</div>
+    <a class="toc-item" href="#catalogo"><span class="toc-num">04</span> Catálogo de Serviços</a>
+    <a class="toc-item" href="#pacotes"><span class="toc-num">05</span> Pacotes &amp; Preços</a>
+    <a class="toc-item" href="#addons"><span class="toc-num">06</span> Add-ons Recorrentes</a>
+  </div>
 
-    <div class="pacer-steps">
-      <div class="pacer-step" data-n="01/05">
-        <div class="pacer-letter">P</div>
-        <div class="pacer-word">Pause</div>
-        <div class="pacer-desc">Nunca responda imediatamente. Deixe a objeção respirar 2 segundos. O silêncio demonstra confiança.</div>
-      </div>
-      <div class="pacer-step" data-n="02/05">
-        <div class="pacer-letter">A</div>
-        <div class="pacer-word">Acknowledge</div>
-        <div class="pacer-desc">Valide sem concordar: <em>"Faz sentido pensar assim"</em> / <em>"É uma preocupação legítima"</em>. Baixa a guarda do cliente.</div>
-      </div>
-      <div class="pacer-step" data-n="03/05">
-        <div class="pacer-letter">C</div>
-        <div class="pacer-word">Clarify</div>
-        <div class="pacer-desc">Entenda o real motivo: <em>"Quando você diz caro, está comparando com o quê?"</em> A objeção dita raramente é a real.</div>
-      </div>
-      <div class="pacer-step" data-n="04/05">
-        <div class="pacer-letter">E</div>
-        <div class="pacer-word">Evidence</div>
-        <div class="pacer-desc">Apresente o contra-argumento com <strong>prova concreta</strong>. O PRD já é a sua prova — use-o.</div>
-      </div>
-      <div class="pacer-step" data-n="05/05">
-        <div class="pacer-letter">R</div>
-        <div class="pacer-word">Redirect</div>
-        <div class="pacer-desc">Devolva com uma pergunta que faz o cliente <strong>chegar à conclusão sozinho</strong>. Quem convence é o cliente, não você.</div>
-      </div>
+  <div class="toc-section">
+    <div class="toc-label">Operação</div>
+    <a class="toc-item" href="#processo"><span class="toc-num">07</span> Processo Comercial</a>
+    <a class="toc-item" href="#contratos"><span class="toc-num">08</span> Contratos</a>
+    <a class="toc-item" href="#pagamentos"><span class="toc-num">09</span> Formas de Pagamento</a>
+    <a class="toc-item" href="#entrega"><span class="toc-num">10</span> Entrega &amp; Cronograma</a>
+    <a class="toc-item" href="#sla"><span class="toc-num">11</span> Manutenção &amp; SLA</a>
+    <a class="toc-item" href="#suporte"><span class="toc-num">12</span> Suporte ao Cliente</a>
+    <a class="toc-item" href="#cancelamento"><span class="toc-num">13</span> Cancelamento &amp; Reembolso</a>
+  </div>
+
+  <div class="toc-section">
+    <div class="toc-label">Referência</div>
+    <a class="toc-item" href="#faq"><span class="toc-num">14</span> FAQ Operacional</a>
+    <a class="toc-item" href="#objecoes"><span class="toc-num">15</span> Manual de Objeções</a>
+    <a class="toc-item" href="#scripts"><span class="toc-num">16</span> Scripts de Atendimento</a>
+  </div>
+</aside>
+
+<!-- ════════ MAIN ════════ -->
+<main class="main">
+<div class="content">
+
+<!-- HEADER -->
+<header class="doc-header">
+  <div class="doc-eyebrow">Manual Operacional · Documento Interno</div>
+  <h1 class="doc-title">Modelo de Negócio &amp; <em>Atendimento</em></h1>
+  <p class="doc-sub">Guia oficial para qualquer pessoa da equipe responder perguntas de clientes sobre como funcionamos, o que entregamos, prazos, contratos, pagamentos e suporte.</p>
+  <div class="doc-meta">
+    <span><strong>Versão:</strong> 1.0</span>
+    <span><strong>Atualizado:</strong> Abr/2026</span>
+    <span><strong>Confidencialidade:</strong> Uso interno</span>
+  </div>
+</header>
+
+<!-- ═══════════ 01 VISÃO GERAL ═══════════ -->
+<section class="section" id="visao">
+  <div class="section-tag"><span class="section-tag-num">01</span> Visão Geral</div>
+  <h2>O que <em>somos</em></h2>
+  <p class="section-lead">Somos um estúdio de presença digital para negócios locais. Nossa missão é tirar pequenos e médios negócios da invisibilidade online — começando pelo site e expandindo para automações, marketing e analytics.</p>
+
+  <h3>Nosso público</h3>
+  <p>Negócios locais consolidados que ainda não têm site próprio ou têm presença digital fragmentada. Tipicamente:</p>
+  <ul>
+    <li><strong>Restaurantes, hamburguerias, sushibares</strong> com forte presença no Instagram mas sem site</li>
+    <li><strong>Clínicas, consultórios, academias</strong> que dependem do "boca a boca"</li>
+    <li><strong>Lojas, salões, pet shops</strong> com 5+ anos de operação e reputação no Google</li>
+    <li>Faturamento típico: R$ 30k a R$ 300k/mês — grande o suficiente para investir, pequeno o suficiente para precisar de nós</li>
+  </ul>
+
+  <h3>O que nos diferencia</h3>
+  <div class="key-grid">
+    <div class="key-item">
+      <div class="key-label">Diferencial 1</div>
+      <div class="key-value">Esboço pronto antes da venda<small>Cliente já vê o site dele antes de pagar.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Diferencial 2</div>
+      <div class="key-value">Foco em negócios locais<small>Especialização &gt; generalismo.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Diferencial 3</div>
+      <div class="key-value">Receita recorrente real<small>Não desaparecemos depois do projeto.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Diferencial 4</div>
+      <div class="key-value">Stack de automação avançada<small>n8n, IA, integrações reais.</small></div>
     </div>
   </div>
 </section>
 
-<!-- INSIGHT FINAL -->
-<div class="insight-box" id="insight">
-  <div class="insight-inner">
-    <div class="insight-icon">🎯</div>
-    <div class="insight-title">A ARMA SECRETA</div>
-    <p class="insight-text">
-      O PRD que você gerou não é só um documento técnico —
-      <strong>ele é o principal argumento de venda.</strong><br><br>
-      Quando você entrega ao dono do Gourmet Burguer um documento com o cardápio
-      dele completo, a logo analisada, os depoimentos reais dos clientes e o wireframe
-      do site já estruturado, você elimina as objeções <strong>3, 5 e 6 antes mesmo
-      de a reunião começar.</strong><br><br>
-      Isso é o que em vendas se chama de <strong>"give before you ask"</strong> —
-      e é provavelmente a técnica mais eficaz para serviços digitais para
-      pequenos negócios. Você ativa o princípio da <strong>reciprocidade de Cialdini</strong>:
-      o cliente já recebeu algo de valor, e inconscientemente sente que deve dar
-      algo em troca.
-    </p>
-  </div>
-</div>
+<!-- ═══════════ 02 MODELO DE NEGÓCIO ═══════════ -->
+<section class="section" id="modelo">
+  <div class="section-tag"><span class="section-tag-num">02</span> Modelo</div>
+  <h2>Modelo recomendado: <em>Land &amp; Expand</em></h2>
+  <p class="section-lead">Entrar pela porta do site (produto âncora barato e tangível) e expandir para automações, conteúdo e analytics conforme o cliente confia em nós. É o modelo de agência boutique mais sustentável para uma operação inicial.</p>
 
-<footer>
-  <p>Guia de Vendas &amp; PNL · Sites para Negócios Locais · Natal/RN · 2026</p>
+  <h3>Por que esse modelo</h3>
+  <ul>
+    <li><strong>Barreira baixa de entrada:</strong> Site é tangível, fácil de explicar e tem ROI claro. Cliente não precisa "acreditar em automação" para fechar.</li>
+    <li><strong>LTV alto:</strong> Um cliente entra pagando R$ 2k de setup e, em 24 meses, pode estar pagando R$ 1.500/mês em add-ons. LTV de R$ 30k+ por conta.</li>
+    <li><strong>Stickiness natural:</strong> Quem hospeda o site, integra o WhatsApp, gerencia o Google Meu Negócio e roda as automações torna-se infraestrutura crítica do cliente.</li>
+    <li><strong>Receita previsível:</strong> A mensalidade banca o custo fixo. Os setups novos viram lucro e investimento em crescimento.</li>
+  </ul>
+
+  <h3>As 3 colunas da receita</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Origem</th>
+          <th>% Meta (mês 12)</th>
+          <th>Função</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Setup (one-time)</strong></td>
+          <td>Implementação de sites e novos serviços</td>
+          <td>40%</td>
+          <td>Combustível de crescimento</td>
+        </tr>
+        <tr>
+          <td><strong>Recorrente (MRR)</strong></td>
+          <td>Mensalidades de manutenção e add-ons</td>
+          <td>50%</td>
+          <td>Coluna vertebral, paga custos fixos</td>
+        </tr>
+        <tr>
+          <td><strong>Projetos extras</strong></td>
+          <td>Mudanças grandes, redesigns, campanhas</td>
+          <td>10%</td>
+          <td>Margem alta, cliente já confia</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">⚡ Regra de ouro</div>
+    <div class="callout-body">Toda venda nova deve sair com mensalidade. Setup sem recorrência é projeto, não cliente — e projetos não escalam.</div>
+  </div>
+
+  <h3>Estrutura societária e fiscal recomendada</h3>
+  <p>Para iniciar a operação no Brasil:</p>
+  <ul>
+    <li><strong>MEI (até R$ 81k/ano):</strong> Para os primeiros meses. CNAEs: 6201-5/01 (desenvolvimento de programas), 7319-0/04 (consultoria publicitária).</li>
+    <li><strong>ME no Simples Nacional (até R$ 360k/ano):</strong> A partir do 6º mês ou quando ultrapassar limite MEI. Anexo III ou V dependendo do fator R.</li>
+    <li><strong>Emissão de NF-e de serviço</strong> obrigatória em todo faturamento — usar emissor da prefeitura ou ferramenta como NFE.io / eNotas.</li>
+    <li><strong>Conta PJ separada</strong> desde o dia 1. Recomendamos bancos digitais (Inter, Cora, Nubank PJ) por baixo custo e PIX integrado.</li>
+  </ul>
+</section>
+
+<!-- ═══════════ 03 ROADMAP ═══════════ -->
+<section class="section" id="roadmap">
+  <div class="section-tag"><span class="section-tag-num">03</span> Roadmap</div>
+  <h2>Plano de <em>expansão</em></h2>
+  <p class="section-lead">Não vendemos tudo de uma vez. Cada fase consolida a anterior antes de adicionar complexidade.</p>
+
+  <div class="roadmap">
+    <div class="phase phase-1">
+      <div class="phase-label">Fase 1 · Foundation</div>
+      <div class="phase-title">Sites &amp; Hospedagem</div>
+      <div class="phase-when">Mês 0 a 6 · Foco total</div>
+      <ul class="phase-list">
+        <li>→ Sites institucionais</li>
+        <li>→ Cardápios digitais</li>
+        <li>→ Landing pages</li>
+        <li>→ Hospedagem &amp; manutenção</li>
+        <li>→ SEO local básico</li>
+      </ul>
+    </div>
+    <div class="phase phase-2">
+      <div class="phase-label">Fase 2 · Growth</div>
+      <div class="phase-title">Marketing &amp; Conteúdo</div>
+      <div class="phase-when">Mês 6 a 12 · Cross-sell</div>
+      <ul class="phase-list">
+        <li>→ Google Meu Negócio</li>
+        <li>→ Gestão de conteúdo</li>
+        <li>→ Automações de WhatsApp</li>
+        <li>→ Captação de leads</li>
+        <li>→ Tráfego pago básico</li>
+      </ul>
+    </div>
+    <div class="phase phase-3">
+      <div class="phase-label">Fase 3 · Strategic</div>
+      <div class="phase-title">Automação &amp; Analytics</div>
+      <div class="phase-when">Mês 12+ · Diferencial</div>
+      <ul class="phase-list">
+        <li>→ Workflows n8n customizados</li>
+        <li>→ Dashboards analíticos</li>
+        <li>→ Integrações ERP/CRM</li>
+        <li>→ Agentes de IA atendimento</li>
+        <li>→ Consultoria estratégica</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-title">🎯 Por que respeitar a sequência</div>
+    <div class="callout-body">Vender automação para quem ainda não tem site é como vender turbo para quem não tem carro. A Fase 1 cria o ativo (o site); a Fase 2 traz visitantes; a Fase 3 transforma visitantes em receita previsível. Sair da ordem cria vendas frustradas.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 04 CATÁLOGO ═══════════ -->
+<section class="section" id="catalogo">
+  <div class="section-tag"><span class="section-tag-num">04</span> Catálogo</div>
+  <h2>O que <em>vendemos</em></h2>
+  <p class="section-lead">Catálogo simplificado com tudo que oferecemos hoje. Itens marcados como <em>"em breve"</em> são da Fase 2 e 3 — não vender ainda.</p>
+
+  <h3>Disponível agora (Fase 1)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Serviço</th><th>O que é</th><th>Tipo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Site institucional</strong></td>
+          <td>Site one-page com seções essenciais (hero, sobre, serviços, contato), responsivo, SEO básico</td>
+          <td>Setup + Mensal</td>
+        </tr>
+        <tr>
+          <td><strong>Cardápio digital</strong></td>
+          <td>Menu online com categorias, preços, fotos e link direto WhatsApp</td>
+          <td>Setup + Mensal</td>
+        </tr>
+        <tr>
+          <td><strong>Landing page</strong></td>
+          <td>Página única focada em conversão para campanha ou produto específico</td>
+          <td>Setup + Mensal</td>
+        </tr>
+        <tr>
+          <td><strong>Hospedagem &amp; manutenção</strong></td>
+          <td>Servidor, SSL, backup diário, monitoramento, pequenos ajustes mensais</td>
+          <td>Mensal</td>
+        </tr>
+        <tr>
+          <td><strong>SEO local básico</strong></td>
+          <td>Meta tags, Schema.org, otimização de busca local "X em [cidade]"</td>
+          <td>Incluso no setup</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Em breve (Fase 2 — não vender ainda)</h3>
+  <ul>
+    <li>Gestão de Google Meu Negócio (posts, fotos, respostas)</li>
+    <li>Gestão de conteúdo Instagram/Facebook</li>
+    <li>Automações de WhatsApp Business com n8n</li>
+    <li>Captura de leads e nurturing</li>
+  </ul>
+
+  <h3>Roadmap (Fase 3 — referência apenas)</h3>
+  <ul>
+    <li>Workflows n8n customizados (atendimento, agendamento, CRM)</li>
+    <li>Dashboards analíticos com Metabase / Looker</li>
+    <li>Integrações com ERP/PDV/CRM existentes</li>
+    <li>Agentes de IA para atendimento WhatsApp</li>
+  </ul>
+</section>
+
+<!-- ═══════════ 05 PACOTES & PREÇOS ═══════════ -->
+<section class="section" id="pacotes">
+  <div class="section-tag"><span class="section-tag-num">05</span> Pacotes</div>
+  <h2>Pacotes de <em>site</em></h2>
+  <p class="section-lead">Três pacotes para diferentes níveis de necessidade. A maioria dos clientes fecha no Profissional.</p>
+
+  <div class="tier-grid">
+    <div class="tier">
+      <div class="tier-name">Essencial</div>
+      <div class="tier-tagline">Para quem quer estar presente no Google e dar a primeira impressão certa.</div>
+      <div class="tier-price">R$ 1.497<small> setup</small></div>
+      <div class="tier-monthly">+ R$ 97 / mês</div>
+      <ul class="tier-features">
+        <li>Site one-page até 5 seções</li>
+        <li>Domínio próprio (.com.br)</li>
+        <li>Hospedagem &amp; SSL</li>
+        <li>Responsivo mobile</li>
+        <li>SEO básico</li>
+        <li>Botão WhatsApp flutuante</li>
+        <li>Google Maps embed</li>
+        <li>Backup mensal</li>
+      </ul>
+    </div>
+
+    <div class="tier featured">
+      <div class="tier-name">Profissional</div>
+      <div class="tier-tagline">O escolhido pela maioria. Equilíbrio entre presença e conversão.</div>
+      <div class="tier-price">R$ 2.497<small> setup</small></div>
+      <div class="tier-monthly">+ R$ 197 / mês</div>
+      <ul class="tier-features">
+        <li>Tudo do Essencial</li>
+        <li>Site multi-seção (até 8)</li>
+        <li>Galeria de fotos</li>
+        <li>Cardápio/serviços detalhado</li>
+        <li>Depoimentos &amp; reviews</li>
+        <li>Animações suaves</li>
+        <li>SEO local otimizado</li>
+        <li>1h/mês de alterações</li>
+        <li>Backup semanal</li>
+        <li>Email profissional (1)</li>
+      </ul>
+    </div>
+
+    <div class="tier">
+      <div class="tier-name">Premium</div>
+      <div class="tier-tagline">Para quem quer um site que parece de gente grande.</div>
+      <div class="tier-price">R$ 3.997<small> setup</small></div>
+      <div class="tier-monthly">+ R$ 297 / mês</div>
+      <ul class="tier-features">
+        <li>Tudo do Profissional</li>
+        <li>Design premium customizado</li>
+        <li>Múltiplas páginas</li>
+        <li>Sistema de blog (opcional)</li>
+        <li>Integração Instagram feed</li>
+        <li>Formulários avançados</li>
+        <li>2h/mês de alterações</li>
+        <li>Backup diário</li>
+        <li>Emails profissionais (até 5)</li>
+        <li>Relatório mensal de visitas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">💡 Como guiar o cliente</div>
+    <div class="callout-body">A maioria pergunta o preço sem saber o que precisa. Sempre mostre os 3 pacotes lado a lado e pergunte: <em>"Qual desses faz mais sentido pro momento do seu negócio?"</em> Deixe ele escolher — e a maioria escolhe o do meio (efeito de ancoragem).</div>
+  </div>
+
+  <h3>O que sempre está incluso (qualquer pacote)</h3>
+  <ul>
+    <li>Domínio .com.br registrado em nome do cliente</li>
+    <li>Hospedagem em servidor com 99.9% de uptime</li>
+    <li>Certificado SSL (https://) sempre ativo</li>
+    <li>Backup automatizado</li>
+    <li>Configuração inicial do Google Meu Negócio</li>
+    <li>Treinamento de 30 min para o cliente após entrega</li>
+  </ul>
+
+  <h3>O que NÃO está incluso (orçamento à parte)</h3>
+  <ul>
+    <li>Produção de fotos profissionais</li>
+    <li>Criação de logo (oferecemos parceiros)</li>
+    <li>Anúncios pagos (Meta, Google Ads)</li>
+    <li>Sistemas de pagamento online ou e-commerce</li>
+    <li>Aplicativos móveis nativos</li>
+    <li>Conteúdo escrito além do enviado pelo cliente</li>
+  </ul>
+</section>
+
+<!-- ═══════════ 06 ADD-ONS ═══════════ -->
+<section class="section" id="addons">
+  <div class="section-tag"><span class="section-tag-num">06</span> Add-ons</div>
+  <h2>Add-ons <em>recorrentes</em></h2>
+  <p class="section-lead">Serviços que somam à mensalidade base. Pode adicionar a qualquer momento — também são a porta de entrada das Fases 2 e 3.</p>
+
+  <h3>Disponíveis hoje</h3>
+  <div class="addon-grid">
+    <div class="addon">
+      <div class="addon-info">
+        <div class="addon-name">Pacote Local Boost</div>
+        <div class="addon-desc">Gestão completa do Google Meu Negócio: posts semanais, respostas a reviews, fotos atualizadas.</div>
+      </div>
+      <div class="addon-price">+ R$ 297/mo</div>
+    </div>
+    <div class="addon">
+      <div class="addon-info">
+        <div class="addon-name">Manutenção Avançada</div>
+        <div class="addon-desc">+3h/mês de alterações no site, prioridade de suporte, mudanças sem orçamento.</div>
+      </div>
+      <div class="addon-price">+ R$ 197/mo</div>
+    </div>
+    <div class="addon">
+      <div class="addon-info">
+        <div class="addon-name">Email Marketing Setup</div>
+        <div class="addon-desc">Configuração de captura de email + envio de 1 newsletter/mês via Mailchimp/Brevo.</div>
+      </div>
+      <div class="addon-price">+ R$ 247/mo</div>
+    </div>
+    <div class="addon">
+      <div class="addon-info">
+        <div class="addon-name">Relatório Mensal Plus</div>
+        <div class="addon-desc">Reunião de 30 min/mês para revisar métricas e ajustar estratégia.</div>
+      </div>
+      <div class="addon-price">+ R$ 197/mo</div>
+    </div>
+  </div>
+
+  <h3>Em breve (Fases 2 e 3)</h3>
+  <div class="addon-grid">
+    <div class="addon">
+      <div class="addon-info">
+        <div class="addon-name">Automação WhatsApp</div>
+        <div class="addon-desc">Atendimento automatizado com n8n: respostas, agendamento, follow-ups.</div>
+      </div>
+      <div class="addon-price">+ R$ 597/mo</div>
+    </div>
+    <div class="addon">
+      <div class="addon-info">
+        <div class="addon-name">Dashboard Analytics</div>
+        <div class="addon-desc">Painel customizado com KPIs do negócio, atualizado em tempo real.</div>
+      </div>
+      <div class="addon-price">+ R$ 397/mo</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 07 PROCESSO COMERCIAL ═══════════ -->
+<section class="section" id="processo">
+  <div class="section-tag"><span class="section-tag-num">07</span> Comercial</div>
+  <h2>Processo <em>comercial</em></h2>
+  <p class="section-lead">Do primeiro contato ao "sim". Sempre nessa ordem.</p>
+
+  <div class="process">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div>
+        <div class="process-title">Prospecção</div>
+        <div class="process-desc">Identificação de negócios sem site no Google Maps. Coleta de dados públicos (nome, endereço, fotos, reviews).</div>
+        <div class="process-meta">Sem contato com cliente · Estudo</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div>
+        <div class="process-title">PRD &amp; esboço pronto</div>
+        <div class="process-desc">Geramos o PRD do site usando os dados públicos. Em alguns casos, o esboço HTML já fica pronto antes do contato.</div>
+        <div class="process-meta">Tempo: 2-4h por cliente</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div>
+        <div class="process-title">Abordagem inicial</div>
+        <div class="process-desc">WhatsApp ou visita presencial. Apresentamos o esboço já feito do site dele. Postura: <em>"Preparei isso pensando no seu negócio, dá uma olhada"</em> — não vendedora.</div>
+        <div class="process-meta">Conversão típica: 30-40%</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <div>
+        <div class="process-title">Reunião de apresentação</div>
+        <div class="process-desc">15-30 min mostrando o site no celular dele. Tratamos objeções com PNL (ver Manual de Objeções). Apresentamos os 3 pacotes ao final.</div>
+        <div class="process-meta">Idealmente presencial ou videocall</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">05</div>
+      <div>
+        <div class="process-title">Proposta &amp; contrato</div>
+        <div class="process-desc">Envio de proposta formal por email com link para assinatura digital (Clicksign / D4Sign / Autentique). Pagamento da entrada via PIX libera o início.</div>
+        <div class="process-meta">Fechamento típico: 2-7 dias após reunião</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">06</div>
+      <div>
+        <div class="process-title">Onboarding</div>
+        <div class="process-desc">Briefing detalhado: textos, fotos, preferências, contas (Google, redes), domínio. Reunião de 30-45 min.</div>
+        <div class="process-meta">Até 48h após pagamento da entrada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 08 CONTRATOS ═══════════ -->
+<section class="section" id="contratos">
+  <div class="section-tag"><span class="section-tag-num">08</span> Contratos</div>
+  <h2>Contratos &amp; <em>cláusulas-chave</em></h2>
+  <p class="section-lead">Todo cliente assina contrato antes do início. Sem exceção.</p>
+
+  <h3>Estrutura do contrato</h3>
+  <ul>
+    <li><strong>Identificação das partes</strong> (CNPJ contratante e contratada)</li>
+    <li><strong>Objeto do contrato</strong> (especificação clara do pacote vendido)</li>
+    <li><strong>Valores e forma de pagamento</strong> (setup + mensalidade)</li>
+    <li><strong>Prazo de vigência</strong> (12 meses, renovação automática)</li>
+    <li><strong>SLA e responsabilidades</strong></li>
+    <li><strong>Cláusulas de cancelamento e multa</strong></li>
+    <li><strong>Tratamento de dados (LGPD)</strong></li>
+    <li><strong>Foro:</strong> Comarca de Natal/RN</li>
+  </ul>
+
+  <h3>Pontos críticos para o cliente saber</h3>
+  <div class="key-grid">
+    <div class="key-item">
+      <div class="key-label">Vigência inicial</div>
+      <div class="key-value">12 meses<small>Renovação automática anual.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Cancelamento</div>
+      <div class="key-value">Aviso de 30 dias<small>Após os 12 meses iniciais.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Quebra antecipada</div>
+      <div class="key-value">Multa de 30%<small>Sobre as mensalidades restantes.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Propriedade do site</div>
+      <div class="key-value">Do cliente<small>Após pagamento integral do setup.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Domínio</div>
+      <div class="key-value">Em nome do cliente<small>Sempre — nunca registramos no nosso CNPJ.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Reajuste anual</div>
+      <div class="key-value">IPCA<small>Aplicado na renovação.</small></div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-title">⚠️ Nunca fazer</div>
+    <div class="callout-body">
+      <strong>Nunca</strong> registrar o domínio no CNPJ da empresa.<br>
+      <strong>Nunca</strong> começar trabalho sem contrato assinado e entrada paga.<br>
+      <strong>Nunca</strong> prometer prazos por mensagem informal — sempre em proposta formal.
+    </div>
+  </div>
+
+  <h3>LGPD</h3>
+  <p>Quando o site coleta dados de visitantes (formulário, newsletter, chatbot), o cliente é o <strong>controlador</strong> e nós somos os <strong>operadores</strong>. O contrato precisa explicitar isso, e o site precisa de:</p>
+  <ul>
+    <li>Política de privacidade (incluímos uma genérica em todo site)</li>
+    <li>Banner de cookies (incluso em pacotes Profissional e Premium)</li>
+    <li>Termo de consentimento em formulários</li>
+  </ul>
+</section>
+
+<!-- ═══════════ 09 PAGAMENTOS ═══════════ -->
+<section class="section" id="pagamentos">
+  <div class="section-tag"><span class="section-tag-num">09</span> Pagamento</div>
+  <h2>Formas de <em>pagamento</em></h2>
+  <p class="section-lead">Aceitamos os meios mais comuns no Brasil. PIX é prioritário pela liquidez.</p>
+
+  <h3>Setup (one-time)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Método</th><th>Como</th><th>Parcelamento</th><th>Custo p/ cliente</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>PIX</strong></td><td>Chave CNPJ ou QR Code</td><td>50% entrada + 50% entrega</td><td>Sem taxas</td></tr>
+        <tr><td><strong>Cartão de crédito</strong></td><td>Link Stripe / Mercado Pago</td><td>Até 12x</td><td>Juros da operadora a partir da 4ª parcela</td></tr>
+        <tr><td><strong>Boleto</strong></td><td>Asaas / Cobrança bancária</td><td>50% entrada + 50% entrega</td><td>Sem taxas</td></tr>
+        <tr><td><strong>Transferência (TED)</strong></td><td>Conta PJ informada na proposta</td><td>50% entrada + 50% entrega</td><td>Sem taxas</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Mensalidade</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Método</th><th>Como funciona</th><th>Recomendação</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>PIX automático</strong></td><td>Cobrança recorrente via Asaas/Pagar.me com PIX agendado</td><td>⭐ Preferencial</td></tr>
+        <tr><td><strong>Cartão recorrente</strong></td><td>Cobrança automática mensal no cartão</td><td>Bom para clientes recorrentes</td></tr>
+        <tr><td><strong>Boleto mensal</strong></td><td>Boleto enviado todo mês via email</td><td>Aceitar apenas se cliente insistir</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-title">💡 Política de inadimplência</div>
+    <div class="callout-body">
+      Mensalidade atrasada: <strong>3 dias</strong> aviso amigável.
+      <strong>7 dias</strong> notificação formal por email.
+      <strong>15 dias</strong> suspensão temporária do site (banner "Em manutenção").
+      <strong>30 dias</strong> desligamento e cobrança via plataforma (Asaas, Serasa).
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 10 ENTREGA ═══════════ -->
+<section class="section" id="entrega">
+  <div class="section-tag"><span class="section-tag-num">10</span> Entrega</div>
+  <h2>Cronograma de <em>entrega</em></h2>
+  <p class="section-lead">Prazos contam a partir do pagamento da entrada e do briefing completo.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Pacote</th><th>Prazo</th><th>Marcos</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Essencial</strong></td>
+          <td>7 dias úteis</td>
+          <td>Wireframe (D+2) → Site v1 (D+5) → Ajustes (D+7) → Publicação</td>
+        </tr>
+        <tr>
+          <td><strong>Profissional</strong></td>
+          <td>14 dias úteis</td>
+          <td>Wireframe (D+3) → Design (D+7) → Site v1 (D+11) → Revisão (D+13) → Publicação</td>
+        </tr>
+        <tr>
+          <td><strong>Premium</strong></td>
+          <td>21-30 dias úteis</td>
+          <td>Discovery (D+5) → Design (D+12) → Build (D+22) → Revisão (D+27) → Publicação</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Rodadas de revisão</h3>
+  <ul>
+    <li><strong>Essencial:</strong> 1 rodada de revisão (até 5 ajustes)</li>
+    <li><strong>Profissional:</strong> 2 rodadas de revisão (até 10 ajustes total)</li>
+    <li><strong>Premium:</strong> 3 rodadas de revisão (até 15 ajustes total)</li>
+  </ul>
+  <p>Ajustes adicionais ou mudanças estruturais (novas seções, redesigns) são cobrados à parte: <strong>R$ 150/h</strong>.</p>
+
+  <h3>Entrega final inclui</h3>
+  <ul>
+    <li>Site no ar com domínio próprio configurado</li>
+    <li>Acesso à plataforma de hospedagem (cliente pode ver, mas não editar)</li>
+    <li>Treinamento de 30 min via videocall ou presencial</li>
+    <li>Documento PDF: "Como funciona seu site" (5 páginas)</li>
+    <li>Pixel/tag de Google Analytics e Search Console configurados</li>
+    <li>NF-e emitida</li>
+  </ul>
+</section>
+
+<!-- ═══════════ 11 SLA ═══════════ -->
+<section class="section" id="sla">
+  <div class="section-tag"><span class="section-tag-num">11</span> SLA</div>
+  <h2>Manutenção &amp; <em>SLA</em></h2>
+  <p class="section-lead">O que está incluso na mensalidade e os prazos de resposta. Esses números entram no contrato.</p>
+
+  <h3>Tempos de resposta por severidade</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Severidade</th><th>Exemplo</th><th>Tempo de resposta</th><th>Tempo de resolução</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🔴 Crítico</strong></td>
+          <td>Site fora do ar</td>
+          <td>1 hora útil</td>
+          <td>Até 4h úteis</td>
+        </tr>
+        <tr>
+          <td><strong>🟡 Alto</strong></td>
+          <td>Funcionalidade quebrada (formulário, mapa, WhatsApp)</td>
+          <td>4 horas úteis</td>
+          <td>Até 24h úteis</td>
+        </tr>
+        <tr>
+          <td><strong>🟢 Médio</strong></td>
+          <td>Bug visual, link errado</td>
+          <td>1 dia útil</td>
+          <td>Até 3 dias úteis</td>
+        </tr>
+        <tr>
+          <td><strong>⚪ Baixo</strong></td>
+          <td>Pequeno ajuste de texto, troca de foto</td>
+          <td>2 dias úteis</td>
+          <td>Até 7 dias úteis</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>O que a mensalidade cobre</h3>
+  <ul>
+    <li>Hospedagem, SSL, domínio (renovação anual inclusa)</li>
+    <li>Backup automatizado (frequência conforme pacote)</li>
+    <li>Monitoramento 24/7 de uptime</li>
+    <li>Pequenas alterações: textos, preços, fotos, horários (limite de horas conforme pacote)</li>
+    <li>Atualizações de segurança e performance</li>
+    <li>Suporte por WhatsApp e email em horário comercial</li>
+  </ul>
+
+  <h3>O que NÃO cobre (cobrado à parte)</h3>
+  <ul>
+    <li>Novas páginas ou seções inteiras</li>
+    <li>Redesign visual</li>
+    <li>Novas funcionalidades (formulários complexos, sistemas)</li>
+    <li>Produção de conteúdo (textos, fotos, vídeos)</li>
+    <li>Migrações de plataforma</li>
+    <li>Recuperação de dados perdidos por erro do cliente</li>
+  </ul>
+
+  <h3>Garantia de uptime</h3>
+  <p>Garantimos <strong>99.5% de uptime mensal</strong>. Se ficar abaixo, créditos proporcionais na próxima fatura: 99.0%-99.5% = 10% de desconto; abaixo de 99% = 25%; abaixo de 95% = 50%.</p>
+</section>
+
+<!-- ═══════════ 12 SUPORTE ═══════════ -->
+<section class="section" id="suporte">
+  <div class="section-tag"><span class="section-tag-num">12</span> Suporte</div>
+  <h2>Canais &amp; <em>horários</em></h2>
+  <p class="section-lead">Suporte é nosso ponto forte. Atendimento humano, rápido e em português.</p>
+
+  <h3>Canais oficiais</h3>
+  <div class="key-grid">
+    <div class="key-item">
+      <div class="key-label">Canal Principal</div>
+      <div class="key-value">WhatsApp Business<small>Resposta em até 4h úteis</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Suporte formal</div>
+      <div class="key-value">Email oficial<small>Para tickets e registros</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Emergências</div>
+      <div class="key-value">WhatsApp 24/7<small>Apenas para site fora do ar</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Reuniões</div>
+      <div class="key-value">Google Meet<small>Agendadas com 24h de antecedência</small></div>
+    </div>
+  </div>
+
+  <h3>Horário de atendimento</h3>
+  <ul>
+    <li><strong>Segunda a sexta:</strong> 9h às 18h (horário de Brasília)</li>
+    <li><strong>Sábado:</strong> 10h às 14h (apenas WhatsApp)</li>
+    <li><strong>Domingo e feriados:</strong> Apenas emergências (site fora do ar)</li>
+  </ul>
+
+  <h3>Boas práticas de atendimento</h3>
+  <ol>
+    <li><strong>Confirme o recebimento em até 15 minutos</strong>, mesmo que a resposta completa demore mais.</li>
+    <li><strong>Use linguagem do cliente,</strong> evite jargão técnico ("vamos ajustar isso" em vez de "vou refatorar o componente").</li>
+    <li><strong>Nunca diga "não",</strong> diga "vamos verificar a melhor forma".</li>
+    <li><strong>Documente tudo:</strong> toda solicitação que vira tarefa é registrada (Notion, Trello ou ferramenta interna).</li>
+    <li><strong>Avise quando estiver fora do escopo</strong> antes de fazer — nunca cobre uma surpresa.</li>
+  </ol>
+</section>
+
+<!-- ═══════════ 13 CANCELAMENTO ═══════════ -->
+<section class="section" id="cancelamento">
+  <div class="section-tag"><span class="section-tag-num">13</span> Cancelamento</div>
+  <h2>Cancelamento &amp; <em>reembolso</em></h2>
+  <p class="section-lead">Política clara é a base de uma relação saudável. Se o cliente perguntar, responda direto.</p>
+
+  <h3>Janela de arrependimento (CDC)</h3>
+  <p>Por força do Código de Defesa do Consumidor, o cliente tem direito a <strong>7 dias após assinatura do contrato</strong> para cancelar com reembolso integral do setup (caso o trabalho ainda não tenha sido entregue).</p>
+
+  <h3>Após os 7 dias, antes da entrega do site</h3>
+  <ul>
+    <li>50% do setup é retido (cobre o trabalho de discovery e design)</li>
+    <li>50% é devolvido em até 10 dias úteis via PIX</li>
+  </ul>
+
+  <h3>Após a entrega do site, durante os 12 meses iniciais</h3>
+  <ul>
+    <li>Setup já é não-reembolsável</li>
+    <li>Cancelamento da mensalidade exige aviso de 30 dias + multa de 30% sobre as mensalidades restantes do contrato</li>
+    <li>Site permanece com o cliente (domínio é dele)</li>
+    <li>Hospedagem precisa ser migrada (oferecemos export ou migração paga)</li>
+  </ul>
+
+  <h3>Após o 12º mês (vigência completa)</h3>
+  <ul>
+    <li>Cancelamento livre com aviso de 30 dias</li>
+    <li>Sem multa</li>
+    <li>Site permanece com o cliente</li>
+    <li>Migração de hospedagem ou export do código gratuita</li>
+  </ul>
+
+  <div class="callout green">
+    <div class="callout-title">✓ Filosofia</div>
+    <div class="callout-body">Quem quer sair, sai. Não retemos cliente insatisfeito por contrato — reputação vale mais que mensalidade. Mas também não somos caridade: o trabalho feito é cobrado.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 14 FAQ ═══════════ -->
+<section class="section" id="faq">
+  <div class="section-tag"><span class="section-tag-num">14</span> FAQ</div>
+  <h2>Perguntas <em>frequentes</em></h2>
+  <p class="section-lead">As 20 perguntas que mais aparecem. Toda a equipe deve saber responder na hora.</p>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Quanto tempo leva para ficar pronto?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Depende do pacote. <strong>Essencial:</strong> 7 dias úteis. <strong>Profissional:</strong> 14 dias úteis. <strong>Premium:</strong> 21-30 dias úteis. Os prazos contam a partir do pagamento da entrada e do envio do briefing completo.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês fazem logo / identidade visual?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Não diretamente. Trabalhamos a partir da identidade visual existente do cliente. Se precisar de logo, indicamos parceiros ou cobramos à parte (orçamento sob medida).</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>O site fica no meu nome ou no de vocês?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner"><strong>Sempre no nome do cliente.</strong> O domínio (.com.br) é registrado em seu CNPJ desde o primeiro dia. Após pagamento integral do setup, o código-fonte também é seu.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Posso editar o site sozinho depois?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Pequenas alterações de texto, foto e preço são feitas por nós (incluso na mensalidade). Para clientes que querem autonomia total, oferecemos pacote com CMS (sob orçamento). Edições estruturais sempre passam por nós para garantir qualidade.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Por que tem mensalidade?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">A mensalidade cobre <strong>hospedagem, domínio, SSL, backup, monitoramento, atualizações de segurança e pequenas alterações.</strong> Sem isso, o site fica fora do ar em meses. É como ter um carro: o setup é a compra, a mensalidade é o combustível e a manutenção.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>E se eu quiser cancelar?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Em 7 dias após assinatura: reembolso integral. Antes da entrega: 50% retido. Durante os 12 meses iniciais: aviso de 30 dias + multa de 30% sobre mensalidades restantes. Após 12 meses: cancelamento livre com 30 dias de aviso, sem multa. O site fica com você sempre.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês emitem nota fiscal?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim, emitimos NF-e de serviço para todo pagamento, tanto setup quanto mensalidade. CNAE: prestação de serviços de tecnologia da informação.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Aceitam parcelar?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim. Setup pode ser parcelado em até <strong>12x no cartão de crédito</strong> (juros da operadora a partir da 4ª parcela) ou <strong>50% entrada + 50% na entrega</strong> via PIX/boleto sem juros.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Já tenho um domínio. Vocês usam ele?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim, usamos. Você nos envia o login do registro.br (ou onde estiver registrado) e fazemos o redirecionamento para nossa hospedagem. O domínio continua em seu nome.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês fazem e-commerce / loja virtual?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Não nesse pacote. Lojas virtuais com pagamento online, controle de estoque e logística são produto separado, sob orçamento. Para vendas simples, recomendamos cardápio digital com pedido via WhatsApp.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Quantas alterações posso pedir?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Durante a construção: <strong>1 a 3 rodadas</strong> conforme pacote. Após o site no ar: <strong>até 1-2h/mês</strong> de alterações inclusas (varia por pacote). Tempo extra é cobrado a R$ 150/h, sempre orçado antes.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>O site vai aparecer no Google?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim, fazemos <strong>SEO básico</strong> (meta tags, Schema.org, sitemap, Search Console configurado). Para buscas locais ("seu serviço em [cidade]"), tipicamente aparece em 30-90 dias. Posições de topo podem exigir investimento contínuo em conteúdo (add-on).</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>E se o site sair do ar?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Garantimos <strong>99.5% de uptime mensal</strong>. Em caso de queda, atendemos em até 1h e resolvemos em até 4h. Se ficar abaixo do prometido, créditos proporcionais na próxima fatura.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Posso ver o site antes de pagar tudo?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim. Trabalhamos com <strong>50% entrada + 50% na entrega</strong>. Você acompanha cada marco do projeto e só paga a segunda parcela após aprovação final.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês cuidam das redes sociais também?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Hoje, ainda não. Esse serviço entra na nossa Fase 2 (em breve). Por ora, focamos no site, hospedagem e Google Meu Negócio. Se for crítico para você, indicamos parceiros de confiança.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>E se eu não gostar do design?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Antes do build começamos com <strong>wireframe e mood-board</strong>. Você aprova a direção visual antes de qualquer linha de código ser escrita. As rodadas de revisão garantem ajuste fino. Refazer do zero está fora do escopo do pacote, mas raramente acontece quando seguimos o processo.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês trabalham com qualquer cidade?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim. O serviço é 100% remoto, então atendemos qualquer cliente do Brasil. Reuniões por Google Meet, contrato com assinatura digital, suporte por WhatsApp.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Posso ter mais de um site?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim. Cada site tem seu próprio contrato e mensalidade. Para clientes com múltiplas unidades, oferecemos desconto progressivo a partir do 2º site (consultar comercial).</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês têm portfólio?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Sim, enviamos por WhatsApp ou email sob solicitação. Como muitos clientes pedem confidencialidade, alguns trabalhos não são públicos.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)"><span>Como vocês são diferentes de uma agência grande?</span><span class="faq-q-icon">+</span></div>
+    <div class="faq-a"><div class="faq-a-inner">Atendimento direto, sem repassar para estagiário. Especialização em negócios locais (não somos generalistas). Preços compatíveis com a realidade de pequeno e médio negócio. Tecnologia moderna (não usamos templates genéricos).</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ 15 OBJEÇÕES ═══════════ -->
+<section class="section" id="objecoes">
+  <div class="section-tag"><span class="section-tag-num">15</span> Objeções</div>
+  <h2>Manual de <em>objeções</em></h2>
+  <p class="section-lead">As 7 objeções mais comuns na venda de site para negócio local — com o que está por trás de cada uma, a resposta ideal e a técnica de PNL aplicada. Todo vendedor da equipe precisa decorar.</p>
+
+  <div class="callout blue">
+    <div class="callout-title">📚 Como usar este capítulo</div>
+    <div class="callout-body">Toda objeção é um sinal — não de recusa, mas de <strong>incompletude</strong>. O cliente está dizendo "ainda não tenho tudo que preciso para decidir". Sua função é completar a informação, não pressionar pela venda.</div>
+  </div>
+
+  <h3>As 7 objeções &amp; respostas</h3>
+
+  <!-- OBJ 01 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">01</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Preço</span>
+        <div class="obj-quote">"Tá caro" / "Não tenho orçamento"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p>Não veem o <strong>valor real</strong>, ou estão comparando com zero — o custo de não ter site. A âncora de referência está errada.</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"Entendo. Posso te perguntar uma coisa? Quantos clientes por semana você acha que buscam o seu negócio no Google e não te encontram com informação completa? Se o site trouxer só 3 ou 4 pedidos a mais por mês, em quanto tempo ele se paga sozinho?"</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Reframe custo → ROI · Pergunta socrática</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJ 02 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">02</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Necessidade</span>
+        <div class="obj-quote">"Já tenho Instagram, não preciso de site"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p>Não percebem a <strong>diferença funcional</strong>. Instagram e site resolvem problemas distintos em momentos distintos da jornada do consumidor.</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"O Instagram é perfeito para relacionamento — e você já faz isso muito bem com seus seguidores. O site resolve um problema diferente: quando alguém que nunca ouviu falar de você digita 'hamburgueria Natal' no Google, o Instagram não aparece nessa busca. O site é o que coloca você na frente de quem ainda não te segue."</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Complementaridade · Nunca desvalorize o que o cliente já tem</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJ 03 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">03</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Risco</span>
+        <div class="obj-quote">"Não sei se vai funcionar" / "E se não der resultado?"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p>Medo de perder dinheiro. Pode haver experiência ruim anterior ou simples <strong>desconfiança em promessas abstratas</strong> sem entrega concreta.</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"É uma preocupação legítima. Por isso, antes de fazer qualquer coisa, eu já montei o esboço completo do site — com seu cardápio real, sua logo, seus depoimentos do Google. Você já pode ver exatamente o que vai ser entregue antes de confirmar. Não é uma promessa vaga, é algo concreto na sua mão agora."</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Prova antes da venda · Princípio da Reciprocidade (Cialdini)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJ 04 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">04</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Procrastinação</span>
+        <div class="obj-quote">"Deixa eu pensar" / "Vou ver com meu sócio"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p>Não é uma recusa — é <strong>falta de urgência</strong> ou de clareza sobre o próximo passo. O cliente está confortável no status quo.</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"Claro, faz todo sentido. Só quero deixar uma coisa clara: o esboço que você tem em mãos já está pronto, o site pode ficar no ar em poucos dias. Enquanto a gente espera, quantas pessoas estão buscando seu serviço e encontrando outro estabelecimento? Quando você quiser avançar, é só falar — mas o tempo de decisão tem um custo invisível."</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Âncora temporal negativa (PNL) · FOMO sem pressão explícita</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJ 05 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">05</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Competição</span>
+        <div class="obj-quote">"Outro cara faz mais barato"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p>Comparação por preço porque <strong>não percebe diferença de valor</strong>. O cliente ainda não viu o que te diferencia concretamente do template genérico.</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"Provavelmente faz mesmo. A questão é: o outro já chegou com o esboço pronto, com seu cardápio real mapeado, sua logo analisada, suas avaliações do Google selecionadas? Ou vai cobrar mais barato para entregar um template genérico com 'Lorem Ipsum' trocado pelo seu nome? Você já viu o que eu preparei — compare os dois e decide pelo que faz mais sentido pro seu negócio."</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Venda por contraste · Nunca ataque o concorrente diretamente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJ 06 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">06</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Esforço</span>
+        <div class="obj-quote">"Não tenho tempo para cuidar disso"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p>Acreditam que terão <strong>trabalho ou responsabilidade</strong> após contratar. O cliente já está sobrecarregado e não quer mais uma coisa na lista.</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"Justamente por isso o site é entregue pronto — você não precisa escrever nada, não precisa saber de código, não precisa aprender nenhuma ferramenta. O único momento que preciso de você é 20 minutos para confirmar os preços do cardápio e os endereços. O resto está feito. Literalmente."</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Pace &amp; Lead (PNL) · Eliminação por demonstração de facilidade</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OBJ 07 -->
+  <div class="objection">
+    <div class="obj-bar">
+      <div class="obj-num">07</div>
+      <div class="obj-meta">
+        <span class="obj-cat">Objeção de Conforto</span>
+        <div class="obj-quote">"Meu negócio funciona bem sem site"</div>
+      </div>
+    </div>
+    <div class="obj-body">
+      <div class="obj-section">
+        <div class="obj-label">▼ Por trás da objeção</div>
+        <p><strong>Zona de conforto.</strong> Sucesso atual cria cegueira para oportunidades. "Se não está quebrado, não precisa consertar."</p>
+      </div>
+      <div class="obj-section">
+        <div class="obj-label">▼ Como responder</div>
+        <div class="script-box">"Exatamente — e isso é ótimo. Mas deixa eu te fazer uma pergunta: o concorrente do lado também não funcionava bem. Agora imagina se ele lançar o site antes de você. Quem aparece primeiro no Google quando alguém busca pelo seu serviço na sua região? O site não é sobre consertar algo quebrado — é sobre garantir que o crescimento que você já tem não seja capturado por outra pessoa."</div>
+      </div>
+      <div class="obj-section">
+        <span class="obj-tech-badge">⚡ Ancoragem competitiva local · FOMO de território (PNL)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACER FRAMEWORK -->
+  <h3>O padrão de ouro: framework P.A.C.E.R.</h3>
+  <p>Para qualquer objeção que aparecer (mesmo as não previstas acima), siga esta estrutura. A ordem importa.</p>
+
+  <div class="pacer-grid">
+    <div class="pacer-step">
+      <div class="pacer-letter">P</div>
+      <div class="pacer-name">Pause</div>
+      <div class="pacer-desc">Nunca responda imediatamente. 2 segundos de silêncio demonstram confiança.</div>
+    </div>
+    <div class="pacer-step">
+      <div class="pacer-letter">A</div>
+      <div class="pacer-name">Acknowledge</div>
+      <div class="pacer-desc">Valide sem concordar: "Faz sentido pensar assim". Baixa a guarda.</div>
+    </div>
+    <div class="pacer-step">
+      <div class="pacer-letter">C</div>
+      <div class="pacer-name">Clarify</div>
+      <div class="pacer-desc">Entenda o real motivo: "Quando você diz caro, está comparando com o quê?"</div>
+    </div>
+    <div class="pacer-step">
+      <div class="pacer-letter">E</div>
+      <div class="pacer-name">Evidence</div>
+      <div class="pacer-desc">Apresente prova concreta. O esboço do site já é a prova — use-o.</div>
+    </div>
+    <div class="pacer-step">
+      <div class="pacer-letter">R</div>
+      <div class="pacer-name">Redirect</div>
+      <div class="pacer-desc">Devolva com pergunta que faz o cliente chegar à conclusão sozinho.</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">🎯 A arma secreta da operação</div>
+    <div class="callout-body">
+      O <strong>esboço pronto antes da venda</strong> não é só um diferencial técnico — é o nosso principal argumento de venda. Quando entregamos ao dono do negócio um documento com o cardápio dele, a logo analisada, os depoimentos reais e o site já estruturado, eliminamos as objeções <strong>3, 5 e 6 antes mesmo da reunião começar</strong>.<br><br>
+      Em vendas isso se chama <strong>"give before you ask"</strong> e ativa o princípio da <strong>reciprocidade de Cialdini</strong>. É provavelmente a técnica mais eficaz para serviços digitais a pequenos negócios.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 16 SCRIPTS ═══════════ -->
+<section class="section" id="scripts">
+  <div class="section-tag"><span class="section-tag-num">16</span> Scripts</div>
+  <h2>Scripts de <em>atendimento</em></h2>
+  <p class="section-lead">Frases prontas para situações comuns. Use como base — adapte ao tom da conversa.</p>
+
+  <h3>Primeiro contato (cliente perguntou preço)</h3>
+  <div class="script-box">
+    "Oi, [nome]! Tudo bem? Trabalhamos com 3 pacotes diferentes para se encaixar no momento de cada negócio. Antes de te passar o preço certo, posso te fazer 2 perguntas rápidas? Assim te indico o ideal sem te enrolar."
+  </div>
+
+  <h3>Cliente disse "tá caro"</h3>
+  <div class="script-box">
+    "Faz sentido pensar isso à primeira vista. Posso te fazer uma pergunta? Quantos clientes por semana você acha que buscam seu negócio no Google e não te encontram? Se o site trouxer só 3 ou 4 clientes a mais por mês, em quanto tempo você acha que ele se paga sozinho?"
+  </div>
+
+  <h3>Cliente disse "vou pensar"</h3>
+  <div class="script-box">
+    "Claro, faz todo sentido. Só queria deixar uma coisa clara: o esboço do seu site já está pronto. Posso já te mandar por aqui pra você ver no celular? Aí você decide com a coisa na mão, não no escuro."
+  </div>
+
+  <h3>Cliente perguntou de cancelamento na hora da venda</h3>
+  <div class="script-box">
+    "Pergunta legítima. Funciona assim: você tem 7 dias após a assinatura pra cancelar com reembolso total. Depois disso, durante os 12 meses iniciais, é só dar 30 dias de aviso — tem uma multa pequena, mas o site fica com você. Após 12 meses, é livre. A gente prefere cliente feliz a cliente preso."
+  </div>
+
+  <h3>Cliente atrasou pagamento (3 dias)</h3>
+  <div class="script-box">
+    "Oi, [nome]! Tudo bem? Notei aqui que a mensalidade venceu há alguns dias. Pode ter sido só esquecimento — quer que eu te mande o boleto novo ou um PIX agora?"
+  </div>
+
+  <h3>Cliente quer alteração que está fora do escopo</h3>
+  <div class="script-box">
+    "Adoraria fazer isso. Esse ajuste específico está um pouco além do escopo da mensalidade — vou orçar pra você antes de começar, pode ser? Assim você decide se faz sentido. Provavelmente algo bem rápido."
+  </div>
+
+  <h3>Site caiu / cliente em pânico</h3>
+  <div class="script-box">
+    "Ok, recebi sua mensagem agora. Já estou olhando aqui. Te dou um retorno em até 30 minutos com o diagnóstico e o tempo de resolução. Pode deixar comigo."
+  </div>
+
+  <h3>Cliente quer comparar com concorrente mais barato</h3>
+  <div class="script-box">
+    "Entendo. Cada estúdio trabalha de um jeito. Posso te mostrar o que está incluso no nosso pacote pra você comparar item por item? Às vezes o preço diferente vem de coisas que mudam tudo na prática (hospedagem, suporte, manutenção). Aí você decide com calma."
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">📌 Lembrete</div>
+    <div class="callout-body">Scripts não são robôs. São pontos de partida. O atendente lê a situação, adapta o tom, mantém a essência. Cliente não percebe script bem feito — percebe atendimento ruim.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="doc-footer">
+  Manual Operacional · Studio · v1.0 · Documento de uso interno · Atualizado em Abril/2026
 </footer>
 
+</div>
+</main>
+
+</div>
+
 <script>
-// ── Progress bar
-const progress = document.getElementById('progress');
-window.addEventListener('scroll', () => {
-  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  progress.style.width = pct + '%';
-});
-
-// ── Accordion
-function toggleCard(header) {
-  const card = header.closest('.obj-card');
-  const isOpen = card.classList.contains('open');
-  document.querySelectorAll('.obj-card.open').forEach(c => c.classList.remove('open'));
-  if (!isOpen) card.classList.add('open');
+// FAQ accordion
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
 }
 
-// ── Intersection Observer for animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+// Sidebar TOC active state on scroll
+const sections = document.querySelectorAll('.section');
+const tocItems = document.querySelectorAll('.toc-item');
+
+function updateActiveSection() {
+  const scrollPos = window.scrollY + 150;
+  let active = null;
+  sections.forEach(sec => {
+    if (sec.offsetTop <= scrollPos) active = sec.id;
   });
-}, { threshold: 0.1 });
+  tocItems.forEach(item => {
+    item.classList.toggle('active', item.getAttribute('href') === '#' + active);
+  });
+}
+window.addEventListener('scroll', updateActiveSection);
+updateActiveSection();
 
-// Stagger obj cards
-document.querySelectorAll('.obj-card').forEach((card, i) => {
-  card.style.transitionDelay = `${i * 0.07}s`;
-  observer.observe(card);
-});
-
-document.querySelectorAll('.pacer-step').forEach((step, i) => {
-  step.style.transitionDelay = `${i * 0.1}s`;
-  observer.observe(step);
-});
-
-document.querySelectorAll('.insight-inner').forEach(el => observer.observe(el));
-
-// ── TOC active state
-const sections = ['hero','objections','pacer','insight'];
-const dots = document.querySelectorAll('.toc-dot');
-
-function updateToc() {
-  const scrollPos = window.scrollY + window.innerHeight / 2;
-  sections.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (scrollPos >= el.offsetTop) {
-      dots.forEach(d => d.classList.remove('active'));
-      dots[i]?.classList.add('active');
-    }
+// Sidebar TOC search
+function filterToc() {
+  const q = document.getElementById('search').value.toLowerCase();
+  tocItems.forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(q) ? 'flex' : 'none';
   });
 }
 
-function scrollTo(hash) {
-  const el = document.querySelector(hash);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
-
-window.addEventListener('scroll', updateToc);
-
-// ── Auto-open first card after delay
-setTimeout(() => {
-  const first = document.querySelector('.obj-card');
-  if (first) first.querySelector('.obj-header').click();
-}, 1200);
+// Smooth scroll for TOC clicks (mobile close sidebar)
+tocItems.forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelector('.sidebar')?.classList.remove('open');
+  });
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Objeções — Vendas com PNL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #090909;
+  --surface: #111111;
+  --card: #161616;
+  --card-hover: #1d1d1d;
+  --gold: #E8A020;
+  --gold-light: #F5C842;
+  --gold-dim: rgba(232,160,32,0.15);
+  --red: #C0392B;
+  --red-dim: rgba(192,57,43,0.12);
+  --green: #27AE60;
+  --text: #F0EBE0;
+  --text-muted: #8a8070;
+  --text-dim: #4a4540;
+  --border: rgba(232,160,32,0.12);
+  --border-bright: rgba(232,160,32,0.35);
+  --ff-display: 'Bebas Neue', sans-serif;
+  --ff-body: 'Syne', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--black);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(192,57,43,0.06) 0%, transparent 50%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,160,32,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,160,32,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+}
+
+.hero-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+
+.hero h1 .line-gold { color: var(--gold); display: block; }
+.hero h1 .line-white { color: var(--text); display: block; }
+.hero h1 .line-dim { color: var(--text-dim); display: block; }
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 2.8rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: fadeUp 0.8s 1.2s forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.scroll-hint span {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+/* ── SECTION BASE ── */
+.section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 4rem;
+}
+
+/* ── OBJECTION CARDS ── */
+.objections-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.obj-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.5s, transform 0.5s, border-color 0.3s, background 0.3s;
+}
+.obj-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.obj-card:hover {
+  border-color: var(--border-bright);
+  background: var(--card-hover);
+}
+.obj-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.obj-card:hover::before { transform: scaleY(1); }
+
+.obj-header {
+  padding: 1.5rem 2rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.obj-number {
+  font-family: var(--ff-display);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  transition: color 0.3s;
+  min-width: 3rem;
+}
+.obj-card:hover .obj-number { color: var(--gold); }
+
+.obj-header-text { flex: 1; }
+
+.obj-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.4rem;
+}
+
+.obj-title {
+  font-family: var(--ff-body);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.obj-toggle {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  margin-top: 0.2rem;
+}
+.obj-toggle svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-muted);
+  transition: transform 0.3s, stroke 0.3s;
+}
+.obj-card.open .obj-toggle {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+}
+.obj-card.open .obj-toggle svg {
+  transform: rotate(180deg);
+  stroke: var(--gold);
+}
+
+.obj-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.obj-card.open .obj-body { max-height: 600px; }
+
+.obj-inner {
+  padding: 0 2rem 2rem 6.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.obj-block {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 2px;
+  padding: 1.25rem;
+}
+
+.obj-block-label {
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.obj-block-label.behind { color: var(--text-dim); }
+.obj-block-label.response { color: var(--gold); }
+.obj-block-label .dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.behind .dot { background: var(--text-dim); }
+.response .dot { background: var(--gold); }
+
+.obj-block p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+.obj-block p strong { color: var(--text); font-weight: 600; }
+.obj-block blockquote {
+  font-style: italic;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--text);
+  border-left: 2px solid var(--gold);
+  padding-left: 1rem;
+}
+
+.technique-badge {
+  margin-top: 1rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--gold-dim);
+  border: 1px solid rgba(232,160,32,0.2);
+  border-radius: 2px;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+/* ── PACER SECTION ── */
+.pacer-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, rgba(232,160,32,0.04) 0%, transparent 50%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.pacer-section::before {
+  content: 'PACER';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--ff-display);
+  font-size: 12rem;
+  color: rgba(232,160,32,0.03);
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.pacer-inner { max-width: 1100px; margin: 0 auto; }
+
+.pacer-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 3rem;
+}
+
+.pacer-step {
+  background: var(--card);
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: background 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s, background 0.3s;
+}
+.pacer-step.visible { opacity: 1; transform: translateY(0); }
+.pacer-step:hover { background: var(--card-hover); }
+
+.pacer-letter {
+  font-family: var(--ff-display);
+  font-size: 4rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+.pacer-word {
+  font-family: var(--ff-body);
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.pacer-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.pacer-step::after {
+  content: attr(data-n);
+  position: absolute;
+  bottom: 1rem;
+  right: 1.25rem;
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+}
+
+/* ── GOLD INSIGHT ── */
+.insight-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+.insight-inner {
+  background: var(--card);
+  border: 1px solid var(--border-bright);
+  border-radius: 2px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.insight-inner.visible { opacity: 1; transform: scale(1); }
+.insight-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.insight-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
+}
+.insight-title {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+.insight-text {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 700px;
+}
+.insight-text strong { color: var(--gold-light); font-weight: 600; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border);
+}
+footer p {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .obj-inner {
+    grid-template-columns: 1fr;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+  .obj-header { gap: 1rem; padding: 1.25rem 1.5rem 0.75rem; }
+  .obj-number { font-size: 2rem; min-width: 2rem; }
+  .pacer-steps { grid-template-columns: 1fr 1fr; }
+  .pacer-steps .pacer-step:last-child { grid-column: span 2; }
+  .hero-stats { gap: 2rem; }
+  .stat-num { font-size: 2rem; }
+  .insight-inner { padding: 2rem; }
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  width: 0%;
+  z-index: 10000;
+  transition: width 0.1s;
+}
+
+/* ── TOC NAV ── */
+.toc {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 100;
+}
+.toc-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.toc-dot:hover,
+.toc-dot.active { background: var(--gold); transform: scale(1.5); }
+.toc-dot::before {
+  content: attr(data-label);
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.toc-dot:hover::before { opacity: 1; }
+
+@media (max-width: 768px) { .toc { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<nav class="toc" id="toc">
+  <div class="toc-dot active" data-label="Início" onclick="scrollTo('#hero')"></div>
+  <div class="toc-dot" data-label="Objeções" onclick="scrollTo('#objections')"></div>
+  <div class="toc-dot" data-label="PACER" onclick="scrollTo('#pacer')"></div>
+  <div class="toc-dot" data-label="Arma Secreta" onclick="scrollTo('#insight')"></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">Guia de Vendas &amp; PNL · Sites para Negócios Locais</div>
+  <h1>
+    <span class="line-dim">Como Vencer</span>
+    <span class="line-gold">7 Objeções</span>
+    <span class="line-white">de Clientes</span>
+  </h1>
+  <p class="hero-sub">Cada "não" esconde um motivo. Este guia decodifica cada objeção e entrega a resposta certa — baseada em literatura de vendas e PNL.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Objeções</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Etapas PACER</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Arma Secreta</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<div class="section" id="objections">
+  <div class="section-label">Mapa de Objeções</div>
+  <h2 class="section-title">O QUE ELES<br>DIZEM — E O<br>QUE PENSAM</h2>
+  <p class="section-desc">Clique em cada objeção para revelar o que está por trás dela, a resposta ideal e a técnica de PNL aplicada.</p>
+
+  <div class="objections-grid" id="objGrid">
+
+    <!-- OBJ 1 -->
+    <div class="obj-card" data-index="0">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">01</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Preço</div>
+          <div class="obj-title">"Tá caro" / "Não tenho orçamento"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p>Não veem o <strong>valor real</strong>, ou estão comparando com zero — o custo de não ter site. A âncora de referência está errada.</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"Entendo. Quantos clientes por semana buscam seu negócio no Google e não te encontram com informação completa? Se o site trouxer só 3 pedidos a mais por mês, em quanto tempo ele se paga?"</blockquote>
+            <div class="technique-badge">⚡ Reframe custo → ROI · Pergunta socrática</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJ 2 -->
+    <div class="obj-card" data-index="1">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">02</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Necessidade</div>
+          <div class="obj-title">"Já tenho Instagram, não preciso de site"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p>Não percebem a <strong>diferença funcional</strong>. Instagram e site resolvem problemas distintos em momentos distintos da jornada do consumidor.</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"O Instagram é perfeito para relacionamento — você já faz isso muito bem com 35k seguidores. O site resolve outro problema: quando alguém digita 'hamburgueria Natal' no Google, o Instagram não aparece."</blockquote>
+            <div class="technique-badge">⚡ Complementaridade · Nunca desvalorize o que o cliente já tem</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJ 3 -->
+    <div class="obj-card" data-index="2">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">03</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Risco</div>
+          <div class="obj-title">"Não sei se vai funcionar"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p>Medo de perder dinheiro. Pode haver experiência ruim anterior ou simples <strong>desconfiança em promessas abstratas</strong> sem entrega concreta.</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"Por isso eu já montei o PRD completo com seu cardápio real, sua logo, seus depoimentos do Google. Você já pode ver exatamente o que será entregue antes de confirmar. Não é promessa — é algo concreto na sua mão."</blockquote>
+            <div class="technique-badge">⚡ Prova antes da venda · Princípio da Reciprocidade (Cialdini)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJ 4 -->
+    <div class="obj-card" data-index="3">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">04</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Procrastinação</div>
+          <div class="obj-title">"Deixa eu pensar" / "Vou ver com meu sócio"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p>Não é recusa — é <strong>falta de urgência</strong> ou de clareza sobre o próximo passo. O cliente está confortável no status quo.</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"Claro. Só quero deixar claro: o PRD está pronto, o site pode ficar no ar em X dias. Enquanto esperamos, quantas pessoas estão buscando hambúrguer em Natal e encontrando outra hamburgueria?"</blockquote>
+            <div class="technique-badge">⚡ Âncora temporal negativa (PNL) · FOMO sem pressão explícita</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJ 5 -->
+    <div class="obj-card" data-index="4">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">05</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Competição</div>
+          <div class="obj-title">"Outro cara faz mais barato"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p>Comparação por preço porque <strong>não percebe diferença de valor</strong>. O cliente ainda não viu o que te diferencia concretamente do template genérico.</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"Provavelmente faz mesmo. A questão: o outro já chegou com seu cardápio real mapeado, sua logo analisada, seus reviews selecionados? Ou vai entregar um template com 'Lorem Ipsum' trocado pelo seu nome?"</blockquote>
+            <div class="technique-badge">⚡ Venda por contraste · Nunca ataque o concorrente diretamente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJ 6 -->
+    <div class="obj-card" data-index="5">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">06</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Esforço</div>
+          <div class="obj-title">"Não tenho tempo para cuidar disso"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p>Creem que terão <strong>trabalho ou responsabilidade</strong> após contratar. O cliente já está sobrecarregado e não quer mais uma coisa na lista.</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"Justamente por isso o site é entregue pronto. O único momento que preciso de você são 20 minutos para confirmar os preços do cardápio. O resto está feito. Literalmente."</blockquote>
+            <div class="technique-badge">⚡ Pace &amp; Lead (PNL) · Eliminação da objeção por demonstração</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJ 7 -->
+    <div class="obj-card" data-index="6">
+      <div class="obj-header" onclick="toggleCard(this)">
+        <div class="obj-number">07</div>
+        <div class="obj-header-text">
+          <div class="obj-tag">Objeção de Conforto</div>
+          <div class="obj-title">"Meu negócio funciona bem sem site"</div>
+        </div>
+        <div class="obj-toggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+      <div class="obj-body">
+        <div class="obj-inner">
+          <div class="obj-block">
+            <div class="obj-block-label behind"><span class="dot"></span>Por trás da objeção</div>
+            <p><strong>Zona de conforto.</strong> Sucesso atual cria cegueira para oportunidades. "Se não está quebrado, não precisa consertar."</p>
+          </div>
+          <div class="obj-block">
+            <div class="obj-block-label response"><span class="dot"></span>Como responder</div>
+            <blockquote>"Ótimo. Mas o Sushi Home do lado de vocês na Candelária também não funcionava bem. Imagina se ele lançar o site antes de você. Quem aparece primeiro no Google quando buscam 'hambúrguer Candelária'?"</blockquote>
+            <div class="technique-badge">⚡ Ancoragem competitiva local · FOMO de território (PNL)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PACER -->
+<section class="pacer-section" id="pacer">
+  <div class="pacer-inner">
+    <div class="section-label">Framework Universal</div>
+    <h2 class="section-title" style="margin-bottom:0.5rem;">O PADRÃO<br>DE OURO</h2>
+    <p class="section-desc">Use esta estrutura para <em>qualquer</em> objeção que aparecer. A ordem importa.</p>
+
+    <div class="pacer-steps">
+      <div class="pacer-step" data-n="01/05">
+        <div class="pacer-letter">P</div>
+        <div class="pacer-word">Pause</div>
+        <div class="pacer-desc">Nunca responda imediatamente. Deixe a objeção respirar 2 segundos. O silêncio demonstra confiança.</div>
+      </div>
+      <div class="pacer-step" data-n="02/05">
+        <div class="pacer-letter">A</div>
+        <div class="pacer-word">Acknowledge</div>
+        <div class="pacer-desc">Valide sem concordar: <em>"Faz sentido pensar assim"</em> / <em>"É uma preocupação legítima"</em>. Baixa a guarda do cliente.</div>
+      </div>
+      <div class="pacer-step" data-n="03/05">
+        <div class="pacer-letter">C</div>
+        <div class="pacer-word">Clarify</div>
+        <div class="pacer-desc">Entenda o real motivo: <em>"Quando você diz caro, está comparando com o quê?"</em> A objeção dita raramente é a real.</div>
+      </div>
+      <div class="pacer-step" data-n="04/05">
+        <div class="pacer-letter">E</div>
+        <div class="pacer-word">Evidence</div>
+        <div class="pacer-desc">Apresente o contra-argumento com <strong>prova concreta</strong>. O PRD já é a sua prova — use-o.</div>
+      </div>
+      <div class="pacer-step" data-n="05/05">
+        <div class="pacer-letter">R</div>
+        <div class="pacer-word">Redirect</div>
+        <div class="pacer-desc">Devolva com uma pergunta que faz o cliente <strong>chegar à conclusão sozinho</strong>. Quem convence é o cliente, não você.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHT FINAL -->
+<div class="insight-box" id="insight">
+  <div class="insight-inner">
+    <div class="insight-icon">🎯</div>
+    <div class="insight-title">A ARMA SECRETA</div>
+    <p class="insight-text">
+      O PRD que você gerou não é só um documento técnico —
+      <strong>ele é o principal argumento de venda.</strong><br><br>
+      Quando você entrega ao dono do Gourmet Burguer um documento com o cardápio
+      dele completo, a logo analisada, os depoimentos reais dos clientes e o wireframe
+      do site já estruturado, você elimina as objeções <strong>3, 5 e 6 antes mesmo
+      de a reunião começar.</strong><br><br>
+      Isso é o que em vendas se chama de <strong>"give before you ask"</strong> —
+      e é provavelmente a técnica mais eficaz para serviços digitais para
+      pequenos negócios. Você ativa o princípio da <strong>reciprocidade de Cialdini</strong>:
+      o cliente já recebeu algo de valor, e inconscientemente sente que deve dar
+      algo em troca.
+    </p>
+  </div>
+</div>
+
+<footer>
+  <p>Guia de Vendas &amp; PNL · Sites para Negócios Locais · Natal/RN · 2026</p>
+</footer>
+
+<script>
+// ── Progress bar
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  progress.style.width = pct + '%';
+});
+
+// ── Accordion
+function toggleCard(header) {
+  const card = header.closest('.obj-card');
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.obj-card.open').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+// ── Intersection Observer for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+// Stagger obj cards
+document.querySelectorAll('.obj-card').forEach((card, i) => {
+  card.style.transitionDelay = `${i * 0.07}s`;
+  observer.observe(card);
+});
+
+document.querySelectorAll('.pacer-step').forEach((step, i) => {
+  step.style.transitionDelay = `${i * 0.1}s`;
+  observer.observe(step);
+});
+
+document.querySelectorAll('.insight-inner').forEach(el => observer.observe(el));
+
+// ── TOC active state
+const sections = ['hero','objections','pacer','insight'];
+const dots = document.querySelectorAll('.toc-dot');
+
+function updateToc() {
+  const scrollPos = window.scrollY + window.innerHeight / 2;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (scrollPos >= el.offsetTop) {
+      dots.forEach(d => d.classList.remove('active'));
+      dots[i]?.classList.add('active');
+    }
+  });
+}
+
+function scrollTo(hash) {
+  const el = document.querySelector(hash);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', updateToc);
+
+// ── Auto-open first card after delay
+setTimeout(() => {
+  const first = document.querySelector('.obj-card');
+  if (first) first.querySelector('.obj-header').click();
+}, 1200);
+</script>
+</body>
+</html>

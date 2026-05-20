@@ -694,6 +694,87 @@ td strong { color: var(--text); font-weight: 600; }
   margin-bottom: 0 !important;
 }
 
+/* ━━━ BILINGUAL BLOCKS (PT + EN side by side) ━━━ */
+.bi {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+.bi-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.1rem 1.25rem;
+  position: relative;
+}
+.bi-col::before {
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  padding: 3px 8px;
+  border-radius: 100px;
+  font-weight: 500;
+  color: white;
+  position: absolute;
+  top: -9px;
+  left: 1.1rem;
+}
+.bi-col.pt::before { content: 'PT-BR'; background: var(--green); }
+.bi-col.en::before { content: 'EN'; background: var(--blue); }
+.bi-col p { font-size: 0.88rem; color: var(--text-2); margin: 0.5rem 0; line-height: 1.6; }
+.bi-col p:first-child { margin-top: 0.6rem; }
+.bi-col p:last-child { margin-bottom: 0; }
+.bi-col .script-box { margin: 0.6rem 0 0.4rem; font-size: 0.85rem; padding: 0.85rem 1rem; }
+.bi-col .script-box:first-of-type { margin-top: 0.6rem; }
+.bi-col strong { color: var(--text); }
+.bi-col em { color: var(--text-2); font-style: italic; }
+.bi-sub {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 1.5rem 0 0.4rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+/* Walk-through stops list */
+.walk-stops {
+  list-style: none;
+  margin: 0.8rem 0 0 !important;
+  counter-reset: walkstop;
+}
+.walk-stops > li {
+  padding: 0.55rem 0 0.55rem 2rem;
+  position: relative;
+  font-size: 0.88rem;
+  color: var(--text-2);
+  margin-bottom: 0 !important;
+  border-bottom: 1px dashed var(--border);
+}
+.walk-stops > li:last-child { border-bottom: none; }
+.walk-stops > li::before {
+  counter-increment: walkstop;
+  content: counter(walkstop);
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  background: var(--gold);
+  color: white;
+  border-radius: 50%;
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.walk-stops > li strong { color: var(--text); font-weight: 600; }
+
 /* ━━━ DIVIDER ━━━ */
 .divider {
   height: 1px;
@@ -865,7 +946,7 @@ td strong { color: var(--text); font-weight: 600; }
   .sidebar.open { left: 0; }
   .content { padding: 3rem 1.25rem 4rem; }
   .tier-grid, .roadmap { grid-template-columns: 1fr; }
-  .addon-grid, .key-grid { grid-template-columns: 1fr; }
+  .addon-grid, .key-grid, .bi { grid-template-columns: 1fr; }
   .menu-toggle {
     display: flex !important;
     position: fixed;
@@ -931,7 +1012,7 @@ td strong { color: var(--text); font-weight: 600; }
 
   <div class="toc-section">
     <div class="toc-label">Operação</div>
-    <a class="toc-item" href="#processo"><span class="toc-num">07</span> Processo Comercial</a>
+    <a class="toc-item" href="#processo"><span class="toc-num">07</span> Processo Comercial <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
     <a class="toc-item" href="#contratos"><span class="toc-num">08</span> Contratos</a>
     <a class="toc-item" href="#pagamentos"><span class="toc-num">09</span> Formas de Pagamento</a>
     <a class="toc-item" href="#entrega"><span class="toc-num">10</span> Entrega &amp; Cronograma</a>
@@ -1243,6 +1324,86 @@ td strong { color: var(--text); font-weight: 600; }
     <div class="callout-body">A maioria pergunta o preço sem saber o que precisa. Sempre mostre os 3 pacotes lado a lado e pergunte: <em>"Qual desses faz mais sentido pro momento do seu negócio?"</em> Deixe ele escolher — e a maioria escolhe o do meio (efeito de ancoragem).</div>
   </div>
 
+  <!-- ─── MODALIDADES DE AUTONOMIA (PÓS-ENTREGA) ─── -->
+  <h3 style="margin-top: 2.5rem;">Modalidades de autonomia <em>(pós-entrega)</em></h3>
+  <p class="section-lead">Os pacotes acima definem <strong>o que é construído</strong>. As duas modalidades abaixo definem <strong>como o cliente mantém o site ao longo do tempo</strong>. O cliente escolhe uma das duas no fechamento — é a pergunta-chave do funil de manutenção.</p>
+
+  <div class="tier-grid" style="grid-template-columns: 1fr 1fr; margin-top: 1.5rem;">
+    <div class="tier">
+      <div class="tier-name">Modalidade A — Gerenciado</div>
+      <div class="tier-tagline">Cliente não toca em nada. Toda alteração passa pela gente. Para quem quer paz e zero curva de aprendizado.</div>
+      <div class="tier-price">R$ 0<small> de treinamento</small></div>
+      <div class="tier-monthly">Mensalidade do pacote + R$ 150 / hora avulsa<br>· BRL · EUR equivalente: €30/h</div>
+      <ul class="tier-features">
+        <li>Site sem painel administrativo (CMS)</li>
+        <li>Edições feitas pela nossa equipe</li>
+        <li><strong>WhatsApp / DM direto para dúvidas — sem custo</strong></li>
+        <li>Pequenas alterações dentro do limite do pacote (incluso)</li>
+        <li>Excedente cobrado por hora trabalhada</li>
+        <li>Resposta em até 24h em dias úteis</li>
+        <li>Ideal para: negócios estáveis (horários, equipe e serviços mudam pouco)</li>
+      </ul>
+    </div>
+
+    <div class="tier featured">
+      <div class="tier-name">Modalidade B — Autônomo (CMS)</div>
+      <div class="tier-tagline">Cliente edita o que quiser, quando quiser. Para quem tem rotatividade de equipe, horários sazonais ou cardápio/serviços que mudam.</div>
+      <div class="tier-price">R$ 990<small> setup do CMS + treinamento</small></div>
+      <div class="tier-monthly">Mensalidade do pacote + R$ 60 / mês (hospedagem CMS)<br>· BRL · EUR equivalente: €180 setup + €15/mês</div>
+      <ul class="tier-features">
+        <li>Painel administrativo em português / inglês</li>
+        <li>Cliente edita: textos, fotos, equipe, horários, preços</li>
+        <li><strong>Treinamento 1:1 de 60 min + vídeo gravado</strong></li>
+        <li>Guia em PDF passo a passo</li>
+        <li>30 dias de suporte prioritário pós-treinamento</li>
+        <li>WhatsApp / DM para dúvidas — sem custo</li>
+        <li>Edições estruturais (novas seções, mudança de layout) por hora</li>
+        <li>Ideal para: salões com troca de equipe, restaurantes com cardápio variável, escolas com calendário, qualquer negócio sazonal</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-title">🧭 Como escolher entre A e B (script de qualificação)</div>
+    <div class="callout-body">Pergunte: <em>"No último ano, com que frequência mudou: equipe, horários, ou serviços/cardápio?"</em> — Se a resposta for "raramente" → Modalidade A. Se for "toda hora" / "quando entra ou sai funcionário" → Modalidade B. Não tente empurrar B para quem não precisa: a curva de aprendizado vira motivo de cancelamento.</div>
+  </div>
+
+  <!-- ─── CONSULTORIA AVULSA ─── -->
+  <h3 style="margin-top: 2.5rem;">Consultoria &amp; edições avulsas</h3>
+  <p>Para clientes que querem algo fora do escopo da mensalidade (mudança estrutural, nova landing page, suporte a campanha, integração nova). Vale para qualquer pacote e qualquer modalidade.</p>
+
+  <div class="key-grid">
+    <div class="key-item">
+      <div class="key-label">Hora avulsa (BR)</div>
+      <div class="key-value">R$ 150 / h<small>Pacote mínimo de 1h. Cobrado a cada 30 min após.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Hora avulsa (Exterior)</div>
+      <div class="key-value">€30 / h<small>Faturado em EUR. Mesma regra de 1h mínimo.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Pacote 5h pré-pago</div>
+      <div class="key-value">R$ 675 / €135<small>10% de desconto. Validade de 6 meses.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Pacote 10h pré-pago</div>
+      <div class="key-value">R$ 1.275 / €255<small>15% de desconto. Validade de 12 meses.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">WhatsApp / DM para dúvidas</div>
+      <div class="key-value">Sem custo<small>Resposta em até 24h úteis. Limite: dúvidas, não pedidos de execução.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Reunião de consultoria</div>
+      <div class="key-value">R$ 150 / 1h<small>Estratégia, revisão de site, plano de conteúdo. Pago à parte.</small></div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">⚡ A regra do WhatsApp gratuito</div>
+    <div class="callout-body"><strong>Dúvida é grátis. Execução é paga.</strong> "Como mudo a foto?" → respondo sem cobrar. "Pode mudar a foto pra mim?" → entra na hora avulsa (ou no limite do pacote). Essa distinção precisa ficar clara no onboarding — senão o WhatsApp vira suporte gratuito de produção e quebra a margem.</div>
+  </div>
+
   <h3>O que sempre está incluso (qualquer pacote)</h3>
   <ul>
     <li>Domínio .com.br registrado em nome do cliente</li>
@@ -1327,14 +1488,16 @@ td strong { color: var(--text); font-weight: 600; }
 <section class="section" id="processo">
   <div class="section-tag"><span class="section-tag-num">07</span> Comercial</div>
   <h2>Processo <em>comercial</em></h2>
-  <p class="section-lead">Do primeiro contato ao "sim". Sempre nessa ordem.</p>
+  <p class="section-lead">Do primeiro contato ao "sim". Sempre nessa ordem. Vale para clientes no Brasil (PT-BR) e clientes no exterior — Irlanda, Portugal, EUA, qualquer mercado de língua inglesa (EN).</p>
 
+  <!-- ─── 7.1 TIMELINE GERAL ─── -->
+  <div class="bi-sub">7.1 · Timeline geral · Big picture</div>
   <div class="process">
     <div class="process-step">
       <div class="process-num">01</div>
       <div>
         <div class="process-title">Prospecção</div>
-        <div class="process-desc">Identificação de negócios sem site no Google Maps. Coleta de dados públicos (nome, endereço, fotos, reviews).</div>
+        <div class="process-desc">Identificação de negócios sem site (ou com site fraco) no Google Maps, Instagram, Facebook ou listagens de bairro/cidade. Coleta de dados públicos: nome, endereço, fotos, reviews, equipe, horários, telefone, link de agendamento se houver.</div>
         <div class="process-meta">Sem contato com cliente · Estudo</div>
       </div>
     </div>
@@ -1342,43 +1505,196 @@ td strong { color: var(--text); font-weight: 600; }
       <div class="process-num">02</div>
       <div>
         <div class="process-title">PRD &amp; esboço pronto</div>
-        <div class="process-desc">Geramos o PRD do site usando os dados públicos. Em alguns casos, o esboço HTML já fica pronto antes do contato.</div>
+        <div class="process-desc">Geramos o PRD do site usando os dados públicos. O esboço HTML responsivo fica <strong>pronto antes do contato</strong> — esse é o diferencial. O cliente recebe um link funcional, não uma promessa.</div>
         <div class="process-meta">Tempo: 2-4h por cliente</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">03</div>
       <div>
-        <div class="process-title">Abordagem inicial</div>
-        <div class="process-desc">WhatsApp ou visita presencial. Apresentamos o esboço já feito do site dele. Postura: <em>"Preparei isso pensando no seu negócio, dá uma olhada"</em> — não vendedora.</div>
-        <div class="process-meta">Conversão típica: 30-40%</div>
+        <div class="process-title">Preparação pré-contato</div>
+        <div class="process-desc">Identificar o dono (não o atendente); revisar o preview no mobile; trocar telefone, horário e links pelos reais; verificar domínio disponível. <em>Falar com a pessoa certa é metade da venda.</em></div>
+        <div class="process-meta">Detalhamento: 7.2</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">04</div>
       <div>
-        <div class="process-title">Reunião de apresentação</div>
-        <div class="process-desc">15-30 min mostrando o site no celular dele. Tratamos objeções com PNL (ver Manual de Objeções). Apresentamos os 3 pacotes ao final.</div>
-        <div class="process-meta">Idealmente presencial ou videocall</div>
+        <div class="process-title">Sequência de toques</div>
+        <div class="process-desc">DM (WhatsApp/Instagram/Facebook) → ligação curta de qualificação se necessário → vídeo-chamada de 10 min ou visita presencial para fechamento.</div>
+        <div class="process-meta">Detalhamento: 7.3 · Conversão típica 30–40%</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">05</div>
       <div>
-        <div class="process-title">Proposta &amp; contrato</div>
-        <div class="process-desc">Envio de proposta formal por email com link para assinatura digital (Clicksign / D4Sign / Autentique). Pagamento da entrada via PIX libera o início.</div>
-        <div class="process-meta">Fechamento típico: 2-7 dias após reunião</div>
+        <div class="process-title">Walk-through (demonstração)</div>
+        <div class="process-desc">15–30 min mostrando o site no celular do cliente. Princípio: <em>falar pouco, deixar o site falar.</em> Ao final, apresentar os 3 pacotes + escolha de modalidade A/B.</div>
+        <div class="process-meta">Detalhamento: 7.4 · Ideal presencial ou videocall</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">06</div>
       <div>
+        <div class="process-title">Proposta &amp; contrato</div>
+        <div class="process-desc">Proposta por email com link de assinatura digital (Clicksign / D4Sign / Autentique no BR · DocuSign / HelloSign no exterior). Entrada via PIX (BR) ou Stripe / Wise / transferência SEPA (exterior) libera o início.</div>
+        <div class="process-meta">Fechamento típico: 2-7 dias após walk-through</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">07</div>
+      <div>
         <div class="process-title">Onboarding</div>
-        <div class="process-desc">Briefing detalhado: textos, fotos, preferências, contas (Google, redes), domínio. Reunião de 30-45 min.</div>
+        <div class="process-desc">Briefing detalhado: textos finais, fotos originais (substituir as do scrape), contas (Google, redes), confirmação de domínio, escolha entre Modalidade A (gerenciado) e B (CMS + treinamento).</div>
         <div class="process-meta">Até 48h após pagamento da entrada</div>
       </div>
     </div>
   </div>
+
+  <!-- ─── 7.2 PREPARAÇÃO PRÉ-CONTATO ─── -->
+  <div class="bi-sub">7.2 · Preparação antes do primeiro contato</div>
+  <p>Quatro checagens obrigatórias antes de mandar qualquer mensagem. Pular essas etapas custa a venda — e queima um lead que era qualificado.</p>
+
+  <ol style="margin: 1rem 0 1.5rem 1.2rem; font-size: 0.92rem;">
+    <li style="margin-bottom: 0.6rem;"><strong>Identificar o dono.</strong> O scrape de Google Maps raramente traz o nome. Como descobrir: (a) seção "Sobre" e posts da página de Instagram/Facebook do negócio; (b) ligar ao estabelecimento <em>num horário calmo</em> e perguntar quem cuida da parte de negócio; (c) checar registro da empresa (Receita Federal/CNPJ no BR; CRO — Companies Registration Office na Irlanda; Companies House no Reino Unido). Falar com a pessoa certa é metade da venda — atendente nunca decide compra.</li>
+    <li style="margin-bottom: 0.6rem;"><strong>Revisar o MVP com olhos de cliente.</strong> Antes de enviar o link, garantir que o preview está:
+      <ul style="margin-top: 0.4rem;">
+        <li>Impecável no celular — é assim que o dono vai abrir o link</li>
+        <li>Com os nomes reais da equipe que aparecem nas reviews (gatilho emocional forte — donos adoram ver a equipe reconhecida)</li>
+        <li>Com o botão de agendamento apontando para o sistema real do cliente (Fresha, Booksy, Trinks, WhatsApp Business, etc.)</li>
+        <li>Telefone correto e clicável; horários corretos; fechamentos respeitados (ex: fechado domingo)</li>
+      </ul>
+    </li>
+    <li style="margin-bottom: 0.6rem;"><strong>Atenção às imagens.</strong> O MVP usa fotos do scrape (hospedadas pelo Google/Meta) como <em>seed</em>. Para o preview de venda, isso é aceitável. <strong>Para o go-live é obrigatório trocar por fotos originais</strong> (ou do Instagram/Facebook do próprio negócio, com permissão explícita). Deixar isso claro no onboarding para não virar problema de direitos autorais depois.</li>
+    <li style="margin-bottom: 0.6rem;"><strong>Definir o domínio candidato.</strong> Ex.: <em>nomedonegocio.com.br</em> (BR) · <em>nomedonegociocidade.ie</em> (Irlanda) · <em>.pt</em>, <em>.com</em>, etc. Verificar disponibilidade <strong>antes</strong> da conversa, para já chegar com a resposta pronta. Domínio indisponível mata o momentum da venda.</li>
+  </ol>
+
+  <!-- ─── 7.3 SEQUÊNCIA DE TOQUES ─── -->
+  <div class="bi-sub">7.3 · Sequência de toques recomendada</div>
+  <div class="process">
+    <div class="process-step">
+      <div class="process-num">T1</div>
+      <div>
+        <div class="process-title">DM (WhatsApp / Instagram / Facebook) — canal principal</div>
+        <div class="process-desc">Assíncrono, chega direto ao dono que já responde reviews por lá, e permite entregar o <strong>link do preview</strong> na primeira mensagem. Melhor dia/hora: <em>terça ou quarta de manhã</em>. Evitar quinta/sexta à noite e sábado (estabelecimento movimentado).</div>
+        <div class="process-meta">Resposta esperada: 24–72h · Taxa de leitura ~70%</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">T2</div>
+      <div>
+        <div class="process-title">Ligação curta de qualificação</div>
+        <div class="process-desc">Se o DM não responder em <strong>~4 dias</strong>, ou em paralelo. Objetivo: pegar o nome do dono e o melhor canal direto. <em>Não tentar vender pelo telefone do balcão</em> — quem atende pode estar no meio de um atendimento. Conversa de 60 segundos, sem pitch.</div>
+        <div class="process-meta">Duração: 1 min · Sem vender</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">T3</div>
+      <div>
+        <div class="process-title">Fechamento — vídeo-chamada de 10 min ou visita presencial</div>
+        <div class="process-desc">Para negócio local com cultura de walk-in (salão, restaurante, padaria, oficina), <strong>visita presencial é poderosa</strong> — dono fisicamente no local, mostrar o site num tablet vira um momento marcante. Se planejar viagem à cidade, ancorar a viagem num prospect e aproveitar para tocar outros 3-5 leads no mesmo dia. Se não houver viagem, vídeo-chamada fecha igual e é mais rápida.</div>
+        <div class="process-meta">Conversão T3 → venda: 50–70%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 7.4 SCRIPTS DE ABORDAGEM (PT + EN) ─── -->
+  <div class="bi-sub">7.4 · Scripts de abordagem · Outreach scripts</div>
+  <p>Tom de todos os scripts: <strong>específico, caloroso, sem pressão, liderando com o trabalho já feito</strong>. Nada de "soluções digitais", "presença online" ou jargão de vendedor. O preview é a prova; o texto só serve para entregar o link.</p>
+
+  <p style="margin-top: 1.2rem;"><strong>Substitua os placeholders:</strong> <code>[NEGÓCIO]</code> · <code>[NOME_DONO]</code> · <code>[CIDADE]</code> · <code>[LINK]</code> · <code>[SEU_NOME]</code> · <code>[CATEGORIA]</code> (salão, restaurante, oficina, escola, clínica, etc.).</p>
+
+  <h3 style="margin-top: 1.8rem;">Toque 1 — Mensagem direta (DM)</h3>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box">Oi! Pergunta rápida — é por aqui que falo com o(a) dono(a) do(a) [NEGÓCIO]?<br><br>Sou [SEU_NOME], faço sites para [CATEGORIA] aqui em [CIDADE]. Reparei que o [NEGÓCIO] ainda não tem um site próprio — só Instagram / Facebook / [SISTEMA_AGENDAMENTO] — então peguei e fiz um pra vocês darem uma olhada. Usei as próprias fotos de vocês e as reviews reais. Sem pegadinha, já está pronto.<br><br>Aqui o preview: [LINK]<br><br>Se gostarem, esta semana mesmo coloco no ar no domínio de vocês. Se não for pra agora, sem problema nenhum. Posso passar pra mostrar pessoalmente ou marcar uma chamada rápida — o que ficar melhor.<br><br>De qualquer forma, dá uma olhada — a equipe de vocês está lá 🙂</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box">Hi! Quick question — is this the best way to reach the owner of [BUSINESS]?<br><br>I'm [YOUR_NAME], I build websites for [CATEGORY] here in [CITY/REGION]. I noticed [BUSINESS] doesn't have its own website yet — just the Instagram / Facebook / [BOOKING_SYSTEM] — so I went ahead and built one for you to look at. It uses your own photos and your real reviews. No catch, it's already done.<br><br>Here's the preview: [LINK]<br><br>If you like it, I can have it live on your own domain this week. If it's not for you, no worries at all. Happy to walk you through it on a quick call whenever suits — or pop in if I'm over in [CITY].<br><br>Either way, have a look — your team's on there too 🙂</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 1.5rem;">Toque 2 — Ligação curta (só para qualificar)</h3>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box">Oi — não tô ligando pra marcar nada, só uma pergunta rápida. Quem cuida da parte de negócio do(a) [NEGÓCIO] — o(a) dono(a)? ... [NOME_DONO] costuma estar aí de manhã durante a semana? ... Perfeito, não vou tomar o tempo do balcão — vocês têm um WhatsApp direto do(a) [NOME_DONO], ou o melhor é mandar pelo Instagram mesmo? É que preparei uma coisa pro [NEGÓCIO] que eu queria que ele(a) visse.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box">Hi — I'm not looking for an appointment, just a quick question. Who looks after the business side of [BUSINESS] — the owner? ... Is [OWNER_NAME] usually in on weekday mornings? ... Perfect, I won't hold up the desk — is there a direct email or WhatsApp for [OWNER_NAME], or is the Instagram page the best way to reach them? I've actually built something for the business I'd like them to see.</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 1.5rem;">Follow-up (~5 dias sem resposta)</h3>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box">Oi de novo — só pra garantir que minha mensagem não se perdeu! O preview do site do(a) [NEGÓCIO] continua aqui: [LINK]. Sem pressa e sem pressão — se não for pra agora, totalmente ok. Só não queria que passasse batido; a página da equipe ficou muito boa.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box">Hi again — just making sure my message didn't get buried! The website preview for [BUSINESS] is still here: [LINK]. No rush and no pressure — if it's not for you, that's completely fine. Just didn't want you to miss it; the team page came out really well.</div>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <div class="callout-title">✅ Por que esses scripts funcionam</div>
+    <div class="callout-body">Em vendas isso se chama <strong>"give before you ask"</strong> e ativa o princípio da <strong>reciprocidade de Cialdini</strong>. Você não está pedindo nada — está entregando algo pronto. Combinado com a citação dos <strong>nomes reais da equipe e das fotos do próprio negócio</strong>, o cliente sente que você fez lição de casa e que aquilo "é dele". A maioria dos vendedores diz "posso te mostrar"; você já mostrou.</div>
+  </div>
+
+  <!-- ─── 7.5 WALK-THROUGH ─── -->
+  <div class="bi-sub">7.5 · Conversa de demonstração (walk-through)</div>
+  <p>Quando conseguir o dono ao telefone, vídeo ou presencialmente, conduzir nesta ordem. <strong>Princípio:</strong> falar pouco, deixar o site falar. O preview faz 80% da venda sozinho.</p>
+
+  <ol class="walk-stops">
+    <li><strong>Abrir reconhecendo o sucesso deles.</strong> Ex: <em>"Antes de qualquer coisa — 4.9 com 124 reviews é raro. Vocês claramente fazem algo certo."</em> · <em>"Before anything else — 4.9 with 124 reviews is rare. You're clearly doing something right."</em></li>
+    <li><strong>Nomear a lacuna sem drama.</strong> <em>"A única coisa que faltava era online. Hoje, quem busca vocês no Google não encontra um 'vocês' de verdade — só o [REDE/SISTEMA]."</em> · <em>"The only thing missing was online. Right now, if someone searches you on Google, they don't find a real 'you' — just the [PLATFORM]."</em></li>
+    <li><strong>Abrir o preview no celular do cliente.</strong> É como os clientes <em>dele</em> buscam. Deixar ele rolar — não narrar.</li>
+    <li><strong>Parar de propósito em 3 pontos:</strong>
+      <ul style="margin-top: 0.5rem;">
+        <li>A <strong>página da equipe</strong> — <em>"essa é a [NOME], esse é o [NOME]... os nomes que aparecem nas reviews de vocês."</em> (gatilho emocional)</li>
+        <li>A <strong>galeria</strong> — <em>"são fotos de vocês, do trabalho de vocês."</em></li>
+        <li>O <strong>botão de agendar/contato</strong> — <em>"leva direto pro [SISTEMA_ATUAL]. Nada muda na forma como vocês recebem cliente — o site só vira a porta de entrada."</em></li>
+      </ul>
+    </li>
+    <li><strong>Argumento de visitantes externos, com os dados deles.</strong> <em>"Olha as próprias reviews — [NOME], [NOME], todos vieram de fora da cidade. Essas entraram. Um site ajuda a captar as que hoje passam batido."</em> (Adapte: turistas para salão/restaurante; pais buscando vaga para escola; clientes de outro bairro para clínica/oficina.)</li>
+    <li><strong>Apresentar pacotes + modalidades A/B.</strong> "Tem três pacotes (mostrar). E depois de pronto, vocês escolhem: ou a gente cuida de tudo, ou vocês ganham acesso ao painel pra editar quando quiser. <em>Qual desses faz mais sentido pro momento de vocês?</em>"</li>
+    <li><strong>Fechar o loop.</strong> <em>"Isto é de vocês. Já está pronto. Só falta colocar no ar."</em> · <em>"This is yours. It's already built. We just need to put it live."</em></li>
+  </ol>
+
+  <!-- ─── 7.6 PRECIFICAÇÃO ESTRATÉGICA ─── -->
+  <div class="bi-sub">7.6 · Como ancorar o valor na conversa</div>
+  <p>O site já está construído — o custo de produção já foi pago do <em>nosso</em> lado. Isso permite uma <strong>oferta de baixo risco</strong> que destrói a objeção de preço. A receita real é a mensalidade recorrente + a escolha de modalidade (A ou B).</p>
+
+  <div class="bi">
+    <div class="bi-col pt">
+      <p><strong>Como apresentar o preço — nunca como custo, sempre como aluguel de um ativo deles:</strong></p>
+      <p>· <em>"É menos que [REFERÊNCIA DO PRÓPRIO NEGÓCIO]"</em> — uma coloração/mês num salão, dois rodízios num restaurante, uma matrícula numa escola.</p>
+      <p>· <em>"É um par de cafés por semana — e é despesa de negócio dedutível."</em></p>
+      <p>· <em>"O site é seu. Está em domínio seu, é um ativo seu. A mensalidade é só pra manter no ar e fazer pequenas mudanças sem você precisar lembrar de cada detalhe."</em></p>
+    </div>
+    <div class="bi-col en">
+      <p><strong>How to present price — never as cost, always as rent on their own asset:</strong></p>
+      <p>· <em>"It's less than [REFERENCE FROM THEIR OWN BUSINESS]"</em> — one colour service a month at a salon, two dinners at a restaurant, one term fee at a school.</p>
+      <p>· <em>"It's a couple of coffees a week — and it's a deductible business expense."</em></p>
+      <p>· <em>"The site is yours. It's on your own domain, it's your asset. The monthly is just to keep it live and handle small changes so you don't have to think about it."</em></p>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">💰 Opção de fechamento "sem risco" (use com clientes hesitantes)</div>
+    <div class="callout-body"><em>"O site já está pronto. Sem taxa de montagem. R$X / €X por mês, podem cancelar quando quiserem, e o primeiro mês é por minha conta. Se não gostarem, não pagam nada."</em> — Esta versão é a mais forte para fechar negócios travados: remove toda a fricção, e a <strong>receita recorrente é o que importa</strong> no longo prazo. Use com moderação — não é o default.</div>
+  </div>
+
+  <!-- ─── 7.7 ONBOARDING ─── -->
+  <div class="bi-sub">7.7 · Fechamento e onboarding</div>
+  <p>No "sim", o processo é curto. O que o cliente precisa fornecer (checklist enviado por email após assinatura):</p>
+  <ul>
+    <li>Confirmar o <strong>domínio</strong> (verificado em 7.2)</li>
+    <li>Lista de <strong>serviços/produtos e preços</strong> (ou autorização para puxar do sistema atual)</li>
+    <li><strong>Equipe</strong>: nome + uma frase de bio + uma foto de cada (substitui o seed do scrape)</li>
+    <li>Algumas <strong>fotos originais</strong> do estabelecimento/trabalhos (ou permissão escrita para usar as do Instagram/Facebook)</li>
+    <li>Confirmar <strong>telefone, horários e link do sistema de agendamento</strong></li>
+    <li><strong>Escolha entre Modalidade A (gerenciado) e B (CMS + treinamento)</strong> — ver seção 05</li>
+    <li>Acesso ao Google Meu Negócio (se já existir) ou autorização para criar</li>
+  </ul>
 </section>
 
 <!-- ═══════════ 08 CONTRATOS ═══════════ -->

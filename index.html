@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manual Operacional — Modelo de Negócio &amp; Atendimento</title>
+<title>Sales &amp; Outreach Playbook — Marcus Fernandes · Dublin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -455,44 +455,6 @@ td strong { color: var(--text); font-weight: 600; }
   font-weight: 700;
 }
 
-/* ━━━ ADD-ON GRID ━━━ */
-.addon-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin: 1.5rem 0;
-}
-.addon {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.1rem 1.25rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  transition: border-color 0.2s;
-}
-.addon:hover { border-color: var(--gold); }
-.addon-info { flex: 1; }
-.addon-name {
-  font-weight: 600;
-  font-size: 0.92rem;
-  margin-bottom: 0.2rem;
-}
-.addon-desc {
-  font-size: 0.78rem;
-  color: var(--text-3);
-  line-height: 1.5;
-}
-.addon-price {
-  font-family: var(--ff-mono);
-  font-size: 0.78rem;
-  color: var(--gold);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
 /* ━━━ TIMELINE / PROCESS ━━━ */
 .process {
   margin: 1.5rem 0;
@@ -531,56 +493,6 @@ td strong { color: var(--text); font-weight: 600; }
   color: var(--text-3);
   text-transform: uppercase;
 }
-
-/* ━━━ FAQ ━━━ */
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  padding: 0;
-}
-.faq-q {
-  padding: 1.1rem 0;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  font-weight: 500;
-  font-size: 0.92rem;
-  color: var(--text);
-  transition: color 0.2s;
-}
-.faq-q:hover { color: var(--gold); }
-.faq-q-icon {
-  width: 20px; height: 20px;
-  border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 0.7rem;
-  color: var(--text-2);
-  transition: all 0.2s;
-}
-.faq-item.open .faq-q-icon {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: white;
-  transform: rotate(45deg);
-}
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.faq-item.open .faq-a { max-height: 500px; }
-.faq-a-inner {
-  padding: 0 0 1.25rem;
-  color: var(--text-2);
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
-.faq-a-inner strong { color: var(--text); }
 
 /* ━━━ KEY POINTS ━━━ */
 .key-grid {
@@ -874,52 +786,6 @@ td strong { color: var(--text); font-weight: 600; }
   font-weight: 500;
 }
 
-/* ━━━ PACER FRAMEWORK ━━━ */
-.pacer-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.5rem;
-  margin: 1.5rem 0 2rem;
-}
-.pacer-step {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.25rem 0.85rem;
-  text-align: center;
-  position: relative;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.pacer-step:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
-}
-.pacer-letter {
-  font-family: var(--ff-display);
-  font-weight: 700;
-  font-size: 2.4rem;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 0.35rem;
-}
-.pacer-name {
-  font-weight: 700;
-  font-size: 0.72rem;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text);
-}
-.pacer-desc {
-  font-size: 0.74rem;
-  color: var(--text-2);
-  line-height: 1.5;
-}
-@media (max-width: 768px) {
-  .pacer-grid { grid-template-columns: 1fr 1fr; }
-  .pacer-grid .pacer-step:last-child { grid-column: span 2; }
-}
-
 /* ━━━ FOOTER ━━━ */
 .doc-footer {
   margin-top: 4rem;
@@ -946,7 +812,7 @@ td strong { color: var(--text); font-weight: 600; }
   .sidebar.open { left: 0; }
   .content { padding: 3rem 1.25rem 4rem; }
   .tier-grid, .roadmap { grid-template-columns: 1fr; }
-  .addon-grid, .key-grid, .bi { grid-template-columns: 1fr; }
+  .key-grid, .bi { grid-template-columns: 1fr; }
   .menu-toggle {
     display: flex !important;
     position: fixed;
@@ -964,15 +830,253 @@ td strong { color: var(--text); font-weight: 600; }
 }
 .menu-toggle { display: none; }
 
+/* Cabeçalho ganhou um quarto item (contato) — precisa quebrar no mobile */
+.doc-meta { flex-wrap: wrap; gap: 0.55rem 2rem; }
+
+/* ━━━ COPY BUTTON (scripts copiáveis) ━━━ */
+.script-box { position: relative; padding-right: 4.75rem; }
+/* especificidade maior que .bi-col .script-box, que redefine o padding */
+.bi-col .script-box, .obj-section .script-box { padding-right: 4.6rem; }
+.copy-btn {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.6rem;
+  font-family: var(--ff-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  color: var(--text-3);
+  padding: 3px 8px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-style: normal;
+  transition: all 0.15s;
+}
+.copy-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.copy-btn.done { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* ━━━ CODE / DATA BLOCK ━━━ */
+.code-block {
+  background: var(--text);
+  color: #E6E1D8;
+  font-family: var(--ff-mono);
+  font-size: 0.76rem;
+  line-height: 1.75;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin: 1.1rem 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+.code-block .cm { color: var(--text-3); }
+.code-block .hl { color: var(--gold-light); }
+
+/* ━━━ CHECKLIST ━━━ */
+.checklist {
+  list-style: none;
+  margin: 1.1rem 0 !important;
+  display: grid;
+  gap: 0.4rem;
+}
+.checklist li {
+  position: relative;
+  padding: 0.55rem 0.9rem 0.55rem 2.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.87rem;
+  color: var(--text-2);
+  margin-bottom: 0 !important;
+}
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  top: 0.78rem;
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 3px;
+}
+.checklist li strong { color: var(--text); }
+
+/* ━━━ SPLIT PANELS (2 colunas neutras) ━━━ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.35rem;
+}
+.panel-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+  letter-spacing: -0.01em;
+}
+.panel-sub {
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+.panel ol, .panel ul { margin: 0 0 0 1.1rem !important; font-size: 0.86rem; }
+.panel li { margin-bottom: 0.45rem; color: var(--text-2); }
+
+/* ━━━ DIAGRAMAS (SVG bilíngue) ━━━ */
+.diagram {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.5rem 1.35rem 1.2rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+.diagram svg { display: block; width: 100%; height: auto; min-width: 520px; }
+.diagram-cap {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border);
+  text-align: center;
+}
+.diagram-cap em { color: var(--text-2); font-style: normal; }
+
+/* Rótulos SVG */
+.svg-pt { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 600; fill: #1A1715; }
+.svg-en { font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-style: italic; fill: #8A8275; }
+.svg-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; fill: #B8830F; }
+.svg-tag { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; fill: #8A8275; }
+.svg-tag-w { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; fill: #FFFFFF; }
+.svg-white { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 600; fill: #FFFFFF; }
+.svg-white-en { font-family: 'DM Sans', sans-serif; font-size: 10.5px; font-style: italic; fill: rgba(255,255,255,0.72); }
+
+/* ━━━ MÉTRICA DESTAQUE ━━━ */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.4rem 0;
+}
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.1rem;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  margin-top: 0.3rem;
+  line-height: 1.35;
+}
+.stat-label small {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 0.57rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-top: 0.25rem;
+}
+
+/* ━━━ LEGENDA DE IDIOMA ━━━ */
+.lang-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 1.75rem 0 0.5rem;
+}
+.lang-note::before {
+  content: 'PT';
+  order: -2;
+  background: var(--green);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+}
+.lang-note::after {
+  content: 'EN';
+  background: var(--blue);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  order: -1;
+}
+
+/* Assunto de email */
+.subject-line {
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  background: var(--surface-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: 4px;
+  padding: 0.55rem 0.8rem;
+  margin: 0.6rem 0 0;
+  color: var(--text);
+  word-break: break-word;
+}
+.subject-line b {
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  display: block;
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .split, .stat-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .split, .stat-row { grid-template-columns: 1fr; }
+}
+
 /* ━━━ PRINT ━━━ */
 @media print {
-  .sidebar, .menu-toggle { display: none; }
+  .sidebar, .menu-toggle, .copy-btn { display: none; }
   .app { grid-template-columns: 1fr; }
   .content { max-width: 100%; padding: 1rem; }
   .section { break-inside: avoid; }
-  .tier, .phase, .key-item, .addon { break-inside: avoid; }
+  .tier, .phase, .key-item, .panel, .diagram, .objection, .bi { break-inside: avoid; }
+  .script-box { padding-right: 1.25rem; }
   body { font-size: 11pt; }
-  .faq-a { max-height: none !important; }
 }
 </style>
 </head>
@@ -985,47 +1089,53 @@ td strong { color: var(--text); font-weight: 600; }
 <!-- ════════ SIDEBAR ════════ -->
 <aside class="sidebar">
   <div class="brand">
-    <div class="brand-mark">S</div>
+    <div class="brand-mark">M</div>
     <div class="brand-info">
-      <div class="brand-name">Studio Manual</div>
-      <div class="brand-meta">v1.0 · Interno</div>
+      <div class="brand-name">Sales Playbook</div>
+      <div class="brand-meta">v1.0 · Dublin · Interno</div>
     </div>
   </div>
 
   <div class="search-box">
-    <input type="text" placeholder="Buscar no manual..." id="search" oninput="filterToc()">
+    <input type="text" placeholder="Buscar no playbook..." id="search" oninput="filterToc()">
   </div>
 
   <div class="toc-section">
-    <div class="toc-label">Estratégia</div>
-    <a class="toc-item" href="#visao"><span class="toc-num">01</span> Visão Geral</a>
-    <a class="toc-item" href="#modelo"><span class="toc-num">02</span> Modelo de Negócio</a>
-    <a class="toc-item" href="#roadmap"><span class="toc-num">03</span> Roadmap de Expansão</a>
+    <div class="toc-label">Fundação</div>
+    <a class="toc-item" href="#dominio"><span class="toc-num">01</span> Domínio &amp; Identidade</a>
+    <a class="toc-item" href="#posicionamento"><span class="toc-num">02</span> Posicionamento &amp; Preços</a>
   </div>
 
   <div class="toc-section">
-    <div class="toc-label">Produto</div>
-    <a class="toc-item" href="#catalogo"><span class="toc-num">04</span> Catálogo de Serviços</a>
-    <a class="toc-item" href="#pacotes"><span class="toc-num">05</span> Pacotes &amp; Preços</a>
-    <a class="toc-item" href="#addons"><span class="toc-num">06</span> Add-ons Recorrentes</a>
+    <div class="toc-label">Prospecção</div>
+    <a class="toc-item" href="#icp"><span class="toc-num">03</span> Quem Prospectar</a>
+    <a class="toc-item" href="#lista"><span class="toc-num">04</span> Construção da Lista</a>
+    <a class="toc-item" href="#auditoria"><span class="toc-num">05</span> A Auditoria Gratuita</a>
   </div>
 
   <div class="toc-section">
-    <div class="toc-label">Operação</div>
-    <a class="toc-item" href="#processo"><span class="toc-num">07</span> Processo Comercial <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
-    <a class="toc-item" href="#contratos"><span class="toc-num">08</span> Contratos</a>
-    <a class="toc-item" href="#pagamentos"><span class="toc-num">09</span> Formas de Pagamento</a>
-    <a class="toc-item" href="#entrega"><span class="toc-num">10</span> Entrega &amp; Cronograma</a>
-    <a class="toc-item" href="#sla"><span class="toc-num">11</span> Manutenção &amp; SLA</a>
-    <a class="toc-item" href="#suporte"><span class="toc-num">12</span> Suporte ao Cliente</a>
-    <a class="toc-item" href="#cancelamento"><span class="toc-num">13</span> Cancelamento &amp; Reembolso</a>
+    <div class="toc-label">Abordagem</div>
+    <a class="toc-item" href="#email"><span class="toc-num">06</span> Cold Email <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
+    <a class="toc-item" href="#whatsapp"><span class="toc-num">07</span> WhatsApp &amp; Telefone <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
+    <a class="toc-item" href="#linkedin"><span class="toc-num">08</span> LinkedIn <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
   </div>
 
   <div class="toc-section">
-    <div class="toc-label">Referência</div>
-    <a class="toc-item" href="#faq"><span class="toc-num">14</span> FAQ Operacional</a>
-    <a class="toc-item" href="#objecoes"><span class="toc-num">15</span> Manual de Objeções</a>
-    <a class="toc-item" href="#scripts"><span class="toc-num">16</span> Scripts de Atendimento</a>
+    <div class="toc-label">Conversão</div>
+    <a class="toc-item" href="#discovery"><span class="toc-num">09</span> Discovery Call <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
+    <a class="toc-item" href="#proposta"><span class="toc-num">10</span> A Proposta</a>
+    <a class="toc-item" href="#objecoes"><span class="toc-num">11</span> Manual de Objeções <small style="color:var(--gold);font-size:0.6rem;letter-spacing:0.1em;">· PT+EN</small></a>
+    <a class="toc-item" href="#onboarding"><span class="toc-num">12</span> Fechamento &amp; Onboarding</a>
+    <a class="toc-item" href="#closeout"><span class="toc-num">13</span> Ritual de Encerramento</a>
+  </div>
+
+  <div class="toc-section">
+    <div class="toc-label">Infraestrutura &amp; Controle</div>
+    <a class="toc-item" href="#compliance"><span class="toc-num">14</span> Compliance</a>
+    <a class="toc-item" href="#infra"><span class="toc-num">15</span> Infraestrutura de Email</a>
+    <a class="toc-item" href="#metricas"><span class="toc-num">16</span> Métricas</a>
+    <a class="toc-item" href="#plano30"><span class="toc-num">17</span> Primeiros 30 Dias</a>
+    <a class="toc-item" href="#encerramento"><span class="toc-num">✦</span> Nota Final</a>
   </div>
 </aside>
 
@@ -1035,1115 +1145,977 @@ td strong { color: var(--text); font-weight: 600; }
 
 <!-- HEADER -->
 <header class="doc-header">
-  <div class="doc-eyebrow">Manual Operacional · Documento Interno</div>
-  <h1 class="doc-title">Modelo de Negócio &amp; <em>Atendimento</em></h1>
-  <p class="doc-sub">Guia oficial para qualquer pessoa da equipe responder perguntas de clientes sobre como funcionamos, o que entregamos, prazos, contratos, pagamentos e suporte.</p>
+  <div class="doc-eyebrow">Sales &amp; Outreach Playbook · Documento Interno</div>
+  <h1 class="doc-title">Aquisição de <em>clientes</em></h1>
+  <p class="doc-sub">Sites e automação para negócios locais em Dublin. Este é o manual operacional de prospecção e venda: da configuração de domínio ao fechamento, com todas as mensagens ao cliente prontas em <strong>português e inglês</strong> para copiar e colar.</p>
   <div class="doc-meta">
     <span><strong>Versão:</strong> 1.0</span>
-    <span><strong>Atualizado:</strong> Abr/2026</span>
-    <span><strong>Confidencialidade:</strong> Uso interno</span>
+    <span><strong>Mercado:</strong> Dublin, Irlanda</span>
+    <span><strong>Domínio:</strong> marcusfernandes.ie</span>
+    <span><strong>Contato:</strong> marcusffernandes@hotmail.com · +353 83 201 1655</span>
   </div>
 </header>
 
-<!-- ═══════════ 01 VISÃO GERAL ═══════════ -->
-<section class="section" id="visao">
-  <div class="section-tag"><span class="section-tag-num">01</span> Visão Geral</div>
-  <h2>O que <em>somos</em></h2>
-  <p class="section-lead">Somos um estúdio de presença digital para negócios locais. Nossa missão é tirar pequenos e médios negócios da invisibilidade online — começando pelo site e expandindo para automações, marketing e analytics.</p>
+<div class="callout blue">
+  <div class="callout-title">🌐 Como este documento é escrito</div>
+  <div class="callout-body">Toda a <strong>orientação, estratégia e explicação está em português</strong> — é o manual de quem executa. Toda <strong>mensagem que chega ao cliente</strong> (emails, DMs, scripts de telefone, posts, respostas a objeções) aparece em <strong>duas versões lado a lado: PT-BR e EN</strong>, cada uma com botão de copiar. O mercado principal é Dublin, então a versão EN é o padrão de envio; a PT existe para clientes lusófonos na Irlanda e para o mercado brasileiro. Os <strong>diagramas trazem rótulos nos dois idiomas</strong> e podem ser mostrados direto ao cliente para explicar o processo.</div>
+</div>
 
-  <h3>Nosso público</h3>
-  <p>Negócios locais consolidados que ainda não têm site próprio ou têm presença digital fragmentada. Tipicamente:</p>
-  <ul>
-    <li><strong>Restaurantes, hamburguerias, sushibares</strong> com forte presença no Instagram mas sem site</li>
-    <li><strong>Clínicas, consultórios, academias</strong> que dependem do "boca a boca"</li>
-    <li><strong>Lojas, salões, pet shops</strong> com 5+ anos de operação e reputação no Google</li>
-    <li>Faturamento típico: R$ 30k a R$ 300k/mês — grande o suficiente para investir, pequeno o suficiente para precisar de nós</li>
-  </ul>
+<!-- ═══════════ 01 DOMÍNIO E IDENTIDADE ═══════════ -->
+<section class="section" id="dominio">
+  <div class="section-tag"><span class="section-tag-num">01</span> Fundação</div>
+  <h2>Domínio e <em>identidade</em></h2>
+  <p class="section-lead">Antes de qualquer prospecção, a infraestrutura de identidade precisa estar resolvida. Enviar email frio de um endereço errado destrói reputação de domínio de forma que não se recupera rápido.</p>
 
-  <h3>O que nos diferencia</h3>
-  <div class="key-grid">
-    <div class="key-item">
-      <div class="key-label">Diferencial 1</div>
-      <div class="key-value">Esboço pronto antes da venda<small>Cliente já vê o site dele antes de pagar.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Diferencial 2</div>
-      <div class="key-value">Foco em negócios locais<small>Especialização &gt; generalismo.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Diferencial 3</div>
-      <div class="key-value">Receita recorrente real<small>Não desaparecemos depois do projeto.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Diferencial 4</div>
-      <div class="key-value">Stack de automação avançada<small>n8n, IA, integrações reais.</small></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 02 MODELO DE NEGÓCIO ═══════════ -->
-<section class="section" id="modelo">
-  <div class="section-tag"><span class="section-tag-num">02</span> Modelo</div>
-  <h2>Modelo recomendado: <em>Land &amp; Expand</em></h2>
-  <p class="section-lead">Entrar pela porta do site (produto âncora barato e tangível) e expandir para automações, conteúdo e analytics conforme o cliente confia em nós. É o modelo de agência boutique mais sustentável para uma operação inicial.</p>
-
-  <h3>Por que esse modelo</h3>
-  <ul>
-    <li><strong>Barreira baixa de entrada:</strong> Site é tangível, fácil de explicar e tem ROI claro. Cliente não precisa "acreditar em automação" para fechar.</li>
-    <li><strong>LTV alto:</strong> Um cliente entra pagando R$ 2k de setup e, em 24 meses, pode estar pagando R$ 1.500/mês em add-ons. LTV de R$ 30k+ por conta.</li>
-    <li><strong>Stickiness natural:</strong> Quem hospeda o site, integra o WhatsApp, gerencia o Google Meu Negócio e roda as automações torna-se infraestrutura crítica do cliente.</li>
-    <li><strong>Receita previsível:</strong> A mensalidade banca o custo fixo. Os setups novos viram lucro e investimento em crescimento.</li>
-  </ul>
-
-  <h3>As 3 colunas da receita</h3>
+  <h3>Decisão: marcusfernandes.ie é a face pública</h3>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr>
-          <th>Tipo</th>
-          <th>Origem</th>
-          <th>% Meta (mês 12)</th>
-          <th>Função</th>
-        </tr>
+        <tr><th>Uso</th><th>Domínio / endereço</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>Setup (one-time)</strong></td>
-          <td>Implementação de sites e novos serviços</td>
-          <td>40%</td>
-          <td>Combustível de crescimento</td>
-        </tr>
-        <tr>
-          <td><strong>Recorrente (MRR)</strong></td>
-          <td>Mensalidades de manutenção e add-ons</td>
-          <td>50%</td>
-          <td>Coluna vertebral, paga custos fixos</td>
-        </tr>
-        <tr>
-          <td><strong>Projetos extras</strong></td>
-          <td>Mudanças grandes, redesigns, campanhas</td>
-          <td>10%</td>
-          <td>Margem alta, cliente já confia</td>
-        </tr>
+        <tr><td><strong>Site (canônico)</strong></td><td><code>marcusfernandes.ie</code></td></tr>
+        <tr><td><strong>Redirect (301, permanente)</strong></td><td><code>marcusfelipe.com</code> → <code>marcusfernandes.ie</code></td></tr>
+        <tr><td><strong>Email em assinaturas, site, LinkedIn</strong></td><td><code>marcusffernandes@hotmail.com</code></td></tr>
+        <tr><td><strong>Domínio de <em>envio</em> de cold email</strong></td><td>Domínio separado — ver abaixo</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="callout gold">
-    <div class="callout-title">⚡ Regra de ouro</div>
-    <div class="callout-body">Toda venda nova deve sair com mensalidade. Setup sem recorrência é projeto, não cliente — e projetos não escalam.</div>
+    <div class="callout-title">🇮🇪 Por que <code>.ie</code></div>
+    <div class="callout-body">Um dono de pequeno negócio irlandês lê <code>.ie</code> como <strong>local, estabelecido e responsável</strong>. O registro exige comprovação de vínculo real com a Irlanda, então o próprio TLD funciona como credencial. Um <code>.com</code> soa genérico e pode ser de qualquer pessoa, em qualquer lugar.</div>
   </div>
 
-  <h3>Estrutura societária e fiscal recomendada</h3>
-  <p>Para iniciar a operação no Brasil:</p>
-  <ul>
-    <li><strong>MEI (até R$ 81k/ano):</strong> Para os primeiros meses. CNAEs: 6201-5/01 (desenvolvimento de programas), 7319-0/04 (consultoria publicitária).</li>
-    <li><strong>ME no Simples Nacional (até R$ 360k/ano):</strong> A partir do 6º mês ou quando ultrapassar limite MEI. Anexo III ou V dependendo do fator R.</li>
-    <li><strong>Emissão de NF-e de serviço</strong> obrigatória em todo faturamento — usar emissor da prefeitura ou ferramenta como NFE.io / eNotas.</li>
-    <li><strong>Conta PJ separada</strong> desde o dia 1. Recomendamos bancos digitais (Inter, Cora, Nubank PJ) por baixo custo e PIX integrado.</li>
+  <h3>Crítico: endereço de envio ≠ endereço de resposta</h3>
+  <p>Cold outreach <strong>não pode</strong> sair de uma caixa de correio gratuita de consumidor. Hotmail e Outlook.com não permitem publicar SPF, DKIM ou DMARC do seu próprio envio, limitam volume diário, e os termos de uso proíbem envio em massa não solicitado — contas que fazem isso são suspensas sem aviso, levando junto anos de correspondência pessoal.</p>
+
+  <p>Por isso os dois papéis precisam ser separados:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Papel</th><th>Endereço</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Envio</strong> (a campanha)</td><td><code>marcus@[dominio-de-envio]</code> — um domínio sob seu controle</td></tr>
+        <tr><td><strong>Reply-To</strong> (onde as respostas caem)</td><td><code>marcusffernandes@hotmail.com</code></td></tr>
+        <tr><td><strong>Contato publicado</strong> (site, LinkedIn, assinatura)</td><td><code>marcusffernandes@hotmail.com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="code-block"><span class="cm">From:</span>     Marcus Fernandes &lt;<span class="hl">marcus@[dominio-de-envio]</span>&gt;
+<span class="cm">Reply-To:</span> <span class="hl">marcusffernandes@hotmail.com</span></div>
+
+  <p>Registre um segundo domínio exclusivamente para outbound. Opções: <code>marcusfernandes.com</code>, <code>mfernandes.ie</code>, <code>marcus-fernandes.com</code>. As respostas caem onde você quiser; a reputação de envio fica isolada.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 250" role="img" aria-label="Arquitetura de envio: domínio de envio separado, respostas no Hotmail, site canônico .ie">
+      <!-- Coluna 1: domínio de envio -->
+      <rect x="8" y="46" width="186" height="86" rx="6" fill="#1A1715"/>
+      <text x="22" y="68" class="svg-tag-w">DOMINIO DE ENVIO</text>
+      <text x="22" y="90" class="svg-white">Campanha sai daqui</text>
+      <text x="22" y="107" class="svg-white-en">Campaign sends from here</text>
+      <text x="22" y="123" class="svg-tag-w">MARCUS@[SENDING]</text>
+
+      <!-- seta 1 -->
+      <line x1="198" y1="89" x2="292" y2="89" stroke="#D4CEC0" stroke-width="1.5"/>
+      <polygon points="300,89 290,84 290,94" fill="#B8830F"/>
+      <text x="247" y="72" class="svg-tag" text-anchor="middle">ENVIA</text>
+      <text x="247" y="83" class="svg-tag" text-anchor="middle">SENDS</text>
+
+      <!-- Coluna 2: prospect -->
+      <rect x="300" y="46" width="142" height="86" rx="6" fill="#FBF4E0" stroke="#B8830F"/>
+      <text x="314" y="68" class="svg-tag">PROSPECT</text>
+      <text x="314" y="90" class="svg-pt">Dono do negócio</text>
+      <text x="314" y="107" class="svg-en">Business owner</text>
+      <text x="314" y="123" class="svg-tag">DUBLIN</text>
+
+      <!-- seta 2 -->
+      <line x1="446" y1="89" x2="540" y2="89" stroke="#D4CEC0" stroke-width="1.5"/>
+      <polygon points="548,89 538,84 538,94" fill="#1F7A4D"/>
+      <text x="495" y="72" class="svg-tag" text-anchor="middle">RESPONDE</text>
+      <text x="495" y="83" class="svg-tag" text-anchor="middle">REPLIES</text>
+
+      <!-- Coluna 3: reply-to -->
+      <rect x="548" y="46" width="164" height="86" rx="6" fill="#E8F4ED" stroke="#1F7A4D"/>
+      <text x="562" y="68" class="svg-tag">REPLY-TO</text>
+      <text x="562" y="90" class="svg-pt">Caixa pessoal</text>
+      <text x="562" y="107" class="svg-en">Personal inbox</text>
+      <text x="562" y="123" class="svg-tag">HOTMAIL</text>
+
+      <!-- Base: site canônico -->
+      <rect x="300" y="176" width="142" height="60" rx="6" fill="#E8F0F9" stroke="#1F5A8A"/>
+      <text x="314" y="197" class="svg-tag">SITE / WEBSITE</text>
+      <text x="314" y="216" class="svg-pt">marcusfernandes.ie</text>
+      <text x="314" y="230" class="svg-en">nunca envia / never sends</text>
+
+      <line x1="371" y1="136" x2="371" y2="170" stroke="#D4CEC0" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <polygon points="371,176 366,166 376,166" fill="#1F5A8A"/>
+
+      <!-- Aviso -->
+      <text x="478" y="205" class="svg-tag">REPUTACAO ISOLADA</text>
+      <text x="478" y="222" class="svg-en">Reputation stays isolated</text>
+    </svg>
+    <div class="diagram-cap">Diagrama 1 · <em>Separação entre domínio de envio, caixa de resposta e site canônico</em> — Sending domain, reply inbox and canonical site</div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-title">⛔ Nunca envie cold outreach de marcusfernandes.ie</div>
+    <div class="callout-body">Se reclamações de spam se acumularem, a reputação do domínio é danificada e o seu email legítimo — comunicação com cliente, faturas, propostas — passa a cair no lixo eletrônico. Isso <strong>não se recupera rapidamente</strong>.</div>
+  </div>
+
+  <h3>Checklist pré-voo</h3>
+  <ul class="checklist">
+    <li><code>marcusfernandes.ie</code> resolve mundialmente (verificar em dnschecker.org)</li>
+    <li><code>marcusfelipe.com</code> retorna 301 para o <code>.ie</code></li>
+    <li>Tag canônica em todas as páginas aponta para <code>https://marcusfernandes.ie</code></li>
+    <li><code>marcusffernandes@hotmail.com</code> recebe de forma confiável — enviar teste de um endereço externo</li>
+    <li>Aritmética de preço corrigida no site (ver nota abaixo)</li>
+    <li>Telefone visível no cabeçalho ou rodapé</li>
+    <li>Google Business Profile ativo como <em>service-area business</em></li>
+    <li>Domínio de envio registrado e em aquecimento</li>
   </ul>
-</section>
 
-<!-- ═══════════ 03 ROADMAP ═══════════ -->
-<section class="section" id="roadmap">
-  <div class="section-tag"><span class="section-tag-num">03</span> Roadmap</div>
-  <h2>Plano de <em>expansão</em></h2>
-  <p class="section-lead">Não vendemos tudo de uma vez. Cada fase consolida a anterior antes de adicionar complexidade.</p>
-
-  <div class="roadmap">
-    <div class="phase phase-1">
-      <div class="phase-label">Fase 1 · Foundation</div>
-      <div class="phase-title">Sites &amp; Hospedagem</div>
-      <div class="phase-when">Mês 0 a 6 · Foco total</div>
-      <ul class="phase-list">
-        <li>→ Sites institucionais</li>
-        <li>→ Cardápios digitais</li>
-        <li>→ Landing pages</li>
-        <li>→ Hospedagem &amp; manutenção</li>
-        <li>→ SEO local básico</li>
-      </ul>
-    </div>
-    <div class="phase phase-2">
-      <div class="phase-label">Fase 2 · Growth</div>
-      <div class="phase-title">Marketing &amp; Conteúdo</div>
-      <div class="phase-when">Mês 6 a 12 · Cross-sell</div>
-      <ul class="phase-list">
-        <li>→ Google Meu Negócio</li>
-        <li>→ Gestão de conteúdo</li>
-        <li>→ Automações de WhatsApp</li>
-        <li>→ Captação de leads</li>
-        <li>→ Tráfego pago básico</li>
-      </ul>
-    </div>
-    <div class="phase phase-3">
-      <div class="phase-label">Fase 3 · Strategic</div>
-      <div class="phase-title">Automação &amp; Analytics</div>
-      <div class="phase-when">Mês 12+ · Diferencial</div>
-      <ul class="phase-list">
-        <li>→ Workflows n8n customizados</li>
-        <li>→ Dashboards analíticos</li>
-        <li>→ Integrações ERP/CRM</li>
-        <li>→ Agentes de IA atendimento</li>
-        <li>→ Consultoria estratégica</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout blue">
-    <div class="callout-title">🎯 Por que respeitar a sequência</div>
-    <div class="callout-body">Vender automação para quem ainda não tem site é como vender turbo para quem não tem carro. A Fase 1 cria o ativo (o site); a Fase 2 traz visitantes; a Fase 3 transforma visitantes em receita previsível. Sair da ordem cria vendas frustradas.</div>
+  <div class="callout red">
+    <div class="callout-title">🧮 Nota de precificação — corrigir antes de qualquer envio</div>
+    <div class="callout-body">O site mostra hoje <strong>€1.200</strong> com <em>"€800 com voucher"</em>. A 50% isso deveria ser <strong>€600</strong>. Corrigir antes de iniciar prospecção: um erro aritmético visível numa página de preços custa mais confiança do que os €200 valem.</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══════════ 04 CATÁLOGO ═══════════ -->
-<section class="section" id="catalogo">
-  <div class="section-tag"><span class="section-tag-num">04</span> Catálogo</div>
-  <h2>O que <em>vendemos</em></h2>
-  <p class="section-lead">Catálogo simplificado com tudo que oferecemos hoje. Itens marcados como <em>"em breve"</em> são da Fase 2 e 3 — não vender ainda.</p>
+<!-- ═══════════ 02 POSICIONAMENTO ═══════════ -->
+<section class="section" id="posicionamento">
+  <div class="section-tag"><span class="section-tag-num">02</span> Fundação</div>
+  <h2>Posicionamento e <em>preços</em></h2>
+  <p class="section-lead">O que vendemos, para quem, e por quanto. Todo o resto do playbook depende de estas três respostas estarem afiadas.</p>
 
-  <h3>Disponível agora (Fase 1)</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Serviço</th><th>O que é</th><th>Tipo</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Site institucional</strong></td>
-          <td>Site one-page com seções essenciais (hero, sobre, serviços, contato), responsivo, SEO básico</td>
-          <td>Setup + Mensal</td>
-        </tr>
-        <tr>
-          <td><strong>Cardápio digital</strong></td>
-          <td>Menu online com categorias, preços, fotos e link direto WhatsApp</td>
-          <td>Setup + Mensal</td>
-        </tr>
-        <tr>
-          <td><strong>Landing page</strong></td>
-          <td>Página única focada em conversão para campanha ou produto específico</td>
-          <td>Setup + Mensal</td>
-        </tr>
-        <tr>
-          <td><strong>Hospedagem &amp; manutenção</strong></td>
-          <td>Servidor, SSL, backup diário, monitoramento, pequenos ajustes mensais</td>
-          <td>Mensal</td>
-        </tr>
-        <tr>
-          <td><strong>SEO local básico</strong></td>
-          <td>Meta tags, Schema.org, otimização de busca local "X em [cidade]"</td>
-          <td>Incluso no setup</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="lang-note">Frase de apresentação — para usar com cliente</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Eu construo a metade online dos pequenos negócios de Dublin — o site, a listagem do Google e o sistema de agendamento que hoje come a sua tarde.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>I build the online half of small businesses in Dublin — the website, the Google listing, and the booking system that stops eating your afternoon.</div>
+    </div>
   </div>
 
-  <h3>Em breve (Fase 2 — não vender ainda)</h3>
-  <ul>
-    <li>Gestão de Google Meu Negócio (posts, fotos, respostas)</li>
-    <li>Gestão de conteúdo Instagram/Facebook</li>
-    <li>Automações de WhatsApp Business com n8n</li>
-    <li>Captura de leads e nurturing</li>
-  </ul>
+  <h3>A ideia central a ser vendida</h3>
+  <p>Donos de pequenos negócios <strong>não estão comprando um site</strong>. Estão comprando <strong>os clientes que hoje vão para um concorrente com produto pior e presença online melhor</strong>. Toda mensagem deve apontar para essa lacuna — nunca para design ou tecnologia.</p>
 
-  <h3>Roadmap (Fase 3 — referência apenas)</h3>
-  <ul>
-    <li>Workflows n8n customizados (atendimento, agendamento, CRM)</li>
-    <li>Dashboards analíticos com Metabase / Looker</li>
-    <li>Integrações com ERP/PDV/CRM existentes</li>
-    <li>Agentes de IA para atendimento WhatsApp</li>
-  </ul>
-</section>
+  <h3>Três pilares de valor</h3>
+  <div class="key-grid">
+    <div class="key-item">
+      <div class="key-label">Pilar 1</div>
+      <div class="key-value">Preço fixo, acordado antes<small>Sem cobrança por hora, sem "solicite um orçamento", sem scope creep. O número está no site. Só isso já diferencia da maioria das agências e remove o maior medo do dono de pequeno negócio.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Pilar 2</div>
+      <div class="key-value">O Estado paga metade<small>O Trading Online Voucher cobre até 50% dos custos elegíveis, até €2.500. A maior parte do público-alvo se qualifica — e a maioria nunca ouviu falar. Você cuida da papelada de ponta a ponta.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Pilar 3</div>
+      <div class="key-value">Tudo é do cliente<small>Domínio, conta de hospedagem, código-fonte. Sem lock-in. Qualquer desenvolvedor assume na segunda-feira. Isso desarma o medo de ficar preso, herdado de experiências ruins anteriores.</small></div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Regra de ouro</div>
+      <div class="key-value">Sempre apontar para a lacuna<small>Nunca fale de design, framework ou tecnologia. Fale do cliente que hoje escolhe o concorrente.</small></div>
+    </div>
+  </div>
 
-<!-- ═══════════ 05 PACOTES & PREÇOS ═══════════ -->
-<section class="section" id="pacotes">
-  <div class="section-tag"><span class="section-tag-num">05</span> Pacotes</div>
-  <h2>Pacotes de <em>site</em></h2>
-  <p class="section-lead">Três pacotes para diferentes níveis de necessidade. A maioria dos clientes fecha no Profissional.</p>
-
+  <h3>Pacotes e preços</h3>
   <div class="tier-grid">
-    <div class="tier">
-      <div class="tier-name">Essencial</div>
-      <div class="tier-tagline">Para quem quer estar presente no Google e dar a primeira impressão certa.</div>
-      <div class="tier-price">R$ 1.497<small> setup</small></div>
-      <div class="tier-monthly">+ R$ 97 / mês</div>
-      <ul class="tier-features">
-        <li>Site one-page até 5 seções</li>
-        <li>Domínio próprio (.com.br)</li>
-        <li>Hospedagem &amp; SSL</li>
-        <li>Responsivo mobile</li>
-        <li>SEO básico</li>
-        <li>Botão WhatsApp flutuante</li>
-        <li>Google Maps embed</li>
-        <li>Backup mensal</li>
-      </ul>
-    </div>
-
     <div class="tier featured">
-      <div class="tier-name">Profissional</div>
-      <div class="tier-tagline">O escolhido pela maioria. Equilíbrio entre presença e conversão.</div>
-      <div class="tier-price">R$ 2.497<small> setup</small></div>
-      <div class="tier-monthly">+ R$ 197 / mês</div>
+      <div class="tier-name">Website</div>
+      <div class="tier-tagline">O pacote de volume. Resolve o essencial: existir de forma decente no Google e converter quem procura.</div>
+      <div class="tier-price">€1.200<small> cheio</small></div>
+      <div class="tier-monthly">€600 com voucher</div>
       <ul class="tier-features">
-        <li>Tudo do Essencial</li>
-        <li>Site multi-seção (até 8)</li>
-        <li>Galeria de fotos</li>
-        <li>Cardápio/serviços detalhado</li>
-        <li>Depoimentos &amp; reviews</li>
-        <li>Animações suaves</li>
-        <li>SEO local otimizado</li>
-        <li>1h/mês de alterações</li>
-        <li>Backup semanal</li>
-        <li>Email profissional (1)</li>
+        <li>Site de 5 páginas</li>
+        <li>Google Business Profile</li>
+        <li>Formulário de contato</li>
+        <li>SEO local</li>
       </ul>
     </div>
-
     <div class="tier">
-      <div class="tier-name">Premium</div>
-      <div class="tier-tagline">Para quem quer um site que parece de gente grande.</div>
-      <div class="tier-price">R$ 3.997<small> setup</small></div>
-      <div class="tier-monthly">+ R$ 297 / mês</div>
+      <div class="tier-name">Growth</div>
+      <div class="tier-tagline">Para quem já vende e precisa que o site trabalhe: reservas, loja e copy de conversão.</div>
+      <div class="tier-price">€3.500<small> cheio</small></div>
+      <div class="tier-monthly">€1.750 com voucher</div>
       <ul class="tier-features">
-        <li>Tudo do Profissional</li>
-        <li>Design premium customizado</li>
-        <li>Múltiplas páginas</li>
-        <li>Sistema de blog (opcional)</li>
-        <li>Integração Instagram feed</li>
-        <li>Formulários avançados</li>
-        <li>2h/mês de alterações</li>
-        <li>Backup diário</li>
-        <li>Emails profissionais (até 5)</li>
-        <li>Relatório mensal de visitas</li>
+        <li>Tudo do Website</li>
+        <li>E-commerce ou sistema de reservas</li>
+        <li>Integrações</li>
+        <li>Copywriting de conversão</li>
       </ul>
     </div>
+    <div class="tier">
+      <div class="tier-name">Custom</div>
+      <div class="tier-tagline">Automação e sistemas internos. Escopo sob medida, sempre com número fechado antes de começar.</div>
+      <div class="tier-price">a partir de €5.000</div>
+      <div class="tier-monthly">−€2.500 com voucher</div>
+      <ul class="tier-features">
+        <li>Automação de processos</li>
+        <li>Sistemas internos</li>
+        <li>Integrações complexas</li>
+        <li>Aplicações sob medida</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Recorrência</th><th>Preço</th><th>Escopo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Manutenção</strong></td>
+          <td><strong>€60–150/mês</strong></td>
+          <td>Hospedagem, SSL, backups, atualizações, pequenas edições, checagem mensal de SEO</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="callout gold">
-    <div class="callout-title">💡 Como guiar o cliente</div>
-    <div class="callout-body">A maioria pergunta o preço sem saber o que precisa. Sempre mostre os 3 pacotes lado a lado e pergunte: <em>"Qual desses faz mais sentido pro momento do seu negócio?"</em> Deixe ele escolher — e a maioria escolhe o do meio (efeito de ancoragem).</div>
-  </div>
-
-  <!-- ─── MODALIDADES DE AUTONOMIA (PÓS-ENTREGA) ─── -->
-  <h3 style="margin-top: 2.5rem;">Modalidades de autonomia <em>(pós-entrega)</em></h3>
-  <p class="section-lead">Os pacotes acima definem <strong>o que é construído</strong>. As duas modalidades abaixo definem <strong>como o cliente mantém o site ao longo do tempo</strong>. O cliente escolhe uma das duas no fechamento — é a pergunta-chave do funil de manutenção.</p>
-
-  <div class="tier-grid" style="grid-template-columns: 1fr 1fr; margin-top: 1.5rem;">
-    <div class="tier">
-      <div class="tier-name">Modalidade A — Gerenciado</div>
-      <div class="tier-tagline">Cliente não toca em nada. Toda alteração passa pela gente. Para quem quer paz e zero curva de aprendizado.</div>
-      <div class="tier-price">R$ 0<small> de treinamento</small></div>
-      <div class="tier-monthly">Mensalidade do pacote + R$ 150 / hora avulsa<br>· BRL · EUR equivalente: €30/h</div>
-      <ul class="tier-features">
-        <li>Site sem painel administrativo (CMS)</li>
-        <li>Edições feitas pela nossa equipe</li>
-        <li><strong>WhatsApp / DM direto para dúvidas — sem custo</strong></li>
-        <li>Pequenas alterações dentro do limite do pacote (incluso)</li>
-        <li>Excedente cobrado por hora trabalhada</li>
-        <li>Resposta em até 24h em dias úteis</li>
-        <li>Ideal para: negócios estáveis (horários, equipe e serviços mudam pouco)</li>
-      </ul>
-    </div>
-
-    <div class="tier featured">
-      <div class="tier-name">Modalidade B — Autônomo (CMS)</div>
-      <div class="tier-tagline">Cliente edita o que quiser, quando quiser. Para quem tem rotatividade de equipe, horários sazonais ou cardápio/serviços que mudam.</div>
-      <div class="tier-price">R$ 990<small> setup do CMS + treinamento</small></div>
-      <div class="tier-monthly">Mensalidade do pacote + R$ 60 / mês (hospedagem CMS)<br>· BRL · EUR equivalente: €180 setup + €15/mês</div>
-      <ul class="tier-features">
-        <li>Painel administrativo em português / inglês</li>
-        <li>Cliente edita: textos, fotos, equipe, horários, preços</li>
-        <li><strong>Treinamento 1:1 de 60 min + vídeo gravado</strong></li>
-        <li>Guia em PDF passo a passo</li>
-        <li>30 dias de suporte prioritário pós-treinamento</li>
-        <li>WhatsApp / DM para dúvidas — sem custo</li>
-        <li>Edições estruturais (novas seções, mudança de layout) por hora</li>
-        <li>Ideal para: salões com troca de equipe, restaurantes com cardápio variável, escolas com calendário, qualquer negócio sazonal</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout blue">
-    <div class="callout-title">🧭 Como escolher entre A e B (script de qualificação)</div>
-    <div class="callout-body">Pergunte: <em>"No último ano, com que frequência mudou: equipe, horários, ou serviços/cardápio?"</em> — Se a resposta for "raramente" → Modalidade A. Se for "toda hora" / "quando entra ou sai funcionário" → Modalidade B. Não tente empurrar B para quem não precisa: a curva de aprendizado vira motivo de cancelamento.</div>
-  </div>
-
-  <!-- ─── CONSULTORIA AVULSA ─── -->
-  <h3 style="margin-top: 2.5rem;">Consultoria &amp; edições avulsas</h3>
-  <p>Para clientes que querem algo fora do escopo da mensalidade (mudança estrutural, nova landing page, suporte a campanha, integração nova). Vale para qualquer pacote e qualquer modalidade.</p>
-
-  <div class="key-grid">
-    <div class="key-item">
-      <div class="key-label">Hora avulsa (BR)</div>
-      <div class="key-value">R$ 150 / h<small>Pacote mínimo de 1h. Cobrado a cada 30 min após.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Hora avulsa (Exterior)</div>
-      <div class="key-value">€30 / h<small>Faturado em EUR. Mesma regra de 1h mínimo.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Pacote 5h pré-pago</div>
-      <div class="key-value">R$ 675 / €135<small>10% de desconto. Validade de 6 meses.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Pacote 10h pré-pago</div>
-      <div class="key-value">R$ 1.275 / €255<small>15% de desconto. Validade de 12 meses.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">WhatsApp / DM para dúvidas</div>
-      <div class="key-value">Sem custo<small>Resposta em até 24h úteis. Limite: dúvidas, não pedidos de execução.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Reunião de consultoria</div>
-      <div class="key-value">R$ 150 / 1h<small>Estratégia, revisão de site, plano de conteúdo. Pago à parte.</small></div>
-    </div>
-  </div>
-
-  <div class="callout gold">
-    <div class="callout-title">⚡ A regra do WhatsApp gratuito</div>
-    <div class="callout-body"><strong>Dúvida é grátis. Execução é paga.</strong> "Como mudo a foto?" → respondo sem cobrar. "Pode mudar a foto pra mim?" → entra na hora avulsa (ou no limite do pacote). Essa distinção precisa ficar clara no onboarding — senão o WhatsApp vira suporte gratuito de produção e quebra a margem.</div>
-  </div>
-
-  <h3>O que sempre está incluso (qualquer pacote)</h3>
-  <ul>
-    <li>Domínio .com.br registrado em nome do cliente</li>
-    <li>Hospedagem em servidor com 99.9% de uptime</li>
-    <li>Certificado SSL (https://) sempre ativo</li>
-    <li>Backup automatizado</li>
-    <li>Configuração inicial do Google Meu Negócio</li>
-    <li>Treinamento de 30 min para o cliente após entrega</li>
-  </ul>
-
-  <h3>O que NÃO está incluso (orçamento à parte)</h3>
-  <ul>
-    <li>Produção de fotos profissionais</li>
-    <li>Criação de logo (oferecemos parceiros)</li>
-    <li>Anúncios pagos (Meta, Google Ads)</li>
-    <li>Sistemas de pagamento online ou e-commerce</li>
-    <li>Aplicativos móveis nativos</li>
-    <li>Conteúdo escrito além do enviado pelo cliente</li>
-  </ul>
-</section>
-
-<!-- ═══════════ 06 ADD-ONS ═══════════ -->
-<section class="section" id="addons">
-  <div class="section-tag"><span class="section-tag-num">06</span> Add-ons</div>
-  <h2>Add-ons <em>recorrentes</em></h2>
-  <p class="section-lead">Serviços que somam à mensalidade base. Pode adicionar a qualquer momento — também são a porta de entrada das Fases 2 e 3.</p>
-
-  <h3>Disponíveis hoje</h3>
-  <div class="addon-grid">
-    <div class="addon">
-      <div class="addon-info">
-        <div class="addon-name">Pacote Local Boost</div>
-        <div class="addon-desc">Gestão completa do Google Meu Negócio: posts semanais, respostas a reviews, fotos atualizadas.</div>
-      </div>
-      <div class="addon-price">+ R$ 297/mo</div>
-    </div>
-    <div class="addon">
-      <div class="addon-info">
-        <div class="addon-name">Manutenção Avançada</div>
-        <div class="addon-desc">+3h/mês de alterações no site, prioridade de suporte, mudanças sem orçamento.</div>
-      </div>
-      <div class="addon-price">+ R$ 197/mo</div>
-    </div>
-    <div class="addon">
-      <div class="addon-info">
-        <div class="addon-name">Email Marketing Setup</div>
-        <div class="addon-desc">Configuração de captura de email + envio de 1 newsletter/mês via Mailchimp/Brevo.</div>
-      </div>
-      <div class="addon-price">+ R$ 247/mo</div>
-    </div>
-    <div class="addon">
-      <div class="addon-info">
-        <div class="addon-name">Relatório Mensal Plus</div>
-        <div class="addon-desc">Reunião de 30 min/mês para revisar métricas e ajustar estratégia.</div>
-      </div>
-      <div class="addon-price">+ R$ 197/mo</div>
-    </div>
-  </div>
-
-  <h3>Em breve (Fases 2 e 3)</h3>
-  <div class="addon-grid">
-    <div class="addon">
-      <div class="addon-info">
-        <div class="addon-name">Automação WhatsApp</div>
-        <div class="addon-desc">Atendimento automatizado com n8n: respostas, agendamento, follow-ups.</div>
-      </div>
-      <div class="addon-price">+ R$ 597/mo</div>
-    </div>
-    <div class="addon">
-      <div class="addon-info">
-        <div class="addon-name">Dashboard Analytics</div>
-        <div class="addon-desc">Painel customizado com KPIs do negócio, atualizado em tempo real.</div>
-      </div>
-      <div class="addon-price">+ R$ 397/mo</div>
-    </div>
+    <div class="callout-title">🔁 Manutenção nunca é opcional</div>
+    <div class="callout-body">É apresentada como parte de todo projeto desde o primeiro dia. <strong>Sem receita recorrente você recomeça do zero todo mês.</strong> Trinta clientes em manutenção são €2.000–3.000/mês antes de vender qualquer coisa nova.</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══════════ 07 PROCESSO COMERCIAL ═══════════ -->
-<section class="section" id="processo">
-  <div class="section-tag"><span class="section-tag-num">07</span> Comercial</div>
-  <h2>Processo <em>comercial</em></h2>
-  <p class="section-lead">Do primeiro contato ao "sim". Sempre nessa ordem. Vale para clientes no Brasil (PT-BR) e clientes no exterior — Irlanda, Portugal, EUA, qualquer mercado de língua inglesa (EN).</p>
+<!-- ═══════════ 03 QUEM PROSPECTAR ═══════════ -->
+<section class="section" id="icp">
+  <div class="section-tag"><span class="section-tag-num">03</span> Prospecção</div>
+  <h2>Quem <em>prospectar</em></h2>
+  <p class="section-lead">Definir o perfil ideal não é burocracia — é o que faz a taxa de resposta sair de 0,5% para 6–8%. Prospect errado consome o mesmo tempo e não converte.</p>
 
-  <!-- ─── 7.1 TIMELINE GERAL ─── -->
-  <div class="bi-sub">7.1 · Timeline geral · Big picture</div>
+  <h3>Perfil de cliente ideal (ICP)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Atributo</th><th>Alvo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Localização</strong></td><td>Dublin 15, Blanchardstown, Castleknock, Clonee, Lucan, Ongar, Tyrrelstown</td></tr>
+        <tr><td><strong>Porte</strong></td><td>1–10 funcionários</td></tr>
+        <tr><td><strong>Tempo de operação</strong></td><td>12+ meses <em>(exigência do voucher)</em></td></tr>
+        <tr><td><strong>Faturamento</strong></td><td>Abaixo de €2M <em>(exigência do voucher)</em></td></tr>
+        <tr><td><strong>Estado digital</strong></td><td>Sem site, ou com site que quebra no celular</td></tr>
+        <tr><td><strong>Dono</strong></td><td>Operado pelo dono — quem decide atende o telefone</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Verticais prioritários</h3>
+  <div class="callout gold">
+    <div class="callout-title">🎯 Um vertical de cada vez</div>
+    <div class="callout-body">Vinte salões de cabeleireiro batem vinte negócios variados: você aprende a linguagem, suas observações de auditoria ficam mais afiadas a cada dez enviadas, e o segundo cliente chega como <strong>indicação do primeiro</strong>.</div>
+  </div>
+
   <div class="process">
     <div class="process-step">
       <div class="process-num">01</div>
       <div>
-        <div class="process-title">Prospecção</div>
-        <div class="process-desc">Identificação de negócios sem site (ou com site fraco) no Google Maps, Instagram, Facebook ou listagens de bairro/cidade. Coleta de dados públicos: nome, endereço, fotos, reviews, equipe, horários, telefone, link de agendamento se houver.</div>
-        <div class="process-meta">Sem contato com cliente · Estudo</div>
+        <div class="process-title">Salões de cabeleireiro e beleza</div>
+        <div class="process-desc">Dor de agendamento é aguda, são negócios visuais e as redes de indicação entre eles são fortes.</div>
+        <div class="process-meta">Prioridade máxima · Início recomendado</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">02</div>
       <div>
-        <div class="process-title">PRD &amp; esboço pronto</div>
-        <div class="process-desc">Geramos o PRD do site usando os dados públicos. O esboço HTML responsivo fica <strong>pronto antes do contato</strong> — esse é o diferencial. O cliente recebe um link funcional, não uma promessa.</div>
-        <div class="process-meta">Tempo: 2-4h por cliente</div>
+        <div class="process-title">Restaurantes e takeaways</div>
+        <div class="process-desc">Alto volume de busca, necessidade clara de cardápio online e reservas.</div>
+        <div class="process-meta">Volume alto de busca local</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">03</div>
       <div>
-        <div class="process-title">Preparação pré-contato</div>
-        <div class="process-desc">Identificar o dono (não o atendente); revisar o preview no mobile; trocar telefone, horário e links pelos reais; verificar domínio disponível. <em>Falar com a pessoa certa é metade da venda.</em></div>
-        <div class="process-meta">Detalhamento: 7.2</div>
+        <div class="process-title">Ofícios — encanadores, eletricistas, construtores</div>
+        <div class="process-desc">Frequentemente com zero presença web e ticket de serviço alto. A ausência total de site facilita a conversa.</div>
+        <div class="process-meta">Valor de trabalho alto</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">04</div>
       <div>
-        <div class="process-title">Sequência de toques</div>
-        <div class="process-desc">DM (WhatsApp/Instagram/Facebook) → ligação curta de qualificação se necessário → vídeo-chamada de 10 min ou visita presencial para fechamento.</div>
-        <div class="process-meta">Detalhamento: 7.3 · Conversão típica 30–40%</div>
+        <div class="process-title">Clínicas odontológicas e de fisioterapia</div>
+        <div class="process-desc">Orçamento maior, negócio movido a agendamento — o sistema de reservas se paga rápido.</div>
+        <div class="process-meta">Orçamento acima da média</div>
       </div>
     </div>
     <div class="process-step">
       <div class="process-num">05</div>
       <div>
-        <div class="process-title">Walk-through (demonstração)</div>
-        <div class="process-desc">15–30 min mostrando o site no celular do cliente. Princípio: <em>falar pouco, deixar o site falar.</em> Ao final, apresentar os 3 pacotes + escolha de modalidade A/B.</div>
-        <div class="process-meta">Detalhamento: 7.4 · Ideal presencial ou videocall</div>
+        <div class="process-title">Varejo independente</div>
+        <div class="process-desc">Caminho natural de upsell para e-commerce — entra no pacote Growth.</div>
+        <div class="process-meta">Rota de upsell para Growth</div>
       </div>
-    </div>
-    <div class="process-step">
-      <div class="process-num">06</div>
-      <div>
-        <div class="process-title">Proposta &amp; contrato</div>
-        <div class="process-desc">Proposta por email com link de assinatura digital (Clicksign / D4Sign / Autentique no BR · DocuSign / HelloSign no exterior). Entrada via PIX (BR) ou Stripe / Wise / transferência SEPA (exterior) libera o início.</div>
-        <div class="process-meta">Fechamento típico: 2-7 dias após walk-through</div>
-      </div>
-    </div>
-    <div class="process-step">
-      <div class="process-num">07</div>
-      <div>
-        <div class="process-title">Onboarding</div>
-        <div class="process-desc">Briefing detalhado: textos finais, fotos originais (substituir as do scrape), contas (Google, redes), confirmação de domínio, escolha entre Modalidade A (gerenciado) e B (CMS + treinamento).</div>
-        <div class="process-meta">Até 48h após pagamento da entrada</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 7.2 PREPARAÇÃO PRÉ-CONTATO ─── -->
-  <div class="bi-sub">7.2 · Preparação antes do primeiro contato</div>
-  <p>Quatro checagens obrigatórias antes de mandar qualquer mensagem. Pular essas etapas custa a venda — e queima um lead que era qualificado.</p>
-
-  <ol style="margin: 1rem 0 1.5rem 1.2rem; font-size: 0.92rem;">
-    <li style="margin-bottom: 0.6rem;"><strong>Identificar o dono.</strong> O scrape de Google Maps raramente traz o nome. Como descobrir: (a) seção "Sobre" e posts da página de Instagram/Facebook do negócio; (b) ligar ao estabelecimento <em>num horário calmo</em> e perguntar quem cuida da parte de negócio; (c) checar registro da empresa (Receita Federal/CNPJ no BR; CRO — Companies Registration Office na Irlanda; Companies House no Reino Unido). Falar com a pessoa certa é metade da venda — atendente nunca decide compra.</li>
-    <li style="margin-bottom: 0.6rem;"><strong>Revisar o MVP com olhos de cliente.</strong> Antes de enviar o link, garantir que o preview está:
-      <ul style="margin-top: 0.4rem;">
-        <li>Impecável no celular — é assim que o dono vai abrir o link</li>
-        <li>Com os nomes reais da equipe que aparecem nas reviews (gatilho emocional forte — donos adoram ver a equipe reconhecida)</li>
-        <li>Com o botão de agendamento apontando para o sistema real do cliente (Fresha, Booksy, Trinks, WhatsApp Business, etc.)</li>
-        <li>Telefone correto e clicável; horários corretos; fechamentos respeitados (ex: fechado domingo)</li>
-      </ul>
-    </li>
-    <li style="margin-bottom: 0.6rem;"><strong>Atenção às imagens.</strong> O MVP usa fotos do scrape (hospedadas pelo Google/Meta) como <em>seed</em>. Para o preview de venda, isso é aceitável. <strong>Para o go-live é obrigatório trocar por fotos originais</strong> (ou do Instagram/Facebook do próprio negócio, com permissão explícita). Deixar isso claro no onboarding para não virar problema de direitos autorais depois.</li>
-    <li style="margin-bottom: 0.6rem;"><strong>Definir o domínio candidato.</strong> Ex.: <em>nomedonegocio.com.br</em> (BR) · <em>nomedonegociocidade.ie</em> (Irlanda) · <em>.pt</em>, <em>.com</em>, etc. Verificar disponibilidade <strong>antes</strong> da conversa, para já chegar com a resposta pronta. Domínio indisponível mata o momentum da venda.</li>
-  </ol>
-
-  <!-- ─── 7.3 SEQUÊNCIA DE TOQUES ─── -->
-  <div class="bi-sub">7.3 · Sequência de toques recomendada</div>
-  <div class="process">
-    <div class="process-step">
-      <div class="process-num">T1</div>
-      <div>
-        <div class="process-title">DM (WhatsApp / Instagram / Facebook) — canal principal</div>
-        <div class="process-desc">Assíncrono, chega direto ao dono que já responde reviews por lá, e permite entregar o <strong>link do preview</strong> na primeira mensagem. Melhor dia/hora: <em>terça ou quarta de manhã</em>. Evitar quinta/sexta à noite e sábado (estabelecimento movimentado).</div>
-        <div class="process-meta">Resposta esperada: 24–72h · Taxa de leitura ~70%</div>
-      </div>
-    </div>
-    <div class="process-step">
-      <div class="process-num">T2</div>
-      <div>
-        <div class="process-title">Ligação curta de qualificação</div>
-        <div class="process-desc">Se o DM não responder em <strong>~4 dias</strong>, ou em paralelo. Objetivo: pegar o nome do dono e o melhor canal direto. <em>Não tentar vender pelo telefone do balcão</em> — quem atende pode estar no meio de um atendimento. Conversa de 60 segundos, sem pitch.</div>
-        <div class="process-meta">Duração: 1 min · Sem vender</div>
-      </div>
-    </div>
-    <div class="process-step">
-      <div class="process-num">T3</div>
-      <div>
-        <div class="process-title">Fechamento — vídeo-chamada de 10 min ou visita presencial</div>
-        <div class="process-desc">Para negócio local com cultura de walk-in (salão, restaurante, padaria, oficina), <strong>visita presencial é poderosa</strong> — dono fisicamente no local, mostrar o site num tablet vira um momento marcante. Se planejar viagem à cidade, ancorar a viagem num prospect e aproveitar para tocar outros 3-5 leads no mesmo dia. Se não houver viagem, vídeo-chamada fecha igual e é mais rápida.</div>
-        <div class="process-meta">Conversão T3 → venda: 50–70%</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── 7.4 SCRIPTS DE ABORDAGEM (PT + EN) ─── -->
-  <div class="bi-sub">7.4 · Scripts de abordagem · Outreach scripts</div>
-  <p>Tom de todos os scripts: <strong>específico, caloroso, sem pressão, liderando com o trabalho já feito</strong>. Nada de "soluções digitais", "presença online" ou jargão de vendedor. O preview é a prova; o texto só serve para entregar o link.</p>
-
-  <p style="margin-top: 1.2rem;"><strong>Substitua os placeholders:</strong> <code>[NEGÓCIO]</code> · <code>[NOME_DONO]</code> · <code>[CIDADE]</code> · <code>[LINK]</code> · <code>[SEU_NOME]</code> · <code>[CATEGORIA]</code> (salão, restaurante, oficina, escola, clínica, etc.).</p>
-
-  <h3 style="margin-top: 1.8rem;">Toque 1 — Mensagem direta (DM)</h3>
-  <div class="bi">
-    <div class="bi-col pt">
-      <div class="script-box">Oi! Pergunta rápida — é por aqui que falo com o(a) dono(a) do(a) [NEGÓCIO]?<br><br>Sou [SEU_NOME], faço sites para [CATEGORIA] aqui em [CIDADE]. Reparei que o [NEGÓCIO] ainda não tem um site próprio — só Instagram / Facebook / [SISTEMA_AGENDAMENTO] — então peguei e fiz um pra vocês darem uma olhada. Usei as próprias fotos de vocês e as reviews reais. Sem pegadinha, já está pronto.<br><br>Aqui o preview: [LINK]<br><br>Se gostarem, esta semana mesmo coloco no ar no domínio de vocês. Se não for pra agora, sem problema nenhum. Posso passar pra mostrar pessoalmente ou marcar uma chamada rápida — o que ficar melhor.<br><br>De qualquer forma, dá uma olhada — a equipe de vocês está lá 🙂</div>
-    </div>
-    <div class="bi-col en">
-      <div class="script-box">Hi! Quick question — is this the best way to reach the owner of [BUSINESS]?<br><br>I'm [YOUR_NAME], I build websites for [CATEGORY] here in [CITY/REGION]. I noticed [BUSINESS] doesn't have its own website yet — just the Instagram / Facebook / [BOOKING_SYSTEM] — so I went ahead and built one for you to look at. It uses your own photos and your real reviews. No catch, it's already done.<br><br>Here's the preview: [LINK]<br><br>If you like it, I can have it live on your own domain this week. If it's not for you, no worries at all. Happy to walk you through it on a quick call whenever suits — or pop in if I'm over in [CITY].<br><br>Either way, have a look — your team's on there too 🙂</div>
-    </div>
-  </div>
-
-  <h3 style="margin-top: 1.5rem;">Toque 2 — Ligação curta (só para qualificar)</h3>
-  <div class="bi">
-    <div class="bi-col pt">
-      <div class="script-box">Oi — não tô ligando pra marcar nada, só uma pergunta rápida. Quem cuida da parte de negócio do(a) [NEGÓCIO] — o(a) dono(a)? ... [NOME_DONO] costuma estar aí de manhã durante a semana? ... Perfeito, não vou tomar o tempo do balcão — vocês têm um WhatsApp direto do(a) [NOME_DONO], ou o melhor é mandar pelo Instagram mesmo? É que preparei uma coisa pro [NEGÓCIO] que eu queria que ele(a) visse.</div>
-    </div>
-    <div class="bi-col en">
-      <div class="script-box">Hi — I'm not looking for an appointment, just a quick question. Who looks after the business side of [BUSINESS] — the owner? ... Is [OWNER_NAME] usually in on weekday mornings? ... Perfect, I won't hold up the desk — is there a direct email or WhatsApp for [OWNER_NAME], or is the Instagram page the best way to reach them? I've actually built something for the business I'd like them to see.</div>
-    </div>
-  </div>
-
-  <h3 style="margin-top: 1.5rem;">Follow-up (~5 dias sem resposta)</h3>
-  <div class="bi">
-    <div class="bi-col pt">
-      <div class="script-box">Oi de novo — só pra garantir que minha mensagem não se perdeu! O preview do site do(a) [NEGÓCIO] continua aqui: [LINK]. Sem pressa e sem pressão — se não for pra agora, totalmente ok. Só não queria que passasse batido; a página da equipe ficou muito boa.</div>
-    </div>
-    <div class="bi-col en">
-      <div class="script-box">Hi again — just making sure my message didn't get buried! The website preview for [BUSINESS] is still here: [LINK]. No rush and no pressure — if it's not for you, that's completely fine. Just didn't want you to miss it; the team page came out really well.</div>
-    </div>
-  </div>
-
-  <div class="callout green">
-    <div class="callout-title">✅ Por que esses scripts funcionam</div>
-    <div class="callout-body">Em vendas isso se chama <strong>"give before you ask"</strong> e ativa o princípio da <strong>reciprocidade de Cialdini</strong>. Você não está pedindo nada — está entregando algo pronto. Combinado com a citação dos <strong>nomes reais da equipe e das fotos do próprio negócio</strong>, o cliente sente que você fez lição de casa e que aquilo "é dele". A maioria dos vendedores diz "posso te mostrar"; você já mostrou.</div>
-  </div>
-
-  <!-- ─── 7.5 WALK-THROUGH ─── -->
-  <div class="bi-sub">7.5 · Conversa de demonstração (walk-through)</div>
-  <p>Quando conseguir o dono ao telefone, vídeo ou presencialmente, conduzir nesta ordem. <strong>Princípio:</strong> falar pouco, deixar o site falar. O preview faz 80% da venda sozinho.</p>
-
-  <ol class="walk-stops">
-    <li><strong>Abrir reconhecendo o sucesso deles.</strong> Ex: <em>"Antes de qualquer coisa — 4.9 com 124 reviews é raro. Vocês claramente fazem algo certo."</em> · <em>"Before anything else — 4.9 with 124 reviews is rare. You're clearly doing something right."</em></li>
-    <li><strong>Nomear a lacuna sem drama.</strong> <em>"A única coisa que faltava era online. Hoje, quem busca vocês no Google não encontra um 'vocês' de verdade — só o [REDE/SISTEMA]."</em> · <em>"The only thing missing was online. Right now, if someone searches you on Google, they don't find a real 'you' — just the [PLATFORM]."</em></li>
-    <li><strong>Abrir o preview no celular do cliente.</strong> É como os clientes <em>dele</em> buscam. Deixar ele rolar — não narrar.</li>
-    <li><strong>Parar de propósito em 3 pontos:</strong>
-      <ul style="margin-top: 0.5rem;">
-        <li>A <strong>página da equipe</strong> — <em>"essa é a [NOME], esse é o [NOME]... os nomes que aparecem nas reviews de vocês."</em> (gatilho emocional)</li>
-        <li>A <strong>galeria</strong> — <em>"são fotos de vocês, do trabalho de vocês."</em></li>
-        <li>O <strong>botão de agendar/contato</strong> — <em>"leva direto pro [SISTEMA_ATUAL]. Nada muda na forma como vocês recebem cliente — o site só vira a porta de entrada."</em></li>
-      </ul>
-    </li>
-    <li><strong>Argumento de visitantes externos, com os dados deles.</strong> <em>"Olha as próprias reviews — [NOME], [NOME], todos vieram de fora da cidade. Essas entraram. Um site ajuda a captar as que hoje passam batido."</em> (Adapte: turistas para salão/restaurante; pais buscando vaga para escola; clientes de outro bairro para clínica/oficina.)</li>
-    <li><strong>Apresentar pacotes + modalidades A/B.</strong> "Tem três pacotes (mostrar). E depois de pronto, vocês escolhem: ou a gente cuida de tudo, ou vocês ganham acesso ao painel pra editar quando quiser. <em>Qual desses faz mais sentido pro momento de vocês?</em>"</li>
-    <li><strong>Fechar o loop.</strong> <em>"Isto é de vocês. Já está pronto. Só falta colocar no ar."</em> · <em>"This is yours. It's already built. We just need to put it live."</em></li>
-  </ol>
-
-  <!-- ─── 7.6 PRECIFICAÇÃO ESTRATÉGICA ─── -->
-  <div class="bi-sub">7.6 · Como ancorar o valor na conversa</div>
-  <p>O site já está construído — o custo de produção já foi pago do <em>nosso</em> lado. Isso permite uma <strong>oferta de baixo risco</strong> que destrói a objeção de preço. A receita real é a mensalidade recorrente + a escolha de modalidade (A ou B).</p>
-
-  <div class="bi">
-    <div class="bi-col pt">
-      <p><strong>Como apresentar o preço — nunca como custo, sempre como aluguel de um ativo deles:</strong></p>
-      <p>· <em>"É menos que [REFERÊNCIA DO PRÓPRIO NEGÓCIO]"</em> — uma coloração/mês num salão, dois rodízios num restaurante, uma matrícula numa escola.</p>
-      <p>· <em>"É um par de cafés por semana — e é despesa de negócio dedutível."</em></p>
-      <p>· <em>"O site é seu. Está em domínio seu, é um ativo seu. A mensalidade é só pra manter no ar e fazer pequenas mudanças sem você precisar lembrar de cada detalhe."</em></p>
-    </div>
-    <div class="bi-col en">
-      <p><strong>How to present price — never as cost, always as rent on their own asset:</strong></p>
-      <p>· <em>"It's less than [REFERENCE FROM THEIR OWN BUSINESS]"</em> — one colour service a month at a salon, two dinners at a restaurant, one term fee at a school.</p>
-      <p>· <em>"It's a couple of coffees a week — and it's a deductible business expense."</em></p>
-      <p>· <em>"The site is yours. It's on your own domain, it's your asset. The monthly is just to keep it live and handle small changes so you don't have to think about it."</em></p>
-    </div>
-  </div>
-
-  <div class="callout gold">
-    <div class="callout-title">💰 Opção de fechamento "sem risco" (use com clientes hesitantes)</div>
-    <div class="callout-body"><em>"O site já está pronto. Sem taxa de montagem. R$X / €X por mês, podem cancelar quando quiserem, e o primeiro mês é por minha conta. Se não gostarem, não pagam nada."</em> — Esta versão é a mais forte para fechar negócios travados: remove toda a fricção, e a <strong>receita recorrente é o que importa</strong> no longo prazo. Use com moderação — não é o default.</div>
-  </div>
-
-  <!-- ─── 7.7 ONBOARDING ─── -->
-  <div class="bi-sub">7.7 · Fechamento e onboarding</div>
-  <p>No "sim", o processo é curto. O que o cliente precisa fornecer (checklist enviado por email após assinatura):</p>
-  <ul>
-    <li>Confirmar o <strong>domínio</strong> (verificado em 7.2)</li>
-    <li>Lista de <strong>serviços/produtos e preços</strong> (ou autorização para puxar do sistema atual)</li>
-    <li><strong>Equipe</strong>: nome + uma frase de bio + uma foto de cada (substitui o seed do scrape)</li>
-    <li>Algumas <strong>fotos originais</strong> do estabelecimento/trabalhos (ou permissão escrita para usar as do Instagram/Facebook)</li>
-    <li>Confirmar <strong>telefone, horários e link do sistema de agendamento</strong></li>
-    <li><strong>Escolha entre Modalidade A (gerenciado) e B (CMS + treinamento)</strong> — ver seção 05</li>
-    <li>Acesso ao Google Meu Negócio (se já existir) ou autorização para criar</li>
-  </ul>
-</section>
-
-<!-- ═══════════ 08 CONTRATOS ═══════════ -->
-<section class="section" id="contratos">
-  <div class="section-tag"><span class="section-tag-num">08</span> Contratos</div>
-  <h2>Contratos &amp; <em>cláusulas-chave</em></h2>
-  <p class="section-lead">Todo cliente assina contrato antes do início. Sem exceção.</p>
-
-  <h3>Estrutura do contrato</h3>
-  <ul>
-    <li><strong>Identificação das partes</strong> (CNPJ contratante e contratada)</li>
-    <li><strong>Objeto do contrato</strong> (especificação clara do pacote vendido)</li>
-    <li><strong>Valores e forma de pagamento</strong> (setup + mensalidade)</li>
-    <li><strong>Prazo de vigência</strong> (12 meses, renovação automática)</li>
-    <li><strong>SLA e responsabilidades</strong></li>
-    <li><strong>Cláusulas de cancelamento e multa</strong></li>
-    <li><strong>Tratamento de dados (LGPD)</strong></li>
-    <li><strong>Foro:</strong> Comarca de Natal/RN</li>
-  </ul>
-
-  <h3>Pontos críticos para o cliente saber</h3>
-  <div class="key-grid">
-    <div class="key-item">
-      <div class="key-label">Vigência inicial</div>
-      <div class="key-value">12 meses<small>Renovação automática anual.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Cancelamento</div>
-      <div class="key-value">Aviso de 30 dias<small>Após os 12 meses iniciais.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Quebra antecipada</div>
-      <div class="key-value">Multa de 30%<small>Sobre as mensalidades restantes.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Propriedade do site</div>
-      <div class="key-value">Do cliente<small>Após pagamento integral do setup.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Domínio</div>
-      <div class="key-value">Em nome do cliente<small>Sempre — nunca registramos no nosso CNPJ.</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Reajuste anual</div>
-      <div class="key-value">IPCA<small>Aplicado na renovação.</small></div>
     </div>
   </div>
 
   <div class="callout red">
-    <div class="callout-title">⚠️ Nunca fazer</div>
+    <div class="callout-title">🚫 Desqualificar imediatamente</div>
     <div class="callout-body">
-      <strong>Nunca</strong> registrar o domínio no CNPJ da empresa.<br>
-      <strong>Nunca</strong> começar trabalho sem contrato assinado e entrada paga.<br>
-      <strong>Nunca</strong> prometer prazos por mensagem informal — sempre em proposta formal.
+      <strong>Franquias</strong> — não têm autoridade de decisão local.<br>
+      <strong>Negócios com site recente, funcional e responsivo</strong> — não há lacuna para apontar.<br>
+      <strong>Operando há menos de 12 meses</strong> — inelegível para o voucher.<br>
+      <strong>Quem já disse não</strong> — suprimido permanentemente da lista.
     </div>
-  </div>
-
-  <h3>LGPD</h3>
-  <p>Quando o site coleta dados de visitantes (formulário, newsletter, chatbot), o cliente é o <strong>controlador</strong> e nós somos os <strong>operadores</strong>. O contrato precisa explicitar isso, e o site precisa de:</p>
-  <ul>
-    <li>Política de privacidade (incluímos uma genérica em todo site)</li>
-    <li>Banner de cookies (incluso em pacotes Profissional e Premium)</li>
-    <li>Termo de consentimento em formulários</li>
-  </ul>
-</section>
-
-<!-- ═══════════ 09 PAGAMENTOS ═══════════ -->
-<section class="section" id="pagamentos">
-  <div class="section-tag"><span class="section-tag-num">09</span> Pagamento</div>
-  <h2>Formas de <em>pagamento</em></h2>
-  <p class="section-lead">Aceitamos os meios mais comuns no Brasil. PIX é prioritário pela liquidez.</p>
-
-  <h3>Setup (one-time)</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Método</th><th>Como</th><th>Parcelamento</th><th>Custo p/ cliente</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>PIX</strong></td><td>Chave CNPJ ou QR Code</td><td>50% entrada + 50% entrega</td><td>Sem taxas</td></tr>
-        <tr><td><strong>Cartão de crédito</strong></td><td>Link Stripe / Mercado Pago</td><td>Até 12x</td><td>Juros da operadora a partir da 4ª parcela</td></tr>
-        <tr><td><strong>Boleto</strong></td><td>Asaas / Cobrança bancária</td><td>50% entrada + 50% entrega</td><td>Sem taxas</td></tr>
-        <tr><td><strong>Transferência (TED)</strong></td><td>Conta PJ informada na proposta</td><td>50% entrada + 50% entrega</td><td>Sem taxas</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>Mensalidade</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Método</th><th>Como funciona</th><th>Recomendação</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>PIX automático</strong></td><td>Cobrança recorrente via Asaas/Pagar.me com PIX agendado</td><td>⭐ Preferencial</td></tr>
-        <tr><td><strong>Cartão recorrente</strong></td><td>Cobrança automática mensal no cartão</td><td>Bom para clientes recorrentes</td></tr>
-        <tr><td><strong>Boleto mensal</strong></td><td>Boleto enviado todo mês via email</td><td>Aceitar apenas se cliente insistir</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout blue">
-    <div class="callout-title">💡 Política de inadimplência</div>
-    <div class="callout-body">
-      Mensalidade atrasada: <strong>3 dias</strong> aviso amigável.
-      <strong>7 dias</strong> notificação formal por email.
-      <strong>15 dias</strong> suspensão temporária do site (banner "Em manutenção").
-      <strong>30 dias</strong> desligamento e cobrança via plataforma (Asaas, Serasa).
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 10 ENTREGA ═══════════ -->
-<section class="section" id="entrega">
-  <div class="section-tag"><span class="section-tag-num">10</span> Entrega</div>
-  <h2>Cronograma de <em>entrega</em></h2>
-  <p class="section-lead">Prazos contam a partir do pagamento da entrada e do briefing completo.</p>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Pacote</th><th>Prazo</th><th>Marcos</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Essencial</strong></td>
-          <td>7 dias úteis</td>
-          <td>Wireframe (D+2) → Site v1 (D+5) → Ajustes (D+7) → Publicação</td>
-        </tr>
-        <tr>
-          <td><strong>Profissional</strong></td>
-          <td>14 dias úteis</td>
-          <td>Wireframe (D+3) → Design (D+7) → Site v1 (D+11) → Revisão (D+13) → Publicação</td>
-        </tr>
-        <tr>
-          <td><strong>Premium</strong></td>
-          <td>21-30 dias úteis</td>
-          <td>Discovery (D+5) → Design (D+12) → Build (D+22) → Revisão (D+27) → Publicação</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>Rodadas de revisão</h3>
-  <ul>
-    <li><strong>Essencial:</strong> 1 rodada de revisão (até 5 ajustes)</li>
-    <li><strong>Profissional:</strong> 2 rodadas de revisão (até 10 ajustes total)</li>
-    <li><strong>Premium:</strong> 3 rodadas de revisão (até 15 ajustes total)</li>
-  </ul>
-  <p>Ajustes adicionais ou mudanças estruturais (novas seções, redesigns) são cobrados à parte: <strong>R$ 150/h</strong>.</p>
-
-  <h3>Entrega final inclui</h3>
-  <ul>
-    <li>Site no ar com domínio próprio configurado</li>
-    <li>Acesso à plataforma de hospedagem (cliente pode ver, mas não editar)</li>
-    <li>Treinamento de 30 min via videocall ou presencial</li>
-    <li>Documento PDF: "Como funciona seu site" (5 páginas)</li>
-    <li>Pixel/tag de Google Analytics e Search Console configurados</li>
-    <li>NF-e emitida</li>
-  </ul>
-</section>
-
-<!-- ═══════════ 11 SLA ═══════════ -->
-<section class="section" id="sla">
-  <div class="section-tag"><span class="section-tag-num">11</span> SLA</div>
-  <h2>Manutenção &amp; <em>SLA</em></h2>
-  <p class="section-lead">O que está incluso na mensalidade e os prazos de resposta. Esses números entram no contrato.</p>
-
-  <h3>Tempos de resposta por severidade</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Severidade</th><th>Exemplo</th><th>Tempo de resposta</th><th>Tempo de resolução</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>🔴 Crítico</strong></td>
-          <td>Site fora do ar</td>
-          <td>1 hora útil</td>
-          <td>Até 4h úteis</td>
-        </tr>
-        <tr>
-          <td><strong>🟡 Alto</strong></td>
-          <td>Funcionalidade quebrada (formulário, mapa, WhatsApp)</td>
-          <td>4 horas úteis</td>
-          <td>Até 24h úteis</td>
-        </tr>
-        <tr>
-          <td><strong>🟢 Médio</strong></td>
-          <td>Bug visual, link errado</td>
-          <td>1 dia útil</td>
-          <td>Até 3 dias úteis</td>
-        </tr>
-        <tr>
-          <td><strong>⚪ Baixo</strong></td>
-          <td>Pequeno ajuste de texto, troca de foto</td>
-          <td>2 dias úteis</td>
-          <td>Até 7 dias úteis</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>O que a mensalidade cobre</h3>
-  <ul>
-    <li>Hospedagem, SSL, domínio (renovação anual inclusa)</li>
-    <li>Backup automatizado (frequência conforme pacote)</li>
-    <li>Monitoramento 24/7 de uptime</li>
-    <li>Pequenas alterações: textos, preços, fotos, horários (limite de horas conforme pacote)</li>
-    <li>Atualizações de segurança e performance</li>
-    <li>Suporte por WhatsApp e email em horário comercial</li>
-  </ul>
-
-  <h3>O que NÃO cobre (cobrado à parte)</h3>
-  <ul>
-    <li>Novas páginas ou seções inteiras</li>
-    <li>Redesign visual</li>
-    <li>Novas funcionalidades (formulários complexos, sistemas)</li>
-    <li>Produção de conteúdo (textos, fotos, vídeos)</li>
-    <li>Migrações de plataforma</li>
-    <li>Recuperação de dados perdidos por erro do cliente</li>
-  </ul>
-
-  <h3>Garantia de uptime</h3>
-  <p>Garantimos <strong>99.5% de uptime mensal</strong>. Se ficar abaixo, créditos proporcionais na próxima fatura: 99.0%-99.5% = 10% de desconto; abaixo de 99% = 25%; abaixo de 95% = 50%.</p>
-</section>
-
-<!-- ═══════════ 12 SUPORTE ═══════════ -->
-<section class="section" id="suporte">
-  <div class="section-tag"><span class="section-tag-num">12</span> Suporte</div>
-  <h2>Canais &amp; <em>horários</em></h2>
-  <p class="section-lead">Suporte é nosso ponto forte. Atendimento humano, rápido e em português.</p>
-
-  <h3>Canais oficiais</h3>
-  <div class="key-grid">
-    <div class="key-item">
-      <div class="key-label">Canal Principal</div>
-      <div class="key-value">WhatsApp Business<small>Resposta em até 4h úteis</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Suporte formal</div>
-      <div class="key-value">Email oficial<small>Para tickets e registros</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Emergências</div>
-      <div class="key-value">WhatsApp 24/7<small>Apenas para site fora do ar</small></div>
-    </div>
-    <div class="key-item">
-      <div class="key-label">Reuniões</div>
-      <div class="key-value">Google Meet<small>Agendadas com 24h de antecedência</small></div>
-    </div>
-  </div>
-
-  <h3>Horário de atendimento</h3>
-  <ul>
-    <li><strong>Segunda a sexta:</strong> 9h às 18h (horário de Brasília)</li>
-    <li><strong>Sábado:</strong> 10h às 14h (apenas WhatsApp)</li>
-    <li><strong>Domingo e feriados:</strong> Apenas emergências (site fora do ar)</li>
-  </ul>
-
-  <h3>Boas práticas de atendimento</h3>
-  <ol>
-    <li><strong>Confirme o recebimento em até 15 minutos</strong>, mesmo que a resposta completa demore mais.</li>
-    <li><strong>Use linguagem do cliente,</strong> evite jargão técnico ("vamos ajustar isso" em vez de "vou refatorar o componente").</li>
-    <li><strong>Nunca diga "não",</strong> diga "vamos verificar a melhor forma".</li>
-    <li><strong>Documente tudo:</strong> toda solicitação que vira tarefa é registrada (Notion, Trello ou ferramenta interna).</li>
-    <li><strong>Avise quando estiver fora do escopo</strong> antes de fazer — nunca cobre uma surpresa.</li>
-  </ol>
-</section>
-
-<!-- ═══════════ 13 CANCELAMENTO ═══════════ -->
-<section class="section" id="cancelamento">
-  <div class="section-tag"><span class="section-tag-num">13</span> Cancelamento</div>
-  <h2>Cancelamento &amp; <em>reembolso</em></h2>
-  <p class="section-lead">Política clara é a base de uma relação saudável. Se o cliente perguntar, responda direto.</p>
-
-  <h3>Janela de arrependimento (CDC)</h3>
-  <p>Por força do Código de Defesa do Consumidor, o cliente tem direito a <strong>7 dias após assinatura do contrato</strong> para cancelar com reembolso integral do setup (caso o trabalho ainda não tenha sido entregue).</p>
-
-  <h3>Após os 7 dias, antes da entrega do site</h3>
-  <ul>
-    <li>50% do setup é retido (cobre o trabalho de discovery e design)</li>
-    <li>50% é devolvido em até 10 dias úteis via PIX</li>
-  </ul>
-
-  <h3>Após a entrega do site, durante os 12 meses iniciais</h3>
-  <ul>
-    <li>Setup já é não-reembolsável</li>
-    <li>Cancelamento da mensalidade exige aviso de 30 dias + multa de 30% sobre as mensalidades restantes do contrato</li>
-    <li>Site permanece com o cliente (domínio é dele)</li>
-    <li>Hospedagem precisa ser migrada (oferecemos export ou migração paga)</li>
-  </ul>
-
-  <h3>Após o 12º mês (vigência completa)</h3>
-  <ul>
-    <li>Cancelamento livre com aviso de 30 dias</li>
-    <li>Sem multa</li>
-    <li>Site permanece com o cliente</li>
-    <li>Migração de hospedagem ou export do código gratuita</li>
-  </ul>
-
-  <div class="callout green">
-    <div class="callout-title">✓ Filosofia</div>
-    <div class="callout-body">Quem quer sair, sai. Não retemos cliente insatisfeito por contrato — reputação vale mais que mensalidade. Mas também não somos caridade: o trabalho feito é cobrado.</div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══════════ 14 FAQ ═══════════ -->
-<section class="section" id="faq">
-  <div class="section-tag"><span class="section-tag-num">14</span> FAQ</div>
-  <h2>Perguntas <em>frequentes</em></h2>
-  <p class="section-lead">As 20 perguntas que mais aparecem. Toda a equipe deve saber responder na hora.</p>
+<!-- ═══════════ 04 CONSTRUÇÃO DA LISTA ═══════════ -->
+<section class="section" id="lista">
+  <div class="section-tag"><span class="section-tag-num">04</span> Prospecção</div>
+  <h2>Construção da <em>lista</em></h2>
+  <p class="section-lead">A pesquisa é o produto. Uma lista sem as colunas de diagnóstico gera mala direta; com elas, gera consultoria.</p>
 
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Quanto tempo leva para ficar pronto?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Depende do pacote. <strong>Essencial:</strong> 7 dias úteis. <strong>Profissional:</strong> 14 dias úteis. <strong>Premium:</strong> 21-30 dias úteis. Os prazos contam a partir do pagamento da entrada e do envio do briefing completo.</div></div>
+  <h3>Fontes</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Fonte</th><th>O que você obtém</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Scrape do Google Maps (Apify)</strong></td><td>Nome, categoria, endereço, telefone, site, nota, número de avaliações, horários</td></tr>
+        <tr><td><strong>Google Business Profile</strong></td><td>Fotos, respostas a avaliações, precisão de categoria, precisão de horários</td></tr>
+        <tr><td><strong>Instagram</strong></td><td>Negócios ativos socialmente mas sem site — sinal de alta intenção</td></tr>
+        <tr><td><strong>Grupos locais no Facebook</strong></td><td>Negócios de bairro, threads de recomendação</td></tr>
+        <tr><td><strong>Caminhar pela sua própria área</strong></td><td>A fonte mais subestimada. Fachadas sem endereço de site</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês fazem logo / identidade visual?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Não diretamente. Trabalhamos a partir da identidade visual existente do cliente. Se precisar de logo, indicamos parceiros ou cobramos à parte (orçamento sob medida).</div></div>
+  <h3>Campos obrigatórios por prospect</h3>
+  <div class="code-block">business_name
+owner_name           <span class="cm">// descubra o nome — "Hi there" corta sua taxa de resposta pela metade</span>
+category
+address / area
+phone
+email                <span class="cm">// prefira info@ / bookings@ a endereços de pessoas físicas</span>
+website_url          <span class="cm">// ou "none"</span>
+google_rating
+review_count
+unanswered_reviews
+hours_accurate       <span class="cm">// yes/no</span>
+<span class="hl">top_local_keyword</span>    <span class="cm">// o que o cliente dele realmente digitaria</span>
+<span class="hl">current_rank</span>         <span class="cm">// posição para esse termo</span>
+<span class="hl">competitor_above</span>     <span class="cm">// quem aparece acima dele</span></div>
+
+  <div class="callout gold">
+    <div class="callout-title">🔑 As quatro últimas colunas são o email</div>
+    <div class="callout-body">São elas que fazem a mensagem funcionar. <strong>Sem elas você tem um mala direta; com elas, uma consultoria.</strong> Se você não consegue preencher essas colunas para um prospect, ele não está pronto para ser abordado.</div>
   </div>
 
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>O site fica no meu nome ou no de vocês?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner"><strong>Sempre no nome do cliente.</strong> O domínio (.com.br) é registrado em seu CNPJ desde o primeiro dia. Após pagamento integral do setup, o código-fonte também é seu.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Posso editar o site sozinho depois?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Pequenas alterações de texto, foto e preço são feitas por nós (incluso na mensalidade). Para clientes que querem autonomia total, oferecemos pacote com CMS (sob orçamento). Edições estruturais sempre passam por nós para garantir qualidade.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Por que tem mensalidade?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">A mensalidade cobre <strong>hospedagem, domínio, SSL, backup, monitoramento, atualizações de segurança e pequenas alterações.</strong> Sem isso, o site fica fora do ar em meses. É como ter um carro: o setup é a compra, a mensalidade é o combustível e a manutenção.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>E se eu quiser cancelar?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Em 7 dias após assinatura: reembolso integral. Antes da entrega: 50% retido. Durante os 12 meses iniciais: aviso de 30 dias + multa de 30% sobre mensalidades restantes. Após 12 meses: cancelamento livre com 30 dias de aviso, sem multa. O site fica com você sempre.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês emitem nota fiscal?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim, emitimos NF-e de serviço para todo pagamento, tanto setup quanto mensalidade. CNAE: prestação de serviços de tecnologia da informação.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Aceitam parcelar?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim. Setup pode ser parcelado em até <strong>12x no cartão de crédito</strong> (juros da operadora a partir da 4ª parcela) ou <strong>50% entrada + 50% na entrega</strong> via PIX/boleto sem juros.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Já tenho um domínio. Vocês usam ele?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim, usamos. Você nos envia o login do registro.br (ou onde estiver registrado) e fazemos o redirecionamento para nossa hospedagem. O domínio continua em seu nome.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês fazem e-commerce / loja virtual?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Não nesse pacote. Lojas virtuais com pagamento online, controle de estoque e logística são produto separado, sob orçamento. Para vendas simples, recomendamos cardápio digital com pedido via WhatsApp.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Quantas alterações posso pedir?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Durante a construção: <strong>1 a 3 rodadas</strong> conforme pacote. Após o site no ar: <strong>até 1-2h/mês</strong> de alterações inclusas (varia por pacote). Tempo extra é cobrado a R$ 150/h, sempre orçado antes.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>O site vai aparecer no Google?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim, fazemos <strong>SEO básico</strong> (meta tags, Schema.org, sitemap, Search Console configurado). Para buscas locais ("seu serviço em [cidade]"), tipicamente aparece em 30-90 dias. Posições de topo podem exigir investimento contínuo em conteúdo (add-on).</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>E se o site sair do ar?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Garantimos <strong>99.5% de uptime mensal</strong>. Em caso de queda, atendemos em até 1h e resolvemos em até 4h. Se ficar abaixo do prometido, créditos proporcionais na próxima fatura.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Posso ver o site antes de pagar tudo?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim. Trabalhamos com <strong>50% entrada + 50% na entrega</strong>. Você acompanha cada marco do projeto e só paga a segunda parcela após aprovação final.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês cuidam das redes sociais também?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Hoje, ainda não. Esse serviço entra na nossa Fase 2 (em breve). Por ora, focamos no site, hospedagem e Google Meu Negócio. Se for crítico para você, indicamos parceiros de confiança.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>E se eu não gostar do design?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Antes do build começamos com <strong>wireframe e mood-board</strong>. Você aprova a direção visual antes de qualquer linha de código ser escrita. As rodadas de revisão garantem ajuste fino. Refazer do zero está fora do escopo do pacote, mas raramente acontece quando seguimos o processo.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês trabalham com qualquer cidade?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim. O serviço é 100% remoto, então atendemos qualquer cliente do Brasil. Reuniões por Google Meet, contrato com assinatura digital, suporte por WhatsApp.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Posso ter mais de um site?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim. Cada site tem seu próprio contrato e mensalidade. Para clientes com múltiplas unidades, oferecemos desconto progressivo a partir do 2º site (consultar comercial).</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Vocês têm portfólio?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Sim, enviamos por WhatsApp ou email sob solicitação. Como muitos clientes pedem confidencialidade, alguns trabalhos não são públicos.</div></div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)"><span>Como vocês são diferentes de uma agência grande?</span><span class="faq-q-icon">+</span></div>
-    <div class="faq-a"><div class="faq-a-inner">Atendimento direto, sem repassar para estagiário. Especialização em negócios locais (não somos generalistas). Preços compatíveis com a realidade de pequeno e médio negócio. Tecnologia moderna (não usamos templates genéricos).</div></div>
+  <h3>Score de qualificação</h3>
+  <p>Pontue cada prospect de 0 a 5. <strong>Envie apenas para quem marcar 3 ou mais.</strong></p>
+  <div class="key-grid">
+    <div class="key-item"><div class="key-label">+1 ponto</div><div class="key-value">Nenhum site<small>Ausência total de presença própria.</small></div></div>
+    <div class="key-item"><div class="key-label">+1 ponto</div><div class="key-value">Site não responsivo<small>Quebra ou fica ilegível no celular.</small></div></div>
+    <div class="key-item"><div class="key-label">+1 ponto</div><div class="key-value">Abaixo da posição 3<small>Para o termo local principal do negócio.</small></div></div>
+    <div class="key-item"><div class="key-label">+1 ponto</div><div class="key-value">Mais de 10 avaliações sem resposta<small>Google lê isso como perfil inativo.</small></div></div>
+    <div class="key-item"><div class="key-label">+1 ponto</div><div class="key-value">Listagem do Google incompleta<small>Horários, fotos ou categoria faltando.</small></div></div>
+    <div class="key-item"><div class="key-label">Regra de envio</div><div class="key-value">Score 4–5 → Sequência A<small>Score 3 → Sequência B. Abaixo de 3 → não envie.</small></div></div>
   </div>
 </section>
 
-<!-- ═══════════ 15 OBJEÇÕES ═══════════ -->
+<div class="divider"></div>
+
+<!-- ═══════════ 05 AUDITORIA GRATUITA ═══════════ -->
+<section class="section" id="auditoria">
+  <div class="section-tag"><span class="section-tag-num">05</span> Prospecção</div>
+  <h2>A auditoria <em>gratuita</em></h2>
+  <p class="section-lead">Este é o diferencial inteiro. É o que converte um email frio em consultoria antes de qualquer conversa sobre dinheiro.</p>
+
+  <h3>O que contém — duas páginas, nunca mais</h3>
+  <div class="split">
+    <div class="panel">
+      <div class="panel-title">Página 1 — Onde você está</div>
+      <div class="panel-sub">Page 1 · Where you stand</div>
+      <ol>
+        <li>Posição no Google para 2–3 termos que os clientes dele realmente digitam</li>
+        <li>Quem aparece acima dele — <strong>nomeie o concorrente</strong></li>
+        <li>Estado do Google Business Profile: fotos, horários, categorias, respostas a avaliações</li>
+        <li>Site atual: velocidade no celular, primeira impressão, o que está quebrado ou faltando</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Página 2 — O que eu corrigiria primeiro</div>
+      <div class="panel-sub">Page 2 · What I'd fix first</div>
+      <ol>
+        <li>Três recomendações priorizadas, em linguagem simples</li>
+        <li>Impacto estimado de cada uma</li>
+        <li>Quanto custaria corrigir, e o que o voucher cobre</li>
+        <li>Um próximo passo claro</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>Regras inegociáveis</h3>
+  <ul>
+    <li><strong>Apenas linguagem simples.</strong> Nada de "Core Web Vitals", nada de "schema markup". Escreva para quem administra um salão.</li>
+    <li><strong>Genuinamente útil mesmo que nunca contratem.</strong> A auditoria precisa se sustentar sozinha como valor gratuito — é isso que a torna crível.</li>
+    <li><strong>Nunca anexe ao primeiro email.</strong> Anexos destroem entregabilidade e disparam filtros. Peça uma resposta primeiro, depois envie.</li>
+    <li><strong>Entregue em até 48 horas.</strong> Prometido e cumprido.</li>
+  </ul>
+
+  <div class="lang-note">Mensagem que acompanha a entrega da auditoria</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Dá uma lida com calma. Se alguma coisa não ficar clara, tenho prazer em explicar numa chamada de 15 minutos — sem pitch de venda. {Link de agendamento}</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Have a read. If anything's unclear, I'm happy to walk you through it on a 15-minute call — no pitch. {Booking link}</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 06 COLD EMAIL ═══════════ -->
+<section class="section" id="email">
+  <div class="section-tag"><span class="section-tag-num">06</span> Abordagem</div>
+  <h2>Sequências de <em>cold email</em></h2>
+  <p class="section-lead">Três sequências, escolhidas pelo score do prospect. Todas terminam no terceiro email — sem exceção. Cada mensagem está pronta em PT e EN; a versão EN é o padrão para Dublin.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 210" role="img" aria-label="Linha do tempo da sequência de cold email: dia 0, dia 4, dia 11 e parada">
+      <!-- linha base -->
+      <line x1="40" y1="112" x2="660" y2="112" stroke="#E8E3D8" stroke-width="2"/>
+
+      <!-- marco 1 -->
+      <circle cx="70" cy="112" r="9" fill="#B8830F"/>
+      <text x="70" y="52" class="svg-num" text-anchor="middle">DIA 0</text>
+      <text x="70" y="70" class="svg-pt" text-anchor="middle">Email 1</text>
+      <text x="70" y="86" class="svg-en" text-anchor="middle">3 achados</text>
+      <text x="70" y="140" class="svg-tag" text-anchor="middle">DAY 0</text>
+      <text x="70" y="156" class="svg-en" text-anchor="middle">3 findings</text>
+
+      <!-- marco 2 -->
+      <circle cx="253" cy="112" r="9" fill="#B8830F"/>
+      <text x="253" y="52" class="svg-num" text-anchor="middle">DIA 4</text>
+      <text x="253" y="70" class="svg-pt" text-anchor="middle">Email 2</text>
+      <text x="253" y="86" class="svg-en" text-anchor="middle">Reforço</text>
+      <text x="253" y="140" class="svg-tag" text-anchor="middle">DAY 4</text>
+      <text x="253" y="156" class="svg-en" text-anchor="middle">Bump</text>
+
+      <!-- marco 3 -->
+      <circle cx="436" cy="112" r="9" fill="#B8830F"/>
+      <text x="436" y="52" class="svg-num" text-anchor="middle">DIA 11</text>
+      <text x="436" y="70" class="svg-pt" text-anchor="middle">Email 3</text>
+      <text x="436" y="86" class="svg-en" text-anchor="middle">Encerramento</text>
+      <text x="436" y="140" class="svg-tag" text-anchor="middle">DAY 11</text>
+      <text x="436" y="156" class="svg-en" text-anchor="middle">Breakup</text>
+
+      <!-- marco final -->
+      <circle cx="619" cy="112" r="9" fill="#B83A2C"/>
+      <text x="619" y="52" class="svg-num" text-anchor="middle" fill="#B83A2C">STOP</text>
+      <text x="619" y="70" class="svg-pt" text-anchor="middle">Suprimir</text>
+      <text x="619" y="86" class="svg-en" text-anchor="middle">Sem 4º email</text>
+      <text x="619" y="140" class="svg-tag" text-anchor="middle" fill="#B83A2C">SUPPRESS</text>
+      <text x="619" y="156" class="svg-en" text-anchor="middle">No 4th email</text>
+
+      <!-- faixas -->
+      <rect x="79" y="105" width="165" height="14" rx="7" fill="#FBF4E0"/>
+      <text x="161" y="115" class="svg-tag" text-anchor="middle">4 DIAS / DAYS</text>
+      <rect x="262" y="105" width="165" height="14" rx="7" fill="#FBF4E0"/>
+      <text x="344" y="115" class="svg-tag" text-anchor="middle">7 DIAS / DAYS</text>
+      <rect x="445" y="105" width="165" height="14" rx="7" fill="#FCEEE9"/>
+      <text x="527" y="115" class="svg-tag" text-anchor="middle">FIM / END</text>
+
+      <text x="350" y="192" class="svg-tag" text-anchor="middle">SEM RESPOSTA APOS 3 = NAO E LEAD · NO REPLY AFTER 3 = NOT A LEAD</text>
+    </svg>
+    <div class="diagram-cap">Diagrama 2 · <em>Cadência da sequência de cold email</em> — Cold email sequence cadence</div>
+  </div>
+
+  <!-- ─── SEQUÊNCIA A ─── -->
+  <div class="bi-sub">Sequência A · Auditoria primeiro (padrão)</div>
+  <p>Use para prospects com <strong>score 4–5</strong>, onde os problemas são evidentes. É a sequência de maior conversão e deve ser o default.</p>
+
+  <div class="lang-note">Email 1 — Dia 0</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="subject-line"><b>Assunto</b>{Nome do negócio} — 3 coisas que eu ajustaria na sua listagem do Google</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome do dono},<br><br>Sou o Marcus — faço sites para pequenos negócios aqui na região de Dublin 15.<br><br>Dei uma olhada no {Nome do negócio} hoje de manhã. Três coisas chamaram atenção:<br><br>• Vocês estão na página 2 para "{palavra-chave local}" — {Concorrente} aparece acima<br>• Sua listagem do Google tem {N} avaliações sem resposta<br>• {Terceiro achado específico}<br><br>Nada disso é complicado de resolver. Escrevi tudo direitinho — duas páginas, linguagem simples, sem apresentação de vendas. Posso mandar, de graça, sem compromisso.<br><br>Vale saber: o Local Enterprise Office cobre até 50% do custo de colocar um negócio online. A maioria das empresas do seu porte se qualifica, e eu cuido da papelada.<br><br>Quer a auditoria? Basta responder "sim" e ela chega em 48 horas.<br><br>Marcus<br>marcusffernandes@hotmail.com · +353 83 201 1655<br>marcusfernandes.ie<br><br>Responda "não, obrigado" e eu não entro mais em contato.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="subject-line"><b>Subject</b>{Business name} — 3 things I'd fix on your Google listing</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Owner name},<br><br>I'm Marcus — I build websites for small businesses around Dublin 15.<br><br>I had a look at {Business name} this morning. Three things stood out:<br><br>• You're on page 2 for "{local keyword}" — {Competitor} shows up above you<br>• Your Google listing has {N} reviews with no replies<br>• {Third specific finding}<br><br>None of it is complicated to fix. I wrote it up properly — two pages, plain English, no sales deck. Happy to send it over, free, no strings.<br><br>Worth knowing: the Local Enterprise Office covers up to 50% of the cost of getting a business online. Most businesses your size qualify, and I handle the paperwork.<br><br>Want the audit? Just reply "yes" and it's with you in 48 hours.<br><br>Marcus<br>marcusffernandes@hotmail.com · +353 83 201 1655<br>marcusfernandes.ie<br><br>Reply "no thanks" and I won't contact you again.</div>
+    </div>
+  </div>
+
+  <div class="lang-note">Email 2 — Dia 4</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="subject-line"><b>Assunto</b>Re: {Nome do negócio} — 3 coisas que eu ajustaria na sua listagem do Google</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome do dono} — subindo essa mensagem caso tenha se perdido.<br><br>A oferta continua de pé: auditoria gratuita de duas páginas sobre onde o {Nome do negócio} está posicionado online. Sem custo, sem obrigação.<br><br>Se eu tivesse que escolher uma coisa para resolver primeiro, seria {achado mais forte}. Essa está custando contatos toda semana.<br><br>Se não for prioridade agora, sem problema nenhum — é só dizer que eu deixo vocês em paz.<br><br>Marcus<br>marcusfernandes.ie</div>
+    </div>
+    <div class="bi-col en">
+      <div class="subject-line"><b>Subject</b>Re: {Business name} — 3 things I'd fix on your Google listing</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Owner name} — floating this back up in case it got buried.<br><br>The offer stands: free two-page audit of where {Business name} sits online. No charge, no obligation.<br><br>If I had to pick one thing to fix first, it's {single strongest finding}. That one's costing you enquiries every week.<br><br>If it's not a priority right now, no problem at all — say the word and I'll leave you be.<br><br>Marcus<br>marcusfernandes.ie</div>
+    </div>
+  </div>
+
+  <div class="lang-note">Email 3 — Dia 11 (encerramento)</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="subject-line"><b>Assunto</b>Encerrando o assunto</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome do dono},<br><br>Paro por aqui — não quero entulhar sua caixa de entrada.<br><br>Se algum dia for útil, a oferta da auditoria continua aberta. Uma linha para este endereço e eu preparo.<br><br>De qualquer forma, muito sucesso com o {Nome do negócio}.<br><br>Marcus<br>marcusfernandes.ie</div>
+    </div>
+    <div class="bi-col en">
+      <div class="subject-line"><b>Subject</b>Closing the loop</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Owner name},<br><br>I'll stop here — I don't want to clutter your inbox.<br><br>If it's ever useful, the audit offer stays open. One line to this address and I'll put it together.<br><br>Either way, best of luck with {Business name}.<br><br>Marcus<br>marcusfernandes.ie</div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-title">⛔ Depois do Email 3, pare</div>
+    <div class="callout-body">Sem quarto email. Um prospect que não respondeu a três <strong>não é um lead</strong>, e insistir a partir daqui gera reclamações que danificam o seu domínio de envio.</div>
+  </div>
+
+  <!-- ─── SEQUÊNCIA B ─── -->
+  <div class="bi-sub">Sequência B · Voucher primeiro</div>
+  <p>Use para prospects que <strong>já têm um site funcional</strong>, ou que marcaram <strong>score 3</strong>. A dor é menor, então lidera-se pelo dinheiro em vez do problema.</p>
+
+  <div class="lang-note">Email único — Sequência B</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="subject-line"><b>Assunto</b>O Estado paga metade — o {Nome do negócio} se qualifica?</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome do dono},<br><br>Bem rápido. O Local Enterprise Office mantém um programa que cobre até 50% do custo de colocar um negócio online como deve ser — até €2.500.<br><br>Se vocês operam há 12 meses ou mais, têm menos de 10 funcionários e faturamento abaixo de €2M, quase certamente se qualificam. A maioria dos donos com quem falo nunca ouviu falar disso.<br><br>Sou desenvolvedor web, baseado em Dublin 15. Cuido da inscrição de ponta a ponta — os dois orçamentos, o formulário, os follow-ups. Vocês aprovam, eu protocolo.<br><br>Antes de tudo isso, mando uma auditoria gratuita de duas páginas sobre onde o {Nome do negócio} está hoje online. Sem obrigação, sem custo se decidirem não fazer nada.<br><br>Responda "auditoria" e eu começo.<br><br>Marcus<br>marcusffernandes@hotmail.com · +353 83 201 1655<br>marcusfernandes.ie<br><br>Responda "não, obrigado" e eu não entro mais em contato.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="subject-line"><b>Subject</b>The State pays half — does {Business name} qualify?</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Owner name},<br><br>Quick one. The Local Enterprise Office runs a scheme that covers up to 50% of the cost of getting a business properly online — up to €2,500.<br><br>If you've been trading 12+ months, have under 10 staff and turnover under €2M, you almost certainly qualify. Most owners I speak to have never heard of it.<br><br>I'm a web developer based in Dublin 15. I handle the application end to end — the two quotes, the form, the follow-ups. You approve, I file.<br><br>Before any of that, I'll send you a free two-page audit of where {Business name} currently stands online. No obligation, no charge if you decide to do nothing.<br><br>Reply "audit" and I'll get started.<br><br>Marcus<br>marcusffernandes@hotmail.com · +353 83 201 1655<br>marcusfernandes.ie<br><br>Reply "no thanks" and I won't contact you again.</div>
+    </div>
+  </div>
+
+  <!-- ─── SEQUÊNCIA C ─── -->
+  <div class="bi-sub">Sequência C · Indicação com introdução calorosa</div>
+  <p>O email de maior conversão que você vai enviar. Use <strong>imediatamente</strong> depois que qualquer cliente mencionar alguém.</p>
+
+  <div class="lang-note">Email de indicação</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="subject-line"><b>Assunto</b>{Nome de quem indicou} sugeriu que eu entrasse em contato</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome do dono},<br><br>{Nome de quem indicou}, do {Negócio de quem indicou}, comentou que talvez valesse a pena conversarmos — fiz o site deles no começo do ano.<br><br>Versão curta do que eu faço: sites, listagens do Google e sistemas de agendamento para pequenos negócios de Dublin. Preço fixo, acordado antes de começar qualquer coisa, e o Local Enterprise Office cobre até metade.<br><br>Posso mandar a mesma auditoria gratuita que fiz para o {Negócio de quem indicou} — duas páginas sobre onde vocês estão hoje online. Sem obrigação.<br><br>Vale uma olhada?<br><br>Marcus<br>marcusfernandes.ie</div>
+    </div>
+    <div class="bi-col en">
+      <div class="subject-line"><b>Subject</b>{Referrer name} suggested I get in touch</div>
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Owner name},<br><br>{Referrer name} at {Referrer business} mentioned you might be worth talking to — I built their site earlier this year.<br><br>Short version of what I do: websites, Google listings and booking systems for small businesses around Dublin. Fixed price, agreed before anything starts, and the Local Enterprise Office covers up to half.<br><br>Happy to send you the same free audit I did for {Referrer business} — two pages on where you currently stand online. No obligation.<br><br>Worth a look?<br><br>Marcus<br>marcusfernandes.ie</div>
+    </div>
+  </div>
+
+  <!-- ─── TRATAMENTO DE RESPOSTAS ─── -->
+  <div class="bi-sub">Tratamento de respostas</div>
+
+  <div class="lang-note">"Sim / pode mandar" → auditoria entregue em até 48h, com esta linha</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Dá uma lida com calma. Se alguma coisa não ficar clara, tenho prazer em explicar numa chamada de 15 minutos — sem pitch de venda. {Link de agendamento}</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Have a read. If anything's unclear, I'm happy to walk you through it on a 15-minute call — no pitch. {Booking link}</div>
+    </div>
+  </div>
+
+  <div class="lang-note">"Quanto custa?" → nunca responda com um número solto</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Depende do que vocês precisam — os pacotes começam em €1.200, e o voucher normalmente leva isso para €600. A auditoria vai dizer qual deles realmente encaixa. Quer que eu mande?</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Depends on what you need — the packages start at €1,200, and the voucher usually takes that to €600. The audit will tell us which one actually fits. Want me to send it?</div>
+    </div>
+  </div>
+
+  <div class="lang-note">"Não tenho interesse" → responda e suprima permanentemente</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Sem problema nenhum — vou tirar vocês da minha lista. Muito sucesso com o {Nome do negócio}.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>No problem at all — I'll take you off my list. Best of luck with {Business name}.</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-title">📋 Sem resposta após os três emails</div>
+    <div class="callout-body">Suprima. Revisite <strong>no mínimo seis meses depois</strong>, e apenas com um motivo genuinamente novo — mudança no negócio, novo concorrente na primeira posição, mudança de programa do voucher. Repetir a mesma abordagem gera reclamação.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 07 WHATSAPP E TELEFONE ═══════════ -->
+<section class="section" id="whatsapp">
+  <div class="section-tag"><span class="section-tag-num">07</span> Abordagem</div>
+  <h2>WhatsApp e <em>telefone</em></h2>
+  <p class="section-lead">Canal de alta resposta e de alto risco. Usado com disciplina, complementa o email; usado com volume, custa o número permanentemente.</p>
+
+  <div class="callout red">
+    <div class="callout-title">⚠️ Aviso legal e prático</div>
+    <div class="callout-body">Abordagem fria por WhatsApp carrega <strong>materialmente mais risco</strong> que email. As regras irlandesas de opt-out B2B se aplicam com clareza ao email; a base legal para mensagem não solicitada é <strong>muito mais fraca</strong>. Separadamente, a própria Business Policy do WhatsApp proíbe mensagem não solicitada — um número denunciado algumas vezes é banido, e você perde o canal para sempre.</div>
+  </div>
+
+  <h3>Regras de uso</h3>
+  <ul>
+    <li>Só envie para números <strong>publicamente divulgados como contato comercial</strong> — na listagem do Google, na bio do Instagram ou na fachada da loja</li>
+    <li><strong>Nunca automatize.</strong> Envio manual apenas</li>
+    <li>No máximo <strong>um punhado por dia</strong></li>
+    <li><strong>Pare imediatamente</strong> a qualquer sinal negativo</li>
+  </ul>
+
+  <div class="lang-note">Mensagem de WhatsApp</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome do dono}, aqui é o Marcus — desenvolvedor web baseado em Dublin 15.<br><br>Dei uma olhada rápida no {Nome do negócio} online hoje. Vocês não estão aparecendo para "{palavra-chave local}" e a listagem do Google está sem {item}. Os dois são ajustes rápidos.<br><br>Eu preparo auditorias gratuitas de 2 páginas para negócios locais — sem custo, sem pitch. Quer que eu mande a de vocês?</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Owner name}, Marcus here — web developer based in Dublin 15.<br><br>Had a quick look at {Business name} online today. You're not coming up for "{local keyword}" and your Google listing is missing {item}. Both are quick fixes.<br><br>I put together free 2-page audits for local businesses — no charge, no pitch. Want me to send yours over?</div>
+    </div>
+  </div>
+
+  <h3>Script de telefone — quando <em>eles</em> ligam para você</h3>
+  <p>O princípio é o mesmo do resto do playbook: <strong>diagnosticar antes de precificar</strong>. Quem abre com o preço perde a chance de ancorar valor.</p>
+
+  <div class="lang-note">Atendimento de ligação recebida</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Obrigado por ligar. Antes de eu falar qualquer coisa sobre preço — me conta um pouco do negócio. O que vocês fazem, e como as pessoas encontram vocês hoje?"<br><br>[Escute. Anote. Não faça pitch.]<br><br>"Certo. Então a principal lacuna que estou ouvindo é {repetir as palavras dele}. É exatamente isso que eu resolvo.<br><br>O que eu sugiro: deixa eu preparar uma auditoria gratuita — duas páginas, sem custo, dizendo exatamente onde vocês estão. Aí, se fizer sentido, a gente conversa sobre fazer alguma coisa. Parece justo?"</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Thanks for ringing. Before I say anything about price — tell me a bit about the business. What do you do, and how do people find you at the moment?"<br><br>[Listen. Take notes. Do not pitch.]<br><br>"Right. So the main gap I'm hearing is {restate their words}. That's exactly what I fix.<br><br>What I'd suggest: let me put together a free audit — two pages, no charge, tells you exactly where you stand. Then if it makes sense we talk about doing something. Sound fair?"</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 08 LINKEDIN ═══════════ -->
+<section class="section" id="linkedin">
+  <div class="section-tag"><span class="section-tag-num">08</span> Abordagem</div>
+  <h2>LinkedIn</h2>
+  <p class="section-lead">Canal de construção lenta: conexão sem pitch, DM só depois do aceite, e dois posts por semana que fazem o trabalho de aquecimento antes de qualquer abordagem.</p>
+
+  <div class="lang-note">Pedido de conexão</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Olá {Nome} — eu faço sites para pequenos negócios na região de Dublin 15. Encontrei o {Nome do negócio} e achei que valia conectar. Sem pitch.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Hi {Name} — I build websites for small businesses around Dublin 15. Came across {Business name} and thought I'd connect. No pitch.</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">⏳ DM só depois do aceite — e nunca no mesmo dia</div>
+    <div class="callout-body">Conectar e mandar pitch em seguida é o comportamento que faz o LinkedIn ser ignorado. Espere pelo menos 24 horas.</div>
+  </div>
+
+  <div class="lang-note">DM de follow-up</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Obrigado por conectar, {Nome}.<br><br>Dei uma olhada no {Nome do negócio} — vocês não estão aparecendo para "{palavra-chave local}", o que provavelmente está custando alguns contatos por semana.<br><br>Eu faço auditorias gratuitas de duas páginas para negócios locais. Sem custo, sem pitch, só o que eu ajustaria e em que ordem. Quer que eu mande a de vocês?</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Thanks for connecting, {Name}.<br><br>I had a look at {Business name} — you're not showing up for "{local keyword}", which is probably costing you a few enquiries a week.<br><br>I do free two-page audits for local businesses. No charge, no pitch, just what I'd fix and in what order. Want me to send yours?</div>
+    </div>
+  </div>
+
+  <h3>Modelos de post — dois por semana</h3>
+
+  <div class="lang-note">1. Post de estudo de caso</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>{Nome do negócio}, em {Bairro}, não tinha site. Tudo vinha do boca a boca e de um telefone que não parava de tocar.<br><br>Construímos um site com agendamento online e organizamos a listagem do Google.<br><br>{Número} semanas depois: {resultado específico}.<br><br>O Local Enterprise Office cobriu metade do custo.<br><br>Se você tem um negócio em Dublin e está invisível no Google, isso tem conserto — geralmente em semanas, não meses.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>{Business name} in {Area} had no website. Everything came through word of mouth and a phone that never stopped ringing.<br><br>We built them a site with online booking and sorted out their Google listing.<br><br>{Number} weeks later: {specific result}.<br><br>The Local Enterprise Office covered half the cost.<br><br>If you run a business in Dublin and you're invisible on Google, that's fixable — usually in weeks, not months.</div>
+    </div>
+  </div>
+
+  <div class="lang-note">2. Post de utilidade pura</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Três coisas erradas na maioria das listagens do Google Business em Dublin:<br><br>1. Horário de funcionamento não é atualizado desde um feriado de dois anos atrás<br>2. Avaliações paradas sem resposta — o Google lê isso como perfil inativo<br>3. Categoria principal errada, então você não aparece para aquilo que de fato faz<br><br>Os três são de graça para corrigir e levam cerca de vinte minutos.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Three things wrong with most Google Business listings in Dublin:<br><br>1. Opening hours haven't been updated since a bank holiday two years ago<br>2. Reviews sitting there with no reply — Google reads that as inactive<br>3. Wrong primary category, so you don't appear for what you actually do<br><br>All three are free to fix and take about twenty minutes.</div>
+    </div>
+  </div>
+
+  <div class="lang-note">3. Post do voucher — repetir em variações a cada seis semanas</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>O Estado irlandês paga metade do custo de colocar o seu negócio online.<br><br>Trading Online Voucher. Até €2.500, contrapartida de 50%.<br><br>Você se qualifica se opera há 12 meses ou mais, tem menos de 10 funcionários e faturamento abaixo de €2M.<br><br>A maioria dos donos de negócio com quem converso nunca ouviu falar disso.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>The Irish State will pay half the cost of getting your business online.<br><br>Trading Online Voucher. Up to €2,500, 50% match.<br><br>You qualify if you've been trading 12+ months, have under 10 staff and turnover under €2M.<br><br>Most business owners I talk to have never heard of it.</div>
+    </div>
+  </div>
+
+  <div class="lang-note">4. Post pessoal</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Nove anos em tecnologia. Quatro deles na Irlanda.<br><br>Mudei do Brasil para cá em 2022. Não parava de ouvir a mesma história de donos de negócio: fazendo tudo certo no presencial, perdendo cliente para um concorrente com produto pior e site melhor.<br><br>Então comecei a resolver isso, uma loja por vez.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Nine years in tech. Four of them in Ireland.<br><br>I moved here from Brazil in 2022. Kept hearing the same story from business owners: doing everything right in person, losing customers to a competitor with a worse product and a better website.<br><br>So I started fixing it, one shop at a time.</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-title">📌 O post do voucher é o que mais gera lead</div>
+    <div class="callout-body">Ele produz contatos de forma consistente porque entrega uma informação que a maioria do público não tem e que vale dinheiro real. Repita em variações a cada seis semanas — mudando o ângulo, não a informação.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 09 DISCOVERY CALL ═══════════ -->
+<section class="section" id="discovery">
+  <div class="section-tag"><span class="section-tag-num">09</span> Conversão</div>
+  <h2>A <em>discovery call</em></h2>
+  <p class="section-lead">Quinze minutos, agendada por link. Não é uma hora — pouca fricção para marcar, e qualifica rápido.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 230" role="img" aria-label="Estrutura de 15 minutos da discovery call dividida em cinco blocos">
+      <!-- blocos -->
+      <rect x="10" y="60" width="132" height="66" rx="6" fill="#E8F4ED" stroke="#1F7A4D"/>
+      <text x="76" y="48" class="svg-num" text-anchor="middle">0–2</text>
+      <text x="76" y="84" class="svg-pt" text-anchor="middle">Rapport</text>
+      <text x="76" y="101" class="svg-en" text-anchor="middle">Rapport</text>
+      <text x="76" y="118" class="svg-tag" text-anchor="middle">O NEGOCIO</text>
+
+      <rect x="152" y="60" width="132" height="66" rx="6" fill="#E8F4ED" stroke="#1F7A4D"/>
+      <text x="218" y="48" class="svg-num" text-anchor="middle">2–7</text>
+      <text x="218" y="84" class="svg-pt" text-anchor="middle">Diagnóstico</text>
+      <text x="218" y="101" class="svg-en" text-anchor="middle">Diagnose</text>
+      <text x="218" y="118" class="svg-tag" text-anchor="middle">PALAVRAS DELE</text>
+
+      <rect x="294" y="60" width="132" height="66" rx="6" fill="#FBF4E0" stroke="#B8830F"/>
+      <text x="360" y="48" class="svg-num" text-anchor="middle">7–10</text>
+      <text x="360" y="84" class="svg-pt" text-anchor="middle">Auditoria</text>
+      <text x="360" y="101" class="svg-en" text-anchor="middle">Walk the audit</text>
+      <text x="360" y="118" class="svg-tag" text-anchor="middle">ACHADOS</text>
+
+      <rect x="436" y="60" width="132" height="66" rx="6" fill="#FBF4E0" stroke="#B8830F"/>
+      <text x="502" y="48" class="svg-num" text-anchor="middle">10–13</text>
+      <text x="502" y="84" class="svg-pt" text-anchor="middle">Preço</text>
+      <text x="502" y="101" class="svg-en" text-anchor="middle">State the price</text>
+      <text x="502" y="118" class="svg-tag" text-anchor="middle">DIGA E CALE</text>
+
+      <rect x="578" y="60" width="132" height="66" rx="6" fill="#1A1715"/>
+      <text x="644" y="48" class="svg-num" text-anchor="middle">13–15</text>
+      <text x="644" y="84" class="svg-white" text-anchor="middle">Fechamento</text>
+      <text x="644" y="101" class="svg-white-en" text-anchor="middle">Voucher + close</text>
+      <text x="644" y="118" class="svg-tag-w" text-anchor="middle">PROXIMO PASSO</text>
+
+      <!-- setas -->
+      <polygon points="150,93 140,88 140,98" fill="#D4CEC0"/>
+      <polygon points="292,93 282,88 282,98" fill="#D4CEC0"/>
+      <polygon points="434,93 424,88 424,98" fill="#D4CEC0"/>
+      <polygon points="576,93 566,88 566,98" fill="#D4CEC0"/>
+
+      <!-- barra tempo -->
+      <line x1="10" y1="158" x2="710" y2="158" stroke="#E8E3D8" stroke-width="6" stroke-linecap="round"/>
+      <text x="10" y="182" class="svg-tag">0 MIN</text>
+      <text x="710" y="182" class="svg-tag" text-anchor="end">15 MIN</text>
+      <text x="360" y="208" class="svg-tag" text-anchor="middle">QUINZE MINUTOS, AGENDADA POR LINK · FIFTEEN MINUTES, BOOKED BY LINK</text>
+    </svg>
+    <div class="diagram-cap">Diagrama 3 · <em>Estrutura da chamada de diagnóstico</em> — Discovery call structure</div>
+  </div>
+
+  <h3>Estrutura</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Minutos</th><th>Objetivo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>0–2</strong></td><td>Rapport. Pergunte sobre o negócio, não sobre o site</td></tr>
+        <tr><td><strong>2–7</strong></td><td>Diagnóstico. Nas palavras dele, não nas suas</td></tr>
+        <tr><td><strong>7–10</strong></td><td>Percorra os achados da auditoria</td></tr>
+        <tr><td><strong>10–13</strong></td><td>Recomende um pacote e diga o preço</td></tr>
+        <tr><td><strong>13–15</strong></td><td>Voucher, próximo passo, fechamento</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Perguntas que funcionam</h3>
+  <div class="lang-note">As cinco perguntas de diagnóstico</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>1. "Como as pessoas encontram vocês hoje?"<br><br>2. "Quantos contatos vocês recebem numa semana normal?"<br><br>3. "O que acontece quando alguém quer agendar — quem cuida disso?"<br><br>4. "Vocês já tentaram alguma coisa online antes? Como foi?"<br><br>5. "Se a gente fizer isso, o que seria 'ter valido a pena' para vocês daqui a seis meses?"</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>1. "How do people find you at the moment?"<br><br>2. "How many enquiries would you get in a normal week?"<br><br>3. "What happens when someone wants to book — who handles that?"<br><br>4. "Have you tried anything online before? How did that go?"<br><br>5. "If we did this, what would 'worth it' look like to you in six months?"</div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-title">🎯 A pergunta 4 é a mais importante</div>
+    <div class="callout-body">Muitos já se queimaram com um desenvolvedor anterior. <strong>Essa história diz exatamente qual medo você precisa desarmar</strong> no resto da conversa e na proposta. Escute até o fim sem interromper.</div>
+  </div>
+
+  <h3>Como dizer o preço</h3>
+  <p>Nunca peça desculpas por ele e nunca o suavize. <strong>Diga o número e pare de falar.</strong> O silêncio é parte do script.</p>
+
+  <div class="lang-note">Declaração de preço</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Pelo que vocês descreveram, é o pacote Website — €1.200. Com o voucher, €600 do bolso de vocês.<br><br>Mais €60 por mês de hospedagem, backups e atualizações, para que não fique desatualizado."<br><br>[Silêncio. Deixe que respondam primeiro.]</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Based on what you've described, that's the Website package — €1,200. With the voucher, €600 out of pocket.<br><br>Plus €60 a month for hosting, backups and updates, so it doesn't go stale."<br><br>[Silence. Let them respond first.]</div>
+    </div>
+  </div>
+
+  <div class="lang-note">Fechamento — duas opções, nunca uma pergunta de sim/não</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Duas opções. Posso mandar hoje uma proposta com o escopo completo, ou — se vocês estiverem confortáveis — a gente já começa esta semana a inscrição do voucher, que leva de 3 a 6 semanas, então vale sair da inércia.<br><br>Qual funciona melhor?"</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Two options. I can send you a proposal today with the full scope, or if you're happy we can start the voucher application this week — that part takes 3–6 weeks, so it's worth getting moving.<br><br>Which suits?"</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 10 A PROPOSTA ═══════════ -->
+<section class="section" id="proposta">
+  <div class="section-tag"><span class="section-tag-num">10</span> Conversão</div>
+  <h2>A <em>proposta</em></h2>
+  <p class="section-lead">Enviada em até 48 horas depois da chamada. Duas a três páginas. PDF.</p>
+
+  <h3>Estrutura</h3>
+  <div class="process">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div>
+        <div class="process-title">O que você me contou</div>
+        <div class="process-desc">A situação dele, com as palavras dele. <strong>Esta é a seção mais importante da proposta inteira</strong> — é ela que prova que você escutou.</div>
+        <div class="process-meta">What you told me</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div>
+        <div class="process-title">O que eu vou construir</div>
+        <div class="process-desc">Escopo em linguagem simples, sem lista de tecnologias. Ninguém compra por causa do framework.</div>
+        <div class="process-meta">What I'll build</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div>
+        <div class="process-title">Quanto custa</div>
+        <div class="process-desc">Um único número. O valor do voucher aparece separado, para que a economia fique visível sem confundir o preço cheio.</div>
+        <div class="process-meta">What it costs</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <div>
+        <div class="process-title">Cronograma</div>
+        <div class="process-desc">Com a dependência declarada explicitamente: <em>"A maior parte deste cronograma é conteúdo, não código. Não consigo começar até que as fotos e a lista de serviços cheguem."</em></div>
+        <div class="process-meta">Timeline · dependência explícita</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">05</div>
+      <div>
+        <div class="process-title">O que não está incluído</div>
+        <div class="process-desc">Explícito. Previne <strong>toda</strong> discussão de escopo que aconteceria depois.</div>
+        <div class="process-meta">What's not included</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">06</div>
+      <div>
+        <div class="process-title">Propriedade</div>
+        <div class="process-desc">Domínio, hospedagem e código-fonte são do cliente. Sem lock-in, sem reféns.</div>
+        <div class="process-meta">Ownership</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">07</div>
+      <div>
+        <div class="process-title">Manutenção</div>
+        <div class="process-desc">Apresentada como parte do pacote desde o primeiro dia — <strong>nunca como upsell</strong>. Se aparecer só no final, vira objeção.</div>
+        <div class="process-meta">Maintenance</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">08</div>
+      <div>
+        <div class="process-title">Próximo passo</div>
+        <div class="process-desc">Uma única ação, com prazo. Proposta que termina em "qualquer dúvida estou à disposição" não fecha.</div>
+        <div class="process-meta">Next step · com prazo</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Condições comerciais</h3>
+  <div class="key-grid">
+    <div class="key-item"><div class="key-label">Pagamento</div><div class="key-value">50% de entrada, 50% na entrega<small>A entrada libera o início do trabalho.</small></div></div>
+    <div class="key-item"><div class="key-label">Validade</div><div class="key-value">14 dias<small>Prazo curto o suficiente para criar decisão.</small></div></div>
+    <div class="key-item"><div class="key-label">Revisões</div><div class="key-value">Duas rodadas incluídas<small>Rodadas adicionais são orçadas à parte.</small></div></div>
+    <div class="key-item"><div class="key-label">Conteúdo</div><div class="key-value">Fornecido pelo cliente<small>O cronograma começa a contar quando o conteúdo chega.</small></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 11 OBJEÇÕES ═══════════ -->
 <section class="section" id="objecoes">
-  <div class="section-tag"><span class="section-tag-num">15</span> Objeções</div>
+  <div class="section-tag"><span class="section-tag-num">11</span> Conversão</div>
   <h2>Manual de <em>objeções</em></h2>
-  <p class="section-lead">As 7 objeções mais comuns na venda de site para negócio local — com o que está por trás de cada uma, a resposta ideal e a técnica de PNL aplicada. Todo vendedor da equipe precisa decorar.</p>
+  <p class="section-lead">As seis objeções que aparecem de verdade nesse mercado, com o que está por trás de cada uma e a resposta pronta em PT e EN.</p>
 
   <div class="callout blue">
     <div class="callout-title">📚 Como usar este capítulo</div>
-    <div class="callout-body">Toda objeção é um sinal — não de recusa, mas de <strong>incompletude</strong>. O cliente está dizendo "ainda não tenho tudo que preciso para decidir". Sua função é completar a informação, não pressionar pela venda.</div>
+    <div class="callout-body">Toda objeção é um sinal — não de recusa, mas de <strong>incompletude</strong>. O cliente está dizendo "ainda não tenho tudo o que preciso para decidir". Sua função é completar a informação, não pressionar pela venda.</div>
   </div>
-
-  <h3>As 7 objeções &amp; respostas</h3>
 
   <!-- OBJ 01 -->
   <div class="objection">
     <div class="obj-bar">
       <div class="obj-num">01</div>
       <div class="obj-meta">
-        <span class="obj-cat">Objeção de Preço</span>
-        <div class="obj-quote">"Tá caro" / "Não tenho orçamento"</div>
+        <span class="obj-cat">Objeção de preço</span>
+        <div class="obj-quote">"Está caro demais" · "It's too expensive"</div>
       </div>
     </div>
     <div class="obj-body">
       <div class="obj-section">
         <div class="obj-label">▼ Por trás da objeção</div>
-        <p>Não veem o <strong>valor real</strong>, ou estão comparando com zero — o custo de não ter site. A âncora de referência está errada.</p>
+        <p>A âncora de comparação está errada. Ele está comparando com <strong>zero</strong>, não com o custo de continuar invisível. E provavelmente ainda não processou que o voucher corta o valor pela metade.</p>
       </div>
       <div class="obj-section">
         <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"Entendo. Posso te perguntar uma coisa? Quantos clientes por semana você acha que buscam o seu negócio no Google e não te encontram com informação completa? Se o site trouxer só 3 ou 4 pedidos a mais por mês, em quanto tempo ele se paga sozinho?"</div>
+        <div class="bi">
+          <div class="bi-col pt">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Eu entendo. Mas vale colocar ao lado do voucher — o Estado cobre metade, então estamos falando de €600. Se um cliente a mais por mês cobre isso, a pergunta passa a ser se o site traz um cliente a mais por mês. Pelo que você me contou sobre {situação dele}, eu diria que traz com folga."</div>
+          </div>
+          <div class="bi-col en">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"I understand. Worth putting next to the voucher though — the State covers half, so you're looking at €600. If one extra customer a month covers that, the question is whether the site brings you one extra customer a month. From what you've told me about {their situation}, I'd say comfortably."</div>
+          </div>
+        </div>
       </div>
       <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Reframe custo → ROI · Pergunta socrática</span>
+        <span class="obj-tech-badge">⚡ Reancoragem via voucher · Reframe custo → ROI mensal</span>
       </div>
     </div>
   </div>
@@ -2153,21 +2125,28 @@ td strong { color: var(--text); font-weight: 600; }
     <div class="obj-bar">
       <div class="obj-num">02</div>
       <div class="obj-meta">
-        <span class="obj-cat">Objeção de Necessidade</span>
-        <div class="obj-quote">"Já tenho Instagram, não preciso de site"</div>
+        <span class="obj-cat">Objeção de tempo</span>
+        <div class="obj-quote">"Não tenho tempo para isso" · "I don't have time for this"</div>
       </div>
     </div>
     <div class="obj-body">
       <div class="obj-section">
         <div class="obj-label">▼ Por trás da objeção</div>
-        <p>Não percebem a <strong>diferença funcional</strong>. Instagram e site resolvem problemas distintos em momentos distintos da jornada do consumidor.</p>
+        <p>Ele imagina reuniões, decisões de design e semanas de vaivém. Não sabe que o esforço dele é de <strong>duas horas no total</strong> — e que o produto final devolve tempo.</p>
       </div>
       <div class="obj-section">
         <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"O Instagram é perfeito para relacionamento — e você já faz isso muito bem com seus seguidores. O site resolve um problema diferente: quando alguém que nunca ouviu falar de você digita 'hamburgueria Natal' no Google, o Instagram não aparece nessa busca. O site é o que coloca você na frente de quem ainda não te segue."</div>
+        <div class="bi">
+          <div class="bi-col pt">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Esse é justamente o ponto. Eu preciso de umas duas horas do seu tempo no total — fotos, sua lista de serviços e uma chamada. Todo o resto é comigo, incluindo a papelada do voucher. E o que você recebe de volta é a tarde que hoje você gasta atendendo ligação de agendamento."</div>
+          </div>
+          <div class="bi-col en">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"That's actually the point. I need about two hours of your time in total — photos, your service list, and one call. Everything else is on me, including the voucher paperwork. And what you get back is the afternoon you currently spend on booking calls."</div>
+          </div>
+        </div>
       </div>
       <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Complementaridade · Nunca desvalorize o que o cliente já tem</span>
+        <span class="obj-tech-badge">⚡ Quantificar o esforço · Inverter a objeção em benefício</span>
       </div>
     </div>
   </div>
@@ -2177,21 +2156,28 @@ td strong { color: var(--text); font-weight: 600; }
     <div class="obj-bar">
       <div class="obj-num">03</div>
       <div class="obj-meta">
-        <span class="obj-cat">Objeção de Risco</span>
-        <div class="obj-quote">"Não sei se vai funcionar" / "E se não der resultado?"</div>
+        <span class="obj-cat">Objeção de risco / experiência anterior</span>
+        <div class="obj-quote">"Já tentei um site antes e não deu em nada" · "I tried a website before and it did nothing"</div>
       </div>
     </div>
     <div class="obj-body">
       <div class="obj-section">
         <div class="obj-label">▼ Por trás da objeção</div>
-        <p>Medo de perder dinheiro. Pode haver experiência ruim anterior ou simples <strong>desconfiança em promessas abstratas</strong> sem entrega concreta.</p>
+        <p>Ele foi queimado. Provavelmente recebeu um site solto, sem conexão com o Google Business Profile e sem SEO local — então ninguém chegou nele. <strong>Não defenda a categoria; explique o que faltava.</strong></p>
       </div>
       <div class="obj-section">
         <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"É uma preocupação legítima. Por isso, antes de fazer qualquer coisa, eu já montei o esboço completo do site — com seu cardápio real, sua logo, seus depoimentos do Google. Você já pode ver exatamente o que vai ser entregue antes de confirmar. Não é uma promessa vaga, é algo concreto na sua mão agora."</div>
+        <div class="bi">
+          <div class="bi-col pt">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"O que aconteceu com ele? … Certo, isso é comum. Um site sozinho não faz nada — ele precisa estar conectado à sua listagem do Google e configurado para as buscas que os seus clientes realmente digitam. Normalmente é essa peça que estava faltando."</div>
+          </div>
+          <div class="bi-col en">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"What happened with it? … Right, that's common. A site on its own does nothing — it has to be connected to your Google listing and set up for the searches your customers actually type. That's usually the piece that was missing."</div>
+          </div>
+        </div>
       </div>
       <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Prova antes da venda · Princípio da Reciprocidade (Cialdini)</span>
+        <span class="obj-tech-badge">⚡ Pergunta aberta antes da resposta · Validar a experiência, corrigir o diagnóstico</span>
       </div>
     </div>
   </div>
@@ -2201,21 +2187,28 @@ td strong { color: var(--text); font-weight: 600; }
     <div class="obj-bar">
       <div class="obj-num">04</div>
       <div class="obj-meta">
-        <span class="obj-cat">Objeção de Procrastinação</span>
-        <div class="obj-quote">"Deixa eu pensar" / "Vou ver com meu sócio"</div>
+        <span class="obj-cat">Objeção de concorrência informal</span>
+        <div class="obj-quote">"Meu sobrinho/amigo faz mais barato" · "My nephew/friend can build one cheaper"</div>
       </div>
     </div>
     <div class="obj-body">
       <div class="obj-section">
         <div class="obj-label">▼ Por trás da objeção</div>
-        <p>Não é uma recusa — é <strong>falta de urgência</strong> ou de clareza sobre o próximo passo. O cliente está confortável no status quo.</p>
+        <p>Ele está comparando <strong>construção</strong> com <strong>construção</strong>, quando a diferença real está na manutenção. Desvalorizar o sobrinho perde a venda — concorde e mude o eixo da comparação.</p>
       </div>
       <div class="obj-section">
         <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"Claro, faz todo sentido. Só quero deixar uma coisa clara: o esboço que você tem em mãos já está pronto, o site pode ficar no ar em poucos dias. Enquanto a gente espera, quantas pessoas estão buscando seu serviço e encontrando outro estabelecimento? Quando você quiser avançar, é só falar — mas o tempo de decisão tem um custo invisível."</div>
+        <div class="bi">
+          <div class="bi-col pt">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Provavelmente fazem mesmo — e se eles também mantiverem o site, cuidarem da sua listagem do Google e atenderem o telefone quando quebrar daqui a oito meses, é um bom negócio. O que costuma acontecer é que o site é feito e depois ninguém atualiza. Pergunte a eles sobre a parte da manutenção antes de decidir."</div>
+          </div>
+          <div class="bi-col en">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"They probably can, and if they'll also maintain it, handle your Google listing and answer the phone when it breaks in eight months, that's a good deal. What usually happens is it gets built, then nobody updates it. Ask them about the maintenance side before you decide."</div>
+          </div>
+        </div>
       </div>
       <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Âncora temporal negativa (PNL) · FOMO sem pressão explícita</span>
+        <span class="obj-tech-badge">⚡ Concordar primeiro · Mudar o eixo de construção para manutenção</span>
       </div>
     </div>
   </div>
@@ -2225,21 +2218,28 @@ td strong { color: var(--text); font-weight: 600; }
     <div class="obj-bar">
       <div class="obj-num">05</div>
       <div class="obj-meta">
-        <span class="obj-cat">Objeção de Competição</span>
-        <div class="obj-quote">"Outro cara faz mais barato"</div>
+        <span class="obj-cat">Objeção de adiamento</span>
+        <div class="obj-quote">"Vou pensar" · "Let me think about it"</div>
       </div>
     </div>
     <div class="obj-body">
       <div class="obj-section">
         <div class="obj-label">▼ Por trás da objeção</div>
-        <p>Comparação por preço porque <strong>não percebe diferença de valor</strong>. O cliente ainda não viu o que te diferencia concretamente do template genérico.</p>
+        <p>"Vou pensar" quase nunca é sobre pensar. É uma objeção não dita — dinheiro, timing ou ceticismo. <strong>Sua única tarefa é descobrir qual das três.</strong></p>
       </div>
       <div class="obj-section">
         <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"Provavelmente faz mesmo. A questão é: o outro já chegou com o esboço pronto, com seu cardápio real mapeado, sua logo analisada, suas avaliações do Google selecionadas? Ou vai cobrar mais barato para entregar um template genérico com 'Lorem Ipsum' trocado pelo seu nome? Você já viu o que eu preparei — compare os dois e decide pelo que faz mais sentido pro seu negócio."</div>
+        <div class="bi">
+          <div class="bi-col pt">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Claro. Posso perguntar o que especificamente você quer pensar — o dinheiro, o momento, ou se vai funcionar? … Certo. Então sobre {esse ponto}: {trate diretamente}."</div>
+          </div>
+          <div class="bi-col en">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Of course. Can I ask what specifically you want to think through — the money, the timing, or whether it'll work? … Right. So on {that point}: {address it directly}."</div>
+          </div>
+        </div>
       </div>
       <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Venda por contraste · Nunca ataque o concorrente diretamente</span>
+        <span class="obj-tech-badge">⚡ Isolar a objeção real · Três opções fechadas em vez de pergunta aberta</span>
       </div>
     </div>
   </div>
@@ -2249,145 +2249,481 @@ td strong { color: var(--text); font-weight: 600; }
     <div class="obj-bar">
       <div class="obj-num">06</div>
       <div class="obj-meta">
-        <span class="obj-cat">Objeção de Esforço</span>
-        <div class="obj-quote">"Não tenho tempo para cuidar disso"</div>
+        <span class="obj-cat">Objeção de evasão</span>
+        <div class="obj-quote">"Me manda umas informações" · "Send me some information"</div>
       </div>
     </div>
     <div class="obj-body">
       <div class="obj-section">
         <div class="obj-label">▼ Por trás da objeção</div>
-        <p>Acreditam que terão <strong>trabalho ou responsabilidade</strong> após contratar. O cliente já está sobrecarregado e não quer mais uma coisa na lista.</p>
+        <p>Normalmente é uma forma educada de encerrar a conversa. Mandar um folheto genérico confirma a saída. <strong>Transforme o pedido numa pergunta que exige engajamento.</strong></p>
       </div>
       <div class="obj-section">
         <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"Justamente por isso o site é entregue pronto — você não precisa escrever nada, não precisa saber de código, não precisa aprender nenhuma ferramenta. O único momento que preciso de você é 20 minutos para confirmar os preços do cardápio e os endereços. O resto está feito. Literalmente."</div>
+        <div class="bi">
+          <div class="bi-col pt">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Com prazer. Só para eu mandar a coisa certa em vez de um folheto genérico — qual é a principal dúvida que você gostaria que isso respondesse?"</div>
+          </div>
+          <div class="bi-col en">
+            <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Happy to. Just so I send the right thing rather than a generic brochure — what's the main thing you'd want it to answer?"</div>
+          </div>
+        </div>
       </div>
       <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Pace &amp; Lead (PNL) · Eliminação por demonstração de facilidade</span>
+        <span class="obj-tech-badge">⚡ Aceitar e qualificar · Devolver a pergunta sem confrontar</span>
       </div>
-    </div>
-  </div>
-
-  <!-- OBJ 07 -->
-  <div class="objection">
-    <div class="obj-bar">
-      <div class="obj-num">07</div>
-      <div class="obj-meta">
-        <span class="obj-cat">Objeção de Conforto</span>
-        <div class="obj-quote">"Meu negócio funciona bem sem site"</div>
-      </div>
-    </div>
-    <div class="obj-body">
-      <div class="obj-section">
-        <div class="obj-label">▼ Por trás da objeção</div>
-        <p><strong>Zona de conforto.</strong> Sucesso atual cria cegueira para oportunidades. "Se não está quebrado, não precisa consertar."</p>
-      </div>
-      <div class="obj-section">
-        <div class="obj-label">▼ Como responder</div>
-        <div class="script-box">"Exatamente — e isso é ótimo. Mas deixa eu te fazer uma pergunta: o concorrente do lado também não funcionava bem. Agora imagina se ele lançar o site antes de você. Quem aparece primeiro no Google quando alguém busca pelo seu serviço na sua região? O site não é sobre consertar algo quebrado — é sobre garantir que o crescimento que você já tem não seja capturado por outra pessoa."</div>
-      </div>
-      <div class="obj-section">
-        <span class="obj-tech-badge">⚡ Ancoragem competitiva local · FOMO de território (PNL)</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- PACER FRAMEWORK -->
-  <h3>O padrão de ouro: framework P.A.C.E.R.</h3>
-  <p>Para qualquer objeção que aparecer (mesmo as não previstas acima), siga esta estrutura. A ordem importa.</p>
-
-  <div class="pacer-grid">
-    <div class="pacer-step">
-      <div class="pacer-letter">P</div>
-      <div class="pacer-name">Pause</div>
-      <div class="pacer-desc">Nunca responda imediatamente. 2 segundos de silêncio demonstram confiança.</div>
-    </div>
-    <div class="pacer-step">
-      <div class="pacer-letter">A</div>
-      <div class="pacer-name">Acknowledge</div>
-      <div class="pacer-desc">Valide sem concordar: "Faz sentido pensar assim". Baixa a guarda.</div>
-    </div>
-    <div class="pacer-step">
-      <div class="pacer-letter">C</div>
-      <div class="pacer-name">Clarify</div>
-      <div class="pacer-desc">Entenda o real motivo: "Quando você diz caro, está comparando com o quê?"</div>
-    </div>
-    <div class="pacer-step">
-      <div class="pacer-letter">E</div>
-      <div class="pacer-name">Evidence</div>
-      <div class="pacer-desc">Apresente prova concreta. O esboço do site já é a prova — use-o.</div>
-    </div>
-    <div class="pacer-step">
-      <div class="pacer-letter">R</div>
-      <div class="pacer-name">Redirect</div>
-      <div class="pacer-desc">Devolva com pergunta que faz o cliente chegar à conclusão sozinho.</div>
-    </div>
-  </div>
-
-  <div class="callout gold">
-    <div class="callout-title">🎯 A arma secreta da operação</div>
-    <div class="callout-body">
-      O <strong>esboço pronto antes da venda</strong> não é só um diferencial técnico — é o nosso principal argumento de venda. Quando entregamos ao dono do negócio um documento com o cardápio dele, a logo analisada, os depoimentos reais e o site já estruturado, eliminamos as objeções <strong>3, 5 e 6 antes mesmo da reunião começar</strong>.<br><br>
-      Em vendas isso se chama <strong>"give before you ask"</strong> e ativa o princípio da <strong>reciprocidade de Cialdini</strong>. É provavelmente a técnica mais eficaz para serviços digitais a pequenos negócios.
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 16 SCRIPTS ═══════════ -->
-<section class="section" id="scripts">
-  <div class="section-tag"><span class="section-tag-num">16</span> Scripts</div>
-  <h2>Scripts de <em>atendimento</em></h2>
-  <p class="section-lead">Frases prontas para situações comuns. Use como base — adapte ao tom da conversa.</p>
+<div class="divider"></div>
 
-  <h3>Primeiro contato (cliente perguntou preço)</h3>
-  <div class="script-box">
-    "Oi, [nome]! Tudo bem? Trabalhamos com 3 pacotes diferentes para se encaixar no momento de cada negócio. Antes de te passar o preço certo, posso te fazer 2 perguntas rápidas? Assim te indico o ideal sem te enrolar."
+<!-- ═══════════ 12 FECHAMENTO E ONBOARDING ═══════════ -->
+<section class="section" id="onboarding">
+  <div class="section-tag"><span class="section-tag-num">12</span> Conversão</div>
+  <h2>Fechamento e <em>onboarding</em></h2>
+  <p class="section-lead">No "sim", cinco coisas acontecem — e a inscrição do voucher é a que não pode esperar.</p>
+
+  <h3>Na aceitação</h3>
+  <div class="process">
+    <div class="process-step">
+      <div class="process-num">01</div>
+      <div>
+        <div class="process-title">Fatura de entrada</div>
+        <div class="process-desc">50% do valor, com vencimento em 5 dias.</div>
+        <div class="process-meta">Mesmo dia</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">02</div>
+      <div>
+        <div class="process-title">Pedido de conteúdo enviado</div>
+        <div class="process-desc">No mesmo dia. O cronograma inteiro depende disso chegar — quanto antes for pedido, antes chega.</div>
+        <div class="process-meta">Mesmo dia · Script abaixo</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">03</div>
+      <div>
+        <div class="process-title">Inscrição do voucher iniciada</div>
+        <div class="process-desc"><strong>Imediatamente.</strong> São 3 a 6 semanas de prazo — comece em paralelo com o projeto, nunca depois.</div>
+        <div class="process-meta">Prazo de 3–6 semanas · Em paralelo</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">04</div>
+      <div>
+        <div class="process-title">Kickoff agendado</div>
+        <div class="process-desc">Chamada de alinhamento marcada com data definida, não "quando der".</div>
+        <div class="process-meta">Data fixa</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-num">05</div>
+      <div>
+        <div class="process-title">Acesso ao Google Business Profile solicitado</div>
+        <div class="process-desc">Sem esse acesso, metade do valor entregue não acontece. Peça junto com o conteúdo.</div>
+        <div class="process-meta">Com instruções passo a passo</div>
+      </div>
+    </div>
   </div>
 
-  <h3>Cliente disse "tá caro"</h3>
-  <div class="script-box">
-    "Faz sentido pensar isso à primeira vista. Posso te fazer uma pergunta? Quantos clientes por semana você acha que buscam seu negócio no Google e não te encontram? Se o site trouxer só 3 ou 4 clientes a mais por mês, em quanto tempo você acha que ele se paga sozinho?"
+  <div class="lang-note">Pedido de conteúdo</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>Para começar eu preciso de quatro coisas:<br><br>1. Fotos do negócio — 10 a 15 já bastam. Fotos de celular servem<br>2. Seus serviços com preços, mesmo que aproximados<br>3. Um parágrafo sobre o negócio — como começou, o que o torna diferente<br>4. Acesso ao seu Google Business Profile (eu mando as instruções)<br><br>A maior parte do cronograma é espera por isso, então quanto antes chegar, antes a gente entra no ar.</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>To get started I need four things:<br><br>1. Photos of the business — 10-15 is plenty. Phone photos are fine<br>2. Your services with prices, however roughly<br>3. A paragraph about the business — how it started, what makes it different<br>4. Access to your Google Business Profile (I'll send instructions)<br><br>Most of the timeline is waiting on this, so the sooner it lands the sooner we're live.</div>
+    </div>
   </div>
 
-  <h3>Cliente disse "vou pensar"</h3>
-  <div class="script-box">
-    "Claro, faz todo sentido. Só queria deixar uma coisa clara: o esboço do seu site já está pronto. Posso já te mandar por aqui pra você ver no celular? Aí você decide com a coisa na mão, não no escuro."
+  <h3>O processo do voucher — o que você diz ao cliente</h3>
+  <div class="split">
+    <div class="panel">
+      <div class="panel-title">Explicação em três pontos</div>
+      <div class="panel-sub">Trading Online Voucher · Local Enterprise Office</div>
+      <ol>
+        <li><strong>Você se qualifica.</strong> Operando na Irlanda há 12+ meses, menos de 10 funcionários, faturamento abaixo de €2M. O Local Enterprise Office confirma.</li>
+        <li><strong>Eu cuido da papelada.</strong> Os dois orçamentos, o formulário de inscrição, os follow-ups. Você aprova, eu protocolo.</li>
+        <li><strong>O Estado paga metade.</strong> Até €2.500 sobre projetos elegíveis.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Three-point explanation</div>
+      <div class="panel-sub">Versão em inglês · para uso direto com o cliente</div>
+      <ol>
+        <li><strong>You qualify.</strong> Trading in Ireland 12+ months, under 10 staff, turnover under €2M. The Local Enterprise Office confirms it.</li>
+        <li><strong>I handle the paperwork.</strong> Two quotes, the application form, the follow-ups. You approve, I file.</li>
+        <li><strong>The State pays half.</strong> Up to €2,500 on eligible projects.</li>
+      </ol>
+    </div>
   </div>
 
-  <h3>Cliente perguntou de cancelamento na hora da venda</h3>
-  <div class="script-box">
-    "Pergunta legítima. Funciona assim: você tem 7 dias após a assinatura pra cancelar com reembolso total. Depois disso, durante os 12 meses iniciais, é só dar 30 dias de aviso — tem uma multa pequena, mas o site fica com você. Após 12 meses, é livre. A gente prefere cliente feliz a cliente preso."
+  <div class="callout red">
+    <div class="callout-title">⏱️ O voucher começa no dia 1, nunca depois</div>
+    <div class="callout-body">São 3 a 6 semanas de tramitação. Se a inscrição for iniciada só quando o site estiver pronto, o cliente fica sem o dinheiro justamente quando a fatura final chega — e é aí que a relação azeda.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 13 RITUAL DE ENCERRAMENTO ═══════════ -->
+<section class="section" id="closeout">
+  <div class="section-tag"><span class="section-tag-num">13</span> Conversão</div>
+  <h2>Ritual de <em>encerramento</em></h2>
+  <p class="section-lead">Execute em <strong>todo</strong> projeto. São os trinta minutos de maior retorno de todo o processo, e a razão pela qual você não vai precisar de cold email para sempre.</p>
+
+  <h3>Os seis passos</h3>
+  <ol class="walk-stops">
+    <li><strong>Depoimento em vídeo de 60 segundos.</strong> Câmera de celular. Três perguntas: <em>Qual era o problema? O que mudou? Você recomendaria?</em> Vídeo vale cinco vezes uma citação escrita.</li>
+    <li><strong>Foto sua com o cliente</strong> no estabelecimento dele, com o site aberto num laptop ou celular.</li>
+    <li><strong>Capturas de antes/depois.</strong> Listagem do Google Maps antes, site no ar depois. Isso vira o slider da página de estudo de caso.</li>
+    <li><strong>Um número.</strong> Qualquer coisa mensurável: "de zero a 40 visitas por semana", "3 agendamentos online na primeira semana", "pedidos de orçamento triplicaram". <strong>Estudo de caso sem número não vai ao ar.</strong></li>
+    <li><strong>Permissão por escrito</strong> para usar nome, imagem e logo.</li>
+    <li><strong>Peça a indicação, na hora.</strong> <em>"Você conhece outro dono de negócio na mesma situação?"</em> O pico de satisfação é o momento correto de pedir, e ele nunca vai estar mais alto do que agora.</li>
+  </ol>
+
+  <div class="lang-note">Script do pedido de indicação</div>
+  <div class="bi">
+    <div class="bi-col pt">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Fico feliz que tenha gostado. Posso pedir um favor — a maior parte do meu trabalho vem de boca a boca. Tem mais alguém que você conheça aqui da região, tocando um negócio, que esteja na mesma situação em que vocês estavam?<br><br>Sem pressão nenhuma. Se lembrar de alguém, uma apresentação vale mais para mim do que qualquer anúncio."</div>
+    </div>
+    <div class="bi-col en">
+      <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button>"Glad you're happy with it. Can I ask a favour — most of my work comes through word of mouth. Is there anyone else you know running a business around here who's in the same spot you were?<br><br>No pressure either way. If someone comes to mind, an introduction is worth more to me than any advertising."</div>
+    </div>
   </div>
 
-  <h3>Cliente atrasou pagamento (3 dias)</h3>
-  <div class="script-box">
-    "Oi, [nome]! Tudo bem? Notei aqui que a mensalidade venceu há alguns dias. Pode ter sido só esquecimento — quer que eu te mande o boleto novo ou um PIX agora?"
+  <div class="callout green">
+    <div class="callout-title">✅ Por que este ritual é inegociável</div>
+    <div class="callout-body">Cold email é como você consegue os <strong>primeiros cinco</strong> clientes. Indicações e estudos de caso são como você consegue os <strong>próximos cinquenta</strong>. Trinta minutos por projeto é a diferença entre reiniciar o funil todo mês e construir algo que acumula.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 14 COMPLIANCE ═══════════ -->
+<section class="section" id="compliance">
+  <div class="section-tag"><span class="section-tag-num">14</span> Controle</div>
+  <h2><em>Compliance</em></h2>
+  <p class="section-lead">A Irlanda é comparativamente permissiva para email marketing B2B — mas as condições precisam ser cumpridas integralmente, e a parte mais delicada é justamente onde está a maior parte do seu público.</p>
+
+  <h3>Cold email — regime B2B irlandês</h3>
+  <p>O regime é de <strong>opt-out</strong>, não de opt-in, desde que a mensagem atenda a condições específicas.</p>
+
+  <div class="panel">
+    <div class="panel-title">Condições que precisam ser verdadeiras</div>
+    <div class="panel-sub">Todas, simultaneamente</div>
+    <ul>
+      <li>O endereço deve razoavelmente parecer ser usado <strong>principalmente no contexto da atividade comercial</strong> do destinatário</li>
+      <li>A mensagem deve tratar <strong>exclusivamente</strong> dessa atividade comercial</li>
+      <li>O destinatário <strong>não pode ter se oposto</strong> anteriormente</li>
+      <li>O remetente deve estar <strong>claramente identificado</strong></li>
+      <li>Deve haver um <strong>opt-out funcional em toda mensagem</strong></li>
+    </ul>
   </div>
 
-  <h3>Cliente quer alteração que está fora do escopo</h3>
-  <div class="script-box">
-    "Adoraria fazer isso. Esse ajuste específico está um pouco além do escopo da mensalidade — vou orçar pra você antes de começar, pode ser? Assim você decide se faz sentido. Provavelmente algo bem rápido."
+  <div class="callout red">
+    <div class="callout-title">⚠️ A complicação: autônomos e sociedades simples</div>
+    <div class="callout-body">Sole traders e partnerships são <strong>pessoas naturais</strong>, e boa parte do seu público-alvo cai nessa categoria. Para eles, você se apoia em <strong>legítimo interesse sob o GDPR</strong>, o que exige uma <em>Legitimate Interests Assessment</em> (LIA) documentada e um direito de oposição claro.</div>
   </div>
 
-  <h3>Site caiu / cliente em pânico</h3>
-  <div class="script-box">
-    "Ok, recebi sua mensagem agora. Já estou olhando aqui. Te dou um retorno em até 30 minutos com o diagnóstico e o tempo de resolução. Pode deixar comigo."
+  <h3>Regras práticas</h3>
+  <ul class="checklist">
+    <li>Prefira endereços genéricos (<code>info@</code>, <code>bookings@</code>) a endereços de pessoas nomeadas</li>
+    <li>Linha de opt-out em toda mensagem, honrada <strong>imediata e permanentemente</strong></li>
+    <li>Lista de supressão mantida e <strong>checada antes de todo envio</strong></li>
+    <li>Link para a política de privacidade em toda mensagem</li>
+    <li>Escrever e manter em arquivo uma LIA de uma página</li>
+    <li>A obrigação de notificação do Artigo 14 é geralmente satisfeita pelo link de privacidade, quando os dados foram coletados de fonte terceira</li>
+  </ul>
+
+  <div class="callout red">
+    <div class="callout-title">💶 Penalidades</div>
+    <div class="callout-body">As multas podem chegar a <strong>€5.000 para pessoas físicas</strong> e <strong>€50.000 para pessoas jurídicas</strong>, por infração. A lista de supressão não é burocracia — <strong>é o controle que mantém você em conformidade</strong>.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 15 INFRAESTRUTURA DE EMAIL ═══════════ -->
+<section class="section" id="infra">
+  <div class="section-tag"><span class="section-tag-num">15</span> Controle</div>
+  <h2>Infraestrutura de <em>email</em></h2>
+  <p class="section-lead">Entregabilidade não é detalhe técnico — é o teto de todo o funil. Um problema aqui aparece como "taxa de abertura baixa" e é confundido com problema de copy.</p>
+
+  <h3>Checklist de configuração</h3>
+  <ul class="checklist">
+    <li>Domínio de envio separado registrado</li>
+    <li>Registro <strong>SPF</strong> publicado</li>
+    <li>Assinatura <strong>DKIM</strong> configurada</li>
+    <li>Política <strong>DMARC</strong> publicada — começar em <code>p=none</code>, monitorar, depois apertar</li>
+    <li>Domínio de tracking próprio, ou tracking desativado por completo</li>
+    <li><strong>Reply-To</strong> apontando para <code>marcusffernandes@hotmail.com</code></li>
+    <li>Caixa de envio em um domínio sob seu controle — <strong>nunca</strong> a conta do Hotmail</li>
+    <li>Assinatura profissional com telefone e site</li>
+  </ul>
+
+  <h3>Cronograma de aquecimento</h3>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 240" role="img" aria-label="Gráfico de aquecimento: volume diário por semana, de 5 a 40 emails">
+      <!-- eixo -->
+      <line x1="58" y1="180" x2="690" y2="180" stroke="#D4CEC0" stroke-width="1.5"/>
+      <line x1="58" y1="30" x2="58" y2="180" stroke="#D4CEC0" stroke-width="1.5"/>
+      <text x="50" y="184" class="svg-tag" text-anchor="end">0</text>
+      <text x="50" y="110" class="svg-tag" text-anchor="end">20</text>
+      <text x="50" y="38" class="svg-tag" text-anchor="end">40</text>
+      <line x1="58" y1="107" x2="690" y2="107" stroke="#F5F2EC" stroke-width="1"/>
+      <line x1="58" y1="34" x2="690" y2="34" stroke="#F5F2EC" stroke-width="1"/>
+
+      <!-- barras: escala 3.65px por email -->
+      <rect x="90" y="162" width="80" height="18" rx="3" fill="#E8E3D8"/>
+      <text x="130" y="152" class="svg-num" text-anchor="middle">5</text>
+      <text x="130" y="200" class="svg-pt" text-anchor="middle">Semana 1</text>
+      <text x="130" y="216" class="svg-en" text-anchor="middle">Week 1</text>
+
+      <rect x="210" y="143" width="80" height="37" rx="3" fill="#E8E3D8"/>
+      <text x="250" y="133" class="svg-num" text-anchor="middle">10</text>
+      <text x="250" y="200" class="svg-pt" text-anchor="middle">Semana 2</text>
+      <text x="250" y="216" class="svg-en" text-anchor="middle">Week 2</text>
+
+      <rect x="330" y="107" width="80" height="73" rx="3" fill="#D4A53A"/>
+      <text x="370" y="97" class="svg-num" text-anchor="middle">20</text>
+      <text x="370" y="200" class="svg-pt" text-anchor="middle">Semana 3</text>
+      <text x="370" y="216" class="svg-en" text-anchor="middle">Week 3</text>
+
+      <rect x="450" y="71" width="80" height="109" rx="3" fill="#B8830F"/>
+      <text x="490" y="61" class="svg-num" text-anchor="middle">30</text>
+      <text x="490" y="200" class="svg-pt" text-anchor="middle">Semana 4</text>
+      <text x="490" y="216" class="svg-en" text-anchor="middle">Week 4</text>
+
+      <rect x="570" y="55" width="80" height="125" rx="3" fill="#1A1715"/>
+      <text x="610" y="78" class="svg-num" text-anchor="middle" fill="#D4A53A">30–40</text>
+      <text x="610" y="200" class="svg-pt" text-anchor="middle">Semana 5+</text>
+      <text x="610" y="216" class="svg-en" text-anchor="middle">Week 5+ · steady</text>
+
+      <!-- teto -->
+      <line x1="58" y1="34" x2="690" y2="34" stroke="#B83A2C" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="300" y="27" class="svg-tag" text-anchor="middle" fill="#B83A2C">TETO 40/DIA · CAP 40/DAY</text>
+    </svg>
+    <div class="diagram-cap">Diagrama 4 · <em>Rampa de aquecimento do domínio de envio (volume diário)</em> — Sending domain warm-up ramp (daily volume)</div>
   </div>
 
-  <h3>Cliente quer comparar com concorrente mais barato</h3>
-  <div class="script-box">
-    "Entendo. Cada estúdio trabalha de um jeito. Posso te mostrar o que está incluso no nosso pacote pra você comparar item por item? Às vezes o preço diferente vem de coisas que mudam tudo na prática (hospedagem, suporte, manutenção). Aí você decide com calma."
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Semana</th><th>Volume diário</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>1</strong></td><td>5</td></tr>
+        <tr><td><strong>2</strong></td><td>10</td></tr>
+        <tr><td><strong>3</strong></td><td>20</td></tr>
+        <tr><td><strong>4</strong></td><td>30</td></tr>
+        <tr><td><strong>5+</strong></td><td>30–40 <em>(regime estável)</em></td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="callout gold">
-    <div class="callout-title">📌 Lembrete</div>
-    <div class="callout-body">Scripts não são robôs. São pontos de partida. O atendente lê a situação, adapta o tom, mantém a essência. Cliente não percebe script bem feito — percebe atendimento ruim.</div>
+    <div class="callout-title">📮 Não passe de 40 por dia por caixa</div>
+    <div class="callout-body">Se precisar de mais volume, <strong>acrescente caixas de correio — não mensagens</strong>. Forçar o volume numa única caixa é a forma mais rápida de queimar o domínio de envio.</div>
+  </div>
+
+  <h3>Regras de entregabilidade</h3>
+  <ul>
+    <li><strong>Nunca anexos no primeiro email.</strong> Sem exceção</li>
+    <li><strong>Sem templates carregados de imagem.</strong> Texto puro converte melhor</li>
+    <li>Evite gatilhos de spam: <em>free</em> no assunto, <em>guarantee</em>, <em>act now</em>, <em>limited time</em></li>
+    <li>Varie as linhas de assunto ao longo da lista</li>
+    <li><strong>Taxa de bounce acima de 3%</strong> significa lista suja — pare e verifique</li>
+    <li><strong>Taxa de resposta abaixo de 2%</strong> significa personalização rasa, não volume insuficiente</li>
+  </ul>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 16 MÉTRICAS ═══════════ -->
+<section class="section" id="metricas">
+  <div class="section-tag"><span class="section-tag-num">16</span> Controle</div>
+  <h2><em>Métricas</em></h2>
+  <p class="section-lead">O funil inteiro cabe numa revisão semanal. Cada estágio tem um número saudável e um número de alerta — e cada alerta aponta para uma causa diferente.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Funil semanal: 175 emails enviados até 1 a 2 propostas">
+      <!-- funil em degraus -->
+      <rect x="60" y="20" width="600" height="40" rx="4" fill="#1A1715"/>
+      <text x="80" y="46" class="svg-white">175 emails enviados</text>
+      <text x="300" y="46" class="svg-white-en">emails sent · 150–200/semana</text>
+      <text x="640" y="46" class="svg-tag-w" text-anchor="end">100%</text>
+
+      <rect x="120" y="68" width="480" height="40" rx="4" fill="#B8830F"/>
+      <text x="140" y="94" class="svg-white">70 aberturas</text>
+      <text x="300" y="94" class="svg-white-en">opens · alvo 40%+</text>
+      <text x="580" y="94" class="svg-tag-w" text-anchor="end">40%</text>
+
+      <rect x="180" y="116" width="360" height="40" rx="4" fill="#D4A53A"/>
+      <text x="200" y="142" class="svg-white">12 respostas</text>
+      <text x="340" y="142" class="svg-white-en">replies · alvo 6–8%</text>
+      <text x="520" y="142" class="svg-tag-w" text-anchor="end">7%</text>
+
+      <rect x="240" y="164" width="240" height="40" rx="4" fill="#FBF4E0" stroke="#B8830F"/>
+      <text x="258" y="190" class="svg-pt">5 auditorias</text>
+      <text x="338" y="190" class="svg-en">audits · 4–6/sem</text>
+      <text x="466" y="190" class="svg-tag" text-anchor="end">3%</text>
+
+      <rect x="300" y="212" width="120" height="40" rx="4" fill="#E8F4ED" stroke="#1F7A4D"/>
+      <text x="314" y="238" class="svg-pt">2–3 calls</text>
+      <text x="408" y="238" class="svg-tag" text-anchor="end">1,5%</text>
+
+      <rect x="330" y="260" width="60" height="34" rx="4" fill="#1F7A4D"/>
+      <text x="360" y="282" class="svg-white" text-anchor="middle">1–2</text>
+
+      <text x="420" y="277" class="svg-pt">propostas enviadas</text>
+      <text x="420" y="292" class="svg-en">proposals sent · fecha 30%+</text>
+    </svg>
+    <div class="diagram-cap">Diagrama 5 · <em>Funil semanal saudável, do envio à proposta</em> — Healthy weekly funnel, from send to proposal</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">40%+</div><div class="stat-label">Taxa de abertura<small>Open rate</small></div></div>
+    <div class="stat"><div class="stat-num">6–8%</div><div class="stat-label">Taxa de resposta<small>Reply rate</small></div></div>
+    <div class="stat"><div class="stat-num">30%+</div><div class="stat-label">Fechamento em propostas<small>Close rate</small></div></div>
+    <div class="stat"><div class="stat-num">&lt;2%</div><div class="stat-label">Taxa de bounce<small>Bounce rate</small></div></div>
+  </div>
+
+  <h3>Acompanhar semanalmente</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Métrica</th><th>Saudável</th><th>Alerta</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Emails enviados</strong></td><td>150–200/semana</td><td>—</td></tr>
+        <tr><td><strong>Taxa de abertura</strong></td><td>40%+</td><td>Abaixo de 25% = problema de entregabilidade</td></tr>
+        <tr><td><strong>Taxa de resposta</strong></td><td>6–8%</td><td>Abaixo de 2% = personalização rasa</td></tr>
+        <tr><td><strong>Respostas positivas</strong></td><td>3–5%</td><td>—</td></tr>
+        <tr><td><strong>Auditorias entregues</strong></td><td>4–6/semana</td><td>—</td></tr>
+        <tr><td><strong>Chamadas agendadas</strong></td><td>2–3/semana</td><td>—</td></tr>
+        <tr><td><strong>Propostas enviadas</strong></td><td>1–2/semana</td><td>—</td></tr>
+        <tr><td><strong>Fechamento sobre propostas</strong></td><td>30%+</td><td>Abaixo de 15% = problema de preço ou de qualificação</td></tr>
+        <tr><td><strong>Taxa de bounce</strong></td><td>Abaixo de 2%</td><td>Acima de 3% = pare e limpe a lista</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Como ler o funil</h3>
+  <div class="key-grid">
+    <div class="key-item"><div class="key-label">Sintoma</div><div class="key-value">Abertura baixa<small>→ Entregabilidade. Cheque SPF/DKIM/DMARC e o aquecimento.</small></div></div>
+    <div class="key-item"><div class="key-label">Sintoma</div><div class="key-value">Boa abertura, poucas respostas<small>→ Os três achados estão genéricos demais.</small></div></div>
+    <div class="key-item"><div class="key-label">Sintoma</div><div class="key-value">Boas respostas, poucas chamadas<small>→ A auditoria não está convencendo. Torne-a mais específica.</small></div></div>
+    <div class="key-item"><div class="key-label">Sintoma</div><div class="key-value">Boas chamadas, poucas propostas<small>→ Você não está pedindo o fechamento.</small></div></div>
+    <div class="key-item"><div class="key-label">Sintoma</div><div class="key-value">Boas propostas, poucos fechamentos<small>→ Preço errado, ou prospects errados.</small></div></div>
+    <div class="key-item"><div class="key-label">Método</div><div class="key-value">Um estágio por vez<small>Corrija de cima para baixo. Mexer em dois ao mesmo tempo impede saber o que funcionou.</small></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ 17 PRIMEIROS 30 DIAS ═══════════ -->
+<section class="section" id="plano30">
+  <div class="section-tag"><span class="section-tag-num">17</span> Controle</div>
+  <h2>Primeiros <em>30 dias</em></h2>
+  <p class="section-lead">A ordem importa. Enviar antes da infraestrutura estar pronta queima o domínio; prospectar antes do primeiro estudo de caso existir tira a sua única prova.</p>
+
+  <div class="roadmap" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="phase phase-1">
+      <div class="phase-label">Semana 1 · Fundações</div>
+      <div class="phase-title">Infraestrutura no lugar</div>
+      <div class="phase-when">Nada é enviado nesta semana</div>
+      <ul class="phase-list">
+        <li>→ <code>.ie</code> resolvendo, <code>.com</code> redirecionando, canônica corrigida</li>
+        <li>→ Aritmética de preço corrigida no site</li>
+        <li>→ Telefone adicionado ao site</li>
+        <li>→ Domínio de envio registrado, SPF/DKIM/DMARC configurados</li>
+        <li>→ Google Business Profile no ar</li>
+        <li>→ LinkedIn: headline, About e Featured atualizados</li>
+        <li>→ Template de auditoria construído (duas páginas)</li>
+      </ul>
+    </div>
+    <div class="phase phase-2">
+      <div class="phase-label">Semana 2 · Primeiros ativos</div>
+      <div class="phase-title">Prova social e lista</div>
+      <div class="phase-when">Aquecimento começa</div>
+      <ul class="phase-list">
+        <li>→ Projeto atual entregue com o ritual de encerramento completo</li>
+        <li>→ Primeiro estudo de caso no ar, com número real</li>
+        <li>→ Depoimento em vídeo gravado</li>
+        <li>→ Primeiros 50 prospects pesquisados e pontuados — um vertical, uma área</li>
+        <li>→ Aquecimento de email rodando</li>
+        <li>→ Link de agendamento (Cal.com) no ar</li>
+      </ul>
+    </div>
+    <div class="phase phase-3">
+      <div class="phase-label">Semana 3 · Primeiros envios</div>
+      <div class="phase-title">A campanha começa</div>
+      <div class="phase-when">10/dia subindo para 20/dia</div>
+      <ul class="phase-list">
+        <li>→ 10/dia subindo para 20/dia</li>
+        <li>→ Auditorias entregues em até 48 horas, sempre</li>
+        <li>→ Dois posts no LinkedIn</li>
+        <li>→ Segundos 50 prospects pesquisados</li>
+      </ul>
+    </div>
+    <div class="phase phase-1">
+      <div class="phase-label">Semana 4 · Volume e iteração</div>
+      <div class="phase-title">Regime e correção</div>
+      <div class="phase-when">30/dia estável</div>
+      <ul class="phase-list">
+        <li>→ 30/dia estável</li>
+        <li>→ Sequência de follow-up rodando</li>
+        <li>→ Primeiras discovery calls realizadas</li>
+        <li>→ Primeiras propostas enviadas</li>
+        <li>→ Métricas revisadas, um gargalo identificado e corrigido</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Metas até o dia 90</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Métrica</th><th>Meta</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Auditorias entregues</strong></td><td>15</td></tr>
+        <tr><td><strong>Chamadas realizadas</strong></td><td>8</td></tr>
+        <tr><td><strong>Clientes fechados</strong></td><td>3</td></tr>
+        <tr><td><strong>Clientes em manutenção</strong></td><td>3 de 3</td></tr>
+        <tr><td><strong>Estudos de caso no ar</strong></td><td>3</td></tr>
+        <tr><td><strong>Indicações recebidas</strong></td><td>2</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════ NOTA DE ENCERRAMENTO ═══════════ -->
+<section class="section" id="encerramento">
+  <div class="section-tag"><span class="section-tag-num">✦</span> Nota final</div>
+  <h2>O que realmente <em>decide</em></h2>
+  <p class="section-lead">Duas coisas determinam se isto funciona — e nenhuma delas é o site.</p>
+
+  <div class="callout gold">
+    <div class="callout-title">1 · Os três achados do primeiro email</div>
+    <div class="callout-body">Se você não consegue escrever <strong>três observações específicas, verdadeiras e não óbvias</strong> sobre aquele negócio, não envie o email. Um prospect genérico converte a 0,5%. Um prospect auditado converte a 6–8%. <strong>A pesquisa é o produto.</strong></div>
+  </div>
+
+  <div class="callout green">
+    <div class="callout-title">2 · O ritual de encerramento em todo projeto</div>
+    <div class="callout-body">Cold email é como você consegue os primeiros cinco clientes. <strong>Indicações e estudos de caso são como você consegue os próximos cinquenta.</strong> Os trinta minutos gastos num vídeo, numa foto e num número ao fim de cada projeto são a diferença entre reiniciar o funil todo mês e construir algo que acumula.</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="doc-footer">
-  Manual Operacional · Studio · v1.0 · Documento de uso interno · Atualizado em Abril/2026
+  Sales &amp; Outreach Playbook · Marcus Fernandes · v1.0 · marcusfernandes.ie · Documento de uso interno
 </footer>
 
 </div>
@@ -2396,12 +2732,40 @@ td strong { color: var(--text); font-weight: 600; }
 </div>
 
 <script>
-// FAQ accordion
-function toggleFaq(el) {
-  const item = el.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+// Copiar script para a área de transferência
+function copyScript(btn) {
+  const box = btn.closest('.script-box');
+  if (!box) return;
+  const clone = box.cloneNode(true);
+  clone.querySelectorAll('.copy-btn').forEach(b => b.remove());
+  const tmp = document.createElement('div');
+  tmp.innerHTML = clone.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+  const text = (tmp.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
+
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = 'Copiado';
+    btn.classList.add('done');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('done'); }, 1600);
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) { /* silencioso */ }
+  document.body.removeChild(ta);
 }
 
 // Sidebar TOC active state on scroll

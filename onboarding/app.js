@@ -557,7 +557,7 @@
       <div class="container">
         <div class="eyebrow">Referência</div>
         <h1 class="h1" style="font-size:2.2rem">Cola <em>rápida</em></h1>
-        <p class="lead" style="margin-bottom:1.75rem">Os números e as regras que você precisa ter à mão em toda conversa. Para o detalhe completo, abra o <a href="../index.html" target="_blank" rel="noopener">Playbook</a>.</p>
+        <p class="lead" style="margin-bottom:1.75rem">Os números e as regras que você precisa ter à mão em toda conversa. Para o detalhe completo, abra o <a href="../playbook/" target="_blank" rel="noopener">Playbook</a>.</p>
         <div class="cheat-grid" id="cheat"></div>
       </div>`;
     const c = $('#cheat');
@@ -597,7 +597,7 @@
     });
     $('#go-home').addEventListener('click', () => go('#home'));
     $('#menu-btn').addEventListener('click', () => { const mn = $('#mobile-nav'); mn.hidden = !mn.hidden; });
-    const doLogout = async () => { await Auth.logout(); state.session = null; location.hash = ''; showGate(); };
+    const doLogout = async () => { await Auth.logout(); state.session = null; location.href = '../index.html'; };
     $('#logout').addEventListener('click', doLogout);
     $('#logout-m').addEventListener('click', doLogout);
     window.addEventListener('hashchange', route);

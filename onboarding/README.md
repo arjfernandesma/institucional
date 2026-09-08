@@ -10,13 +10,13 @@ Abra `onboarding/index.html` (ou `/onboarding/` no domínio publicado). É 100% 
 |---|---|
 | `index.html` | Casca da aplicação (tela de acesso + app) |
 | `styles.css` | Visual (mesmos tokens de cor e tipografia do playbook) |
-| `auth.js` | Autenticação: senha compartilhada hoje, Clerk depois |
+| `../assets/auth.js` | Autenticação compartilhada com o portal (senha por perfil hoje, Clerk depois) |
 | `content.js` | **Todo o conteúdo do curso** — módulos, lições, quizzes, cenários, prova final |
 | `app.js` | Motor do curso: navegação, progresso, componentes interativos, certificado |
 
 ## Acesso
 
-**Hoje (modo `password`)**: uma senha única para a equipe. A senha não fica em texto puro no código — apenas o hash SHA-256 dela, em `auth.js` (`AUTH_CONFIG.passwordHash`).
+**Hoje (modo `password`)**: a mesma sessão do portal. Quem entrou no portal (vendedor ou admin) já está dentro da Academia. As senhas não ficam em texto puro — apenas o hash SHA-256 de cada perfil, em `assets/auth.js` (`AUTH_CONFIG.roles`).
 
 Para trocar a senha:
 
@@ -24,11 +24,11 @@ Para trocar a senha:
 printf '%s' 'NovaSenha' | sha256sum
 ```
 
-Cole o hash em `AUTH_CONFIG.passwordHash`.
+Cole o hash em `AUTH_CONFIG.roles.<perfil>.passwordHash`.
 
 > Limite: em um site estático, uma senha compartilhada protege contra acesso casual (a página tem `noindex` e o conteúdo não aparece sem ela), mas não substitui login individual. Para saber quem entrou e revogar acesso por pessoa, use o Clerk.
 
-**Depois (modo `clerk`)**: em `auth.js`, troque `provider` para `'clerk'` e preencha `clerkPublishableKey` com a chave do painel do Clerk. A tela de senha some e o widget de login do Clerk aparece no lugar. Nada mais precisa mudar.
+**Depois (modo `clerk`)**: em `assets/auth.js`, troque `provider` para `'clerk'` e preencha `clerkPublishableKey` com a chave do painel do Clerk. A tela de senha some e o widget de login do Clerk aparece no lugar. Nada mais precisa mudar.
 
 ## Progresso do aluno
 

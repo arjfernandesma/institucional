@@ -20,13 +20,23 @@
 
   /* ── Progresso (localStorage por usuário) ─────────────────────── */
   const progressKey = () => 'mf_academy_progress_' + (state.session.userId || state.session.name.toLowerCase().trim());
+  // Progresso completo no localStorage; reserva compacta (lições concluídas
+  // + prova) num cookie de 1 ano, para recuperar se o localStorage sumir.
   function loadProgress() {
-    let p = null;
-    try { p = JSON.parse(localStorage.getItem(progressKey()) || 'null'); } catch { /* ignore */ }
+    let p = MFStore.getJSON(progressKey());
+    if (!p) {
+      const c = MFStore.cookieGetJSON(progressKey());
+      if (c && Array.isArray(c.d)) {
+        p = { done: Object.fromEntries(c.d.map(id => [id, c.s || Date.now()])), answers: {}, exam: c.e || null, startedAt: c.s || Date.now() };
+        MFStore.setJSON(progressKey(), p);
+      }
+    }
     state.progress = p || { done: {}, answers: {}, exam: null, startedAt: Date.now() };
+    MFStore.persist();
   }
   function saveProgress() {
-    try { localStorage.setItem(progressKey(), JSON.stringify(state.progress)); } catch { /* ignore */ }
+    MFStore.setJSON(progressKey(), state.progress);
+    MFStore.cookieSetJSON(progressKey(), { d: Object.keys(state.progress.done), e: state.progress.exam, s: state.progress.startedAt });
   }
 
   /* ── Helpers de curso ──────────────────────────────────────────── */
@@ -99,6 +109,8 @@
       renderGlossary();
     } else if (parts[0] === 'cheatsheet') {
       renderCheatsheet();
+    } else if (parts[0] === 'folheto') {
+      renderLeaflet();
     } else {
       renderHome();
     }
@@ -222,6 +234,7 @@
             <header class="lesson-head">
               <div class="crumbs">Módulo ${String(mi + 1).padStart(2, '0')} · Lição ${j + 1} de ${m.lessons.length}</div>
               <h2>${l.title}</h2>
+              <div class="view-tools" style="margin:.9rem 0 0"><button class="share-btn" id="lesson-pdf" title="Imprimir ou salvar esta lição em PDF">🖨️ PDF desta lição</button></div>
               <div class="dots">${m.lessons.map((x, k) => `<i class="${lessonDone(x.id) ? 'done' : ''} ${k === j ? 'cur' : ''}"></i>`).join('')}</div>
             </header>
             <div class="blocks" id="blocks"></div>
@@ -240,11 +253,13 @@
       el.className = 'block block-' + b.type;
       el.style.animationDelay = Math.min(i * 40, 400) + 'ms';
       el.innerHTML = renderBlock(b, i, answers[i]);
+      attachShareBar(el, b);
       container.appendChild(el);
       wireBlock(el, b, i, l.id, answers, refreshReq);
     });
 
     $$('[data-lesson]').forEach(b => b.addEventListener('click', () => go(`#m/${m.id}/${b.dataset.lesson}`)));
+    $('#lesson-pdf').addEventListener('click', () => window.print());
 
     function pending() { return required.filter(i => !answers[i]?.done).length; }
     function refreshReq() {
@@ -557,16 +572,110 @@
       <div class="container">
         <div class="eyebrow">Referência</div>
         <h1 class="h1" style="font-size:2.2rem">Cola <em>rápida</em></h1>
-        <p class="lead" style="margin-bottom:1.75rem">Os números e as regras que você precisa ter à mão em toda conversa. Para o detalhe completo, abra o <a href="../playbook/" target="_blank" rel="noopener">Playbook</a>.</p>
+        <p class="lead" style="margin-bottom:1.25rem">Os números e as regras que você precisa ter à mão em toda conversa. Cada bloco tem botões para copiar como texto (pronto para WhatsApp ou e-mail) ou como imagem. Para o detalhe completo, abra o <a href="../playbook/" target="_blank" rel="noopener">Playbook</a>.</p>
+        <div class="view-tools"><button class="share-btn" id="cheat-copy-all">💬 Copiar tudo como texto</button><button class="btn btn-primary btn-sm" id="cheat-pdf">🖨️ Baixar PDF para imprimir</button><a class="share-btn" href="#folheto" style="text-decoration:none">📄 Folheto para o cliente</a></div>
         <div class="cheat-grid" id="cheat"></div>
       </div>`;
     const c = $('#cheat');
     CHEATSHEET.forEach((b, i) => {
       const el = document.createElement('section'); el.className = 'block';
-      el.innerHTML = (b.heading ? `<h2 class="section-title" style="margin-top:.5rem">${b.heading}</h2>` : '') + renderBlock(b, i, null);
+      el.innerHTML = (b.heading ? `<h2 class="section-title" style="margin-top:.5rem">${b.heading}</h2>` : '') + `<div class="share-target" data-share-name="${esc(b.heading || 'cola-rapida')}">${renderBlock(b, i, null)}</div>`;
+      attachShareBar(el.querySelector('.share-target'), b);
       c.appendChild(el);
       wireBlock(el, b, i, '_cheat', {}, () => {});
     });
+    $('#cheat-copy-all').addEventListener('click', (e) => Share.copyText(CHEATSHEET.map(b => (b.heading ? `*${b.heading.toUpperCase()}*\n` : '') + blockToText(b)).join('\n\n'), e.currentTarget, 'Tudo copiado ✓'));
+    $('#cheat-pdf').addEventListener('click', () => window.print());
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     COMPARTILHAR: texto pronto para WhatsApp/e-mail e imagem
+     ═══════════════════════════════════════════════════════════════ */
+  const SHARE_TYPES = new Set(['table', 'compare', 'cards', 'steps', 'stat', 'callout', 'flashcards', 'checklist']);
+  const strip = (html) => Share.nodeText(Object.assign(document.createElement('div'), { innerHTML: personalize(html || '') }));
+  function blockToText(b, el) {
+    switch (b.type) {
+      case 'table':
+        return (b.title ? `*${b.title}*\n` : '') + b.rows.map(r => `• *${strip(r[0])}*${r.length > 1 ? ' — ' + r.slice(1).map((c, i) => (b.head[i + 1] && r.length > 2 ? `${strip(b.head[i + 1])}: ` : '') + strip(c)).join(' · ') : ''}`).join('\n');
+      case 'compare': {
+        const sel = el?.querySelector('[data-seg] button.on')?.dataset.m || 'both';
+        const part = (key) => b.rows.map(r => `• *${strip(r.label)}*: ${strip(r[key])}`).join('\n');
+        const out = [`*${b.title || 'Brasil × Europa'}*`];
+        if (sel !== 'ie') out.push(`🇧🇷 *Brasil*\n${part('br')}`);
+        if (sel !== 'br') out.push(`🇮🇪 *Europa / Irlanda*\n${part('ie')}`);
+        return out.join('\n\n');
+      }
+      case 'cards': return b.items.map(c => `${c.icon ? c.icon + ' ' : '• '}*${strip(c.title)}*\n${strip(c.html)}`).join('\n\n');
+      case 'steps': return b.items.map((s, k) => `${k + 1}. *${strip(s.title)}* — ${strip(s.html)}${s.meta ? ` (${strip(s.meta)})` : ''}`).join('\n');
+      case 'stat': return b.items.map(s => `• *${s.value}* — ${s.label}`).join('\n');
+      case 'callout': return `${b.title ? `*${strip(b.title)}*\n` : ''}${strip(b.html)}`;
+      case 'flashcards': return (b.title ? `*${b.title}*\n` : '') + b.items.map(f => `• ${strip(f.front)} → ${strip(f.back)}`).join('\n');
+      case 'checklist': return (b.title ? `*${b.title}*\n` : '') + b.items.map(i => `☐ ${strip(i)}`).join('\n');
+      case 'script': return [b.pt, b.en].filter(Boolean).map(personalize).join('\n\n— — —\n\n');
+      case 'text': return strip(b.html);
+      default: return el ? Share.textFromElement(el) : '';
+    }
+  }
+  function attachShareBar(el, b) {
+    if (!SHARE_TYPES.has(b.type) || !window.Share) return;
+    const bar = Share.makeBar({ text: true, image: true, getText: () => blockToText(b, el), target: () => el });
+    el.prepend(bar);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     FOLHETO PARA O CLIENTE
+     ═══════════════════════════════════════════════════════════════ */
+  function renderLeaflet() {
+    setActiveNav('folheto');
+    const pref = MFStore.getJSON('mf_leaflet_pref') || {};
+    let market = pref.market || 'ie', lang = pref.lang || 'en';
+    const paint = () => {
+      if (!LEAFLET[market][lang]) lang = 'pt';
+      const L = LEAFLET[market][lang];
+      MFStore.setJSON('mf_leaflet_pref', { market, lang });
+      $('#view').innerHTML = `
+        <div class="container narrow">
+          <div class="no-print">
+            <div class="eyebrow">Material para o cliente</div>
+            <h1 class="h1" style="font-size:2.2rem">Folheto de <em>uma página</em></h1>
+            <p class="lead" style="margin-bottom:1.25rem">Para imprimir e levar na visita, enviar como imagem no WhatsApp ou colar como texto num e-mail. Escolha o mercado e o idioma; o folheto sai com o seu nome como contato.</p>
+            <div class="view-tools">
+              <span class="seg" id="lf-market"><button data-m="ie" class="${market === 'ie' ? 'on' : ''}">🇮🇪 Irlanda / Europa</button><button data-m="br" class="${market === 'br' ? 'on' : ''}">🇧🇷 Brasil</button></span>
+              <span class="seg" id="lf-lang"><button data-l="pt" class="${lang === 'pt' ? 'on' : ''}">PT</button>${LEAFLET[market].en ? `<button data-l="en" class="${lang === 'en' ? 'on' : ''}">EN</button>` : ''}</span>
+              <span style="flex:1"></span>
+              <button class="share-btn" id="lf-text">💬 Copiar texto</button>
+              <button class="share-btn" id="lf-img">🖼️ Copiar imagem</button>
+              <button class="btn btn-primary btn-sm" id="lf-pdf">🖨️ Baixar PDF</button>
+            </div>
+          </div>
+          <article class="leaflet" id="leaflet" data-share-name="folheto-${market}-${lang}">
+            <header class="lf-head"><div class="brand-mark">M</div><div><div class="lf-brand">Marcus Fernandes</div><div class="lf-tag">${L.tagline}</div></div><div class="lf-site">marcusfernandes.ie</div></header>
+            <h2 class="lf-title">${L.title}</h2>
+            <p class="lf-sub">${L.subtitle}</p>
+            <section class="lf-grid">
+              <div class="lf-box"><h3>${L.problemsTitle}</h3><ul>${L.problems.map(p => `<li><b>${p[0]}</b> ${p[1]}</li>`).join('')}</ul></div>
+              <div class="lf-box"><h3>${L.includesTitle}</h3><ul>${L.includes.map(i => `<li>${i}</li>`).join('')}</ul></div>
+              <div class="lf-box"><h3>${L.processTitle}</h3><ol>${L.process.map(s => `<li><b>${s[0]}</b> ${s[1]}</li>`).join('')}</ol></div>
+              <div class="lf-box lf-money"><h3>${L.moneyTitle}</h3><ul>${L.money.map(m => `<li>${m}</li>`).join('')}</ul></div>
+            </section>
+            <section class="lf-proof">${L.proof.map(p => `<div><b>${p[0]}</b><span>${p[1]}</span></div>`).join('')}</section>
+            <footer class="lf-foot">
+              <div><b>${L.ctaTitle}</b><span>${L.cta}</span></div>
+              <div class="lf-contact"><b>${esc(state.session.name)}</b><span>${L.contactRole}</span><span>marcusffernandes@hotmail.com · +353 83 201 1655</span><span>marcusfernandes.ie · Dublin 15</span></div>
+            </footer>
+          </article>
+        </div>`;
+      $$('#lf-market button').forEach(x => x.addEventListener('click', () => { market = x.dataset.m; if (!LEAFLET[market][lang]) lang = 'pt'; paint(); }));
+      $$('#lf-lang button').forEach(x => x.addEventListener('click', () => { lang = x.dataset.l; paint(); }));
+      const text = () => {
+        const li = (arr) => arr.map(x => Array.isArray(x) ? `• *${x[0]}* ${x[1]}` : `• ${x}`).join('\n');
+        return [`*${L.title}*`, L.subtitle, `*${L.problemsTitle}*\n${li(L.problems)}`, `*${L.includesTitle}*\n${li(L.includes)}`, `*${L.processTitle}*\n${L.process.map((s, k) => `${k + 1}. *${s[0]}* ${s[1]}`).join('\n')}`, `*${L.moneyTitle}*\n${li(L.money)}`, L.proof.map(p => `• *${p[0]}* ${p[1]}`).join('\n'), `*${L.ctaTitle}*\n${L.cta}`, `${state.session.name} · ${L.contactRole}\nmarcusffernandes@hotmail.com · +353 83 201 1655\nmarcusfernandes.ie`].join('\n\n');
+      };
+      $('#lf-text').addEventListener('click', (e) => Share.copyText(text(), e.currentTarget));
+      $('#lf-img').addEventListener('click', (e) => Share.copyImage($('#leaflet'), e.currentTarget));
+      $('#lf-pdf').addEventListener('click', () => window.print());
+    };
+    paint();
   }
 
   /* ═══════════════════════════════════════════════════════════════
@@ -611,7 +720,7 @@
       try {
         const s = await Auth.login({ name, password });
         if (!s) {
-          $('#gate-error').textContent = 'Senha incorreta. Confira com o Marcus e tente de novo.'; $('#gate-error').hidden = false;
+          $('#gate-error').textContent = 'Senha incorreta. Confira com o administrador e tente de novo.'; $('#gate-error').hidden = false;
           const card = $('.gate-card'); card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
           $('#gate-pass').value = ''; $('#gate-pass').focus();
         } else { enter(s); }

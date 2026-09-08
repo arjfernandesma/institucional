@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════
    PORTAL DA EQUIPE — hub de navegação por perfil
-   Vendedor(a): onboarding, cursos, playbook, materiais.
+   Colaborador(a): onboarding, cursos, playbook, materiais.
    Admin: tudo isso + área do admin (manual operacional, painel).
    ═══════════════════════════════════════════════════════════════════ */
 (() => {
@@ -49,7 +49,7 @@
   ];
 
   const ADMIN_CHECKLIST = [
-    'Passar a senha da área do vendedor (nunca a do admin)',
+    'Passar a senha da área do colaborador (nunca a do admin)',
     'Criar assinatura de e-mail com telefone e site da consultoria',
     'Gerar link de agendamento de 15 min (Cal.com) para as mensagens',
     'Dar acesso à planilha de prospects com as colunas obrigatórias',
@@ -118,7 +118,7 @@
       ? `<div class="eyebrow">Onboarding concluído ✓</div><h3>Você está pronta(o) para vender.</h3><p>Use o Playbook e a Cola rápida no dia a dia, e volte à Academia para revisar um tema quando precisar.</p><a class="btn btn-gold" href="playbook/">Abrir o Playbook →</a>`
       : pct === 0
         ? `<div class="eyebrow">Comece por aqui</div><h3>Seu onboarding ainda não começou.</h3><p>Dez módulos curtos, no seu ritmo. É o caminho mais rápido para entender o que vendemos e como.</p><a class="btn btn-gold" href="onboarding/">Começar o onboarding →</a>`
-        : `<div class="eyebrow">Continue de onde parou</div><h3>Onboarding ${pct}% concluído.</h3><div class="bar"><span style="width:${pct}%"></span></div><p>${Object.keys(p.done || {}).length} de ${totalLessons()} lições. ${pct === 100 ? 'Falta só a prova final.' : 'Cada lição leva de 5 a 8 minutos.'}</p><a class="btn btn-gold" href="onboarding/">Continuar →</a>`;
+        : `<div class="eyebrow">Continue de onde parou</div><h3>Onboarding ${pct}% concluído.</h3><div class="bar"><span style="width:${pct}%"></span></div><p>${Object.keys(p.done || {}).length} de ${totalLessons()} lições. ${pct === 100 ? 'Falta só a prova final.' : 'Cada lição leva de 5 a 8 minutos. Seu progresso fica salvo neste navegador.'}</p><a class="btn btn-gold" href="onboarding/">Continuar →</a>`;
 
     const steps = [
       { href: 'onboarding/', title: 'Faça o onboarding', desc: 'Curso interativo com quizzes e simulações. Termina com prova e certificado.', meta: '10 módulos · ~3h', done: examPassed },
@@ -183,8 +183,9 @@
           <div class="p-section-head"><div><div class="eyebrow">Usar</div><h2>Materiais de apoio</h2><p>Para ter aberto durante a prospecção e as conversas.</p></div></div>
           <div class="tile-grid">
             <a class="tile" href="onboarding/#cheatsheet"><div class="t-icon">⚡</div><h4>Cola rápida</h4><p>Preços Brasil × Europa, cadência de e-mail, regras inegociáveis, números do funil e contatos. Uma página.</p><div class="t-foot"><span>Uso diário</span></div></a>
+            <a class="tile" href="onboarding/#folheto"><div class="t-icon">📄</div><h4>Folheto para o cliente</h4><p>Uma página para imprimir ou enviar: o que fazemos, o que está incluído, como funciona e como falar com a gente. Brasil ou Irlanda, PT ou EN.</p><div class="t-foot"><span>PDF · imagem · texto</span></div></a>
             <a class="tile" href="onboarding/#glossary"><div class="t-icon">📖</div><h4>Glossário para iniciantes</h4><p>Todo termo técnico explicado em uma frase, com o que dizer ao cliente no lugar do jargão.</p><div class="t-foot"><span>45 termos</span></div></a>
-            <a class="tile" href="vendedor/objecoes.html"><div class="t-icon">🧠</div><h4>Infográfico: 7 objeções</h4><p>Guia visual das objeções mais comuns, o que está por trás de cada uma e a técnica para responder.</p><div class="t-foot"><span>Vendas & PNL</span></div></a>
+            <a class="tile" href="colaborador/objecoes.html"><div class="t-icon">🧠</div><h4>Infográfico: 7 objeções</h4><p>Guia visual das objeções mais comuns, o que está por trás de cada uma e a técnica para responder.</p><div class="t-foot"><span>Vendas & PNL</span></div></a>
             <a class="tile" href="playbook/#email"><div class="t-icon">✉️</div><h4>Scripts de e-mail PT/EN</h4><p>Sequências A, B e C prontas para copiar, com tratamento de respostas.</p><div class="t-foot"><span>Playbook · cap. 06</span></div></a>
             <a class="tile" href="playbook/#objecoes"><div class="t-icon">🛡️</div><h4>Manual de objeções PT/EN</h4><p>As seis objeções do mercado irlandês com a resposta pronta nos dois idiomas.</p><div class="t-foot"><span>Playbook · cap. 11</span></div></a>
             <a class="tile ext" href="https://marcusfernandes.ie" target="_blank" rel="noopener"><div class="t-icon">🌐</div><h4>Site público</h4><p>marcusfernandes.ie: o que o cliente vê. Auditoria gratuita, portfólio, FAQ. Conheça antes de vender.</p><div class="t-foot"><span>Abre em nova aba</span></div></a>
@@ -209,7 +210,7 @@
 
     return `
       <section class="p-section" id="admin">
-        <div class="p-section-head"><div><div class="eyebrow">Somente admin</div><h2>Área do admin</h2><p>O que a equipe de vendas não vê: modelo de negócio, contratos, pagamentos, SLA, cancelamento, e o painel para receber e acompanhar vendedores.</p></div><span class="role-pill admin">Admin</span></div>
+        <div class="p-section-head"><div><div class="eyebrow">Somente admin</div><h2>Área do admin</h2><p>O que a equipe de vendas não vê: modelo de negócio, contratos, pagamentos, SLA, cancelamento, e o painel para receber e acompanhar colaboradores.</p></div><span class="role-pill admin">Admin</span></div>
 
         <div class="tile-grid" style="margin-bottom:1.25rem">
           <a class="tile admin-tile" href="admin/manual-operacional.html"><div class="t-icon">📕</div><h4>Manual Operacional (Brasil)</h4><p>Modelo de negócio, estrutura fiscal, catálogo, pacotes, contratos, pagamento, entrega, SLA, suporte, cancelamento e FAQ.</p><div class="t-foot"><span>16 capítulos · abr/2026</span></div></a>
@@ -222,7 +223,7 @@
 
         <div class="two-col" style="margin-top:1.25rem">
           <div class="admin-band">
-            <h3 style="font-family:var(--ff-display);font-weight:600;font-size:1.2rem;margin-bottom:.25rem">Receber um novo vendedor</h3>
+            <h3 style="font-family:var(--ff-display);font-weight:600;font-size:1.2rem;margin-bottom:.25rem">Receber um novo colaborador</h3>
             <p style="font-size:.9rem;color:var(--text-2);margin-bottom:.9rem">Checklist do admin. Fica salvo neste navegador.</p>
             <div class="checklist" id="admin-check">${ADMIN_CHECKLIST.map((it, k) => `<button class="check ${checks[k] ? 'on' : ''}" type="button" data-k="${k}"><span class="cb">✓</span><span>${it}</span></button>`).join('')}</div>
           </div>
@@ -242,10 +243,10 @@
           <div class="admin-band">
             <h3 style="font-family:var(--ff-display);font-weight:600;font-size:1.2rem;margin-bottom:.25rem">Como administrar</h3>
             <dl class="kv" style="margin-top:.8rem">
-              <dt>Senhas</dt><dd>Em <code>assets/auth.js</code>, um hash SHA-256 por perfil (<code>roles.vendedor</code> e <code>roles.admin</code>). Gere com <code>printf '%s' 'Senha' | sha256sum</code>. Trocar a senha derruba as sessões daquele perfil.</dd>
+              <dt>Senhas</dt><dd>Em <code>assets/auth.js</code>, um hash SHA-256 por perfil (<code>roles.colaborador</code> e <code>roles.admin</code>). Gere com <code>printf '%s' 'Senha' | sha256sum</code>. Trocar a senha derruba as sessões daquele perfil.</dd>
               <dt>Login individual</dt><dd>Trocar <code>provider</code> para <code>'clerk'</code> e colar a publishable key. O perfil vem de <code>publicMetadata.role</code>.</dd>
               <dt>Conteúdo do curso</dt><dd>Tudo em <code>onboarding/content.js</code>: módulos, lições, quizzes, simulações, prova, cola rápida e glossário.</dd>
-              <dt>Playbook</dt><dd><code>playbook/index.html</code>. Área do vendedor.</dd>
+              <dt>Playbook</dt><dd><code>playbook/index.html</code>. Área do colaborador.</dd>
               <dt>Manual BR</dt><dd><code>admin/manual-operacional.html</code>. Só admin.</dd>
               <dt>Este portal</dt><dd><code>index.html</code> + <code>assets/portal.js</code> (menus, trilhas, checklist, pendências).</dd>
               <dt>Proteção</dt><dd>Cada página inclui <code>assets/guard.js</code> com <code>data-role</code>. Sem sessão, volta para o portal.</dd>
@@ -326,7 +327,7 @@
       try {
         const s = await Auth.login({ name, password });
         if (!s) {
-          $('#gate-error').textContent = 'Senha incorreta. Confira com o Marcus qual é a senha da sua área.'; $('#gate-error').hidden = false;
+          $('#gate-error').textContent = 'Senha incorreta. Confira com o administrador qual é a senha da sua área.'; $('#gate-error').hidden = false;
           const card = $('.gate-card'); card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
           $('#gate-pass').value = ''; $('#gate-pass').focus();
         } else enter(s);

@@ -3,16 +3,16 @@
    ───────────────────────────────────────────────────────────────────
    Uso (no <head>, depois de assets/auth.js):
      <script src="../assets/auth.js"></script>
-     <script src="../assets/guard.js" data-role="vendedor"></script>
+     <script src="../assets/guard.js" data-role="colaborador"></script>
 
-   data-role  perfil mínimo: "vendedor" (padrão) ou "admin"
+   data-role  perfil mínimo: "colaborador" (padrão) ou "admin"
    data-bar   "off" para não injetar a barra de navegação
 
    Sem sessão válida → redireciona para o portal com ?next=<página>.
    ═══════════════════════════════════════════════════════════════════ */
 (() => {
   const script = document.currentScript;
-  const need = (script.dataset.role || 'vendedor');
+  const need = (script.dataset.role || 'colaborador');
   const withBar = script.dataset.bar !== 'off';
   const root = new URL(script.src).href.replace(/assets\/guard\.js.*$/, '');
   const here = location.pathname + location.hash;
@@ -42,7 +42,7 @@
       ['Portal', root + 'index.html', false],
       ['Onboarding', root + 'onboarding/', isActive('onboarding')],
       ['Playbook', root + 'playbook/', isActive('playbook')],
-      ['Materiais', root + 'index.html#materiais', isActive('vendedor')],
+      ['Materiais', root + 'index.html#materiais', isActive('colaborador')],
     ];
     if (Auth.can('admin', session)) links.push(['Admin', root + 'index.html#admin', isActive('admin')]);
 
@@ -58,7 +58,7 @@
       #mf-bar .mf-sp{flex:1}
       #mf-bar .mf-user{color:rgba(245,242,236,.7);white-space:nowrap;margin-right:.25rem}
       #mf-bar .mf-user i{font-style:normal;background:rgba(212,165,58,.18);color:#D4A53A;padding:.15rem .45rem;border-radius:100px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-left:.35rem}
-      #mf-bar button{background:transparent;border:1px solid rgba(255,255,255,.18);color:#F5F2EC;border-radius:6px;padding:.35rem .6rem;font:inherit;cursor:pointer}
+      #mf-bar button{margin-left:.3rem;background:transparent;border:1px solid rgba(255,255,255,.18);color:#F5F2EC;border-radius:6px;padding:.35rem .6rem;font:inherit;cursor:pointer}
       #mf-bar button:hover{background:rgba(255,255,255,.1)}
       #mf-bar .mf-nav{display:flex;gap:.1rem;overflow-x:auto;scrollbar-width:none}
       #mf-bar .mf-nav::-webkit-scrollbar{display:none}
@@ -79,8 +79,9 @@
       <div class="mf-nav">${links.map(([t, h, on]) => `<a class="mf-l ${on ? 'on' : ''}" href="${h}">${t}</a>`).join('')}</div>
       <span class="mf-sp"></span>
       <span class="mf-user"><span>${escapeHtml(session.name)}</span><i>${Auth.roleLabel(session.role)}</i></span>
-      <button type="button" id="mf-logout">Sair</button>`;
+      <button type="button" id="mf-print" title="Imprimir ou salvar esta página em PDF">🖨 PDF</button><button type="button" id="mf-logout">Sair</button>`;
     document.body.prepend(bar);
+    bar.querySelector('#mf-print').addEventListener('click', () => window.print());
     bar.querySelector('#mf-logout').addEventListener('click', async () => { await Auth.logout(); location.href = root + 'index.html'; });
   }
 

@@ -60,7 +60,7 @@ const GLOSSARY = [
 /* ─────────────────────────────────────────────────────────────────── */
 
 const COURSE = {
-  afterCourse: 'Combine com o Marcus a sua primeira semana: acompanhe uma discovery call, monte sua primeira lista de 50 prospects (um vertical, uma área) e escreva três achados específicos para dez deles antes de enviar qualquer mensagem. Revise a Cola rápida antes de toda conversa.',
+  afterCourse: 'Combine com o administrador a sua primeira semana: acompanhe uma discovery call, monte sua primeira lista de 50 prospects (um vertical, uma área) e escreva três achados específicos para dez deles antes de enviar qualquer mensagem. Revise a Cola rápida antes de toda conversa.',
 
   scorer: {
     items: [
@@ -97,7 +97,7 @@ const COURSE = {
               { icon: '📵', title: 'Sem site, ou com um quebrado', html: 'Nenhum site, ou um que era barato em 2018 e é ilegível no celular em 2026. As pessoas saem antes de ver o que ele oferece.' },
               { icon: '📞', title: 'Agendamento ainda por telefone', html: 'Metade da tarde some em WhatsApp e retornos de ligação. Um formulário de agendamento faz o mesmo trabalho enquanto ele atende quem está na frente dele.' },
             ] },
-            { type: 'script', title: 'Frase de apresentação (para usar com cliente)', pt: 'Nós construímos a metade online dos pequenos negócios — o site, a listagem do Google e o sistema de agendamento que hoje come a sua tarde.', en: "We build the online half of small businesses — the website, the Google listing, and the booking system that stops eating your afternoon.", note: 'Você fala em nome da consultoria: "nós" / "we". Quando o cliente perguntar quem faz, a resposta é simples: "o Marcus constrói, eu cuido de você durante o processo".' },
+            { type: 'script', title: 'Frase de apresentação (para usar com cliente)', pt: 'Nós construímos a metade online dos pequenos negócios — o site, a listagem do Google e o sistema de agendamento que hoje come a sua tarde.', en: "We build the online half of small businesses — the website, the Google listing, and the booking system that stops eating your afternoon.", note: 'Você fala em nome da consultoria: "nós" / "we". Quando o cliente perguntar quem faz, a resposta é simples: "a equipe técnica constrói, eu cuido de você durante o processo".' },
             { type: 'quiz', q: 'Qual frase resume melhor o que vendemos?', options: [
               'Sites bonitos e modernos com a tecnologia mais recente.',
               'Os clientes que hoje o dono do negócio perde para um concorrente com presença online melhor.',
@@ -106,9 +106,9 @@ const COURSE = {
           ],
         },
         {
-          id: 'seu-papel', title: 'O seu papel como vendedor(a)',
+          id: 'seu-papel', title: 'O seu papel como colaborador(a)',
           blocks: [
-            { type: 'text', html: `<p>Você é a primeira pessoa da consultoria que o cliente conhece. Sua função é <strong>encontrar o negócio certo, mostrar a lacuna com honestidade e conduzir até o "sim"</strong>. A construção do site é com o Marcus; a relação até o fechamento é com você.</p>` },
+            { type: 'text', html: `<p>Você é a primeira pessoa da consultoria que o cliente conhece. Sua função é <strong>encontrar o negócio certo, mostrar a lacuna com honestidade e conduzir até o "sim"</strong>. A construção do site é com a equipe técnica; a relação até o fechamento é com você.</p>` },
             { type: 'cards', cols: 2, items: [
               { icon: '✅', title: 'O que você faz', html: '<ul><li>Pesquisa e monta a lista de prospects</li><li>Qualifica (score) e escolhe a abordagem</li><li>Prepara os achados para a auditoria ou revisa o esboço</li><li>Conduz e-mails, DMs, ligações e a conversa de diagnóstico</li><li>Apresenta pacotes, responde objeções, envia a proposta</li><li>No "sim", passa o bastão com tudo documentado</li></ul>' },
               { icon: '🚫', title: 'O que você não faz', html: '<ul><li>Não promete prazo por mensagem informal — prazo só na proposta</li><li>Não inventa desconto — o preço é fixo e combinado antes</li><li>Não fala de tecnologia, framework ou "Core Web Vitals"</li><li>Não envia anexo no primeiro e-mail</li><li>Não insiste depois do terceiro contato sem resposta</li><li>Não começa nada sem contrato assinado e entrada paga</li></ul>' },
@@ -120,7 +120,7 @@ const COURSE = {
               'Link de agendamento de 15 minutos (Cal.com) para colocar nas mensagens',
               'Modelo da auditoria de duas páginas',
               'Planilha de prospects com as colunas obrigatórias (Módulo 4)',
-              'Uma discovery call acompanhada com o Marcus',
+              'Uma discovery call acompanhada com o administrador',
             ] },
             { type: 'quiz', q: 'Um cliente pergunta pelo WhatsApp: "Fica pronto em uma semana?". O que você faz?', options: [
               'Responde "sim, tranquilo" para não perder o momentum.',
@@ -298,7 +298,7 @@ const COURSE = {
             ] },
             { type: 'callout', tone: 'rule', title: 'O voucher começa no dia 1, nunca depois', html: 'São 3 a 6 semanas. Se a inscrição só começar quando o site estiver pronto, o cliente fica sem o dinheiro justamente quando a fatura final chega. Inscrição em paralelo com o projeto, sempre.' },
             { type: 'script', title: 'Explicação do voucher em três pontos', pt: 'Você se qualifica. Operando na Irlanda há 12+ meses, menos de 10 funcionários, faturamento abaixo de €2M. O Local Enterprise Office confirma.\n\nNós cuidamos da papelada. Os dois orçamentos, o formulário, os follow-ups. Você aprova, a gente protocola.\n\nO Estado paga metade. Até €2.500 em projetos elegíveis.', en: "You qualify. Trading in Ireland 12+ months, under 10 staff, turnover under €2M. The Local Enterprise Office confirms it.\n\nWe handle the paperwork. Two quotes, the application form, the follow-ups. You approve, we file.\n\nThe State pays half. Up to €2,500 on eligible projects." },
-            { type: 'text', html: `<h4>Preços de referência (Europa)</h4><p>O site público mostra o escopo, não os valores; o número vai por escrito na proposta. Estes são os valores internos de referência do Playbook. <strong>Confirme com o Marcus antes de citar um número</strong> fora do padrão.</p>` },
+            { type: 'text', html: `<h4>Preços de referência (Europa)</h4><p>O site público mostra o escopo, não os valores; o número vai por escrito na proposta. Estes são os valores internos de referência do Playbook. <strong>Confirme com o administrador antes de citar um número</strong> fora do padrão.</p>` },
             { type: 'table', head: ['Pacote', 'Preço cheio', 'Com voucher (50%)', 'O que resolve'], rows: [
               ['Website', '€1.200', '€600', 'Site de 5 páginas, Google Business Profile, formulário, SEO local, primeiro ano de manutenção'],
               ['Growth (Custom)', '€3.500', '€1.750', 'Tudo do Website + e-commerce ou reservas + integrações + copy de conversão'],
@@ -337,7 +337,7 @@ const COURSE = {
               ['Profissional', '14 dias úteis', '2 rodadas (até 10 ajustes)'],
               ['Premium', '21–30 dias úteis', '3 rodadas (até 15 ajustes)'],
             ] },
-            { type: 'callout', tone: 'info', title: 'Os valores em real', html: 'Vêm do Manual Operacional de abril/2026. Antes de enviar a primeira proposta em real, confirme com o Marcus se a tabela continua válida.' },
+            { type: 'callout', tone: 'info', title: 'Os valores em real', html: 'Vêm do Manual Operacional de abril/2026. Antes de enviar a primeira proposta em real, confirme com o administrador se a tabela continua válida.' },
             { type: 'quiz', q: 'Cliente brasileiro fechou o Profissional e pergunta se pode parcelar. O que você diz?', options: [
               '"Não, só à vista no PIX."',
               '"Sim: até 12× no cartão (juros da operadora a partir da 4ª parcela) ou 50% de entrada e 50% na entrega por PIX/boleto, sem juros."',
@@ -688,7 +688,7 @@ const COURSE = {
             { type: 'script', title: 'Declaração de preço (Irlanda)', pt: '"Pelo que vocês descreveram, é o pacote Website — €1.200, com o primeiro ano de hospedagem, atualizações e edições já incluído. Com o voucher, €600 do bolso de vocês."\n\n[Silêncio. Deixe que respondam primeiro.]', en: "\"Based on what you've described, that's the Website package — €1,200, with the first year of hosting, updates and edits already included. With the voucher, €600 out of pocket.\"\n\n[Silence. Let them respond first.]" },
             { type: 'callout', tone: 'tip', title: 'Ancorar o valor (Brasil e Europa)', html: 'Nunca como custo, sempre como aluguel de um ativo dele:<ul style="padding-left:1.2rem;margin-top:.4rem"><li>"É menos que <em>uma coloração por mês</em> num salão / <em>dois rodízios</em> num restaurante / <em>uma matrícula</em> numa escola."</li><li>"É um par de cafés por semana, e é despesa dedutível."</li><li>"O site é seu, no seu domínio, um ativo seu. A mensalidade é só para manter no ar e fazer pequenas mudanças sem você precisar lembrar."</li></ul>' },
             { type: 'script', title: 'Fechamento: duas opções, nunca sim/não', pt: '"Duas opções. Posso mandar hoje uma proposta com o escopo completo, ou — se vocês estiverem confortáveis — a gente já começa esta semana a inscrição do voucher, que leva de 3 a 6 semanas, então vale sair da inércia. Qual funciona melhor?"', en: "\"Two options. I can send you a proposal today with the full scope, or if you're happy we can start the voucher application this week — that part takes 3–6 weeks, so it's worth getting moving. Which suits?\"", note: 'No Brasil, a segunda opção é "já mando o contrato para assinatura e o PIX da entrada, e o site entra no ar esta semana".' },
-            { type: 'callout', tone: 'warn', title: 'A opção "sem risco" (Brasil, só para cliente travado)', html: '"O site já está pronto. Sem taxa de montagem. R$ X por mês, cancela quando quiser, e o primeiro mês é por nossa conta." Remove toda a fricção e a recorrência é o que importa no longo prazo. <strong>Use com moderação; não é o padrão</strong> e só com aval do Marcus.' },
+            { type: 'callout', tone: 'warn', title: 'A opção "sem risco" (Brasil, só para cliente travado)', html: '"O site já está pronto. Sem taxa de montagem. R$ X por mês, cancela quando quiser, e o primeiro mês é por nossa conta." Remove toda a fricção e a recorrência é o que importa no longo prazo. <strong>Use com moderação; não é o padrão</strong> e só com aval do administrador.' },
             { type: 'scenario', title: 'Depois de dizer o preço', who: '🧔', context: 'Dono de barbearia, na discovery call, logo após você dizer "€1.200, €600 com o voucher"', client: '(fica 4 segundos em silêncio, olhando para baixo)', options: [
               { text: '"Mas a gente pode ver um desconto, se for o caso…"', good: false, feedback: 'Você quebrou o silêncio e suavizou o preço. O número acabou de perder credibilidade, e o preço é fixo.' },
               { text: '(continua em silêncio e espera ele falar primeiro)', good: true, feedback: 'O silêncio faz parte do script. Quem fala primeiro depois do preço normalmente é quem cede. Deixe ele processar.' },
@@ -807,7 +807,7 @@ const COURSE = {
               ['Revisões', 'Duas rodadas incluídas', 'Rodadas adicionais são orçadas à parte.'],
               ['Conteúdo', 'Fornecido pelo cliente', 'O cronograma começa a contar quando o conteúdo chega.'],
             ] },
-            { type: 'callout', tone: 'info', title: 'Quem escreve a proposta', html: 'Você prepara a seção 1 (com as palavras do cliente) e as informações da conversa; o Marcus fecha o escopo, o número e o cronograma. Nunca envie uma proposta sem essa revisão.' },
+            { type: 'callout', tone: 'info', title: 'Quem escreve a proposta', html: 'Você prepara a seção 1 (com as palavras do cliente) e as informações da conversa; o administrador fecha o escopo, o número e o cronograma. Nunca envie uma proposta sem essa revisão.' },
             { type: 'quiz', q: 'Qual é a seção mais importante da proposta?', options: [
               'Quanto custa.',
               'O que você me contou: a situação dele, com as palavras dele.',
@@ -914,7 +914,7 @@ const COURSE = {
             ] },
             { type: 'compare', title: 'Compliance por mercado', label: 'Tema', rows: [
               { label: 'Regime de e-mail', br: 'LGPD: base legal e transparência; opt-out sempre disponível.', ie: 'B2B é opt-out, desde que: endereço comercial, assunto só sobre a atividade dele, sem oposição prévia, remetente identificado, opt-out funcional em toda mensagem.' },
-              { label: 'Autônomos', br: 'Pessoa física: cuidado redobrado com consentimento.', ie: 'Sole traders são pessoas naturais: legítimo interesse sob o GDPR, com LIA documentada (o Marcus mantém) e direito de oposição claro.' },
+              { label: 'Autônomos', br: 'Pessoa física: cuidado redobrado com consentimento.', ie: 'Sole traders são pessoas naturais: legítimo interesse sob o GDPR, com LIA documentada (o administrador mantém) e direito de oposição claro.' },
               { label: 'Endereços', br: 'Prefira contato comercial público.', ie: 'Prefira info@ e bookings@ a endereços de pessoas nomeadas.' },
               { label: 'Multas', br: 'LGPD: até 2% do faturamento.', ie: 'Até €5.000 (pessoa física) e €50.000 (empresa) por infração.' },
               { label: 'No site do cliente', br: 'Política de privacidade, banner de cookies, consentimento nos formulários.', ie: 'Política de privacidade e cookies (GDPR).' },
@@ -940,7 +940,7 @@ const COURSE = {
               { value: '30%+', label: 'fechamento sobre propostas' },
             ] },
             { type: 'table', head: ['Sintoma', 'Causa provável e correção'], rows: [
-              ['Abertura baixa (< 25%)', 'Entregabilidade. Avise o Marcus: SPF/DKIM/DMARC e aquecimento.'],
+              ['Abertura baixa (< 25%)', 'Entregabilidade. Avise o administrador: SPF/DKIM/DMARC e aquecimento.'],
               ['Boa abertura, poucas respostas (< 2%)', 'Os três achados estão genéricos demais. Mais pesquisa por prospect.'],
               ['Boas respostas, poucas chamadas', 'A auditoria não está convencendo. Torne-a mais específica.'],
               ['Boas chamadas, poucas propostas', 'Você não está pedindo o fechamento. Use as duas opções.'],
@@ -950,8 +950,8 @@ const COURSE = {
             { type: 'callout', tone: 'tip', title: 'Um estágio por vez', html: 'Corrija de cima para baixo. Mexer em dois ao mesmo tempo impede saber o que funcionou.' },
             { type: 'text', html: `<h4>Seus primeiros 30 dias, {Seu nome}</h4>` },
             { type: 'steps', items: [
-              { title: 'Semana 1 · Aprender e observar', html: 'Concluir esta Academia. Ler o Playbook inteiro. Acompanhar uma discovery call e um walk-through com o Marcus. Montar assinatura, link de agendamento e planilha.', meta: 'Nada é enviado nesta semana' },
-              { title: 'Semana 2 · Primeira lista', html: 'Pesquisar e pontuar 50 prospects: um vertical, uma área. Escrever três achados específicos para os dez melhores e revisar com o Marcus.', meta: 'Lista revisada antes de enviar' },
+              { title: 'Semana 1 · Aprender e observar', html: 'Concluir esta Academia. Ler o Playbook inteiro. Acompanhar uma discovery call e um walk-through com o administrador. Montar assinatura, link de agendamento e planilha.', meta: 'Nada é enviado nesta semana' },
+              { title: 'Semana 2 · Primeira lista', html: 'Pesquisar e pontuar 50 prospects: um vertical, uma área. Escrever três achados específicos para os dez melhores e revisar com o administrador.', meta: 'Lista revisada antes de enviar' },
               { title: 'Semana 3 · Primeiros envios', html: '10 por dia subindo para 20. Auditorias entregues em até 48 horas, sempre. Segundos 50 prospects pesquisados.', meta: '10 → 20/dia' },
               { title: 'Semana 4 · Volume e correção', html: '30 por dia estável. Follow-ups rodando. Primeiras discovery calls suas. Primeiras propostas. Métricas revisadas, um gargalo identificado e corrigido.', meta: '30/dia estável' },
             ] },
@@ -998,7 +998,7 @@ const COURSE = {
 /* ═══════════════════════════ COLA RÁPIDA ═══════════════════════════ */
 const CHEATSHEET = [
   { heading: 'Frases de bolso', type: 'script', title: 'Apresentação', pt: 'Nós construímos a metade online dos pequenos negócios — o site, a listagem do Google e o sistema de agendamento que hoje come a sua tarde.', en: 'We build the online half of small businesses — the website, the Google listing, and the booking system that stops eating your afternoon.' },
-  { heading: 'Preços de referência (confirme com o Marcus antes de citar fora do padrão)', type: 'compare', title: 'Tabela de preços', label: 'Pacote', rows: [
+  { heading: 'Preços de referência (confirme com o administrador antes de citar fora do padrão)', type: 'compare', title: 'Tabela de preços', label: 'Pacote', rows: [
     { label: 'Entrada', br: 'Essencial: R$ 1.497 + R$ 97/mês', ie: 'Website: €1.200 (€600 com voucher) · primeiro ano incluso' },
     { label: 'Intermediário', br: 'Profissional ⭐: R$ 2.497 + R$ 197/mês', ie: 'Growth/Custom: €3.500 (€1.750 com voucher)' },
     { label: 'Avançado', br: 'Premium: R$ 3.997 + R$ 297/mês', ie: 'Custom: a partir de €5.000 (−€2.500 com voucher)' },
@@ -1036,3 +1036,65 @@ const CHEATSHEET = [
     ['Base', 'Dublin 15, Irlanda'],
   ] },
 ];
+
+
+/* ═══════════════════════════ FOLHETO PARA O CLIENTE ═══════════════════════════
+   Uma página para imprimir, enviar como imagem ou colar como texto.
+   Por mercado (ie = Irlanda/Europa, br = Brasil) e idioma. `{Seu nome}`
+   vira o nome de quem está logado. */
+const LEAFLET = {
+  ie: {
+    en: {
+      tagline: 'Websites for local business · Dublin 15',
+      title: 'Your business is good. Online, it should be too.',
+      subtitle: 'We build the online half of small businesses: the website, the Google listing and the booking form that stops eating your afternoon. Fixed price, agreed in writing before anything starts.',
+      problemsTitle: 'Three things that quietly cost you money',
+      problems: [['Invisible on Google.', 'Someone nearby searches for what you do. Your competitor appears; you don\'t.'], ['No site, or a broken one.', 'People leave before they see what you offer, especially on a phone.'], ['Bookings still by phone.', 'Half the afternoon goes to WhatsApp and callbacks.']],
+      includesTitle: 'What the Website package includes',
+      includes: ['Single-page or 5-page website', 'Google Business Profile, verified and set up', 'Local SEO for the searches people make near you', 'Contact or booking form', 'A clear list of the photos and text to gather, walked through with you', '12 months of hosting, updates and small edits', 'Changes answered on WhatsApp, same day', 'Domain, hosting account and code in your name from day one'],
+      processTitle: 'How it works',
+      process: [['Free audit (48h).', 'Two pages, plain English: where you stand on Google and the three things to fix first.'], ['15-minute call.', 'We go through the audit and agree the scope and the number in writing.'], ['Build (1–2 weeks).', 'Once your photos and service list are in. Most of the timeline is content, not code.'], ['Live, with the first year included.', 'Site live, Google listing sorted, 12 months of upkeep already in the price.']],
+      moneyTitle: 'The State pays half',
+      money: ['Trading Online Voucher (Local Enterprise Office): up to 50% of eligible costs, up to €2,500.', 'You qualify if you\'ve been trading 12+ months, have under 10 staff and turnover under €2M.', 'We handle the paperwork end to end: two quotes, the form, the follow-ups. You approve, we file.', 'Payment: 50% to start, 50% on delivery. Bank transfer (SEPA), Stripe or Wise.'],
+      proof: [['3×', 'quote requests after the new site — Coady Shipping, Dublin 11'], ['12+', 'projects delivered since 2022'], ['0', 'lock-in: domain, hosting and code stay in your name']],
+      ctaTitle: 'Next step', cta: 'Say "yes" and your free two-page audit is with you in 48 hours. No pitch, no strings.',
+      contactRole: "Marcus Fernandes' team",
+    },
+    pt: {
+      tagline: 'Sites para negócios locais · Dublin 15',
+      title: 'Seu negócio é bom. Online, ele precisa ser também.',
+      subtitle: 'Construímos a metade online dos pequenos negócios: o site, a ficha do Google e o formulário de agendamento que para de comer a sua tarde. Preço fixo, acordado por escrito antes de qualquer coisa começar.',
+      problemsTitle: 'Três coisas que custam dinheiro toda semana',
+      problems: [['Invisível no Google.', 'Alguém perto de você busca o que você faz. O concorrente aparece; você não.'], ['Sem site, ou com um quebrado.', 'As pessoas saem antes de ver o que você oferece, principalmente no celular.'], ['Agendamento ainda por telefone.', 'Metade da tarde vai embora em WhatsApp e retornos de ligação.']],
+      includesTitle: 'O que o pacote Website inclui',
+      includes: ['Site de página única ou de 5 páginas', 'Google Business Profile verificado e configurado', 'SEO local para as buscas que as pessoas fazem perto de você', 'Formulário de contato ou de agendamento', 'Lista clara das fotos e textos a reunir, revisada junto com você', '12 meses de hospedagem, atualizações e pequenas edições', 'Alterações respondidas no WhatsApp, no mesmo dia', 'Domínio, conta de hospedagem e código no seu nome desde o dia 1'],
+      processTitle: 'Como funciona',
+      process: [['Auditoria gratuita (48h).', 'Duas páginas, em linguagem simples: onde você está no Google e as três coisas a corrigir primeiro.'], ['Chamada de 15 minutos.', 'Percorremos a auditoria e acordamos o escopo e o valor por escrito.'], ['Construção (1–2 semanas).', 'Assim que suas fotos e a lista de serviços chegarem. A maior parte do prazo é conteúdo, não código.'], ['No ar, com o primeiro ano incluído.', 'Site publicado, ficha do Google ajustada, 12 meses de manutenção já no preço.']],
+      moneyTitle: 'O Estado paga metade',
+      money: ['Trading Online Voucher (Local Enterprise Office): até 50% dos custos elegíveis, até €2.500.', 'Você se qualifica se opera há 12+ meses, tem menos de 10 funcionários e fatura menos de €2M.', 'Nós cuidamos da papelada de ponta a ponta: os dois orçamentos, o formulário, os follow-ups. Você aprova, nós protocolamos.', 'Pagamento: 50% para começar, 50% na entrega. Transferência (SEPA), Stripe ou Wise.'],
+      proof: [['3×', 'pedidos de orçamento após o novo site — Coady Shipping, Dublin 11'], ['12+', 'projetos entregues desde 2022'], ['0', 'lock-in: domínio, hospedagem e código ficam no seu nome']],
+      ctaTitle: 'Próximo passo', cta: 'Diga "sim" e a sua auditoria gratuita de duas páginas chega em 48 horas. Sem pitch, sem compromisso.',
+      contactRole: 'Equipe Marcus Fernandes',
+    },
+  },
+  br: {
+    pt: {
+      tagline: 'Sites para negócios locais',
+      title: 'Seu negócio é bom. Online, ele precisa ser também.',
+      subtitle: 'Construímos a metade online do seu negócio: o site, a ficha do Google e o botão de agendamento que tira o telefone da sua mão. Preço fixo, combinado antes de começar.',
+      problemsTitle: 'Três coisas que custam dinheiro toda semana',
+      problems: [['Invisível no Google.', 'Alguém na sua cidade busca o que você faz. O concorrente aparece; você não.'], ['Sem site, ou com um quebrado.', 'As pessoas saem antes de ver o que você oferece, principalmente no celular.'], ['Agendamento ainda por telefone.', 'Metade da tarde vai embora em WhatsApp e retornos de ligação.']],
+      includesTitle: 'O que está incluído',
+      includes: ['Site profissional no seu domínio .com.br', 'Ficha do Google (Google Meu Negócio) configurada', 'Aparecer no Google para quem busca o seu serviço na sua cidade', 'Botão de WhatsApp e formulário de contato', 'Hospedagem, segurança (cadeado) e backup inclusos na mensalidade', 'Pequenas alterações de texto, foto e preço feitas por nós', 'Site e domínio no seu nome, desde o primeiro dia', 'Nota fiscal em todo pagamento'],
+      processTitle: 'Como funciona',
+      process: [['Esboço pronto.', 'Você recebe o link do seu site já montado, com suas fotos e avaliações reais, antes de pagar qualquer coisa.'], ['Conversa de 15 minutos.', 'Vemos o site juntos no seu celular e escolhemos o pacote que faz sentido para o momento do negócio.'], ['Contrato e entrada.', 'Assinatura digital e 50% de entrada por PIX. O prazo começa quando o conteúdo chega.'], ['No ar em 7 a 14 dias úteis.', 'Site publicado, ficha do Google ajustada e treinamento rápido para você.']],
+      moneyTitle: 'Investimento',
+      money: ['Três pacotes: Essencial (R$ 1.497 + R$ 97/mês), Profissional (R$ 2.497 + R$ 197/mês) e Premium (R$ 3.997 + R$ 297/mês).', 'Setup em até 12× no cartão, ou 50% de entrada + 50% na entrega por PIX ou boleto, sem juros.', 'A mensalidade mantém o site no ar, seguro, atualizado e com pequenas alterações inclusas.', '7 dias de arrependimento com reembolso integral. Após 12 meses, cancelamento livre com 30 dias de aviso.'],
+      proof: [['3×', 'pedidos de orçamento após o novo site — Coady Shipping, Dublin'], ['12+', 'projetos entregues desde 2022'], ['100%', 'seu: site, domínio e código no seu nome']],
+      ctaTitle: 'Próximo passo', cta: 'Responda "quero ver" e mandamos o esboço do seu site em até 48 horas. Sem compromisso.',
+      contactRole: 'Equipe Marcus Fernandes',
+    },
+  },
+};
+
+window.COURSE = COURSE; window.GLOSSARY = GLOSSARY; window.CHEATSHEET = CHEATSHEET; window.LEAFLET = LEAFLET;

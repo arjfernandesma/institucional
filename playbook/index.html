@@ -1081,7 +1081,7 @@ td strong { color: var(--text); font-weight: 600; }
 </style>
 <meta name="robots" content="noindex, nofollow">
 <script src="../assets/auth.js"></script>
-<script src="../assets/guard.js" data-role="vendedor"></script>
+<script src="../assets/guard.js" data-role="colaborador"></script>
 </head>
 <body>
 
@@ -1146,7 +1146,7 @@ td strong { color: var(--text); font-weight: 600; }
     <a class="toc-item" href="../index.html"><span class="toc-num">⌂</span> Início do portal</a>
     <a class="toc-item" href="../onboarding/" style="border:1px solid var(--border);background:var(--gold-bg);color:var(--gold)"><span class="toc-num">🎓</span> Academia de Vendas · onboarding</a>
     <a class="toc-item" href="../onboarding/#cheatsheet"><span class="toc-num">⚡</span> Cola rápida</a>
-    <a class="toc-item" href="../vendedor/objecoes.html"><span class="toc-num">🧠</span> Infográfico de objeções</a>
+    <a class="toc-item" href="../colaborador/objecoes.html"><span class="toc-num">🧠</span> Infográfico de objeções</a>
   </div>
 </aside>
 
@@ -2811,6 +2811,11 @@ tocItems.forEach(item => {
     document.querySelector('.sidebar')?.classList.remove('open');
   });
 });
+</script>
+<script src="../assets/share.js"></script>
+<script>
+  Share.enhance('.diagram', { text: true, image: true, hint: 'Diagrama' });
+  Share.enhance('.table-wrap', { text: true, image: true, hint: 'Tabela' });
 </script>
 </body>
 </html>

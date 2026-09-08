@@ -602,7 +602,7 @@ footer p {
 </style>
 <meta name="robots" content="noindex, nofollow">
 <script src="../assets/auth.js"></script>
-<script src="../assets/guard.js" data-role="vendedor"></script>
+<script src="../assets/guard.js" data-role="colaborador"></script>
 </head>
 <body>
 
@@ -989,6 +989,10 @@ setTimeout(() => {
   const first = document.querySelector('.obj-card');
   if (first) first.querySelector('.obj-header').click();
 }, 1200);
+</script>
+<script src="../assets/share.js"></script>
+<script>
+  Share.enhance('.obj-card, .pacer', { text: true, image: true });
 </script>
 </body>
 </html>

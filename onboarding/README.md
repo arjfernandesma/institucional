@@ -1,6 +1,6 @@
 # Academia de Vendas — onboarding interativo
 
-Curso de boas-vindas para novos vendedores da consultoria (sites, Google Business Profile, agendamento e automação para negócios locais), cobrindo os dois mercados: **Brasil** e **Europa/Irlanda**.
+Curso de boas-vindas para novos colaboradores da consultoria (sites, Google Business Profile, agendamento e automação para negócios locais), cobrindo os dois mercados: **Brasil** e **Europa/Irlanda**.
 
 Abra `onboarding/index.html` (ou `/onboarding/` no domínio publicado). É 100% estático: HTML, CSS e JavaScript puro, sem build, sem dependências além das fontes do Google.
 
@@ -16,7 +16,7 @@ Abra `onboarding/index.html` (ou `/onboarding/` no domínio publicado). É 100% 
 
 ## Acesso
 
-**Hoje (modo `password`)**: a mesma sessão do portal. Quem entrou no portal (vendedor ou admin) já está dentro da Academia. As senhas não ficam em texto puro — apenas o hash SHA-256 de cada perfil, em `assets/auth.js` (`AUTH_CONFIG.roles`).
+**Hoje (modo `password`)**: a mesma sessão do portal. Quem entrou no portal (colaborador ou admin) já está dentro da Academia. As senhas não ficam em texto puro — apenas o hash SHA-256 de cada perfil, em `assets/auth.js` (`AUTH_CONFIG.roles`).
 
 Para trocar a senha:
 
@@ -32,7 +32,7 @@ Cole o hash em `AUTH_CONFIG.roles.<perfil>.passwordHash`.
 
 ## Progresso do aluno
 
-O progresso (lições concluídas, respostas, nota da prova) fica no `localStorage` do navegador, por nome de usuário. Trocar de navegador ou limpar dados zera o progresso. Com o Clerk ativo, o mesmo mecanismo passa a usar o ID do usuário.
+O progresso (lições concluídas, respostas, nota da prova) fica no `localStorage` do navegador, por nome de usuário, com uma cópia compacta num cookie de 1 ano (lições concluídas e nota) que recupera o progresso se o `localStorage` for limpo. Trocar de navegador ou aparelho não leva o progresso junto. Com o Clerk ativo, o mesmo mecanismo passa a usar o ID do usuário.
 
 ## Editando o conteúdo
 

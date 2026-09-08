@@ -36,11 +36,11 @@
       <label class="field">
         <span class="field-label">Senha de acesso</span>
         <div class="field-pass">
-          <input id="gate-pass" type="password" name="password" placeholder="Senha fornecida pelo Marcus" required>
+          <input id="gate-pass" type="password" name="password" placeholder="Senha fornecida pelo administrador" required>
           <button type="button" class="pass-toggle" id="pass-toggle" aria-label="Mostrar senha">👁</button>
         </div>
       </label>
-      <p id="gate-error" class="gate-error" role="alert" hidden>Senha incorreta. Confira com o Marcus e tente de novo.</p>
+      <p id="gate-error" class="gate-error" role="alert" hidden>Senha incorreta. Confira com o administrador e tente de novo.</p>
       <button type="submit" class="btn btn-primary btn-lg" id="gate-submit">Entrar no curso →</button>
     </form>
 
@@ -65,6 +65,7 @@
       <a class="nav-link" href="../index.html">← Portal</a>
       <button class="nav-link" data-view="home">Trilha</button>
       <button class="nav-link" data-view="cheatsheet">Cola rápida</button>
+      <button class="nav-link" data-view="folheto">Folheto</button>
       <button class="nav-link" data-view="glossary">Glossário</button>
       <a class="nav-link" href="../playbook/" target="_blank" rel="noopener">Playbook ↗</a>
     </nav>
@@ -80,6 +81,7 @@
     <a class="nav-link" href="../index.html">⌂ Portal da equipe</a>
     <button class="nav-link" data-view="home">🏠 Trilha do curso</button>
     <button class="nav-link" data-view="cheatsheet">⚡ Cola rápida (preços e regras)</button>
+    <button class="nav-link" data-view="folheto">📄 Folheto para o cliente</button>
     <button class="nav-link" data-view="glossary">📖 Glossário para iniciantes</button>
     <a class="nav-link" href="../playbook/" target="_blank" rel="noopener">📘 Playbook completo ↗</a>
     <button class="nav-link" id="logout-m">🚪 Sair</button>
@@ -91,6 +93,7 @@
 </div>
 
 <script src="../assets/auth.js"></script>
+<script src="../assets/share.js"></script>
 <script src="content.js"></script>
 <script src="app.js"></script>
 </body>

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260908c">
 </head>
 <body>
 
@@ -72,6 +72,7 @@
     <div class="topbar-user">
       <span class="avatar" id="user-avatar">?</span>
       <span class="user-name" id="user-name"></span>
+      <button class="btn btn-outline btn-sm" id="print-view" title="Imprimir ou salvar esta tela em PDF">🖨 Salvar PDF</button>
       <button class="btn btn-ghost btn-sm" id="logout">Sair</button>
     </div>
     <button class="menu-btn" id="menu-btn" aria-label="Menu">☰</button>
@@ -84,6 +85,7 @@
     <button class="nav-link" data-view="folheto">📄 Folheto para o cliente</button>
     <button class="nav-link" data-view="glossary">📖 Glossário para iniciantes</button>
     <a class="nav-link" href="../playbook/" target="_blank" rel="noopener">📘 Playbook completo ↗</a>
+    <button class="nav-link" id="print-view-m">🖨 Salvar esta tela em PDF</button>
     <button class="nav-link" id="logout-m">🚪 Sair</button>
   </div>
 
@@ -92,9 +94,9 @@
   <div id="toast" class="toast" hidden></div>
 </div>
 
-<script src="../assets/auth.js"></script>
-<script src="../assets/share.js"></script>
-<script src="content.js"></script>
-<script src="app.js"></script>
+<script src="../assets/auth.js?v=20260908c"></script>
+<script src="../assets/share.js?v=20260908c"></script>
+<script src="content.js?v=20260908c"></script>
+<script src="app.js?v=20260908c"></script>
 </body>
 </html>

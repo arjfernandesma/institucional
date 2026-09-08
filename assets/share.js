@@ -122,8 +122,10 @@ const Share = (() => {
     } finally { if (btn) btn.disabled = false; }
   }
   async function downloadImage(el, btn, filename) {
-    try { const canvas = await renderCanvas(el); download(await toBlob(canvas), (filename || slug(el.dataset.shareName)) + '.png'); flash(btn, 'Baixado ✓'); }
+    if (btn) { btn.dataset.label = btn.dataset.label || btn.innerHTML; btn.innerHTML = 'Gerando…'; btn.disabled = true; }
+    try { const canvas = await renderCanvas(el); download(await toBlob(canvas), (filename || slug(el.dataset.shareName || el.querySelector('h2,h3,h4,.compare-title,.diagram-cap')?.textContent)) + '.png'); flash(btn, 'PNG baixado ✓'); }
     catch { flash(btn, 'Não deu para gerar a imagem', false); }
+    finally { if (btn) btn.disabled = false; }
   }
 
   /* ── impressão / PDF ───────────────────────────────────────────── */
@@ -163,12 +165,13 @@ const Share = (() => {
       @media print{.share-bar{display:none !important}}`;
     document.head.appendChild(barCss);
   }
-  function makeBar({ text = true, image = true, print = false, hint = '', getText, target, title } = {}) {
+  function makeBar({ text = true, image = true, download: dl = true, print = false, hint = 'Compartilhar', getText, target, title } = {}) {
     ensureBarCss();
     const bar = document.createElement('div'); bar.className = 'share-bar no-share';
     if (hint) bar.innerHTML = `<span class="share-hint">${hint}</span>`;
     if (text) { const b = btn('💬', 'Copiar texto', 'Copiar como texto, pronto para WhatsApp ou e-mail'); b.addEventListener('click', () => copyText(getText ? getText() : textFromElement(target()), b)); bar.appendChild(b); }
     if (image) { const b = btn('🖼️', 'Copiar imagem', 'Copiar como imagem para colar na conversa'); b.addEventListener('click', () => copyImage(target(), b)); bar.appendChild(b); }
+    if (dl) { const b = btn('⬇️', 'Baixar PNG', 'Salvar como imagem PNG no seu aparelho'); b.addEventListener('click', () => downloadImage(target(), b)); bar.appendChild(b); }
     if (print) { const b = btn('🖨️', 'PDF', 'Imprimir ou salvar em PDF'); b.addEventListener('click', () => printElement(target(), { title: title || document.title, subtitle: new Date().toLocaleDateString('pt-BR') })); bar.appendChild(b); }
     return bar;
   }

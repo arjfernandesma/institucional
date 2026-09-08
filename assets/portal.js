@@ -101,8 +101,9 @@
     const items = NAV.filter(n => !n.role || Auth.can(n.role, session));
     $('#portal-nav').innerHTML = items.map(n => `<a class="nav-link" href="#${n.id}" data-sec="${n.id}">${n.label}</a>`).join('');
     $('#mobile-nav').innerHTML = items.map(n => `<a class="nav-link" href="#${n.id}">${n.label}</a>`).join('') +
-      `<a class="nav-link" href="onboarding/">🎓 Abrir a Academia</a><a class="nav-link" href="playbook/">📘 Abrir o Playbook</a><button class="nav-link" id="logout-m">🚪 Sair</button>`;
+      `<a class="nav-link" href="onboarding/">🎓 Abrir a Academia</a><a class="nav-link" href="playbook/">📘 Abrir o Playbook</a><button class="nav-link" id="print-view-m">🖨 Salvar esta página em PDF</button><button class="nav-link" id="logout-m">🚪 Sair</button>`;
     $('#logout-m').addEventListener('click', doLogout);
+    $('#print-view-m').addEventListener('click', () => { $('#mobile-nav').hidden = true; setTimeout(() => window.print(), 50); });
     $$('#mobile-nav a').forEach(a => a.addEventListener('click', () => { $('#mobile-nav').hidden = true; }));
   }
 
@@ -319,6 +320,7 @@
   async function init() {
     $('#menu-btn').addEventListener('click', () => { const mn = $('#mobile-nav'); mn.hidden = !mn.hidden; });
     $('#logout').addEventListener('click', doLogout);
+    $('#print-view').addEventListener('click', () => window.print());
     $('#pass-toggle').addEventListener('click', () => { const i = $('#gate-pass'); i.type = i.type === 'password' ? 'text' : 'password'; });
     $('#gate-form').addEventListener('submit', async (e) => {
       e.preventDefault();

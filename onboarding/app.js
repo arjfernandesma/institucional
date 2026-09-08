@@ -709,6 +709,8 @@
     const doLogout = async () => { await Auth.logout(); state.session = null; location.href = '../index.html'; };
     $('#logout').addEventListener('click', doLogout);
     $('#logout-m').addEventListener('click', doLogout);
+    $('#print-view').addEventListener('click', () => window.print());
+    $('#print-view-m').addEventListener('click', () => { $('#mobile-nav').hidden = true; setTimeout(() => window.print(), 50); });
     window.addEventListener('hashchange', route);
 
     $('#pass-toggle').addEventListener('click', () => { const i = $('#gate-pass'); i.type = i.type === 'password' ? 'text' : 'password'; });

@@ -79,7 +79,7 @@
       <div class="mf-nav">${links.map(([t, h, on]) => `<a class="mf-l ${on ? 'on' : ''}" href="${h}">${t}</a>`).join('')}</div>
       <span class="mf-sp"></span>
       <span class="mf-user"><span>${escapeHtml(session.name)}</span><i>${Auth.roleLabel(session.role)}</i></span>
-      <button type="button" id="mf-print" title="Imprimir ou salvar esta página em PDF">🖨 PDF</button><button type="button" id="mf-logout">Sair</button>`;
+      <button type="button" id="mf-print" title="Imprimir ou salvar esta página em PDF">🖨 Salvar PDF</button><button type="button" id="mf-logout">Sair</button>`;
     document.body.prepend(bar);
     bar.querySelector('#mf-print').addEventListener('click', () => window.print());
     bar.querySelector('#mf-logout').addEventListener('click', async () => { await Auth.logout(); location.href = root + 'index.html'; });

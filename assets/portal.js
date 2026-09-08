@@ -171,6 +171,7 @@
                 <div class="t-foot"><span>${pct}% concluído${p?.exam ? ` · prova: ${p.exam.score}%` : ''}</span><span>~3 horas no total</span></div></div>
               <span class="btn btn-primary">${pct === 0 ? 'Começar' : examPassed ? 'Revisar' : 'Continuar'} →</span>
             </a>
+            <a class="tile" href="onboarding/#videos"><div class="t-icon">🎬</div><h4>Vídeos explicativos</h4><p>Onze vídeos curtos com narração e legendas: o que vendemos, voucher, score, auditoria, cold email, discovery call, PACER, funil.</p><div class="t-foot"><span>1–2 min cada</span><span>Academia →</span></div></a>
             ${trackTiles}
           </div>
         </section>

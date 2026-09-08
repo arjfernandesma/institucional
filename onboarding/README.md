@@ -13,6 +13,7 @@ Abra `onboarding/index.html` (ou `/onboarding/` no domínio publicado). É 100% 
 | `../assets/auth.js` | Autenticação compartilhada com o portal (senha por perfil hoje, Clerk depois) |
 | `content.js` | **Todo o conteúdo do curso** — módulos, lições, quizzes, cenários, prova final |
 | `app.js` | Motor do curso: navegação, progresso, componentes interativos, certificado |
+| `explainer.js` | Player dos vídeos explicativos (cenas animadas em SVG/HTML, legendas, narração por voz do navegador) |
 
 ## Acesso
 
@@ -54,6 +55,7 @@ Tudo está em `content.js`. Cada módulo tem lições; cada lição é uma lista
 | `scenario` | Simulação: o cliente diz algo, o aluno escolhe a resposta — **obrigatório** |
 | `order` | Colocar passos na ordem certa — **obrigatório** |
 | `scorer` | Calculadora de score de qualificação (ICP) |
+| `video` | Vídeo explicativo: `title`, `desc`, `scenes[]` com `dur` (s), `caption`, `narration` e `visual` (`kind`: title, bullets, chat, timeline, funnel, compare, steps, stat, phone, clock, score) |
 
 A prova final fica em `COURSE.exam`; a nota mínima em `passScore`. O certificado usa o nome informado no acesso.
 

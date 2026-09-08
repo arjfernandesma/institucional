@@ -91,6 +91,7 @@
     const h = location.hash.replace(/^#/, '') || 'home';
     const parts = h.split('/');
     $('#mobile-nav').hidden = true;
+    (state.players || []).forEach(p => p.destroy()); state.players = [];
     if (parts[0] === 'm' && parts[1]) {
       const m = modules().find(x => x.id === parts[1]);
       if (!m) return go('#home');
@@ -111,6 +112,8 @@
       renderCheatsheet();
     } else if (parts[0] === 'folheto') {
       renderLeaflet();
+    } else if (parts[0] === 'videos') {
+      renderVideos(parts[1]);
     } else {
       renderHome();
     }
@@ -151,6 +154,7 @@
               ${!next && !examPassed ? `<button class="btn btn-primary btn-lg" data-go="#exam">Fazer a prova final →</button>` : ''}
               ${examPassed ? `<button class="btn btn-primary btn-lg" data-go="#certificate">Ver meu certificado</button>` : ''}
               <button class="btn btn-outline btn-lg" data-go="#cheatsheet">⚡ Cola rápida</button>
+              <button class="btn btn-outline btn-lg" data-go="#videos">🎬 Vídeos</button>
             </div>
           </div>
           <div class="ring" aria-label="Progresso ${pct}%">
@@ -342,6 +346,8 @@
           <div class="order-foot"><span class="of-msg">${ans?.done ? 'Ordem correta ✓' : 'Próximo: 1º passo'}</span><button class="btn btn-ghost btn-sm of-reset" type="button" ${ans?.done ? 'hidden' : ''}>Recomeçar</button></div>
           <div class="fb-slot">${ans?.done && b.why ? feedbackHtml(true, b.why) : ''}</div></div>`;
       }
+      case 'video':
+        return `<div class="xp-lesson-wrap"><div class="xp-host"></div><div class="xp-hint">🎬 Vídeo explicativo com narração em português (voz do navegador). Use ⛶ para tela cheia. ${ans?.watched ? '<strong style="color:var(--green)">Assistido ✓</strong>' : 'Opcional, mas vale os dois minutos.'}</div></div>`;
       case 'scorer':
         return `<div class="scorer"><div><div class="q-text">Calculadora de score de qualificação</div><p style="font-size:.9rem;color:var(--text-2);margin-bottom:.8rem">Marque o que é verdade sobre o prospect. Cada item vale 1 ponto.</p>
           <div class="checklist">${COURSE.scorer.items.map((it, k) => `<button class="check" type="button" data-k="${k}"><span class="cb">✓</span><span>${it}</span></button>`).join('')}</div></div>
@@ -372,6 +378,10 @@
 
     if (b.type === 'script') {
       $$('.copy-btn', el).forEach(btn => btn.addEventListener('click', () => copyText($('.txt', btn.parentElement).textContent, btn)));
+    }
+    if (b.type === 'video' && window.Explainer) {
+      const player = Explainer.mount($('.xp-host', el), b, { onComplete: () => { setAns({ watched: true, done: true }); toast('Vídeo concluído ✓'); } });
+      (state.players = state.players || []).push(player);
     }
     if (b.type === 'compare') {
       $$('[data-seg] button', el).forEach(btn => btn.addEventListener('click', () => {
@@ -620,6 +630,48 @@
     if (!SHARE_TYPES.has(b.type) || !window.Share) return;
     const bar = Share.makeBar({ text: true, image: true, getText: () => blockToText(b, el), target: () => el });
     el.prepend(bar);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     GALERIA DE VÍDEOS
+     ═══════════════════════════════════════════════════════════════ */
+  function allVideos() {
+    const out = [];
+    modules().forEach((m, mi) => m.lessons.forEach(l => l.blocks.forEach((b, bi) => { if (b.type === 'video') out.push({ m, mi, l, b, bi, id: `${l.id}-${bi}` }); })));
+    return out;
+  }
+  function renderVideos(current) {
+    setActiveNav('videos');
+    const vids = allVideos();
+    const cur = vids.find(v => v.id === current) || vids[0];
+    const watched = (v) => !!state.progress.answers[v.l.id]?.[v.bi]?.watched;
+    const dur = (v) => Math.max(1, Math.round(v.b.scenes.reduce((a, s) => a + (s.dur || 6), 0) / 60));
+    $('#view').innerHTML = `
+      <div class="container">
+        <div class="eyebrow">Aprender vendo</div>
+        <h1 class="h1" style="font-size:2.2rem">Vídeos <em>explicativos</em></h1>
+        <p class="lead" style="margin-bottom:1.5rem">${vids.length} vídeos curtos, gerados aqui mesmo, com narração em português e legendas. Cada um resume um tema do curso em um ou dois minutos. Assista na ordem ou pule para o que precisa agora.</p>
+        <div class="lesson-layout video-layout">
+          <div class="lesson-main">
+            <div class="xp-host" id="video-host"></div>
+            <div class="view-tools" style="margin-top:1rem">
+              <a class="btn btn-outline btn-sm" href="#m/${cur.m.id}/${cur.l.id}">Abrir a lição: ${cur.l.title} →</a>
+              <span style="flex:1"></span>
+              ${vids.indexOf(cur) > 0 ? `<button class="btn btn-ghost btn-sm" data-go="#videos/${vids[vids.indexOf(cur) - 1].id}">← Anterior</button>` : ''}
+              ${vids.indexOf(cur) < vids.length - 1 ? `<button class="btn btn-primary btn-sm" data-go="#videos/${vids[vids.indexOf(cur) + 1].id}">Próximo vídeo →</button>` : ''}
+            </div>
+          </div>
+          <aside>
+            <div class="side-title">Lista de reprodução <small style="font-family:var(--ff-mono);font-size:.62rem;color:var(--text-3)">${vids.filter(watched).length}/${vids.length} assistidos</small></div>
+            <div class="video-list">
+              ${vids.map((v, k) => `<button class="video-item ${v === cur ? 'active' : ''} ${watched(v) ? 'watched' : ''}" data-go="#videos/${v.id}"><span class="vi-n">${watched(v) ? '✓' : k + 1}</span><span><b>${v.b.title}</b><small>Módulo ${String(v.mi + 1).padStart(2, '0')} · ${v.l.title}</small></span><span class="vi-dur">${dur(v)} min</span></button>`).join('')}
+            </div>
+          </aside>
+        </div>
+      </div>`;
+    const answers = state.progress.answers[cur.l.id] || (state.progress.answers[cur.l.id] = {});
+    const player = Explainer.mount($('#video-host'), cur.b, { onComplete: () => { answers[cur.bi] = Object.assign(answers[cur.bi] || {}, { watched: true, done: true }); saveProgress(); toast('Vídeo concluído ✓'); $$('.video-item.active .vi-n').forEach(n => { n.textContent = '✓'; n.closest('.video-item').classList.add('watched'); }); } });
+    (state.players = state.players || []).push(player);
   }
 
   /* ═══════════════════════════════════════════════════════════════

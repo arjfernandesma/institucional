@@ -7,7 +7,7 @@ Site interno da consultoria (sites, Google Business Profile, agendamento e autom
 | Caminho | O que é | Quem acessa |
 |---|---|---|
 | `index.html` | **Portal**: login e menu por perfil (Início · Onboarding · Cursos · Playbook · Materiais · Admin) | todos |
-| `onboarding/` | **Academia de Vendas**: curso interativo de onboarding, cola rápida e glossário | colaborador e admin |
+| `onboarding/` | **Academia de Vendas**: curso interativo de onboarding, vídeos explicativos, cola rápida, folheto e glossário | colaborador e admin |
 | `playbook/` | **Sales & Outreach Playbook** (Dublin): manual de prospecção e venda com scripts PT/EN | colaborador e admin |
 | `colaborador/objecoes.html` | Infográfico das 7 objeções (Vendas & PNL) | colaborador e admin |
 | `admin/manual-operacional.html` | **Manual Operacional (Brasil)**: modelo de negócio, fiscal, contratos, pagamento, SLA, cancelamento | só admin |

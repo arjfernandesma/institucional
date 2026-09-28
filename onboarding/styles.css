@@ -400,6 +400,16 @@ td:first-child { font-weight: 600; }
 .score-result.s-b .sr-verdict { background: var(--gold-bg); color: var(--gold-deep); }
 .score-result.s-no .sr-verdict { background: var(--red-bg); color: var(--red); }
 
+.sc-factor { margin-bottom: .7rem; }
+.sc-flabel { font-weight: 700; font-size: .9rem; margin-bottom: .35rem; }
+.sc-flabel small { font-weight: 400; color: var(--text-3); font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; margin-left: .3rem; }
+.sc-opts { display: flex; flex-wrap: wrap; gap: .35rem; }
+.sc-opt { background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 100px; padding: .4rem .8rem; font-size: .84rem; color: var(--text-2); transition: all .15s; }
+.sc-opt b { font-family: var(--ff-mono); font-weight: 500; color: var(--text-3); margin-left: .2rem; }
+.sc-opt:hover { border-color: var(--gold); }
+.sc-opt.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+.sc-opt.on b { color: var(--gold-light); }
+
 /* Navegação da lição */
 .lesson-nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
 .lesson-nav .req { font-size: .85rem; color: var(--text-3); flex: 1; min-width: 200px; }

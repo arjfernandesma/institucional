@@ -8,7 +8,8 @@ Site interno da consultoria (sites, Google Business Profile, agendamento e autom
 |---|---|---|
 | `index.html` | **Portal**: login e menu por perfil (Início · Onboarding · Cursos · Playbook · Materiais · Admin) | todos |
 | `onboarding/` | **Academia de Vendas**: curso interativo de onboarding, vídeos explicativos, cola rápida, folheto e glossário | colaborador e admin |
-| `playbook/` | **Sales & Outreach Playbook** (Dublin): manual de prospecção e venda com scripts PT/EN | colaborador e admin |
+| `playbook/comercial.html` | **Playbook Comercial** (Marcus & Michael, v1.0): o processo comercial, do primeiro contato ao contrato. Em divergência, manda | colaborador e admin |
+| `playbook/` | **Sales & Outreach Playbook** (Dublin): scripts PT/EN, sequências B e C, WhatsApp, LinkedIn, compliance e infraestrutura de e-mail | colaborador e admin |
 | `colaborador/objecoes.html` | Infográfico das 7 objeções (Vendas & PNL) | colaborador e admin |
 | `admin/manual-operacional.html` | **Manual Operacional (Brasil)**: modelo de negócio, fiscal, contratos, pagamento, SLA, cancelamento | só admin |
 | `assets/auth.js` | Autenticação compartilhada (senha por perfil hoje; Clerk depois) | — |
@@ -50,4 +51,4 @@ Sem sessão válida a página redireciona para o portal e volta sozinha depois d
 
 - Curso, prova, cola rápida e glossário: `onboarding/content.js` (ver `onboarding/README.md`).
 - Menus, trilhas rápidas, checklist do admin e pendências: `assets/portal.js`.
-- Playbook e Manual: HTML direto nas respectivas pastas.
+- Playbooks e Manual: HTML direto nas respectivas pastas. O Playbook Comercial é a fonte de verdade do processo; ao mudar um número lá (funil, score, pagamento, duração da reunião), replique em `onboarding/content.js` (busque pelo número) e na seção correspondente do Playbook Dublin.

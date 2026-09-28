@@ -1,0 +1,983 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow"><title>Playbook Comercial — Marcus &amp; Michael</title>
+<script src="../assets/auth.js?v=20260928"></script>
+<script src="../assets/guard.js?v=20260928" data-role="colaborador"></script><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  color-scheme: light;
+  --paper:#FAFAF7;
+  --surface:#FFFFFF;
+  --surface-2:#F2F1EC;
+  --ink:#16191C;
+  --ink-2:#565C63;
+  --ink-3:#8A9097;
+  --line:#E3E1DA;
+  --line-2:#CFCCC3;
+  --teal:#0E5257;
+  --teal-soft:#DCEAE9;
+  --amber:#A6620A;
+  --amber-soft:#F6E8D5;
+  --good:#2F6B4F;
+  --bad:#8E3A2E;
+  --shadow:0 1px 2px rgba(20,25,28,.05), 0 8px 24px -12px rgba(20,25,28,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#131619;
+    --surface:#1A1E22;
+    --surface-2:#22272C;
+    --ink:#E9E7E2;
+    --ink-2:#A8ADB3;
+    --ink-3:#757C83;
+    --line:#2A2F35;
+    --line-2:#3A4149;
+    --teal:#5FB0AF;
+    --teal-soft:#16302F;
+    --amber:#D89A4E;
+    --amber-soft:#332618;
+    --good:#6FB58F;
+    --bad:#D08272;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#131619;
+  --surface:#1A1E22;
+  --surface-2:#22272C;
+  --ink:#E9E7E2;
+  --ink-2:#A8ADB3;
+  --ink-3:#757C83;
+  --line:#2A2F35;
+  --line-2:#3A4149;
+  --teal:#5FB0AF;
+  --teal-soft:#16302F;
+  --amber:#D89A4E;
+  --amber-soft:#332618;
+  --good:#6FB58F;
+  --bad:#D08272;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Public Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif; text-wrap:balance; margin:0; letter-spacing:-.015em}
+p{margin:0}
+a{color:var(--teal)}
+
+.mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace}
+
+/* ── shell ───────────────────────────── */
+.shell{display:grid; grid-template-columns:232px minmax(0,1fr); gap:0; max-width:1240px; margin:0 auto; align-items:start}
+
+.nav{
+  position:sticky; top:env(safe-area-inset-top, 0px);
+  padding:28px 20px 40px 24px;
+  border-right:1px solid var(--line);
+  max-height:100vh; overflow-y:auto;
+}
+.nav-brand{font-family:"Bricolage Grotesque",sans-serif; font-weight:800; font-size:15px; letter-spacing:-.01em; line-height:1.25; margin-bottom:4px}
+.nav-sub{font-size:11.5px; color:var(--ink-3); margin-bottom:22px; letter-spacing:.02em}
+.nav a{
+  display:block; padding:5px 0; font-size:13.5px; color:var(--ink-2);
+  text-decoration:none; border-left:2px solid transparent; padding-left:10px; margin-left:-12px;
+  transition:color .15s, border-color .15s;
+}
+.nav a:hover{color:var(--ink); border-left-color:var(--line-2)}
+.nav-grp{font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-3); margin:18px 0 6px; font-weight:600}
+
+.main{padding:28px 32px 100px; min-width:0}
+
+/* ── masthead ────────────────────────── */
+.mast{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:34px}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--amber); font-weight:600; margin-bottom:10px;
+}
+.mast h1{font-size:clamp(34px,5.4vw,50px); font-weight:800; line-height:1.02; margin-bottom:12px}
+.mast .lede{font-size:17px; color:var(--ink-2); max-width:62ch}
+.mast-meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+.tag{
+  font-family:"JetBrains Mono",monospace; font-size:11px; padding:3px 9px;
+  border:1px solid var(--line-2); border-radius:3px; color:var(--ink-2); letter-spacing:.02em;
+}
+
+/* ── sections ────────────────────────── */
+section{margin-bottom:56px; scroll-margin-top:24px}
+section > h2{
+  font-size:26px; font-weight:700; margin-bottom:6px; line-height:1.15;
+  display:flex; align-items:baseline; gap:12px;
+}
+.num{
+  font-family:"JetBrains Mono",monospace; font-size:12px; font-weight:600;
+  color:var(--amber); letter-spacing:.06em; flex:none;
+}
+.sec-lede{color:var(--ink-2); max-width:68ch; margin-bottom:24px; font-size:15.5px}
+h3{font-size:18px; font-weight:700; margin:30px 0 10px}
+h4{font-size:14.5px; font-weight:600; margin:22px 0 8px; color:var(--ink)}
+.prose{max-width:70ch}
+.prose p + p{margin-top:12px}
+.prose p{margin-bottom:0}
+
+/* ── components ──────────────────────── */
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:8px;
+  padding:20px 22px; box-shadow:var(--shadow);
+}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:14px}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px}
+
+.script{
+  background:var(--surface); border:1px solid var(--line);
+  border-left:3px solid var(--teal); border-radius:0 6px 6px 0;
+  padding:14px 18px; margin:12px 0; font-size:15px; line-height:1.6;
+}
+.script .who{
+  font-family:"JetBrains Mono",monospace; font-size:10.5px; text-transform:uppercase;
+  letter-spacing:.1em; color:var(--teal); font-weight:600; display:block; margin-bottom:6px;
+}
+.script em{color:var(--ink-3); font-style:italic}
+
+.callout{
+  background:var(--amber-soft); border:1px solid color-mix(in srgb, var(--amber) 30%, transparent);
+  border-radius:8px; padding:16px 20px; margin:18px 0;
+}
+.callout h4{margin:0 0 6px; color:var(--amber); font-size:13px; text-transform:uppercase; letter-spacing:.07em; font-family:"JetBrains Mono",monospace; font-weight:600}
+.callout p{font-size:14.5px; line-height:1.6}
+.callout p + p{margin-top:8px}
+
+table{width:100%; border-collapse:collapse; font-size:14.5px}
+.tbl-wrap{overflow-x:auto; margin:14px 0; border:1px solid var(--line); border-radius:8px; background:var(--surface)}
+th{
+  text-align:left; font-family:"JetBrains Mono",monospace; font-size:10.5px; font-weight:600;
+  text-transform:uppercase; letter-spacing:.09em; color:var(--ink-2);
+  padding:11px 14px; background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap;
+}
+td{padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td strong{font-weight:600}
+.num-cell{font-family:"JetBrains Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+
+ul.clean{list-style:none; padding:0; margin:10px 0; display:flex; flex-direction:column; gap:7px}
+ul.clean li{padding-left:20px; position:relative; font-size:15px; line-height:1.55}
+ul.clean li::before{content:"—"; position:absolute; left:0; color:var(--ink-3)}
+ul.do li::before{content:"✓"; color:var(--good); font-weight:700}
+ul.dont li::before{content:"✕"; color:var(--bad); font-weight:700}
+
+.pill{
+  display:inline-block; font-family:"JetBrains Mono",monospace; font-size:10.5px;
+  padding:2px 8px; border-radius:99px; letter-spacing:.04em; font-weight:600;
+}
+.pill-teal{background:var(--teal-soft); color:var(--teal)}
+.pill-amber{background:var(--amber-soft); color:var(--amber)}
+
+figure{margin:20px 0}
+figcaption{font-size:12.5px; color:var(--ink-3); margin-top:10px; font-family:"JetBrains Mono",monospace; letter-spacing:.02em}
+svg{max-width:100%; height:auto; display:block}
+
+.stat-row{display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:18px 0}
+.stat{background:var(--surface); padding:14px 16px}
+.stat .v{font-family:"Bricolage Grotesque",sans-serif; font-size:26px; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums}
+.stat .l{font-size:12px; color:var(--ink-2); margin-top:2px; line-height:1.35}
+
+.timeline{display:flex; flex-direction:column; gap:0; margin:18px 0}
+.tl-item{display:grid; grid-template-columns:70px 1fr; gap:16px; padding:14px 0; border-bottom:1px solid var(--line)}
+.tl-item:last-child{border-bottom:none}
+.tl-day{font-family:"JetBrains Mono",monospace; font-size:12px; font-weight:600; color:var(--amber); padding-top:2px}
+.tl-body h4{margin:0 0 4px; font-size:15px}
+.tl-body p{font-size:14.5px; color:var(--ink-2)}
+
+.obj{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:16px 18px}
+.obj .q{font-weight:600; font-size:15px; margin-bottom:8px; color:var(--ink)}
+.obj .a{font-size:14.5px; color:var(--ink-2); line-height:1.6}
+.obj .note{font-size:13px; color:var(--ink-3); margin-top:8px; font-style:italic}
+
+footer{border-top:1px solid var(--line); padding-top:20px; margin-top:20px; font-size:13px; color:var(--ink-3)}
+
+@media (max-width: 880px){
+  .shell{grid-template-columns:1fr}
+  .nav{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:10;
+    max-height:none; overflow-x:auto; overflow-y:visible;
+    border-right:none; border-bottom:1px solid var(--line);
+    padding:12px 16px; background:var(--paper);
+    display:flex; align-items:center; gap:14px; white-space:nowrap;
+  }
+  .nav-brand{margin:0; font-size:13px}
+  .nav-sub, .nav-grp{display:none}
+  .nav a{display:inline-block; padding:4px 0; margin:0; border-left:none; border-bottom:2px solid transparent; font-size:13px}
+  .nav a:hover{border-left-color:transparent; border-bottom-color:var(--line-2)}
+  .main{padding:22px 16px 80px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none !important; animation:none !important}}
+.nav{top:44px !important; max-height:calc(100vh - 44px) !important}
+@media (max-width:880px){.nav{top:44px !important}}
+.nav a.ext{color:var(--teal); font-weight:600}
+.xref{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0}
+.xref a{font-family:"JetBrains Mono",monospace; font-size:11px; padding:5px 10px; border:1px solid var(--line-2); border-radius:4px; text-decoration:none; color:var(--ink-2)}
+.xref a:hover{border-color:var(--teal); color:var(--teal)}
+</style>
+
+<div class="shell">
+
+<nav class="nav">
+  <div class="nav-brand">Playbook Comercial</div>
+  <div class="nav-sub">Marcus &amp; Michael · v1.0</div>
+
+  <div class="nav-grp">Fundamentos</div>
+  <a href="#funil">A matemática do funil</a>
+  <a href="#territorio">Onde atuamos</a>
+  <a href="#icp">Para quem vendemos</a>
+
+  <div class="nav-grp">Topo do funil</div>
+  <a href="#lista">Lista e pontuação</a>
+  <a href="#auditoria">A auditoria</a>
+  <a href="#email">E-mail frio</a>
+
+  <div class="nav-grp">Conversa</div>
+  <a href="#diagnostico">Diagnóstico</a>
+  <a href="#proposta">Proposta</a>
+  <a href="#objecoes">Objeções</a>
+  <a href="#fechamento">Fechamento</a>
+
+  <div class="nav-grp">Controle</div>
+  <a href="#metricas">Métricas</a>
+
+  <div class="nav-grp">Portal</div>
+  <a class="ext" href="../index.html">⌂ Início do portal</a>
+  <a class="ext" href="./">Playbook Dublin · scripts PT/EN</a>
+  <a class="ext" href="../onboarding/">Academia de Vendas</a>
+  <a class="ext" href="../onboarding/#cheatsheet">Cola rápida</a>
+</nav>
+
+<main class="main">
+
+<header class="mast">
+  <div class="eyebrow">Processo comercial · Serviços e produtos</div>
+  <h1>Playbook Comercial</h1>
+  <p class="lede">O processo do primeiro contato ao contrato assinado. Serve para que qualquer um dos dois conduza a mesma venda, do mesmo jeito, com o mesmo resultado.</p>
+  <div class="mast-meta">
+    <span class="tag">Dublin · Irlanda · Europa</span>
+    <span class="tag">Ticket €1.200–5.000</span>
+    <span class="tag">Ciclo alvo &lt; 30 dias</span>
+    <span class="tag">v1.0 · set/2026</span>
+  </div>
+  <div class="xref"><a href="./">↗ Scripts PT/EN, sequências B e C, WhatsApp e LinkedIn: Playbook Dublin</a><a href="../onboarding/#cheatsheet">↗ Cola rápida</a><a href="../onboarding/#folheto">↗ Folheto para o cliente</a></div>
+  <div class="callout" style="margin-top:18px"><h4>Este documento manda</h4><p>Em caso de divergência entre este Playbook Comercial e o Playbook Dublin, a Academia ou a cola rápida, vale o que está aqui. Os outros materiais foram alinhados a este em setembro de 2026; o que sobrou de específico neles (mensagens em inglês, WhatsApp, LinkedIn, mercado Brasil) complementa, não contradiz.</p></div>
+</header>
+
+<!-- ══════════ FUNIL ══════════ -->
+<section id="funil">
+  <h2><span class="num">01</span> A matemática do funil</h2>
+  <p class="sec-lede">Tudo neste documento existe para mover um número de uma etapa para a seguinte. Estes são os números que perseguimos — e é por eles que sabemos onde o processo está furando.</p>
+
+  <figure>
+    <svg viewBox="0 0 700 340" role="img" aria-label="Funil comercial: 200 prospects geram 1 cliente">
+      <defs>
+        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--teal)" stop-opacity="0.92"/>
+          <stop offset="100%" stop-color="var(--amber)" stop-opacity="0.92"/>
+        </linearGradient>
+      </defs>
+
+      <!-- stage bands -->
+      <g>
+        <path d="M30,14 L430,14 L396,62 L64,62 Z" fill="url(#fg)" opacity="0.95"/>
+        <path d="M66,66 L394,66 L365,114 L95,114 Z" fill="url(#fg)" opacity="0.82"/>
+        <path d="M97,118 L363,118 L334,166 L126,166 Z" fill="url(#fg)" opacity="0.69"/>
+        <path d="M128,170 L332,170 L305,218 L155,218 Z" fill="url(#fg)" opacity="0.56"/>
+        <path d="M157,222 L303,222 L276,270 L184,270 Z" fill="url(#fg)" opacity="0.43"/>
+        <path d="M186,274 L274,274 L254,322 L206,322 Z" fill="url(#fg)" opacity="0.30"/>
+      </g>
+
+      <!-- labels inside -->
+      <g font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">
+        <text x="230" y="43">200</text>
+        <text x="230" y="95">10</text>
+        <text x="230" y="147">6</text>
+        <text x="230" y="199">3</text>
+        <text x="230" y="251">2</text>
+        <text x="230" y="303">1</text>
+      </g>
+
+      <!-- leader lines -->
+      <g stroke="var(--line-2)" stroke-width="1" stroke-dasharray="2 3">
+        <line x1="420" y1="38" x2="442" y2="38"/>
+        <line x1="386" y1="90" x2="442" y2="90"/>
+        <line x1="355" y1="142" x2="442" y2="142"/>
+        <line x1="324" y1="194" x2="442" y2="194"/>
+        <line x1="295" y1="246" x2="442" y2="246"/>
+        <line x1="266" y1="298" x2="442" y2="298"/>
+      </g>
+
+      <!-- right labels -->
+      <g font-family="Public Sans, sans-serif" font-size="12.5" fill="var(--ink-2)">
+        <text x="450" y="43">prospects abordados</text>
+        <text x="450" y="95">respostas</text>
+        <text x="450" y="147">auditorias entregues</text>
+        <text x="450" y="199">diagnósticos</text>
+        <text x="450" y="251">propostas</text>
+        <text x="450" y="303">cliente fechado</text>
+      </g>
+
+      <!-- conversion ticks left -->
+      <g font-family="JetBrains Mono, monospace" font-size="11" fill="var(--amber)" text-anchor="end">
+        <text x="58" y="95">5%</text>
+        <text x="89" y="147">60%</text>
+        <text x="120" y="199">50%</text>
+        <text x="149" y="251">67%</text>
+        <text x="178" y="303">50%</text>
+      </g>
+    </svg>
+    <figcaption>Taxas-alvo por etapa. Uma semana de prospecção a 200 abordagens produz aproximadamente um cliente.</figcaption>
+  </figure>
+
+  <div class="stat-row">
+    <div class="stat"><div class="v">200</div><div class="l">abordagens por semana</div></div>
+    <div class="stat"><div class="v">≈1</div><div class="l">cliente por semana</div></div>
+    <div class="stat"><div class="v">€1.200</div><div class="l">ticket médio de site</div></div>
+    <div class="stat"><div class="v">€60–150</div><div class="l">recorrência por cliente</div></div>
+  </div>
+
+  <div class="prose">
+    <p>A recorrência é o que muda o jogo. Um projeto fechado vale €1.200 uma vez; o mesmo cliente em manutenção vale €720 a €1.800 por ano, todo ano, sem nova venda. Trinta clientes em manutenção pagam a operação antes de qualquer projeto novo.</p>
+  </div>
+
+  <div class="callout">
+    <h4>A regra que sustenta o funil inteiro</h4>
+    <p>A taxa de resposta de 5% só existe porque cada abordagem carrega três observações verdadeiras e específicas sobre aquele negócio. Um e-mail genérico converte a 0,5% — dez vezes pior.</p>
+    <p>Se não conseguimos escrever as três observações, não mandamos o e-mail. A pesquisa é o produto que entregamos antes de vender qualquer coisa.</p>
+  </div>
+</section>
+
+<!-- ══════════ TERRITÓRIO ══════════ -->
+<section id="territorio">
+  <h2><span class="num">02</span> Onde atuamos</h2>
+  <p class="sec-lede">Entregamos remotamente, então geografia não limita o trabalho — limita os argumentos disponíveis e o tipo de abordagem.</p>
+
+  <figure>
+    <svg viewBox="0 0 700 250" role="img" aria-label="Três círculos de atuação: núcleo Dublin, Irlanda, Europa">
+      <circle cx="200" cy="125" r="112" fill="var(--teal)" opacity="0.08" stroke="var(--line-2)" stroke-width="1"/>
+      <circle cx="200" cy="125" r="74" fill="var(--teal)" opacity="0.14" stroke="var(--line-2)" stroke-width="1"/>
+      <circle cx="200" cy="125" r="38" fill="var(--teal)" opacity="0.30" stroke="var(--teal)" stroke-width="1.5"/>
+
+      <g font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="var(--teal)" text-anchor="middle">
+        <text x="200" y="129">NÚCLEO</text>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="10.5" fill="var(--ink-2)" text-anchor="middle">
+        <text x="200" y="72">IRLANDA</text>
+        <text x="200" y="34">EUROPA</text>
+      </g>
+
+      <!-- connector lines + descriptions -->
+      <g stroke="var(--line-2)" stroke-width="1" stroke-dasharray="2 3">
+        <line x1="238" y1="125" x2="366" y2="125"/>
+        <line x1="262" y1="80" x2="366" y2="70"/>
+        <line x1="276" y1="42" x2="366" y2="20"/>
+      </g>
+      <g font-family="Public Sans, sans-serif" font-size="12.5" fill="var(--ink)">
+        <text x="374" y="17" font-weight="600">Europa</text>
+        <text x="374" y="34" fill="var(--ink-2)" font-size="12">Remoto integral. Sem voucher — a venda</text>
+        <text x="374" y="49" fill="var(--ink-2)" font-size="12">se apoia em portfólio, prazo e preço.</text>
+
+        <text x="374" y="76" font-weight="600">Irlanda</text>
+        <text x="374" y="93" fill="var(--ink-2)" font-size="12">Mesmo fuso e moeda. O Trading Online</text>
+        <text x="374" y="108" fill="var(--ink-2)" font-size="12">Voucher vale — nosso argumento mais forte.</text>
+
+        <text x="374" y="135" font-weight="600">Núcleo · Dublin e Grande Dublin</text>
+        <text x="374" y="152" fill="var(--ink-2)" font-size="12">Reunião presencial possível. Indicação circula</text>
+        <text x="374" y="167" fill="var(--ink-2)" font-size="12">rápido. Visita para fotos e encerramento.</text>
+      </g>
+    </svg>
+  </figure>
+
+  <div class="callout">
+    <h4>Uma vertical, uma região, por vez</h4>
+    <p>Vinte salões em Blanchardstown ou vinte clínicas no Porto. O que não funciona é vinte negócios variados espalhados por três países: a linguagem não se afia e o segundo cliente não vem por indicação do primeiro.</p>
+  </div>
+
+  <h3>Cuidados fora da Irlanda</h3>
+  <ul class="clean">
+    <li>O e-mail frio segue a lei do país do destinatário, e vários são bem mais restritivos que a Irlanda. Alemanha exige consentimento prévio mesmo em B2B.</li>
+    <li>A fatura pode exigir tratamento de IVA intracomunitário.</li>
+    <li>O material de venda vai no idioma do cliente, não no nosso.</li>
+  </ul>
+</section>
+
+<!-- ══════════ ICP ══════════ -->
+<section id="icp">
+  <h2><span class="num">03</span> Para quem vendemos</h2>
+  <p class="sec-lede">Escolher o cliente certo determina mais do resultado do que qualquer técnica de venda. Recusar é decisão estratégica, não limitação.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4 style="margin-top:0; color:var(--good)">Perfil ideal</h4>
+      <ul class="clean do">
+        <li>1 a 10 funcionários, faturamento abaixo de €2M</li>
+        <li>12 meses ou mais de operação</li>
+        <li>O dono atende o telefone. Uma pessoa decide</li>
+        <li>Sem site, ou site que falha no celular</li>
+        <li>Perfil no Google incompleto ou abandonado</li>
+        <li><strong>Boa reputação e pouca visibilidade</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0; color:var(--bad)">Não vendemos para</h4>
+      <ul class="clean dont">
+        <li>Franquia ou filial sem autonomia de decisão</li>
+        <li>Quem já tem site recente e funcional</li>
+        <li>Quem pede para pagar depois de ver resultado</li>
+        <li>Quem negocia preço antes de entender o escopo</li>
+        <li>Quem some por mais de duas semanas</li>
+        <li>Quem já disse não — sai da lista para sempre</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>O melhor prospect que existe</h4>
+    <p>Nota 4,7 no Google, 180 avaliações, nenhum site. O produto é bom, a demanda está comprovada, e falta só visibilidade. Esse cliente fecha mais rápido, paga em dia e indica outros — porque o problema dele é óbvio e a solução é visível em semanas.</p>
+  </div>
+
+  <h3>Segmentos prioritários</h3>
+  <div class="grid3">
+    <div class="card"><strong>Salões e estética</strong><p style="font-size:14px;color:var(--ink-2);margin-top:4px">Dor aguda de agendamento. Negócio visual. Rede de indicação densa.</p></div>
+    <div class="card"><strong>Restaurantes</strong><p style="font-size:14px;color:var(--ink-2);margin-top:4px">Alto volume de busca local. Menu e reserva online.</p></div>
+    <div class="card"><strong>Ofícios</strong><p style="font-size:14px;color:var(--ink-2);margin-top:4px">Encanador, eletricista, construtor. Zero presença, ticket de serviço alto.</p></div>
+    <div class="card"><strong>Clínicas pequenas</strong><p style="font-size:14px;color:var(--ink-2);margin-top:4px">Orçamento maior. Agendamento é o centro da operação.</p></div>
+    <div class="card"><strong>Varejo independente</strong><p style="font-size:14px;color:var(--ink-2);margin-top:4px">Caminho natural para upsell de e-commerce.</p></div>
+    <div class="card"><strong>Administradoras</strong><p style="font-size:14px;color:var(--ink-2);margin-top:4px">Porta de entrada para o sistema de condomínios.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ LISTA ══════════ -->
+<section id="lista">
+  <h2><span class="num">04</span> Lista e pontuação</h2>
+  <p class="sec-lede">Cada prospect recebe nota de 0 a 100 antes de qualquer contato. Abordamos apenas acima de 60 — abaixo disso, a dor não é suficiente para gerar resposta.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Fator</th><th>Peso</th><th>Como pontua</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Web</strong></td><td class="num-cell">20</td><td>20 se não tem site · 12 se sem HTTPS ou fora do ar · 8 se não funciona no celular · 0 se o site está saudável</td></tr>
+        <tr><td><strong>Sinal</strong></td><td class="num-cell">20</td><td>20 se perfil do Google sem fotos e sem horário · 10 se falta um dos dois · 0 se completo</td></tr>
+        <tr><td><strong>Reputação</strong></td><td class="num-cell">20</td><td>20 se nota ≥ 4,0 com 10+ avaliações · proporcional abaixo disso</td></tr>
+        <tr><td><strong>Contato</strong></td><td class="num-cell">20</td><td>20 se tem telefone e e-mail válidos · 10 se só telefone · 0 se nenhum</td></tr>
+        <tr><td><strong>Atividade</strong></td><td class="num-cell">20</td><td>20 se há avaliações recentes sem resposta · reduz conforme o negócio já responde</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p><strong>Reputação é o fator mais importante do modelo.</strong> Um negócio bem avaliado e invisível é o melhor prospect que existe. <strong>Contato</strong> tem lógica inversa aos outros: pontua alto quando o lead é fácil de abordar, porque sem canal de contato o lead não é acionável, por pior que esteja a presença digital dele.</p>
+  </div>
+
+  <h3>Campos obrigatórios por prospect</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Campo</th><th>Por que importa</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">nome_do_dono</td><td>"Olá" em vez do nome corta a taxa de resposta pela metade</td></tr>
+        <tr><td class="mono">termo_local</td><td>O que o cliente dele digitaria no Google — não o que nós acharíamos</td></tr>
+        <tr><td class="mono">posicao_atual</td><td>Em que posição ele aparece para esse termo</td></tr>
+        <tr><td class="mono">concorrente_acima</td><td>Quem está na frente dele. O gatilho emocional mais forte que existe</td></tr>
+        <tr><td class="mono">avaliacoes_sem_resposta</td><td>Observação concreta e verificável</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ AUDITORIA ══════════ -->
+<section id="auditoria">
+  <h2><span class="num">05</span> A auditoria</h2>
+  <p class="sec-lede">É o nosso diferencial inteiro. Transforma um e-mail frio em consultoria gratuita antes de qualquer menção a dinheiro.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="pill pill-teal">PÁGINA 1</span>
+      <h4 style="margin-top:10px">Onde você está</h4>
+      <ul class="clean">
+        <li>Posição no Google para 2–3 termos que os clientes dele realmente digitam</li>
+        <li>Quem aparece acima — nomeado</li>
+        <li>Estado do perfil do Google: fotos, horários, categoria, respostas a avaliações</li>
+        <li>Site atual: velocidade no celular, primeira impressão, o que está quebrado</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="pill pill-amber">PÁGINA 2</span>
+      <h4 style="margin-top:10px">O que eu consertaria primeiro</h4>
+      <ul class="clean">
+        <li>Três recomendações em ordem de impacto</li>
+        <li>O que cada uma provavelmente muda</li>
+        <li>Quanto custaria resolver, e o que o voucher cobre</li>
+        <li>Um próximo passo claro</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>Três regras da auditoria</h4>
+    <p><strong>Linguagem de dono de salão, não de desenvolvedor.</strong> Nada de "Core Web Vitals" ou "schema markup". Se a mãe dele não entenderia, reescreve.</p>
+    <p><strong>Útil mesmo que ele nunca contrate.</strong> É isso que a torna crível — e é por isso que funciona.</p>
+    <p><strong>Nunca anexada ao primeiro e-mail.</strong> Anexo derruba a entregabilidade e aciona filtro de spam. Pede-se a resposta primeiro; o relatório vai depois, em 48 horas.</p>
+  </div>
+</section>
+
+<!-- ══════════ EMAIL ══════════ -->
+<section id="email">
+  <h2><span class="num">06</span> E-mail frio</h2>
+  <p class="sec-lede">Três toques, onze dias, e para. Quem não respondeu a três não é lead — e insistir além disso gera reclamação que queima o domínio.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-day">DIA 0</div>
+      <div class="tl-body">
+        <h4>Abertura com as três observações</h4>
+        <p>Assunto: <span class="mono">[Negócio] — 3 coisas que eu ajustaria no seu Google</span></p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-day">DIA 4</div>
+      <div class="tl-body">
+        <h4>Follow-up curto</h4>
+        <p>Mesma thread. Repete só a observação mais forte e reoferece a auditoria.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-day">DIA 11</div>
+      <div class="tl-body">
+        <h4>Encerramento</h4>
+        <p>Assunto novo: <span class="mono">Fechando o assunto</span>. Sai educadamente e deixa a porta aberta.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Modelo — primeiro contato</h3>
+  <div class="script">
+    <span class="who">E-mail 1 · Dia 0</span>
+    <p>Olá [Nome],</p>
+    <p>Sou [seu nome], da equipe Marcus Fernandes — fazemos sites para negócios pequenos aqui em [região].</p>
+    <p>Dei uma olhada no [Negócio] hoje de manhã. Três coisas me chamaram atenção:</p>
+    <p>• Você aparece na página 2 para "[termo local]" — o [Concorrente] aparece acima<br>
+       • Seu perfil no Google tem [N] avaliações sem resposta<br>
+       • [Terceira observação específica]</p>
+    <p>Nada disso é complicado de resolver. Preparei um relatório de duas páginas, em português claro, sem apresentação de vendas. Posso te mandar, sem custo e sem compromisso.</p>
+    <p>Uma coisa que vale saber: o Local Enterprise Office cobre até 50% do custo de colocar um negócio online. A maioria das empresas do seu tamanho qualifica, e eu cuido da papelada.</p>
+    <p>Quer o relatório? É só responder "sim" e ele chega em 48 horas.</p>
+    <p><em>[assinatura com telefone e site]</em><br>
+       <em>Responda "não, obrigado" e eu não entro mais em contato.</em></p>
+  </div>
+
+  <h3>Como responder cada reação</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Ele responde</th><th>Nós respondemos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>"Sim, manda"</strong></td><td>Auditoria em 48 horas, com a linha: "Dá uma lida. Se quiser que eu explique em 15 minutos, é só marcar aqui — sem pitch."</td></tr>
+        <tr><td><strong>"Quanto custa?"</strong></td><td>Nunca um número solto. "Depende do que você precisa — os pacotes começam em €1.200, e o voucher costuma levar isso a €600. A auditoria diz qual encaixa. Mando?"</td></tr>
+        <tr><td><strong>"Não tenho interesse"</strong></td><td>"Sem problema, tiro você da lista. Boa sorte com o [Negócio]." Supressão permanente.</td></tr>
+        <tr><td><strong>Silêncio após três</strong></td><td>Supressão. Revisitar só depois de seis meses e com motivo novo de verdade.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Infraestrutura de envio</h3>
+  <ul class="clean">
+    <li>Domínio de envio separado do domínio principal, aquecido por três semanas</li>
+    <li>SPF, DKIM e DMARC configurados antes do primeiro disparo</li>
+    <li>Máximo de 40 e-mails por dia por caixa — precisando de mais, adiciona-se caixa, não mensagem</li>
+    <li>Sem anexo, sem imagem, sem template HTML. Texto simples converte melhor</li>
+    <li>Lista de supressão consultada antes de todo envio</li>
+  </ul>
+
+  <div class="callout">
+    <h4>Por que o domínio de envio é separado</h4>
+    <p>Reclamações de spam acumuladas destroem a reputação do domínio, e a partir daí o e-mail legítimo — proposta, fatura, comunicação com cliente — começa a cair na caixa de lixo. Isso não se recupera rápido. O domínio principal fica intocado; a campanha roda em outro, com o Reply-To apontando de volta.</p>
+  </div>
+</section>
+
+<!-- ══════════ DIAGNÓSTICO ══════════ -->
+<section id="diagnostico">
+  <h2><span class="num">07</span> Reunião de diagnóstico</h2>
+  <p class="sec-lede">Trinta minutos, agendados por link, gravados. O objetivo não é apresentar nada — é entender o problema e decidir se há projeto. Quem fala mais é o cliente.</p>
+
+  <h3>Antes de entrar</h3>
+  <ul class="clean do">
+    <li>Site e perfil do Google revistos</li>
+    <li>Auditoria reenviada à mão</li>
+    <li>Confirmação enviada na véspera e na manhã do dia</li>
+    <li>Entrar cinco minutos antes, câmera e microfone testados</li>
+    <li>Gravação ligada, com aviso ao cliente</li>
+  </ul>
+
+  <h3>Abertura — assumir o controle</h3>
+  <div class="script">
+    <span class="who">Primeiros 60 segundos</span>
+    <p>Antes de começar, deixa eu dizer como vai funcionar: primeiro te conto rápido o que vi no seu negócio online. Depois quero te ouvir, para entender o que você está buscando. No fim, te digo se dá para ajudar e como.</p>
+    <p>Se fizer sentido para os dois, marcamos um segundo momento e eu te apresento uma proposta. Funciona assim?</p>
+  </div>
+  <div class="prose">
+    <p>Essa frase faz três coisas ao mesmo tempo: define a pauta, garante que você conduz, e planta o próximo passo antes de qualquer resistência aparecer.</p>
+  </div>
+
+  <h3>As perguntas, nesta ordem</h3>
+
+  <div class="script">
+    <span class="who">1 · Contexto e objetivo</span>
+    <p>O que te fez aceitar essa conversa agora?</p>
+    <p>E quando você pensa no próximo ano do negócio, qual é o principal objetivo?</p>
+  </div>
+
+  <div class="script">
+    <span class="who">2 · Situação</span>
+    <p>Como as pessoas te encontram hoje?</p>
+    <p>Quantos clientes novos chegam numa semana normal?</p>
+    <p>Quem atende quando alguém quer marcar?</p>
+  </div>
+
+  <div class="script">
+    <span class="who">3 · Problema</span>
+    <p>O que você acha que está impedindo o negócio de chegar onde você quer?</p>
+    <p>Há quanto tempo isso acontece?</p>
+  </div>
+
+  <div class="script">
+    <span class="who">4 · Tangibilizar — a pergunta que cria urgência</span>
+    <p>Para a gente não ficar só na percepção: se você recebesse dois clientes a mais por semana, com o seu ticket médio, isso dá mais ou menos quanto por mês?</p>
+    <p><em>[esperar ele fazer a conta]</em></p>
+    <p>Quando você olha para esse número, o que passa na sua cabeça?</p>
+  </div>
+
+  <div class="script">
+    <span class="who">5 · Impacto</span>
+    <p>E se nada mudar, como você imagina o negócio daqui a seis meses?</p>
+    <p>Como você se sente com isso?</p>
+  </div>
+
+  <div class="script">
+    <span class="who">6 · Experiências anteriores</span>
+    <p>Você já tentou algo nessa direção antes?</p>
+    <p>O que deu certo e o que não deu?</p>
+  </div>
+
+  <div class="callout">
+    <h4>A pergunta 6 é a mais valiosa da reunião</h4>
+    <p>Muitos donos de negócio já foram mal atendidos por alguém que sumiu no meio do projeto, entregou algo que não funcionava, ou cobrou a mais. A resposta entrega exatamente qual medo você precisa desarmar.</p>
+    <p>Desarmado o medo certo, o preço deixa de ser o assunto principal. E o que ele disser vira cláusula da proposta: "duas rodadas de ajuste incluídas", "você é dono de tudo", "prazo com data".</p>
+  </div>
+
+  <h3>Validar antes de propor</h3>
+  <div class="script">
+    <span class="who">Fechar as portas</span>
+    <p>Deixa eu recapitular para garantir que entendi: hoje o teu negócio funciona assim [...], você quer chegar ali [...], e o que está no caminho é isto [...]. É isso mesmo?</p>
+    <p>Ficou faltando alguma coisa importante?</p>
+  </div>
+  <div class="prose">
+    <p>Só depois dessa confirmação apresentamos como trabalhamos — em três a cinco minutos, não mais. O objetivo aqui é validar se o que temos em mente é o que ele quer comprar, não vender ainda.</p>
+  </div>
+
+  <h3>Quem decide</h3>
+  <ul class="clean">
+    <li>Até quando você precisa que isso esteja funcionando?</li>
+    <li>Além de você, mais alguém participa dessa decisão?</li>
+    <li>Se fizer sentido, você consegue decidir na próxima conversa?</li>
+  </ul>
+  <div class="prose">
+    <p>Havendo segundo decisor, ele precisa estar na reunião de proposta. Proposta apresentada a intermediário raramente avança: ele não consegue defender o que não construiu com a gente.</p>
+  </div>
+
+  <h3>Encerramento</h3>
+  <div class="script">
+    <span class="who">Sempre com duas opções de data</span>
+    <p>Tenho informação suficiente para montar algo bem estruturado. Preciso de 48 horas.</p>
+    <p>Você tem agenda na quinta às 10h, ou prefere sexta às 15h?</p>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-2);max-width:70ch">Nunca uma pergunta aberta. Reunião que termina sem data marcada é reunião perdida.</p>
+</section>
+
+<!-- ══════════ PROPOSTA ══════════ -->
+<section id="proposta">
+  <h2><span class="num">08</span> Proposta</h2>
+  <p class="sec-lede">Enviada em até 48 horas, apresentada ao vivo, nunca só por e-mail. Proposta que chega sozinha na caixa de entrada vira comparação de preço.</p>
+
+  <h3>A sequência da apresentação</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Bloco</th><th>O que faz</th></tr></thead>
+      <tbody>
+        <tr><td class="num-cell">1</td><td><strong>Retomada do diagnóstico</strong></td><td>O problema dele, nas palavras dele. Termina com: "é isso que você precisa que a gente resolva?"</td></tr>
+        <tr><td class="num-cell">2</td><td><strong>Objetivos do projeto</strong></td><td>O que estará diferente quando terminar</td></tr>
+        <tr><td class="num-cell">3</td><td><strong>Trabalho parecido</strong></td><td>Um caso real, com número real. Mesmo segmento se possível</td></tr>
+        <tr><td class="num-cell">4</td><td><strong>O que vamos fazer</strong></td><td>Escopo em linguagem simples. Sem lista de tecnologia</td></tr>
+        <tr><td class="num-cell">5</td><td><strong>Quem faz o quê</strong></td><td>Nomes, responsabilidades, e o que precisamos dele</td></tr>
+        <tr><td class="num-cell">6</td><td><strong>Cronograma</strong></td><td>Semana a semana, com a dependência dita em voz alta</td></tr>
+        <tr><td class="num-cell">7</td><td><strong>Retorno</strong></td><td>Quanto isso pode representar, com a conta feita na frente dele</td></tr>
+        <tr><td class="num-cell">8</td><td><strong>Investimento</strong></td><td>O número, as formas de pagamento, e o voucher</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Calibrar antes de falar de preço</h3>
+  <div class="script">
+    <span class="who">Ao final do escopo, antes do valor</span>
+    <p>Como você enxerga isso funcionando no teu caso?</p>
+    <p>As datas encaixam para você?</p>
+    <p>É isso que você precisa? Porque se a gente avançar, vou considerar o escopo validado.</p>
+  </div>
+  <div class="prose">
+    <p>Quem passa pelas três sem objeção não tem mais para onde correr quando o preço aparecer. As objeções que apareceriam depois aparecem aqui, onde ainda dá para tratar sem envolver dinheiro.</p>
+  </div>
+
+  <h3>Preço e formas de pagamento</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Forma</th><th>Condição</th></tr></thead>
+      <tbody>
+        <tr><td>À vista, antes do início</td><td class="num-cell">5% de desconto</td></tr>
+        <tr><td>50% no aceite + 50% na publicação</td><td class="num-cell">padrão</td></tr>
+        <tr><td>Três parcelas (aceite, meio, publicação)</td><td class="num-cell">+5%</td></tr>
+        <tr><td>Manutenção mensal</td><td class="num-cell">€60–150/mês</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-2);max-width:70ch">A tabela vale para todos. Abrir exceção para um obriga a abrir para todos, e a partir daí não existe mais tabela.</p>
+
+  <h3>O bloco do voucher</h3>
+  <div class="grid3">
+    <div class="card">
+      <span class="pill pill-amber">PASSO 1</span>
+      <p style="margin-top:8px;font-size:14.5px"><strong>Você qualifica.</strong> 12+ meses de operação, menos de 10 funcionários, faturamento abaixo de €2M. O Local Enterprise Office confirma.</p>
+    </div>
+    <div class="card">
+      <span class="pill pill-amber">PASSO 2</span>
+      <p style="margin-top:8px;font-size:14.5px"><strong>Eu cuido da papelada.</strong> Dois orçamentos, formulário, acompanhamento. Você aprova, eu protocolo.</p>
+    </div>
+    <div class="card">
+      <span class="pill pill-amber">PASSO 3</span>
+      <p style="margin-top:8px;font-size:14.5px"><strong>O Estado paga metade.</strong> Até €2.500 em projetos elegíveis. Prazo típico: 3 a 6 semanas.</p>
+    </div>
+  </div>
+
+  <h3>Falar o número</h3>
+  <div class="script">
+    <span class="who">Diga e pare de falar</span>
+    <p>Pelo que você descreveu, é o pacote X — €1.200. Com o voucher, €600 do teu bolso. Mais €60 por mês de manutenção, para o site não envelhecer.</p>
+    <p><em>[silêncio — deixe ele falar primeiro]</em></p>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-2);max-width:70ch">Quem fala depois do preço está negociando contra si mesmo.</p>
+</section>
+
+<!-- ══════════ OBJEÇÕES ══════════ -->
+<section id="objecoes">
+  <h2><span class="num">09</span> Objeções</h2>
+  <p class="sec-lede">Toda objeção segue a mesma estrutura: desarmar, isolar, discutir, compromisso. Desarmar tira a tensão, isolar descobre se é a objeção real, discutir trata o que ficou, compromisso fecha com próximo passo.</p>
+
+  <h3>Objeções que escondem outra coisa</h3>
+  <div class="grid2">
+    <div class="obj">
+      <div class="q">"Preciso pensar."</div>
+      <div class="a">Tranquilo. Só para eu te ajudar melhor: o que você acha que vai passar pela tua cabeça nessa decisão? Quais seriam as uma ou duas coisas principais?</div>
+      <div class="note">Quase nunca é a objeção real. A resposta revela qual é.</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Preciso falar com meu sócio."</div>
+      <div class="a">Claro. Por curiosidade: na tua própria opinião, se ele dissesse "faz o que você achar melhor", você faria? E por quê?</div>
+      <div class="note">Se faria: falta só apoio. Se não faria: há objeção real escondida.</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Manda por e-mail que eu vejo."</div>
+      <div class="a">Mando sim. Só que por experiência o material sozinho não responde as dúvidas que sempre aparecem. Prefiro te mostrar em 20 minutos. Quinta ou sexta?</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Tenho que ver a prioridade."</div>
+      <div class="a">Legal. Que outros projetos são esses? Tem algum com potencial de retorno melhor do que esse, considerando tudo o que a gente conversou?</div>
+      <div class="note">Se travar: "na verdade acho que você não está seguro quanto ao investimento. Confere?"</div>
+    </div>
+  </div>
+
+  <h3>Objeções reais</h3>
+  <div class="grid2">
+    <div class="obj">
+      <div class="q">Preço</div>
+      <div class="a">Dinheiro de lado — se ele não estivesse na equação, você faria? E por que especificamente?</div>
+      <div class="note">Se acredita no resultado, é logística financeira. Se não acredita, o problema é valor percebido: volte ao escopo e não negocie preço ainda.</div>
+    </div>
+    <div class="obj">
+      <div class="q">Caixa</div>
+      <div class="a">Se existisse um formato que coubesse no teu mês, você estaria aberto a encontrar isso comigo? O que seria uma parcela que não é confortável, mas cabe?</div>
+    </div>
+    <div class="obj">
+      <div class="q">Medo, por experiência ruim</div>
+      <div class="a">Você já teve uma experiência ruim com isso. O que você exigiria que fosse diferente numa próxima? E do que você não abre mão?</div>
+      <div class="note">A resposta vira cláusula da proposta — e a objeção desaparece sozinha.</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Não vou ter tempo."</div>
+      <div class="a">Preciso de duas horas tuas no total: fotos, lista de serviços e uma conversa. O resto é comigo, inclusive a papelada do voucher. E o que você ganha de volta é a tarde que hoje some em ligação de agendamento.</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Meu sobrinho faz mais barato."</div>
+      <div class="a">Provavelmente faz. E se ele também mantiver o site, cuidar do teu Google e atender quando quebrar daqui a oito meses, é um bom negócio. O que costuma acontecer é o site ficar pronto e nunca mais ser atualizado. Pergunta a ele sobre a manutenção antes de decidir.</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Pago depois que eu ver resultado."</div>
+      <div class="a">Entendo, e você tem todo direito de perguntar. Mas não colocamos parte da nossa receita em algo que não controlamos — se o conteúdo atrasar ou a prioridade mudar, o resultado muda e não é culpa de ninguém. O que dá para fazer é dividir o pagamento em marcos.</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Quero fazer sozinho primeiro."</div>
+      <div class="a">Dá para fazer, e eu não escondo nada: está tudo no YouTube. A pergunta é quanto vale o teu tempo aprendendo isso, e quanto custa cada mês que o site não está no ar. Você já parou para calcular o custo de não fazer?</div>
+    </div>
+    <div class="obj">
+      <div class="q">"Quero falar com um cliente de vocês."</div>
+      <div class="a">Posso tentar. Antes: o que exatamente ele precisaria te dizer para você se considerar satisfeito? Porque talvez eu já consiga te responder isso agora.</div>
+      <div class="note">Clientes não têm obrigação de responder. Não prometa que vão.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>Quando não insistir</h4>
+    <p>Há objeção que não é objeção: é falta de encaixe. Quem não qualifica no perfil, quem some por semanas, quem quer pagar por resultado depois de já ter ouvido não — essas conversas terminam com cordialidade e registro na lista de supressão.</p>
+    <p>Insistir custa mais caro do que perder. Cada hora gasta com o cliente errado é uma hora fora do funil.</p>
+  </div>
+</section>
+
+<!-- ══════════ FECHAMENTO ══════════ -->
+<section id="fechamento">
+  <h2><span class="num">10</span> Fechamento e passagem</h2>
+  <p class="sec-lede">Fechar é o fim do ciclo comercial e o começo do ciclo de entrega. Passagem malfeita gera retrabalho — mesmo quando quem vendeu é quem vai entregar.</p>
+
+  <h3>No mesmo dia do aceite</h3>
+  <ul class="clean do">
+    <li>Ficha de passagem preenchida</li>
+    <li>Fatura do sinal emitida, com vencimento explícito</li>
+    <li>Kickoff agendado</li>
+    <li>Pedido de conteúdo enviado</li>
+    <li>Candidatura do voucher iniciada, se cliente irlandês</li>
+  </ul>
+
+  <h3>Pedido de conteúdo — modelo</h3>
+  <div class="script">
+    <span class="who">Enviado logo após o aceite</span>
+    <p>Para começar, preciso de quatro coisas:</p>
+    <p>1. Fotos do negócio — 10 a 15 já bastam. Foto de celular serve<br>
+       2. Seus serviços com preços, mesmo que aproximados<br>
+       3. Um parágrafo sobre o negócio: como começou, o que faz diferente<br>
+       4. Acesso ao seu perfil do Google (mando as instruções)</p>
+    <p>A maior parte do prazo é espera por isso — quanto antes chegar, antes ficamos no ar.</p>
+  </div>
+
+  <div class="callout">
+    <h4>O ritual de encerramento — a meia hora mais valiosa do processo</h4>
+    <p>Roda em todo projeto entregue, sem exceção: vídeo de 60 segundos com três perguntas, foto com o cliente no estabelecimento, antes e depois do Google, um número concreto, autorização de uso por escrito, e o pedido de indicação na hora.</p>
+    <p>É o que faz o funil deixar de depender de e-mail frio. O momento de maior satisfação do cliente nunca mais será tão alto quanto no dia da entrega.</p>
+  </div>
+</section>
+
+<!-- ══════════ MÉTRICAS ══════════ -->
+<section id="metricas">
+  <h2><span class="num">11</span> Métricas e diagnóstico</h2>
+  <p class="sec-lede">Cinco números por semana. Quando um cai, o problema está sempre na etapa imediatamente acima.</p>
+
+  <figure>
+    <svg viewBox="0 0 700 220" role="img" aria-label="Taxas-alvo por etapa do funil">
+      <!-- grid -->
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="56" y1="180" x2="680" y2="180"/>
+        <line x1="56" y1="135" x2="680" y2="135" stroke-dasharray="2 4"/>
+        <line x1="56" y1="90" x2="680" y2="90" stroke-dasharray="2 4"/>
+        <line x1="56" y1="45" x2="680" y2="45" stroke-dasharray="2 4"/>
+      </g>
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--ink-3)" text-anchor="end">
+        <text x="48" y="184">0%</text>
+        <text x="48" y="139">25%</text>
+        <text x="48" y="94">50%</text>
+        <text x="48" y="49">75%</text>
+      </g>
+
+      <!-- bars: resposta 5, auditoria->reuniao 50, reuniao->proposta 67, proposta->fecho 50 -->
+      <g>
+        <rect x="90" y="171" width="78" height="9" rx="2" fill="var(--amber)"/>
+        <rect x="238" y="90" width="78" height="90" rx="2" fill="var(--teal)"/>
+        <rect x="386" y="59" width="78" height="121" rx="2" fill="var(--teal)"/>
+        <rect x="534" y="90" width="78" height="90" rx="2" fill="var(--teal)"/>
+      </g>
+
+      <!-- value labels -->
+      <g font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">
+        <text x="129" y="164">5%</text>
+        <text x="277" y="83">50%</text>
+        <text x="425" y="52">67%</text>
+        <text x="573" y="83">50%</text>
+      </g>
+
+      <!-- x labels -->
+      <g font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--ink-2)" text-anchor="middle">
+        <text x="129" y="199">taxa de</text><text x="129" y="212">resposta</text>
+        <text x="277" y="199">auditoria →</text><text x="277" y="212">reunião</text>
+        <text x="425" y="199">reunião →</text><text x="425" y="212">proposta</text>
+        <text x="573" y="199">proposta →</text><text x="573" y="212">fechamento</text>
+      </g>
+    </svg>
+    <figcaption>Taxas-alvo por transição. A taxa de resposta é a menor em valor absoluto e a mais determinante em volume.</figcaption>
+  </figure>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Indicador</th><th>Meta</th><th>Sinal de alerta</th></tr></thead>
+      <tbody>
+        <tr><td>Prospects abordados por semana</td><td class="num-cell">150–200</td><td>—</td></tr>
+        <tr><td>Taxa de abertura</td><td class="num-cell">≥ 40%</td><td>abaixo de 25% = entregabilidade</td></tr>
+        <tr><td>Taxa de resposta</td><td class="num-cell">≥ 5%</td><td>abaixo de 2% = personalização fraca</td></tr>
+        <tr><td>Reuniões por semana</td><td class="num-cell">2–3</td><td>—</td></tr>
+        <tr><td>Fechamento das propostas</td><td class="num-cell">≥ 30%</td><td>abaixo de 15% = preço ou perfil errado</td></tr>
+        <tr><td>Taxa de retorno de e-mail</td><td class="num-cell">&lt; 2%</td><td>acima de 3% = lista suja, parar e limpar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Como ler quando algo não vai bem</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Sintoma</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+      <tbody>
+        <tr><td>Abertura baixa</td><td>Entregabilidade</td><td>Checar SPF, DKIM, DMARC e o aquecimento do domínio</td></tr>
+        <tr><td>Abre mas não responde</td><td>As três observações estão genéricas</td><td>Reescrever a auditoria de dez prospects e medir de novo</td></tr>
+        <tr><td>Responde mas não marca reunião</td><td>O relatório não converte em conversa</td><td>Terminar a auditoria com um próximo passo mais direto</td></tr>
+        <tr><td>Reunião boa, proposta não sai</td><td>Não pedimos o próximo passo</td><td>Fechar sempre com duas opções de data</td></tr>
+        <tr><td>Proposta boa, não fecha</td><td>Preço errado ou perfil errado</td><td>Revisar o ICP antes de mexer no preço</td></tr>
+        <tr><td>Fecha mas o dinheiro não entra</td><td>Cobrança</td><td>Aplicar a régua. Ela tem dono e tem calendário</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <h4>Corrigir uma etapa por vez, de cima para baixo</h4>
+    <p>Mexer em três coisas ao mesmo tempo torna impossível saber o que funcionou. Uma mudança, dez prospects, medir, decidir.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Playbook Comercial · Marcus &amp; Michael · versão 1.0 · setembro de 2026</p>
+  <p style="margin-top:6px">Complementa o Manual de Operação (rotina, entrega, cobrança, produtos próprios) e a Proposta de Estrutura (divisão de resultados). Revisado na última sexta de cada mês.</p>
+</footer>
+
+</main>
+</div>
+
+<script src="../assets/share.js?v=20260928"></script>
+<script>
+  Share.enhance('figure, .tbl-wrap, .stat-row, .grid2, .grid3, .timeline, .script', { hint: 'Compartilhar' });
+</script>
+</body></html>

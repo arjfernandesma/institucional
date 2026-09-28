@@ -349,9 +349,9 @@
       case 'video':
         return `<div class="xp-lesson-wrap"><div class="xp-host"></div><div class="xp-hint">🎬 Vídeo explicativo com narração em português (voz do navegador). Use ⛶ para tela cheia. ${ans?.watched ? '<strong style="color:var(--green)">Assistido ✓</strong>' : 'Opcional, mas vale os dois minutos.'}</div></div>`;
       case 'scorer':
-        return `<div class="scorer"><div><div class="q-text">Calculadora de score de qualificação</div><p style="font-size:.9rem;color:var(--text-2);margin-bottom:.8rem">Marque o que é verdade sobre o prospect. Cada item vale 1 ponto.</p>
-          <div class="checklist">${COURSE.scorer.items.map((it, k) => `<button class="check" type="button" data-k="${k}"><span class="cb">✓</span><span>${it}</span></button>`).join('')}</div></div>
-          <div class="score-result s-no"><div class="sr-label">Score</div><b>0</b><div class="sr-verdict">Não envie</div></div></div>`;
+        return `<div class="scorer"><div><div class="q-text">Calculadora de score (0–100)</div><p style="font-size:.9rem;color:var(--text-2);margin-bottom:.8rem">Escolha uma opção por fator. Cinco fatores, 20 pontos cada. Aborde só acima de ${COURSE.scorer.threshold}.</p>
+          ${COURSE.scorer.factors.map((f, fi) => `<div class="sc-factor"><div class="sc-flabel">${f.label} <small>${f.hint || ''}</small></div><div class="sc-opts">${f.options.map((o, oi) => `<button class="sc-opt" type="button" data-f="${fi}" data-o="${oi}" data-v="${o[1]}">${o[0]} <b>+${o[1]}</b></button>`).join('')}</div></div>`).join('')}</div>
+          <div class="score-result s-no"><div class="sr-label">Score</div><b>0</b><div class="sr-verdict">Escolha os cinco fatores</div></div></div>`;
       default:
         return `<div class="callout callout-info"><div class="co-body">Bloco desconhecido: ${esc(b.type)}</div></div>`;
     }
@@ -445,12 +445,15 @@
     if (b.type === 'scorer') {
       const res = $('.score-result', el);
       const update = () => {
-        const n = $$('.check.on', el).length;
+        const picked = $$('.sc-opt.on', el);
+        const n = picked.reduce((s, x) => s + (+x.dataset.v), 0);
+        const complete = picked.length === COURSE.scorer.factors.length;
+        const webZero = picked.some(x => x.dataset.f === '0' && x.dataset.v === '0');
         $('b', res).textContent = n;
-        res.className = 'score-result ' + (n >= 4 ? 's-a' : n === 3 ? 's-b' : 's-no');
-        $('.sr-verdict', res).textContent = n >= 4 ? 'Envie · Sequência A (auditoria primeiro)' : n === 3 ? 'Envie · Sequência B (voucher primeiro)' : 'Não envie ainda';
+        res.className = 'score-result ' + (!complete ? 's-b' : n > COURSE.scorer.threshold ? 's-a' : 's-no');
+        $('.sr-verdict', res).textContent = !complete ? `Faltam ${COURSE.scorer.factors.length - picked.length} fator(es)` : n > COURSE.scorer.threshold ? (webZero ? 'Aborde · Sequência B (voucher primeiro)' : 'Aborde · Sequência A (auditoria primeiro)') : 'Não aborde ainda · revisite em 6 meses';
       };
-      $$('.check', el).forEach(c => c.addEventListener('click', () => { c.classList.toggle('on'); update(); }));
+      $$('.sc-opt', el).forEach(o => o.addEventListener('click', () => { $$(`.sc-opt[data-f="${o.dataset.f}"]`, el).forEach(x => x.classList.toggle('on', x === o)); update(); }));
     }
   }
 

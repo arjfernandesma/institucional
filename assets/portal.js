@@ -21,6 +21,13 @@
     { id: 'admin', label: 'Admin', role: 'admin' },
   ];
 
+  const COMERCIAL_CHAPTERS = [
+    { g: 'Fundamentos', items: [['01', 'funil', 'A matemática do funil'], ['02', 'territorio', 'Onde atuamos'], ['03', 'icp', 'Para quem vendemos']] },
+    { g: 'Topo do funil', items: [['04', 'lista', 'Lista e pontuação (0–100)'], ['05', 'auditoria', 'A auditoria'], ['06', 'email', 'E-mail frio']] },
+    { g: 'Conversa', items: [['07', 'diagnostico', 'Reunião de diagnóstico (30 min)'], ['08', 'proposta', 'Proposta ao vivo'], ['09', 'objecoes', 'Objeções'], ['10', 'fechamento', 'Fechamento e passagem']] },
+    { g: 'Controle', items: [['11', 'metricas', 'Métricas e diagnóstico']] },
+  ];
+
   const PLAYBOOK_CHAPTERS = [
     { g: 'Fundação', items: [['01', 'dominio', 'Domínio & Identidade'], ['02', 'posicionamento', 'Posicionamento & Preços']] },
     { g: 'Prospecção', items: [['03', 'icp', 'Quem Prospectar'], ['04', 'lista', 'Construção da Lista'], ['05', 'auditoria', 'A Auditoria Gratuita']] },
@@ -50,6 +57,7 @@
 
   const ADMIN_CHECKLIST = [
     'Passar a senha da área do colaborador (nunca a do admin)',
+    'Pedir a leitura do Playbook Comercial antes do Playbook Dublin',
     'Criar assinatura de e-mail com telefone e site da consultoria',
     'Gerar link de agendamento de 15 min (Cal.com) para as mensagens',
     'Dar acesso à planilha de prospects com as colunas obrigatórias',
@@ -61,11 +69,13 @@
   ];
 
   const PENDENCIAS = [
-    ['Preços públicos', 'O site mostra as duas frentes (Website e Custom) sem valores; o Playbook tem três pacotes com preços (€1.200 / €3.500 / €5.000+). O curso usa os valores do Playbook como referência interna.'],
-    ['Manutenção', 'O site diz que o primeiro ano está incluso no pacote; o Playbook fala em €60/mês desde o dia 1. O curso segue o site.'],
-    ['Voucher', 'O Trading Online Voucher é o pilar do Playbook, mas não aparece no site. Se continua válido, vale publicar.'],
-    ['Cobrança por hora', 'O site diz "nada é cobrado por hora"; o Manual BR tem hora avulsa a R$ 150. O curso mantém a hora só no Brasil.'],
-    ['Tabela em real', 'Os valores em real vêm do Manual de abril/2026. Confirmar antes da primeira proposta em real.'],
+    ['Manutenção × site público', 'Resolvido a favor do Playbook Comercial: manutenção de €60–150/mês desde a publicação, dita junto com o preço. O site marcusfernandes.ie ainda diz "primeiro ano incluído no pacote". Alinhar o site (ou decidir manter a diferença como oferta pública).'],
+    ['Reunião de diagnóstico', 'Resolvido: 30 minutos, gravada, sem preço; substitui a discovery call de 15 minutos em todo o material. O link de agendamento (Cal.com) precisa passar a 30 min.'],
+    ['Score 0–100', 'Resolvido: cinco fatores de 20 pontos, aborda-se acima de 60; substitui o score 0–5. A planilha de prospects precisa das colunas Web, Sinal, Reputação, Contato e Atividade.'],
+    ['Pagamento', 'Resolvido: tabela única (50/50 padrão, à vista −5%, três parcelas +5%). Confirmar se o desconto à vista deve aparecer no folheto público (hoje aparece).'],
+    ['Preços públicos', 'O site mostra as duas frentes sem valores; o Playbook Comercial confirma ticket €1.200–5.000 e manutenção €60–150/mês. Decidir se os valores vão ao site.'],
+    ['Voucher', 'O Trading Online Voucher é pilar dos dois playbooks, mas não aparece no site. Se continua válido, vale publicar.'],
+    ['Tabela em real', 'O Playbook Comercial cobre só Europa. Os valores em real seguem do Manual de abril/2026: confirmar antes da primeira proposta em real.'],
   ];
 
   /* ── Progresso da Academia (localStorage) ───────────────────────── */
@@ -123,7 +133,7 @@
 
     const steps = [
       { href: 'onboarding/', title: 'Faça o onboarding', desc: 'Curso interativo com quizzes e simulações. Termina com prova e certificado.', meta: '10 módulos · ~3h', done: examPassed },
-      { href: 'playbook/', title: 'Leia o Playbook', desc: 'O manual operacional completo: do domínio ao fechamento, com todos os scripts PT/EN.', meta: '17 capítulos · referência', done: false },
+      { href: 'playbook/comercial.html', title: 'Leia os Playbooks', desc: 'Primeiro o Playbook Comercial (o processo, 11 capítulos). Depois o Playbook Dublin, para os scripts em PT e EN.', meta: '2 documentos · referência', done: false },
       { href: 'onboarding/#cheatsheet', title: 'Deixe a Cola rápida à mão', desc: 'Preços, cadência, regras e números do funil numa página só. Abra antes de toda conversa.', meta: '1 página · uso diário', done: false },
     ];
 
@@ -177,8 +187,13 @@
         </section>
 
         <section class="p-section" id="playbook">
-          <div class="p-section-head"><div><div class="eyebrow">Consultar</div><h2>Sales & Outreach Playbook</h2><p>O manual operacional de prospecção e venda para Dublin, com todas as mensagens ao cliente prontas em português e inglês para copiar e colar. É a referência do dia a dia depois do onboarding.</p></div><a class="btn btn-primary" href="playbook/">Abrir o Playbook →</a></div>
-          <details class="chapters" open><summary>Ir direto a um capítulo</summary>${chapters(PLAYBOOK_CHAPTERS, 'playbook/')}</details>
+          <div class="p-section-head"><div><div class="eyebrow">Consultar</div><h2>Playbooks</h2><p>Dois documentos que se complementam. O <strong>Playbook Comercial</strong> é o processo: funil, score, reunião de diagnóstico, proposta ao vivo, objeções e métricas. Em divergência, vale ele. O <strong>Playbook Dublin</strong> traz os scripts em português e inglês, as sequências B e C, WhatsApp, LinkedIn e a infraestrutura de e-mail.</p></div></div>
+          <div class="tile-grid" style="margin-bottom:1rem">
+            <a class="tile" href="playbook/comercial.html"><div class="t-icon">★</div><h4>Playbook Comercial</h4><p>Do primeiro contato ao contrato assinado. Serve para que qualquer pessoa da equipe conduza a mesma venda, do mesmo jeito. v1.0 · setembro de 2026.</p><div class="t-foot"><span>11 capítulos · processo</span><span>Manda em caso de divergência</span></div></a>
+            <a class="tile" href="playbook/"><div class="t-icon">📘</div><h4>Playbook Dublin · scripts PT/EN</h4><p>Todas as mensagens ao cliente prontas para copiar e colar, nos dois idiomas, mais WhatsApp, LinkedIn, compliance e infraestrutura de e-mail.</p><div class="t-foot"><span>17 capítulos · referência</span></div></a>
+          </div>
+          <details class="chapters" open><summary>Playbook Comercial: ir direto a um capítulo</summary>${chapters(COMERCIAL_CHAPTERS, 'playbook/comercial.html')}</details>
+          <details class="chapters"><summary>Playbook Dublin: ir direto a um capítulo</summary>${chapters(PLAYBOOK_CHAPTERS, 'playbook/')}</details>
         </section>
 
         <section class="p-section" id="materiais">
@@ -248,7 +263,7 @@
               <dt>Senhas</dt><dd>Em <code>assets/auth.js</code>, um hash SHA-256 por perfil (<code>roles.colaborador</code> e <code>roles.admin</code>). Gere com <code>printf '%s' 'Senha' | sha256sum</code>. Trocar a senha derruba as sessões daquele perfil.</dd>
               <dt>Login individual</dt><dd>Trocar <code>provider</code> para <code>'clerk'</code> e colar a publishable key. O perfil vem de <code>publicMetadata.role</code>.</dd>
               <dt>Conteúdo do curso</dt><dd>Tudo em <code>onboarding/content.js</code>: módulos, lições, quizzes, simulações, prova, cola rápida e glossário.</dd>
-              <dt>Playbook</dt><dd><code>playbook/index.html</code>. Área do colaborador.</dd>
+              <dt>Playbooks</dt><dd><code>playbook/comercial.html</code> (processo; manda em divergência) e <code>playbook/index.html</code> (Dublin, scripts PT/EN). Área do colaborador.</dd>
               <dt>Manual BR</dt><dd><code>admin/manual-operacional.html</code>. Só admin.</dd>
               <dt>Este portal</dt><dd><code>index.html</code> + <code>assets/portal.js</code> (menus, trilhas, checklist, pendências).</dd>
               <dt>Proteção</dt><dd>Cada página inclui <code>assets/guard.js</code> com <code>data-role</code>. Sem sessão, volta para o portal.</dd>

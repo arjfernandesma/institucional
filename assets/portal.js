@@ -32,7 +32,7 @@
     { g: 'Fundação', items: [['01', 'dominio', 'Domínio & Identidade'], ['02', 'posicionamento', 'Posicionamento & Preços']] },
     { g: 'Prospecção', items: [['03', 'icp', 'Quem Prospectar'], ['04', 'lista', 'Construção da Lista'], ['05', 'auditoria', 'A Auditoria Gratuita']] },
     { g: 'Abordagem', items: [['06', 'email', 'Cold Email · PT+EN'], ['07', 'whatsapp', 'WhatsApp & Telefone'], ['08', 'linkedin', 'LinkedIn']] },
-    { g: 'Conversão', items: [['09', 'discovery', 'Discovery Call'], ['10', 'proposta', 'A Proposta'], ['11', 'objecoes', 'Manual de Objeções'], ['12', 'onboarding', 'Fechamento & Onboarding'], ['13', 'closeout', 'Ritual de Encerramento']] },
+    { g: 'Conversão', items: [['09', 'discovery', 'Reunião de Diagnóstico (30 min)'], ['10', 'proposta', 'A Proposta'], ['11', 'objecoes', 'Manual de Objeções'], ['12', 'onboarding', 'Fechamento & Onboarding'], ['13', 'closeout', 'Ritual de Encerramento']] },
     { g: 'Infraestrutura & Controle', items: [['14', 'compliance', 'Compliance'], ['15', 'infra', 'Infraestrutura de Email'], ['16', 'metricas', 'Métricas'], ['17', 'plano30', 'Primeiros 30 Dias']] },
   ];
 

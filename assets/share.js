@@ -162,6 +162,9 @@ const Share = (() => {
       .share-btn.done{background:#1F7A4D;border-color:#1F7A4D;color:#fff}
       .share-btn.fail{background:#FCEEE9;border-color:#B83A2C;color:#B83A2C}
       .share-btn:disabled{cursor:default}
+      .share-bar-inside{position:absolute;top:6px;right:6px;margin:0;gap:.25rem;z-index:3;opacity:.55;transition:opacity .15s}
+      .share-bar-inside .share-btn{padding:.25rem .45rem;font-size:12px;line-height:1;border-radius:6px}
+      [data-share-enhanced]:hover > .share-bar-inside,.share-bar-inside:focus-within{opacity:1}
       @media print{.share-bar{display:none !important}}`;
     document.head.appendChild(barCss);
   }
@@ -177,11 +180,29 @@ const Share = (() => {
   }
   function btn(icon, label, tip) { const b = document.createElement('button'); b.type = 'button'; b.className = 'share-btn'; b.title = tip; b.innerHTML = `${icon} ${label}`; return b; }
   /** Adiciona a barrinha acima de cada elemento que casa com o seletor. */
+  /** Adiciona a barrinha acima de cada elemento que casa com o seletor.
+      Regras: um elemento aninhado num bloco que já tem barra não ganha outra;
+      um bloco que já contém barras não ganha a sua; e quando o pai é uma
+      grade ou flex (a barra viraria uma célula), a barra vai dentro do
+      bloco, compacta, no canto superior direito. */
   function enhance(selector, opts = {}) {
-    document.querySelectorAll(selector).forEach(el => {
-      if (el.dataset.shareEnhanced) return; el.dataset.shareEnhanced = '1';
+    Array.from(document.querySelectorAll(selector)).forEach(el => {
+      if (el.dataset.shareEnhanced) return;
+      if (el.parentElement && el.parentElement.closest('[data-share-enhanced]')) return;   // ancestral já tem barra
+      if (el.querySelector('[data-share-enhanced]')) return;                                 // descendentes já têm barra
+      el.dataset.shareEnhanced = '1';
       const bar = makeBar({ ...opts, target: () => el });
-      el.parentNode.insertBefore(bar, el);
+      const parentDisplay = el.parentElement ? getComputedStyle(el.parentElement).display : 'block';
+      const inline = /grid|flex/.test(parentDisplay) || /^(li|td|th)$/i.test(el.tagName);
+      if (inline) {
+        bar.classList.add('share-bar-inside');
+        bar.querySelector('.share-hint')?.remove();
+        bar.querySelectorAll('.share-btn').forEach(b => { b.dataset.full = b.innerHTML; b.innerHTML = b.innerHTML.trim().split(' ')[0]; b.title = (b.dataset.full || '').replace(/^\S+\s*/, '') + ' — ' + b.title; });
+        if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+        el.prepend(bar);
+      } else {
+        el.parentNode.insertBefore(bar, el);
+      }
     });
   }
 

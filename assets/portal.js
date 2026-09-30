@@ -36,6 +36,13 @@
     { g: 'Infraestrutura & Controle', items: [['14', 'compliance', 'Compliance'], ['15', 'infra', 'Infraestrutura de Email'], ['16', 'metricas', 'Métricas'], ['17', 'plano30', 'Primeiros 30 Dias']] },
   ];
 
+  const WORKFLOW_CHAPTERS = [
+    { g: 'Princípio', items: [['01', 'verificacao', 'Confiança = verificação'], ['02', 'matriz', 'A matriz de decisão'], ['03', 'modos', 'Os três modos'], ['04', 'ciclo', 'O ciclo, passo a passo']] },
+    { g: 'As três frentes', items: [['05', 'sites', 'Sites locais'], ['06', 'projetos', 'Projetos maiores'], ['07', 'saas', 'SaaS próprios']] },
+    { g: 'Infraestrutura', items: [['08', 'harness', 'O harness'], ['09', 'contexto', 'Gestão de contexto'], ['10', 'web', 'Claude Code na web']] },
+    { g: 'Operação', items: [['11', 'antipadroes', 'Anti-padrões'], ['12', 'rotina', 'Rotina semanal']] },
+  ];
+
   const MANUAL_CHAPTERS = [
     { g: 'Estratégia', items: [['01', 'visao', 'Visão Geral'], ['02', 'modelo', 'Modelo de Negócio'], ['03', 'roadmap', 'Roadmap de Expansão']] },
     { g: 'Produto', items: [['04', 'catalogo', 'Catálogo de Serviços'], ['05', 'pacotes', 'Pacotes & Preços'], ['06', 'addons', 'Add-ons Recorrentes']] },
@@ -222,20 +229,29 @@
 
   function renderAdmin() {
     const team = allProgress();
-    const chapters = MANUAL_CHAPTERS.map(g => `<div class="chapter-group"><div class="g">${g.g}</div><div class="chapter-list">${g.items.map(([n, id, t]) => `<a href="admin/manual-operacional.html#${id}"><span class="n">${n}</span>${t}</a>`).join('')}</div></div>`).join('');
+    const chaptersOf = (list, base) => list.map(g => `<div class="chapter-group"><div class="g">${g.g}</div><div class="chapter-list">${g.items.map(([n, id, t]) => `<a href="${base}#${id}"><span class="n">${n}</span>${t}</a>`).join('')}</div></div>`).join('');
+    const chapters = chaptersOf(MANUAL_CHAPTERS, 'admin/manual-operacional.html');
+    const wfChapters = chaptersOf(WORKFLOW_CHAPTERS, 'admin/workflow-engenharia.html');
     let checks = {}; try { checks = JSON.parse(localStorage.getItem('mf_admin_checklist') || '{}'); } catch { /* ignore */ }
 
     return `
       <section class="p-section" id="admin">
-        <div class="p-section-head"><div><div class="eyebrow">Somente admin</div><h2>Área do admin</h2><p>O que a equipe de vendas não vê: modelo de negócio, contratos, pagamentos, SLA, cancelamento, e o painel para receber e acompanhar colaboradores.</p></div><span class="role-pill admin">Admin</span></div>
+        <div class="p-section-head"><div><div class="eyebrow">Somente admin</div><h2>Área do admin</h2><p>O que a equipe de vendas não vê: o ciclo de desenvolvimento, modelo de negócio, contratos, pagamentos, SLA, cancelamento, e o painel para receber e acompanhar colaboradores.</p></div><span class="role-pill admin">Admin</span></div>
 
         <div class="tile-grid" style="margin-bottom:1.25rem">
+          <a class="tile admin-tile featured" href="admin/workflow-engenharia.html">
+            <div class="t-icon">⚙️</div>
+            <div class="t-body"><h3>Workflow de Engenharia</h3><p>O método de trabalho que norteia o ciclo de desenvolvimento com Claude Code nas três frentes (sites locais, projetos maiores, SaaS próprios): onde delegar, onde verificar, o harness, gestão de contexto, anti-padrões e a rotina semanal. Par técnico do Playbook Comercial.</p>
+              <div class="t-foot"><span>12 capítulos · v1.0 · set/2026</span><span>Revisado na última sexta de cada mês</span></div></div>
+            <span class="btn btn-primary">Abrir →</span>
+          </a>
           <a class="tile admin-tile" href="admin/manual-operacional.html"><div class="t-icon">📕</div><h4>Manual Operacional (Brasil)</h4><p>Modelo de negócio, estrutura fiscal, catálogo, pacotes, contratos, pagamento, entrega, SLA, suporte, cancelamento e FAQ.</p><div class="t-foot"><span>16 capítulos · abr/2026</span></div></a>
           <a class="tile admin-tile" href="playbook/#infra"><div class="t-icon">📮</div><h4>Infraestrutura de e-mail</h4><p>Domínio de envio, SPF/DKIM/DMARC, rampa de aquecimento e teto de 40 por dia. Responsabilidade do admin.</p><div class="t-foot"><span>Playbook · cap. 15</span></div></a>
           <a class="tile admin-tile" href="playbook/#compliance"><div class="t-icon">⚖️</div><h4>Compliance e LIA</h4><p>Regime B2B irlandês, GDPR para autônomos, a Legitimate Interests Assessment e a lista de supressão.</p><div class="t-foot"><span>Playbook · cap. 14</span></div></a>
           <a class="tile admin-tile" href="playbook/#metricas"><div class="t-icon">📊</div><h4>Métricas do funil</h4><p>Números saudáveis e de alerta por estágio, e como ler cada sintoma.</p><div class="t-foot"><span>Playbook · cap. 16</span></div></a>
         </div>
 
+        <details class="chapters" open><summary>Workflow de Engenharia: ir direto a um capítulo</summary>${wfChapters}</details>
         <details class="chapters"><summary>Capítulos do Manual Operacional</summary>${chapters}</details>
 
         <div class="two-col" style="margin-top:1.25rem">
@@ -264,6 +280,7 @@
               <dt>Login individual</dt><dd>Trocar <code>provider</code> para <code>'clerk'</code> e colar a publishable key. O perfil vem de <code>publicMetadata.role</code>.</dd>
               <dt>Conteúdo do curso</dt><dd>Tudo em <code>onboarding/content.js</code>: módulos, lições, quizzes, simulações, prova, cola rápida e glossário.</dd>
               <dt>Playbooks</dt><dd><code>playbook/comercial.html</code> (processo; manda em divergência) e <code>playbook/index.html</code> (Dublin, scripts PT/EN). Área do colaborador.</dd>
+              <dt>Ciclo de desenvolvimento</dt><dd><code>admin/workflow-engenharia.html</code>. Só admin. Ao mudar o método, revisar o Playbook Comercial (par comercial).</dd>
               <dt>Manual BR</dt><dd><code>admin/manual-operacional.html</code>. Só admin.</dd>
               <dt>Este portal</dt><dd><code>index.html</code> + <code>assets/portal.js</code> (menus, trilhas, checklist, pendências).</dd>
               <dt>Proteção</dt><dd>Cada página inclui <code>assets/guard.js</code> com <code>data-role</code>. Sem sessão, volta para o portal.</dd>

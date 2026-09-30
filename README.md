@@ -11,6 +11,7 @@ Site interno da consultoria (sites, Google Business Profile, agendamento e autom
 | `playbook/comercial.html` | **Playbook Comercial** (Marcus & Michael, v1.0): o processo comercial, do primeiro contato ao contrato. Em divergência, manda | colaborador e admin |
 | `playbook/` | **Sales & Outreach Playbook** (Dublin): scripts PT/EN, sequências B e C, WhatsApp, LinkedIn, compliance e infraestrutura de e-mail | colaborador e admin |
 | `colaborador/objecoes.html` | Infográfico das 7 objeções (Vendas & PNL) | colaborador e admin |
+| `admin/workflow-engenharia.html` | **Workflow de Engenharia** (v1.0): método de trabalho com Claude Code para o ciclo de desenvolvimento das três frentes | só admin |
 | `admin/manual-operacional.html` | **Manual Operacional (Brasil)**: modelo de negócio, fiscal, contratos, pagamento, SLA, cancelamento | só admin |
 | `assets/auth.js` | Autenticação compartilhada (senha por perfil hoje; Clerk depois) | — |
 | `assets/guard.js` | Protege cada página por perfil e injeta a barra de navegação do portal (com botão PDF) | — |
@@ -24,7 +25,7 @@ Uma sessão vale para o site inteiro. A senha digitada define o perfil:
 | Perfil | Vê | Senha |
 |---|---|---|
 | **Colaborador(a)** | Portal, Academia, Playbook, materiais, folheto para o cliente | hash em `roles.colaborador` |
-| **Admin** | Tudo do colaborador + área do admin e Manual Operacional | hash em `roles.admin` |
+| **Admin** | Tudo do colaborador + área do admin, Workflow de Engenharia e Manual Operacional | hash em `roles.admin` |
 
 As senhas não ficam em texto puro: só o hash SHA-256, em `assets/auth.js`. Para trocar:
 

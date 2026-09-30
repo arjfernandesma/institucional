@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Academia de Vendas — Marcus Fernandes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260930b">
+</head>
+<body>
+
+<!-- ━━━ TELA DE ACESSO ━━━ -->
+<div id="gate" class="gate" hidden>
+  <div class="gate-bg" aria-hidden="true">
+    <span class="orb orb-1"></span><span class="orb orb-2"></span><span class="orb orb-3"></span>
+  </div>
+  <div class="gate-card">
+    <div class="gate-brand">
+      <div class="brand-mark">M</div>
+      <div>
+        <div class="brand-name">Marcus Fernandes</div>
+        <div class="brand-meta">Academia de Vendas · Interno</div>
+      </div>
+    </div>
+    <h1 class="gate-title">Bem-vinda(o) à <em>equipe</em>.</h1>
+    <p class="gate-sub">Este é o seu treinamento de boas-vindas: um curso interativo, no seu ritmo, para você aprender a vender nossos sites e automações no Brasil e na Europa. Use a mesma senha do <a href="../index.html">portal da equipe</a>.</p>
+
+    <form id="gate-form" class="gate-form" autocomplete="off">
+      <label class="field">
+        <span class="field-label">Como você quer ser chamada(o)?</span>
+        <input id="gate-name" type="text" name="name" placeholder="Seu primeiro nome" maxlength="40" required>
+      </label>
+      <label class="field">
+        <span class="field-label">Senha de acesso</span>
+        <div class="field-pass">
+          <input id="gate-pass" type="password" name="password" placeholder="Senha fornecida pelo administrador" required>
+          <button type="button" class="pass-toggle" id="pass-toggle" aria-label="Mostrar senha">👁</button>
+        </div>
+      </label>
+      <p id="gate-error" class="gate-error" role="alert" hidden>Senha incorreta. Confira com o administrador e tente de novo.</p>
+      <button type="submit" class="btn btn-primary btn-lg" id="gate-submit">Entrar no curso →</button>
+    </form>
+
+    <div id="clerk-mount" hidden></div>
+
+    <p class="gate-foot">Uso interno. Ao entrar, você concorda em não compartilhar este material fora da equipe.</p>
+  </div>
+</div>
+
+<!-- ━━━ APP ━━━ -->
+<div id="app" class="app" hidden>
+  <header class="topbar">
+    <button class="topbar-brand" id="go-home" title="Início">
+      <span class="brand-mark sm">M</span>
+      <span class="topbar-title">Academia de Vendas</span>
+    </button>
+    <div class="topbar-progress" id="topbar-progress" title="Seu progresso geral">
+      <div class="bar"><span id="topbar-bar"></span></div>
+      <span class="pct" id="topbar-pct">0%</span>
+    </div>
+    <nav class="topbar-nav">
+      <a class="nav-link" href="../index.html">← Portal</a>
+      <button class="nav-link" data-view="home">Trilha</button>
+      <button class="nav-link" data-view="videos">Vídeos</button>
+      <button class="nav-link" data-view="cheatsheet">Cola rápida</button>
+      <button class="nav-link" data-view="folheto">Folheto</button>
+      <button class="nav-link" data-view="glossary">Glossário</button>
+      <a class="nav-link" href="../playbook/" target="_blank" rel="noopener">Playbook ↗</a>
+    </nav>
+    <div class="topbar-user">
+      <span class="avatar" id="user-avatar">?</span>
+      <span class="user-name" id="user-name"></span>
+      <button class="btn btn-outline btn-sm" id="print-view" title="Imprimir ou salvar esta tela em PDF">🖨 Salvar PDF</button>
+      <button class="btn btn-ghost btn-sm" id="logout">Sair</button>
+    </div>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu">☰</button>
+  </header>
+
+  <div class="mobile-nav" id="mobile-nav" hidden>
+    <a class="nav-link" href="../index.html">⌂ Portal da equipe</a>
+    <button class="nav-link" data-view="home">🏠 Trilha do curso</button>
+    <button class="nav-link" data-view="videos">🎬 Vídeos explicativos</button>
+    <button class="nav-link" data-view="cheatsheet">⚡ Cola rápida (preços e regras)</button>
+    <button class="nav-link" data-view="folheto">📄 Folheto para o cliente</button>
+    <button class="nav-link" data-view="glossary">📖 Glossário para iniciantes</button>
+    <a class="nav-link" href="../playbook/" target="_blank" rel="noopener">📘 Playbook completo ↗</a>
+    <button class="nav-link" id="print-view-m">🖨 Salvar esta tela em PDF</button>
+    <button class="nav-link" id="logout-m">🚪 Sair</button>
+  </div>
+
+  <main id="view" class="view"></main>
+
+  <div id="toast" class="toast" hidden></div>
+</div>
+
+<script src="../assets/auth.js?v=20260930b"></script>
+<script src="../assets/share.js?v=20260930b"></script>
+<script src="content.js?v=20260930b"></script>
+<script src="explainer.js?v=20260930b"></script>
+<script src="app.js?v=20260930b"></script>
+</body>
+</html>

@@ -5,10 +5,12 @@
    guarda de páginas (assets/guard.js). Uma única sessão vale para o
    site inteiro (mesmo domínio → mesmo localStorage).
 
-   PERFIS
+   PERFIS (cada um inclui o anterior)
      colaborador → área do colaborador: onboarding, cursos, playbook, materiais
-     admin       → tudo do colaborador + área do admin (manual operacional,
-                   painel, pendências). Admin sempre pode o que colaborador pode.
+     socio       → tudo do colaborador + área da sociedade (manual da parceria,
+                   painel: rituais, papéis, pontos, fundo, decisões)
+     admin       → tudo + área do admin (workflow de engenharia, manual
+                   operacional, painel do admin, pendências)
 
    A senha digitada define o perfil: cada perfil tem a sua senha.
 
@@ -21,8 +23,8 @@
      1. Crie a aplicação em https://dashboard.clerk.com
      2. Cole a Publishable key em clerkPublishableKey
      3. Troque provider para 'clerk'
-     4. No Clerk, defina publicMetadata.role = 'admin' ou 'colaborador'
-        em cada usuário (sem valor → 'colaborador').
+     4. No Clerk, defina publicMetadata.role = 'admin', 'socio' ou
+        'colaborador' em cada usuário (sem valor → 'colaborador').
 
    ⚠ Limite do modo "password": protege contra acesso casual (páginas
    com noindex, conteúdo não aparece sem senha), mas um site estático
@@ -35,7 +37,8 @@ const AUTH_CONFIG = {
 
   roles: {
     colaborador: { label: 'Colaborador(a)', passwordHash: '81d8671df45f493f160dfb5e375b6d73e49092f0a643ee9694308b631128d53a' },
-    admin:    { label: 'Admin',       passwordHash: 'a36aef5a11c4073fbe60314fc9df530a9d5f986533594d1f5190742ff9e0e408' },
+    socio:       { label: 'Sócio',          passwordHash: 'bdad33d804e3b947b0425c0f1d188f9b623c084b9b5852bd42d04849fe9a6169' },
+    admin:       { label: 'Admin',          passwordHash: 'a36aef5a11c4073fbe60314fc9df530a9d5f986533594d1f5190742ff9e0e408' },
   },
 
   // Clerk (usado apenas quando provider === 'clerk')
@@ -65,7 +68,7 @@ const MFStore = (() => {
 
 const Auth = (() => {
   const SESSION_KEY = 'mf_session';
-  const RANK = { colaborador: 1, admin: 2 };
+  const RANK = { colaborador: 1, socio: 2, admin: 3 };
   let current = null;
 
   async function sha256(text) {
@@ -147,7 +150,7 @@ const Auth = (() => {
     async login(creds) { current = await provider.login(creds); return current; },
     async logout() { await provider.logout(); current = null; },
     current: () => current,
-    /** O perfil da sessão cobre o perfil exigido? (admin ⊇ colaborador) */
+    /** O perfil da sessão cobre o perfil exigido? (admin ⊇ socio ⊇ colaborador) */
     can: (role, session = current) => !!session && (RANK[session.role] || 0) >= (RANK[role] || 0),
     roleLabel: (role) => (AUTH_CONFIG.roles[role] || {}).label || role,
     mountClerk: (el, cb) => (provider.mount ? provider.mount(el, cb) : Promise.resolve()),

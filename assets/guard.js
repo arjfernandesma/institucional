@@ -5,7 +5,7 @@
      <script src="../assets/auth.js"></script>
      <script src="../assets/guard.js" data-role="colaborador"></script>
 
-   data-role  perfil mínimo: "colaborador" (padrão) ou "admin"
+   data-role  perfil mínimo: "colaborador" (padrão), "socio" ou "admin"
    data-bar   "off" para não injetar a barra de navegação
 
    Sem sessão válida → redireciona para o portal com ?next=<página>.
@@ -15,7 +15,7 @@
   const need = (script.dataset.role || 'colaborador');
   const withBar = script.dataset.bar !== 'off';
   const root = new URL(script.src).href.replace(/assets\/guard\.js.*$/, '');
-  const here = location.pathname + location.hash;
+  const here = location.pathname + location.search + location.hash;
 
   // esconde a página até a checagem terminar (evita "flash" de conteúdo)
   const style = document.createElement('style');
@@ -25,7 +25,7 @@
 
   const toPortal = () => {
     const q = new URLSearchParams({ next: here });
-    if (need === 'admin') q.set('need', 'admin');
+    if (need !== 'colaborador') q.set('need', need);
     location.replace(root + 'index.html?' + q.toString());
   };
 
@@ -44,6 +44,7 @@
       ['Playbook', root + 'playbook/', isActive('playbook')],
       ['Materiais', root + 'index.html#materiais', isActive('colaborador')],
     ];
+    if (Auth.can('socio', session)) links.push(['Sociedade', root + 'sociedade/', isActive('sociedade')]);
     if (Auth.can('admin', session)) links.push(['Admin', root + 'index.html#admin', isActive('admin')]);
 
     const css = document.createElement('style');
@@ -58,7 +59,7 @@
       #mf-bar .mf-sp{flex:1}
       #mf-bar .mf-user{color:rgba(245,242,236,.7);white-space:nowrap;margin-right:.25rem}
       #mf-bar .mf-user i{font-style:normal;background:rgba(212,165,58,.18);color:#D4A53A;padding:.15rem .45rem;border-radius:100px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-left:.35rem}
-      #mf-bar button{margin-left:.3rem;background:transparent;border:1px solid rgba(255,255,255,.18);color:#F5F2EC;border-radius:6px;padding:.35rem .6rem;font:inherit;cursor:pointer}
+      #mf-bar button{margin-left:.3rem;background:transparent;border:1px solid rgba(255,255,255,.18);color:#F5F2EC;border-radius:6px;padding:.35rem .6rem;font:inherit;cursor:pointer;white-space:nowrap}
       #mf-bar button:hover{background:rgba(255,255,255,.1)}
       #mf-bar .mf-nav{display:flex;gap:.1rem;overflow-x:auto;scrollbar-width:none}
       #mf-bar .mf-nav::-webkit-scrollbar{display:none}

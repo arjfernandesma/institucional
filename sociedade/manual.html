@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Manual de Operação da Parceria Marcus & Michael: como tocamos a sociedade no dia a dia.">
+<meta name="robots" content="noindex, nofollow">
+<title>Manual de Operação da Parceria — Sociedade</title>
+<script src="../assets/auth.js?v=20261002b"></script>
+<script src="../assets/guard.js?v=20261002b" data-role="socio"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{ color-scheme: light; }
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+:root{
+  color-scheme: light;
+  --paper:#FAFAF7;
+  --surface:#FFFFFF;
+  --surface-2:#F2F1EC;
+  --ink:#16191C;
+  --ink-2:#565C63;
+  --ink-3:#8A9097;
+  --line:#E3E1DA;
+  --line-2:#CFCCC3;
+  --teal:#0E5257;
+  --teal-soft:#DCEAE9;
+  --amber:#A6620A;
+  --amber-soft:#F6E8D5;
+  --good:#2F6B4F;
+  --good-soft:#DFEDE5;
+  --bad:#8E3A2E;
+  --bad-soft:#F6E2DE;
+  --shadow:0 1px 2px rgba(20,25,28,.05), 0 8px 24px -12px rgba(20,25,28,.14);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#131619; --surface:#1A1E22; --surface-2:#22272C;
+    --ink:#E9E7E2; --ink-2:#A8ADB3; --ink-3:#757C83;
+    --line:#2A2F35; --line-2:#3A4149;
+    --teal:#5FB0AF; --teal-soft:#16302F;
+    --amber:#D89A4E; --amber-soft:#332618;
+    --good:#6FB58F; --good-soft:#182B22;
+    --bad:#D08272; --bad-soft:#2E1C18;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#131619; --surface:#1A1E22; --surface-2:#22272C;
+  --ink:#E9E7E2; --ink-2:#A8ADB3; --ink-3:#757C83;
+  --line:#2A2F35; --line-2:#3A4149;
+  --teal:#5FB0AF; --teal-soft:#16302F;
+  --amber:#D89A4E; --amber-soft:#332618;
+  --good:#6FB58F; --good-soft:#182B22;
+  --bad:#D08272; --bad-soft:#2E1C18;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;text-wrap:balance;margin:0;letter-spacing:-.015em}
+p{margin:0}
+a{color:var(--teal)}
+code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.88em;
+  background:var(--surface-2);padding:1px 5px;border-radius:3px;border:1px solid var(--line)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+.shell{display:grid;grid-template-columns:244px minmax(0,1fr);max-width:1260px;margin:0 auto;align-items:start}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);padding:28px 20px 40px 24px;
+  border-right:1px solid var(--line);max-height:100vh;overflow-y:auto}
+.nav-brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;line-height:1.25;margin-bottom:4px}
+.nav-sub{font-size:11.5px;color:var(--ink-3);margin-bottom:22px;letter-spacing:.02em}
+.nav a{display:block;padding:5px 0 5px 10px;margin-left:-12px;font-size:13.5px;color:var(--ink-2);
+  text-decoration:none;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.nav a:hover{color:var(--ink);border-left-color:var(--line-2)}
+.nav-grp{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin:18px 0 6px;font-weight:600}
+.main{padding:28px 32px 100px;min-width:0}
+
+.mast{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:34px}
+.eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:10px}
+.mast h1{font-size:clamp(34px,5.4vw,50px);font-weight:800;line-height:1.02;margin-bottom:12px}
+.mast .lede{font-size:17px;color:var(--ink-2);max-width:64ch}
+.mast-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11px;padding:3px 9px;
+  border:1px solid var(--line-2);border-radius:3px;color:var(--ink-2)}
+
+section{margin-bottom:56px;scroll-margin-top:24px}
+section > h2{font-size:26px;font-weight:700;margin-bottom:6px;line-height:1.15;display:flex;align-items:baseline;gap:12px}
+.num{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;color:var(--amber);flex:none}
+.sec-lede{color:var(--ink-2);max-width:68ch;margin-bottom:24px;font-size:15.5px}
+h3{font-size:18px;font-weight:700;margin:30px 0 10px}
+h4{font-size:14.5px;font-weight:600;margin:22px 0 8px}
+.prose{max-width:70ch}
+.prose p + p{margin-top:12px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(198px,1fr));gap:14px}
+
+.callout{background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 30%,transparent);
+  border-radius:8px;padding:16px 20px;margin:18px 0}
+.callout h4{margin:0 0 6px;color:var(--amber);font-size:13px;text-transform:uppercase;
+  letter-spacing:.07em;font-family:"JetBrains Mono",monospace;font-weight:600}
+.callout p{font-size:14.5px;line-height:1.6}
+.callout p + p{margin-top:8px}
+.callout.warn{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 30%,transparent)}
+.callout.warn h4{color:var(--bad)}
+
+.term{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--teal);
+  border-radius:0 6px 6px 0;padding:12px 16px;margin:12px 0;font-family:"JetBrains Mono",monospace;
+  font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre;color:var(--ink)}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+.tbl-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+th{text-align:left;font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;color:var(--ink-2);padding:11px 14px;
+  background:var(--surface-2);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.num-cell{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+ul.clean{list-style:none;padding:0;margin:10px 0;display:flex;flex-direction:column;gap:7px}
+ul.clean li{padding-left:20px;position:relative;font-size:15px;line-height:1.55}
+ul.clean li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+ul.do li::before{content:"✓";color:var(--good);font-weight:700}
+ul.dont li::before{content:"✕";color:var(--bad);font-weight:700}
+
+.pill{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  padding:2px 8px;border-radius:99px;letter-spacing:.04em;font-weight:600}
+.pill-teal{background:var(--teal-soft);color:var(--teal)}
+.pill-amber{background:var(--amber-soft);color:var(--amber)}
+.pill-good{background:var(--good-soft);color:var(--good)}
+.pill-bad{background:var(--bad-soft);color:var(--bad)}
+
+figure{margin:20px 0}
+figcaption{font-size:12.5px;color:var(--ink-3);margin-top:10px;font-family:"JetBrains Mono",monospace}
+svg{max-width:100%;height:auto;display:block}
+
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:18px 0}
+.stat{background:var(--surface);padding:14px 16px}
+.stat .v{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .l{font-size:12px;color:var(--ink-2);margin-top:2px;line-height:1.35}
+
+.flow{display:flex;flex-direction:column;gap:0;margin:18px 0}
+.flow-step{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.flow-step:last-child{border-bottom:none}
+.flow-n{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;color:var(--surface);
+  background:var(--teal);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;margin-top:2px}
+.flow-b h4{margin:0 0 3px;font-size:15px}
+.flow-b p{font-size:14.5px;color:var(--ink-2)}
+
+footer{border-top:1px solid var(--line);padding-top:20px;margin-top:20px;font-size:13px;color:var(--ink-3)}
+
+@media (max-width:880px){
+  .shell{grid-template-columns:1fr}
+  .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;max-height:none;overflow-x:auto;
+    overflow-y:visible;border-right:none;border-bottom:1px solid var(--line);padding:12px 16px;
+    background:var(--paper);display:flex;align-items:center;gap:14px;white-space:nowrap}
+  .nav-brand{margin:0;font-size:13px}
+  .nav-sub,.nav-grp{display:none}
+  .nav a{display:inline-block;padding:4px 0;margin:0;border-left:none;border-bottom:2px solid transparent;font-size:13px}
+  .nav a:hover{border-left-color:transparent;border-bottom-color:var(--line-2)}
+  .main{padding:22px 16px 80px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.nav{top:44px !important; max-height:calc(100vh - 44px) !important}
+@media (max-width:880px){.nav{top:44px !important}}
+.nav a.ext{color:var(--teal); font-weight:600}
+.xref{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0}
+.xref a{font-family:"JetBrains Mono",monospace; font-size:11px; padding:5px 10px; border:1px solid var(--line-2); border-radius:4px; text-decoration:none; color:var(--ink-2)}
+.xref a:hover{border-color:var(--teal); color:var(--teal)}
+
+ul.clean.do li::before{content:"✓";color:var(--good);font-weight:700}
+ul.clean.dont li::before{content:"✕";color:var(--bad);font-weight:700}
+.card h4{font-size:15.5px;margin:0}
+.flow-n{background:var(--ink);border-radius:50%;width:34px;height:34px;display:grid;place-items:center}
+
+@media print{
+  :root{
+    color-scheme:light !important;
+    --paper:#FFFFFF; --surface:#FFFFFF; --surface-2:#F4F3EE;
+    --ink:#16191C; --ink-2:#4A5058; --ink-3:#787E85;
+    --line:#DDDBD4; --line-2:#C4C1B8;
+    --teal:#0E5257; --teal-soft:#E4EFEE;
+    --amber:#8F5408; --amber-soft:#F9EEDF;
+    --good:#2A5F46; --good-soft:#E6F0EA;
+    --bad:#7E332A; --bad-soft:#F8E8E4;
+    --shadow:none;
+  }
+  body{background:#fff;font-size:10.5pt;line-height:1.5}
+  .nav{display:none !important}
+  .shell{display:block;max-width:none;margin:0}
+  .main{padding:0;max-width:none}
+  .mast{padding-bottom:14px;margin-bottom:24px}
+  .mast h1{font-size:30pt}
+  .mast .lede{font-size:12pt}
+  section{margin-bottom:26px}
+  section > h2{font-size:17pt;margin-bottom:4px}
+  h3{font-size:12.5pt;margin:18px 0 7px}
+  h4{font-size:10.5pt}
+  .sec-lede{font-size:10.5pt;margin-bottom:14px}
+  .prose,.sec-lede,.mast .lede{max-width:none}
+  h1,h2,h3,h4{break-after:avoid-page;page-break-after:avoid}
+  .card,.callout,.tbl-wrap,figure,.term,.stat-row,.obj,
+  .flow-step,ul.clean,table tr{break-inside:avoid;page-break-inside:avoid}
+  .grid2,.grid3{break-inside:auto}
+  footer{break-before:avoid}
+  .card,.callout,.tbl-wrap,.term,.stat-row{box-shadow:none}
+  .tbl-wrap{overflow:visible}
+  table{font-size:9.5pt}
+  th{padding:7px 10px;font-size:8pt}
+  td{padding:7px 10px}
+  .term{font-size:9pt;white-space:pre-wrap}
+  a{color:var(--ink);text-decoration:none}
+  figure{margin:14px 0}
+  /* ciclo: tudo expandido na impressão */
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<nav class="nav">
+  <div class="nav-brand">Manual de Operação da Parceria</div>
+  <div class="nav-sub">Marcus &amp; Michael · v1.1 · set/2026</div>
+
+  <div class="nav-grp">Base</div>
+  <a href="#principios">Princípios</a>
+  <a href="#papeis">Papéis</a>
+  <a href="#rotina">Rotina de trabalho</a>
+
+  <div class="nav-grp">Mercado e venda</div>
+  <a href="#mercado">Onde atuamos e para quem</a>
+  <a href="#comercial">Processo comercial</a>
+  <a href="#passagem">Da venda para a entrega</a>
+  <a href="#projetos">Projetos, do início ao fim</a>
+
+  <div class="nav-grp">Produtos próprios</div>
+  <a href="#produtos">Produtos próprios</a>
+  <a href="#pontos">Pontos de construção</a>
+  <a href="#divisao">Divisão da receita</a>
+  <a href="#saida">Se um dos dois sair</a>
+
+  <div class="nav-grp">Dinheiro</div>
+  <a href="#pagamento">Pagamento dos clientes</a>
+  <a href="#despesas">Despesas e fundo</a>
+  <a href="#externos">Parcerias externas</a>
+
+  <div class="nav-grp">Operação</div>
+  <a href="#encerramento">Encerramento de projeto</a>
+  <a href="#ferramentas">Ferramentas</a>
+  <a href="#numeros">Números</a>
+  <a href="#checklists">Checklists</a>
+
+  <div class="nav-grp">Sociedade</div>
+  <a class="ext" href="index.html">⌂ Painel da sociedade</a>
+  <a class="ext" href="index.html#rituais">Horários dos rituais</a>
+  <a class="ext" href="../playbook/comercial.html">Playbook Comercial</a>
+  <a class="ext" href="../index.html">Portal</a>
+</nav>
+
+<main class="main">
+
+<header class="mast">
+  <div class="eyebrow">Sociedade · Como tocamos a parceria no dia a dia</div>
+  <h1>Manual de Operação da Parceria</h1>
+  <p class="lede">Este manual complementa a proposta de estrutura, que define quanto cada um recebe. Aqui está o resto: como prospectamos, como vendemos, como entregamos, como cobramos, como dividimos despesas e como tocamos produtos próprios com receita recorrente.</p>
+  <div class="mast-meta">
+    <span class="tag">Marcus &amp; Michael</span>
+    <span class="tag">Versão 1.1 · setembro de 2026</span>
+    <span class="tag">Revisto na última sexta do mês</span>
+    <span class="tag">Somente sócios</span>
+  </div>
+  <div class="xref"><a href="index.html">↗ Painel da sociedade (definições)</a><a href="index.html#aceite">↗ Registrar meu aceite desta versão</a><a href="../playbook/comercial.html">↗ Playbook Comercial</a></div>
+</header>
+
+<div class="callout" style="margin-bottom:34px">
+  <h4>A regra de ouro</h4>
+  <p><strong>Se não está escrito, não foi combinado.</strong> Este documento é vivo: quando algo der errado de um jeito novo, escrevemos aqui a regra que evita a repetição.</p>
+</div>
+
+<div class="grid3" style="margin-bottom:40px">
+  <div class="card"><div class="eyebrow">Documento 1</div><h4>Proposta de estrutura</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">Quanto cada um recebe, por faixa de projeto e por produto.</p><p style="font-size:12.5px;margin-top:8px"><a href="index.html#documentos">Onde está: painel › documentos</a></p></div>
+  <div class="card" style="border-color:var(--teal)"><div class="eyebrow">Documento 2 · este</div><h4>Manual de operação</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">Como trabalhamos no dia a dia.</p></div>
+  <div class="card"><div class="eyebrow">Documento 3</div><h4>Playbook de vendas</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">O processo comercial em detalhe: scripts, perguntas, objeções e métricas. Em página web, para consulta durante as reuniões.</p><p style="font-size:12.5px;margin-top:8px"><a href="../playbook/comercial.html">Abrir o Playbook Comercial</a></p></div>
+</div>
+
+<!-- 01 -->
+<section id="principios">
+  <h2><span class="num">01</span> Princípios</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">O que fazemos sempre</h3>
+      <ul class="clean do">
+        <li>Registramos por escrito quem faz o quê antes de cada projeto começar.</li>
+        <li>Mostramos preço na primeira conversa. Não fugimos de valor.</li>
+        <li>Damos data para tudo: entrega, retorno, cobrança, decisão.</li>
+        <li>Gravamos as reuniões de venda, com aviso ao cliente.</li>
+        <li>Fechamos o ciclo: projeto entregue é projeto faturado, validado e arquivado.</li>
+        <li>Dizemos não a cliente fora do perfil, mesmo com agenda vazia.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">O que não fazemos nunca</h3>
+      <ul class="clean dont">
+        <li>Começar desenvolvimento sem escopo escrito e aceito.</li>
+        <li>Trabalhar sem prazo de validação definido.</li>
+        <li>Apresentar proposta sem o decisor na sala.</li>
+        <li>Prometer funcionalidade que ainda não sabemos entregar.</li>
+        <li>Aceitar mudança de escopo sem reorçar.</li>
+        <li>Deixar o outro sócio saber de uma decisão do projeto pelo cliente.</li>
+        <li>Cobrar por hora. Nosso preço é por escopo.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:16px">
+    <h4>Participação é opcional, compromisso não é</h4>
+    <p>Qualquer um dos dois pode recusar um projeto sem justificar. Mas depois de aceitar uma função, ela é obrigação, e a fatia correspondente só é devida se a função foi cumprida. Recusar antes é livre; abandonar no meio tem consequência.</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="papeis">
+  <h2><span class="num">02</span> Papéis</h2>
+  <p class="sec-lede">Não temos cargos fixos. Temos funções, que se redistribuem projeto a projeto conforme quem topa o quê. O padrão atual de cada função pode ser ajustado no <a href="index.html#papeis">painel</a>.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Função</th><th>O que envolve</th><th>Padrão atual</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Prospecção</strong></td><td>Gerar lista, auditar prospects, disparar sequências, agendar reuniões</td><td>Marcus, com automação</td></tr>
+      <tr><td><strong>Originação</strong></td><td>Trazer cliente da rede pessoal, apresentar a parceria</td><td>Michael</td></tr>
+      <tr><td><strong>Diagnóstico e venda</strong></td><td>Conduzir reunião, montar proposta, fechar</td><td>Marcus, com Michael quando ele originou</td></tr>
+      <tr><td><strong>Gestão de conta</strong></td><td>Escopo, reuniões, cobrança, encerramento</td><td>Quem originou; revisar a cada projeto</td></tr>
+      <tr><td><strong>Entrega</strong></td><td>Desenvolvimento, design, publicação, ajustes</td><td>Marcus em projetos pequenos; os dois nos grandes</td></tr>
+      <tr><td><strong>Arquitetura</strong></td><td>Modelagem, decisões estruturais, revisão de código</td><td>Michael nos projetos grandes e nos produtos</td></tr>
+      <tr><td><strong>Operação</strong></td><td>Hospedagem, backups, manutenção, suporte</td><td>Quem entregou, salvo acordo diverso</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout">
+    <h4>Regra do dono do projeto</h4>
+    <p>Todo projeto tem um responsável único, nomeado no dia em que entra no funil. Ele é quem fala com o cliente, quem responde por prazo e quem puxa a cobrança. O outro pode ajudar em tudo, mas a responsabilidade não é dividida. Responsabilidade dividida é responsabilidade de ninguém.</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="rotina">
+  <h2><span class="num">03</span> Rotina de trabalho</h2>
+  <p class="sec-lede">Somos dois, com outras obrigações. A rotina precisa ser leve o bastante para acontecer de verdade e firme o bastante para que nada fique parado. Três rituais, só. Os horários combinados ficam no <a href="index.html#rituais">painel</a>, com o fuso de cada um e o calendário para baixar.</p>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-n">1</div><div class="flow-b"><h4>Check-in de segunda · assíncrono, 10 minutos</h4><p>Cada um escreve no grupo, até segunda ao meio-dia, três linhas: o que entreguei, o que vou entregar, o que está me travando. Não é relatório. É o mínimo para que ninguém descubra na sexta que algo não andou.</p></div></div>
+    <div class="flow-step"><div class="flow-n">2</div><div class="flow-b"><h4>Reunião semanal · 45 minutos, mesma hora toda semana</h4><p>É a única reunião obrigatória. Pauta fixa, nesta ordem: <strong>números da semana</strong> (prospects abordados, respostas, reuniões, propostas, fechamentos, dinheiro recebido); <strong>funil</strong> (cada negócio aberto, etapa e próximo passo com data); <strong>projetos em execução</strong> (no prazo, fora do prazo, o que precisa de decisão); <strong>produtos próprios</strong> (ciclo atual, entregue, o que trava); <strong>contas a receber</strong> (venceu, vence, quem cobra). Ao final, quem conduziu escreve o resumo no grupo. Reunião sem registro escrito não aconteceu.</p></div></div>
+    <div class="flow-step"><div class="flow-n">3</div><div class="flow-b"><h4>Revisão mensal · 60 minutos, última sexta do mês</h4><p>Resultado do mês contra o previsto e divisão do que foi recebido; revisão de uma gravação de reunião de venda, com crítica honesta dos dois; produtos próprios (receita recorrente, retenção, pontos acumulados); fundo de operação (saldo, entradas, saídas); atualização deste manual com o que aprendemos.</p></div></div>
+  </div>
+  <div class="callout">
+    <h4>Por que tão pouca reunião</h4>
+    <p>Times comerciais grandes precisam de ritual diário porque há muita gente e pouca visibilidade. Entre dois, reunião demais vira teatro e é a primeira coisa que ambos passam a faltar.</p>
+    <p>O que substitui a frequência é a disciplina do registro escrito. Se todo combinado está no grupo e todo negócio está no funil compartilhado, a informação circula sem precisar de reunião.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="mercado">
+  <h2><span class="num">04</span> Onde atuamos e para quem vendemos</h2>
+  <h3>Três círculos de atuação</h3>
+  <p class="sec-lede" style="margin-bottom:10px">Atendemos remotamente, então a geografia não limita a entrega. Limita apenas o tipo de abordagem e os argumentos disponíveis.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Círculo</th><th>Onde</th><th>Como muda a abordagem</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Núcleo</strong></td><td>Dublin e Grande Dublin</td><td>Reunião presencial possível, indicação circula rápido, visita ao cliente para fotos e encerramento</td></tr>
+      <tr><td><strong>Irlanda</strong></td><td>Todo o país</td><td>Remoto, mesmo fuso e moeda. O Trading Online Voucher continua valendo: é o nosso argumento mais forte</td></tr>
+      <tr><td><strong>Europa</strong></td><td>Portugal, Espanha, Alemanha e demais</td><td>Remoto integral, sem voucher. O argumento passa a ser portfólio, prazo e preço. Atenção a idioma, IVA e regras locais de e-mail</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:15px;color:var(--ink-2)"><strong>Regra prática:</strong> a prospecção ativa concentra numa vertical e numa região por vez, qualquer que seja o círculo. Vinte salões em Blanchardstown ou vinte clínicas no Porto. O que não funciona é vinte negócios variados espalhados por três países.</p>
+  <p style="font-size:15px;color:var(--ink-2);margin-top:8px">Fora da Irlanda, três cuidados: o e-mail frio segue a regra do país do destinatário, e há países bem mais restritivos que a Irlanda; a fatura pode exigir tratamento de IVA intracomunitário; e o material de venda precisa estar no idioma do cliente, não no nosso.</p>
+
+  <h3>Perfil de cliente ideal</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Critério</th><th>Nosso alvo</th></tr></thead>
+    <tbody>
+      <tr><td>Porte</td><td>1 a 10 funcionários, faturamento abaixo de €2M</td></tr>
+      <tr><td>Tempo de operação</td><td>12 meses ou mais</td></tr>
+      <tr><td>Segmentos prioritários</td><td>Salões e estética, restaurantes, ofícios, clínicas pequenas, varejo independente, administradoras de condomínio</td></tr>
+      <tr><td>Maturidade digital</td><td>Sem site, ou site que falha no celular; perfil no Google incompleto</td></tr>
+      <tr><td>Decisor</td><td>O dono atende o telefone. Uma pessoa decide</td></tr>
+      <tr><td>Sinal de oportunidade</td><td>Boa reputação e pouca visibilidade: nota alta, muitas avaliações, nenhuma presença digital</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:15px;color:var(--ink-2)">O último critério é o mais valioso. Um negócio bem avaliado e invisível online tem produto bom e demanda comprovada: falta só visibilidade. É o cliente que fecha mais rápido e reclama menos.</p>
+
+  <h3>Para quem não vendemos</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Perfil</th><th>Por quê</th></tr></thead>
+    <tbody>
+      <tr><td>Franquia ou filial sem autonomia</td><td>A decisão está em outro lugar e o ciclo nunca fecha</td></tr>
+      <tr><td>Quem já tem site recente e funcional</td><td>Não há dor. A conversa vira consultoria gratuita</td></tr>
+      <tr><td>Quem pede para pagar depois de ver resultado</td><td>Não colocamos nossa receita em algo que não controlamos</td></tr>
+      <tr><td>Quem negocia preço antes de entender o escopo</td><td>Vai negociar de novo em cada etapa</td></tr>
+      <tr><td>Quem some por mais de duas semanas na negociação</td><td>Já demonstrou a prioridade que vai dar ao projeto</td></tr>
+      <tr><td>Quem já disse não</td><td>Sai da lista permanentemente</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 05 -->
+<section id="comercial">
+  <h2><span class="num">05</span> Processo comercial, visão geral</h2>
+  <p class="sec-lede">O detalhe está no <a href="../playbook/comercial.html">Playbook Comercial</a>. Aqui fica só o que os dois precisam saber para estar alinhados.</p>
+  <div class="card" style="margin-bottom:14px"><p class="mono" style="font-size:13px;color:var(--ink-2);text-align:center">Lista → Auditoria → Abordagem → Diagnóstico → Proposta → Fechamento → Entrega → Encerramento e indicação</p></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Etapa</th><th>O essencial</th><th>Quem</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lista</strong></td><td>Uma vertical e uma região por vez. Pontuação de 0 a 100; abordamos acima de 60</td><td>Prospecção</td></tr>
+      <tr><td><strong>Auditoria</strong></td><td>Três observações verdadeiras e específicas por prospect. Sem elas, não mandamos</td><td>Prospecção</td></tr>
+      <tr><td><strong>Abordagem</strong></td><td>E-mail com as três observações, sem anexo. Follow-up no dia 4, encerra no dia 11</td><td>Prospecção</td></tr>
+      <tr><td><strong>Diagnóstico</strong></td><td>30 min, gravado. Quem fala mais é o cliente. Termina com próximo passo agendado</td><td>Venda</td></tr>
+      <tr><td><strong>Proposta</strong></td><td>Em até 48h, apresentada ao vivo. Nunca só por e-mail</td><td>Venda</td></tr>
+      <tr><td><strong>Fechamento</strong></td><td>Ficha de passagem preenchida e fatura emitida no mesmo dia</td><td>Venda</td></tr>
+      <tr><td><strong>Entrega</strong></td><td>Ver <a href="#projetos">seção 7</a></td><td>Entrega</td></tr>
+      <tr><td><strong>Encerramento</strong></td><td>Vídeo, foto, número, indicação. Ver <a href="#encerramento">seção 12</a></td><td>Dono do projeto</td></tr>
+    </tbody>
+  </table></div>
+  <h3>As cinco regras que não mudam</h3>
+  <ul class="clean do">
+    <li>Se não conseguimos escrever três observações específicas e verdadeiras sobre o negócio, não abordamos. A pesquisa é o que vendemos antes de vender.</li>
+    <li>Proposta sem o decisor na sala não é apresentada. Intermediário não defende o que não construiu com a gente.</li>
+    <li>Reunião termina com data marcada para a próxima. Sem data, a negociação morre.</li>
+    <li>O preço é dito e depois vem o silêncio. Quem fala depois do preço negocia contra si mesmo.</li>
+    <li>Quem pede para não ser contatado sai da base para sempre. Isso mantém o domínio vivo e a operação dentro da lei.</li>
+  </ul>
+  <div class="callout">
+    <h4>O argumento do voucher</h4>
+    <p>Na Irlanda, o Trading Online Voucher cobre até 50% do custo, com teto de €2.500, para negócios com 12+ meses, menos de 10 funcionários e faturamento abaixo de €2M. A maioria dos nossos clientes qualifica e quase nenhum conhece.</p>
+    <p>Nós cuidamos da papelada. É o maior diferencial comercial que temos contra qualquer concorrente local, e transforma objeção de preço em urgência. Fora da Irlanda esse argumento não existe: lá a venda se apoia em portfólio, prazo e preço.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="passagem">
+  <h2><span class="num">06</span> Da venda para a entrega</h2>
+  <p class="sec-lede">Fechar é o fim do ciclo comercial e o começo do ciclo de entrega. Passagem de bastão malfeita gera retrabalho e quebra de expectativa, mesmo quando as duas pontas são a mesma pessoa. Por isso o registro é obrigatório também quando quem vendeu vai entregar.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Campo da ficha</th><th>Exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>Cliente e ponto focal</td><td>Nome, telefone, e-mail, quem decide</td></tr>
+      <tr><td>Segmento e local</td><td>Salão · Blanchardstown · Irlanda</td></tr>
+      <tr><td>O que foi vendido</td><td>Pacote e escopo exato, com o que não está incluído</td></tr>
+      <tr><td>Valor e forma de pagamento</td><td>€1.200, 50% na assinatura, 50% no lançamento</td></tr>
+      <tr><td>Voucher</td><td>Qualifica? Em que etapa está a candidatura?</td></tr>
+      <tr><td>Prazo acordado</td><td>Datas de início, revisão e publicação</td></tr>
+      <tr><td>O que o cliente prometeu entregar</td><td>Fotos, lista de serviços, acesso ao Google</td></tr>
+      <tr><td>Dores e objetivos ditos por ele</td><td>Nas palavras dele, não nas nossas</td></tr>
+      <tr><td>Riscos percebidos</td><td>Ex.: decidiu rápido; conteúdo depende de terceiro</td></tr>
+      <tr><td>Gravações</td><td>Links do diagnóstico e da proposta</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><h4>Sem ficha, não entra em desenvolvimento</h4><p>É a regra que protege quem entrega de descobrir no meio do caminho uma promessa que não estava no escopo.</p></div>
+</section>
+
+<!-- 07 -->
+<section id="projetos">
+  <h2><span class="num">07</span> Projetos, do início ao fim</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Etapa</th><th>O que acontece</th><th>Quem</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. Kickoff</strong></td><td>Chamada de 30 min, confirmação de escopo e datas, pedido de conteúdo</td><td>Dono do projeto</td></tr>
+      <tr><td><strong>2. Conteúdo</strong></td><td>Cliente envia fotos, textos e acessos. O prazo só começa aqui</td><td>Cliente</td></tr>
+      <tr><td><strong>3. Construção</strong></td><td>Desenvolvimento a partir do template, configuração e conteúdo</td><td>Entrega</td></tr>
+      <tr><td><strong>4. Revisão interna</strong></td><td>O outro sócio revisa antes de o cliente ver</td><td>Ambos</td></tr>
+      <tr><td><strong>5. Apresentação</strong></td><td>Link de pré-visualização, apresentado ao vivo</td><td>Dono do projeto</td></tr>
+      <tr><td><strong>6. Ajustes</strong></td><td>Duas rodadas incluídas. A terceira é orçada</td><td>Entrega</td></tr>
+      <tr><td><strong>7. Publicação</strong></td><td>Domínio, hospedagem, Google, formulários, testes no celular</td><td>Entrega</td></tr>
+      <tr><td><strong>8. Encerramento</strong></td><td>Validação, saldo faturado, ritual de encerramento</td><td>Dono do projeto</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Regras que não se negociam</h3>
+  <div class="grid2">
+    <div class="card"><h4>O prazo começa quando o conteúdo chega</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">Dito na proposta, repetido no kickoff e lembrado no primeiro atraso. A maior parte do prazo de um site é espera por foto, não desenvolvimento.</p></div>
+    <div class="card"><h4>Aceite automático em 14 dias</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">Entregue para validação, o cliente tem 14 dias corridos para apontar ajustes. Sem retorno, consideramos aceito e faturamos o saldo.</p></div>
+    <div class="card"><h4>Duas rodadas de ajuste</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">A partir da terceira, orçamento novo. Mudança de escopo é projeto novo, não favor.</p></div>
+    <div class="card"><h4>Revisão cruzada antes do cliente</h4><p style="font-size:14.5px;color:var(--ink-2);margin-top:6px">Ninguém mostra ao cliente algo que o outro não viu.</p></div>
+  </div>
+  <h3>Protótipo antes da venda</h3>
+  <ul class="clean">
+    <li>Protótipo só depois de haver reunião marcada com o cliente potencial, nunca antes da primeira abordagem.</li>
+    <li>Um protótipo em aberto por vez, por pessoa que pediu.</li>
+    <li>Não fechou em 30 dias após apresentar, arquivamos.</li>
+    <li>Templates e componentes continuam sendo de quem os criou: são reaproveitáveis e não viram ativo da parceria.</li>
+  </ul>
+</section>
+
+<!-- 08 -->
+<section id="produtos">
+  <h2><span class="num">08</span> Produtos próprios</h2>
+  <p class="sec-lede">Produto é diferente de projeto em quase tudo. Não há cliente pagando pelo desenvolvimento: investimos tempo hoje contra receita recorrente amanhã. Não termina, evolui. E o dinheiro chega todo mês, de vários clientes ao mesmo tempo, o que exige uma forma própria de dividir. O primeiro produto é o sistema de gestão de condomínios. As regras abaixo valem para ele e para qualquer outro que venha depois.</p>
+
+  <h3>8.1 As três fases</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Fase</th><th>Objetivo</th><th>Como sabemos que acabou</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Construção</strong></td><td>MVP funcionando com o essencial</td><td>Um condomínio real usando em produção</td></tr>
+      <tr><td><strong>Validação</strong></td><td>Provar que retém e que dá para cobrar</td><td>3 clientes pagantes, 3 meses sem cancelamento</td></tr>
+      <tr><td><strong>Escala</strong></td><td>Vender com previsibilidade e automatizar o onboarding</td><td>10 clientes pagantes e onboarding sem nossa presença</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:15px;color:var(--ink-2)">Nenhum dinheiro é investido em marketing antes da fase de validação. Construir e vender ao mesmo tempo, sendo dois e em tempo parcial, é a forma mais rápida de não terminar nenhum dos dois.</p>
+</section>
+
+<section id="pontos">
+  <h2><span class="num">08</span> 8.2 Pontos de construção</h2>
+  <p class="sec-lede">Antes de escrever a primeira linha, listamos os marcos do produto e o peso de cada um, somando 100 pontos. Quem entrega o marco leva os pontos. É isso que define a divisão da receita de construção. A tabela viva está no <a href="index.html#pontos">painel</a>.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Marco (exemplo para o sistema de condomínios)</th><th>Pontos</th></tr></thead>
+    <tbody>
+      <tr><td>Autenticação e gestão de usuários</td><td class="num-cell">10</td></tr>
+      <tr><td>Cadastro de condomínios e unidades</td><td class="num-cell">15</td></tr>
+      <tr><td>Cobrança e emissão de boletos</td><td class="num-cell">25</td></tr>
+      <tr><td>Comunicados e mural</td><td class="num-cell">10</td></tr>
+      <tr><td>Reserva de áreas comuns</td><td class="num-cell">15</td></tr>
+      <tr><td>Relatórios e prestação de contas</td><td class="num-cell">15</td></tr>
+      <tr><td>Portal do morador</td><td class="num-cell">10</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="clean">
+    <li>Os pesos são acordados antes e só mudam por acordo dos dois.</li>
+    <li>Marco entregue é marco funcionando em produção, não código no repositório.</li>
+    <li>Marcos novos criados depois entram com peso próprio, e o total passa de 100. A divisão é sempre proporcional ao total vigente.</li>
+    <li>Quem revisa e aprova o marco é o outro. Ninguém valida o próprio trabalho.</li>
+  </ul>
+</section>
+
+<section id="divisao">
+  <h2><span class="num">08</span> 8.3 Como a receita recorrente é dividida</h2>
+  <p class="sec-lede">A conta é feita por cliente, todo mês. Da mensalidade recebida deduz-se o custo de infraestrutura proporcional, e o que sobra é a receita líquida daquele cliente. Ela se divide em quatro partes. Simule com os números do mês na <a href="index.html#divisao">calculadora do painel</a>.</p>
+  <div class="stat-row">
+    <div class="stat"><div class="v">20%</div><div class="l">Operação · quem mantém o produto no ar: suporte, monitoramento, correções</div></div>
+    <div class="stat"><div class="v">15%</div><div class="l">Originação do produto · quem teve a ideia. Fixo, sobre todos os clientes, enquanto o produto existir</div></div>
+    <div class="stat"><div class="v">15%</div><div class="l">Venda · quem trouxe e fechou aquele cliente específico. Varia de cliente para cliente</div></div>
+    <div class="stat"><div class="v">50%</div><div class="l">Construção · dividido pelos pontos acumulados de cada um</div></div>
+  </div>
+  <h3>Exemplo: 10 condomínios a €80/mês</h3>
+  <p style="font-size:15px;color:var(--ink-2);margin-bottom:10px">Receita bruta €800. Infraestrutura €80. Receita líquida €720. Marcus opera; a ideia foi do Michael; ele trouxe 6 clientes e Marcus 4; a construção ficou 55 pontos para Marcus e 45 para Michael.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Parte</th><th>Valor</th><th>Michael</th><th>Marcus</th></tr></thead>
+    <tbody>
+      <tr><td>Operação (20%)</td><td class="num-cell">€144</td><td class="num-cell">—</td><td class="num-cell">€144,00</td></tr>
+      <tr><td>Originação (15%)</td><td class="num-cell">€108</td><td class="num-cell">€108,00</td><td class="num-cell">—</td></tr>
+      <tr><td>Venda (15%)</td><td class="num-cell">€108</td><td class="num-cell">€64,80</td><td class="num-cell">€43,20</td></tr>
+      <tr><td>Construção (50%)</td><td class="num-cell">€360</td><td class="num-cell">€162,00</td><td class="num-cell">€198,00</td></tr>
+      <tr><td><strong>Total mensal</strong></td><td class="num-cell"><strong>€720</strong></td><td class="num-cell"><strong>€334,80</strong></td><td class="num-cell"><strong>€385,20</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:15px;color:var(--ink-2)">Repare no que o modelo premia: quem constrói mais recebe mais para sempre; quem vende mais clientes recebe sobre cada um deles; e quem carrega o suporte é pago por isso, em vez de fazer de graça enquanto o outro recebe.</p>
+
+  <h3>8.4 Rotina do produto</h3>
+  <p style="font-size:15px;color:var(--ink-2);margin-bottom:10px">Produto não tem prazo de entrega, então precisa de ritmo. Senão vira aquilo que se faz quando sobra tempo, e nunca sobra.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Ritual</th><th>Quando</th><th>O quê</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Planejamento de ciclo</strong></td><td>A cada 2 semanas, 30 min</td><td>Escolher os marcos do ciclo e quem pega cada um</td></tr>
+      <tr><td><strong>Demonstração interna</strong></td><td>Fim do ciclo, 20 min</td><td>Cada um mostra o que ficou pronto. O outro aprova ou devolve</td></tr>
+      <tr><td><strong>Revisão de produto</strong></td><td>Mensal, dentro da revisão geral</td><td>Receita, retenção, pontos acumulados, próximas prioridades</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="clean">
+    <li>Backlog único e compartilhado, com os marcos e seus pesos visíveis.</li>
+    <li>Cada ciclo tem escopo fechado. O que não entrou espera o próximo.</li>
+    <li>Nada vai para produção sem revisão do outro.</li>
+    <li>Ciclo perdido pelos dois duas vezes seguidas dispara uma conversa sobre se o produto continua ou congela.</li>
+  </ul>
+
+  <h3>8.5 Como decidimos</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Decisão</th><th>Como se decide</th></tr></thead>
+    <tbody>
+      <tr><td>O que construir no ciclo</td><td>Acordo no planejamento. Sem acordo, alterna-se: cada um escolhe um marco</td></tr>
+      <tr><td>Preço do produto e mudanças de preço</td><td>Acordo dos dois. Sem acordo, não muda</td></tr>
+      <tr><td>Aceitar cliente fora do perfil</td><td>Acordo dos dois</td></tr>
+      <tr><td>Decisão técnica dentro de um marco</td><td>De quem está entregando aquele marco</td></tr>
+      <tr><td>Arquitetura e decisões estruturais</td><td>De quem tem a função de arquitetura, ouvido o outro</td></tr>
+      <tr><td>Encerrar o produto</td><td>Acordo dos dois, com 60 dias de aviso aos clientes</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>8.6 Custos do produto</h3>
+  <ul class="clean">
+    <li>Enquanto a infraestrutura custar até €100 por mês, sai do fundo de operação.</li>
+    <li>Acima disso, vira linha própria deduzida da receita do produto antes de qualquer divisão.</li>
+    <li>Custo novo acima de €50 por mês precisa de acordo dos dois antes de ser contratado.</li>
+    <li>Na fase de construção, sem receita, a infraestrutura sai do fundo. Se o fundo não cobrir, cada um paga metade.</li>
+  </ul>
+
+  <h3>8.7 Cliente do produto</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Momento</th><th>Regra</th></tr></thead>
+    <tbody>
+      <tr><td>Entrada</td><td>Contrato mensal, sem fidelidade, cobrança recorrente automática</td></tr>
+      <tr><td>Onboarding</td><td>Feito por quem vendeu. A partir de 10 clientes, precisa ser autoatendido</td></tr>
+      <tr><td>Suporte</td><td>Resposta em até 24 horas úteis. Quem opera responde</td></tr>
+      <tr><td>Inadimplência</td><td>Acesso suspenso após 15 dias. Dados preservados por 90 dias</td></tr>
+      <tr><td>Cancelamento</td><td>Exportação dos dados entregue em até 7 dias. Sem retenção forçada</td></tr>
+      <tr><td>Cliente que não paga</td><td>Não gera fatia para ninguém. Como nos projetos, só o recebido é dividido</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="saida">
+  <h2><span class="num">08</span> 8.8 Se um dos dois sair</h2>
+  <p class="sec-lede">Produto com receita recorrente precisa de regra de saída escrita desde o começo, porque a receita continua chegando muito depois de o trabalho ter acabado.</p>
+  <ul class="clean">
+    <li><strong>A fatia de construção é preservada:</strong> quem saiu mantém os pontos que acumulou e continua recebendo sobre eles.</li>
+    <li><strong>A fatia de operação</strong> passa integralmente a quem continuar operando.</li>
+    <li><strong>A fatia de venda</strong> dos clientes que ele trouxe continua sendo dele. Clientes novos não geram fatia para quem saiu.</li>
+    <li><strong>A fatia de originação</strong> do produto permanece com quem teve a ideia, em qualquer cenário.</li>
+    <li><strong>Compra da participação:</strong> quem fica pode comprar a participação de quem sai por 12 vezes a média mensal recebida nos últimos 6 meses. A compra é opcional para os dois lados.</li>
+    <li><strong>Não concorrência:</strong> quem sai não constrói produto concorrente pelos 12 meses seguintes.</li>
+  </ul>
+  <div class="callout">
+    <h4>Por que a fatia de construção sobrevive</h4>
+    <p>Construir um produto é investir tempo sem remuneração imediata, contra a promessa da recorrência. Se essa fatia pudesse ser apagada por uma saída, ninguém teria segurança para investir os meses iniciais.</p>
+    <p>O congelamento vale para o crescimento, não para o acumulado: quem para de contribuir não ganha pontos novos, mas não perde os que já tem.</p>
+  </div>
+</section>
+
+<!-- 09 -->
+<section id="pagamento">
+  <h2><span class="num">09</span> Pagamento dos clientes</h2>
+  <h3 style="margin-top:0">Política comercial</h3>
+  <p class="sec-lede" style="margin-bottom:10px">As condições não são negociadas caso a caso. Existe uma tabela, e ela vale para todos. Abrir exceção para um obriga a abrir para todos.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Forma de pagamento</th><th>Condição</th></tr></thead>
+    <tbody>
+      <tr><td>À vista, antes do início</td><td>5% de desconto</td></tr>
+      <tr><td>50% no aceite + 50% na publicação</td><td>Padrão, sem desconto</td></tr>
+      <tr><td>Três parcelas (aceite, meio, publicação)</td><td>Acréscimo de 5%</td></tr>
+      <tr><td>Mensalidade de manutenção</td><td>€60 a €150, débito automático, do mês do lançamento</td></tr>
+      <tr><td>Assinatura de produto próprio</td><td>Mensal, automática, sem fidelidade</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:15px;color:var(--ink-2)">O sinal não é obrigatório, mas quem decide começar sem ele assume o risco, e recebe por isso a fatia de garantia financeira prevista na estrutura. Quando há sinal, essa fatia é de quem conseguiu o sinal.</p>
+
+  <h3>Régua de cobrança</h3>
+  <p style="font-size:15px;color:var(--ink-2);margin-bottom:10px">Cobrança não é constrangimento, é parte do serviço. Ela é do dono do projeto e segue um calendário fixo, sem depender de disposição.</p>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-n">0</div><div class="flow-b"><h4>No aceite</h4><p>Fatura emitida no mesmo dia, com vencimento explícito.</p></div></div>
+    <div class="flow-step"><div class="flow-n">+3</div><div class="flow-b"><h4>Vencimento + 3 dias</h4><p>Mensagem cordial no WhatsApp, com a fatura anexa.</p></div></div>
+    <div class="flow-step"><div class="flow-n">+7</div><div class="flow-b"><h4>+ 7 dias</h4><p>Ligação. Não mensagem: ligação.</p></div></div>
+    <div class="flow-step"><div class="flow-n">+14</div><div class="flow-b"><h4>+ 14 dias</h4><p>E-mail formal com nova data limite e aviso de suspensão.</p></div></div>
+    <div class="flow-step"><div class="flow-n">+21</div><div class="flow-b"><h4>+ 21 dias</h4><p>Trabalho suspenso e comunicado. Nada avança.</p></div></div>
+    <div class="flow-step"><div class="flow-n">+30</div><div class="flow-b"><h4>+ 30 dias</h4><p>Site despublicado, com aviso prévio de 5 dias. Escalada formal.</p></div></div>
+  </div>
+  <p style="font-size:15px;color:var(--ink-2)">O gatilho que faz a régua funcionar: a fatia de originação incide sobre o valor recebido, não sobre o contratado. Enquanto o cliente não paga, ninguém recebe. Isso alinha o interesse de cobrar com quem tem a relação.</p>
+
+  <h3>Faturamento entre nós</h3>
+  <div class="card">
+    <p style="font-size:15px">Cada um mantém seu próprio registro fiscal e emite a própria fatura. O dono do projeto contrata e fatura o cliente; o outro fatura o dono do projeto pela sua parte, <strong>em até 15 dias do recebimento</strong>. Nos produtos, a apuração é mensal e liquidada <strong>até o dia 10 do mês seguinte</strong>.</p>
+    <p style="font-size:15px;margin-top:8px">Todo recebimento é comunicado ao outro <strong>em até 5 dias úteis</strong>. Ambos têm acesso permanente a propostas, contratos, faturas e comprovantes.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="despesas">
+  <h2><span class="num">10</span> Despesas</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Tipo</th><th>Exemplos</th><th>Quem paga</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Custo direto do projeto</strong></td><td>Domínio, hospedagem, licença, imagem paga, subcontratação</td><td>Deduzido da receita antes da divisão</td></tr>
+      <tr><td><strong>Infraestrutura de produto</strong></td><td>Servidor, banco de dados, e-mail transacional</td><td>Fundo até €100/mês; acima disso, da receita do produto</td></tr>
+      <tr><td><strong>Custo de operação</strong></td><td>Ferramentas contínuas, extração de dados, agendamento</td><td>Fundo de operação</td></tr>
+      <tr><td><strong>Custo individual</strong></td><td>Equipamento, assinatura pessoal, curso, deslocamento</td><td>De cada um, sem reembolso</td></tr>
+    </tbody>
+  </table></div>
+  <h3>O fundo de operação</h3>
+  <p class="sec-lede" style="margin-bottom:10px">Para não precisarmos pedir dinheiro um ao outro toda vez que uma ferramenta vence, <strong>5% da receita líquida de cada projeto</strong> fica retido antes da divisão e vai para um fundo comum. O saldo e os lançamentos ficam no <a href="index.html#fundo">painel</a>.</p>
+  <ul class="clean">
+    <li>O fundo cobre ferramentas compartilhadas, domínio de envio, créditos de extração, agendamento e infraestrutura de produto em fase inicial.</li>
+    <li>Saldo e movimentação são revistos na reunião mensal.</li>
+    <li>Gasto acima de €150 precisa de aprovação escrita do outro antes de acontecer.</li>
+    <li>Se o fundo passar de €1.000, o excedente é distribuído na proporção do que cada um contribuiu.</li>
+    <li>Se a parceria terminar, o saldo é dividido na mesma proporção.</li>
+  </ul>
+  <div class="callout"><h4>Reembolso</h4><p>Quem pagar um custo direto do próprio bolso é reembolsado integralmente na primeira liquidação, antes de qualquer divisão de lucro. Comprovante no grupo, no dia do gasto.</p></div>
+</section>
+
+<!-- 11 -->
+<section id="externos">
+  <h2><span class="num">11</span> Parcerias externas</h2>
+  <p class="sec-lede">Quando um projeto exigir designer, redator, fotógrafo ou desenvolvedor especializado, contratamos. Não improvisamos nem empurramos para o cliente resolver.</p>
+  <ul class="clean">
+    <li>Escopo e valor fechados por escrito antes de começar. Nunca por hora aberta.</li>
+    <li>O custo é direto do projeto: entra na dedução antes da divisão e precisa caber na margem. Se não couber, reorçamos com o cliente ou não fazemos.</li>
+    <li>O contratado trabalha para nós, não para o cliente. Nós somos o único ponto de contato.</li>
+    <li>Todo material produzido é transferido para nós, com direito de uso integral.</li>
+    <li>Confidencialidade por escrito, mesmo em trabalho pequeno.</li>
+    <li>Contratação acima de €150 precisa do aval dos dois.</li>
+  </ul>
+  <div class="callout"><h4>Um de nós como contratado</h4><p>Quando um projeto exigir a experiência de arquitetura de um dos dois e ele não estiver participando da divisão daquele projeto, ele entra como fornecedor, com escopo e valor fechados antes. É uma relação limpa e não se confunde com a divisão de lucro.</p></div>
+</section>
+
+<!-- 12 -->
+<section id="encerramento">
+  <h2><span class="num">12</span> Encerramento de projeto</h2>
+  <p class="sec-lede">É a meia hora de maior retorno de todo o processo, e a razão pela qual não vamos depender de e-mail frio para sempre. Roda em todo projeto entregue, sem exceção.</p>
+  <ul class="clean do">
+    <li>Vídeo de 60 segundos no celular: qual era o problema, o que mudou, recomendaria?</li>
+    <li>Foto com o cliente no estabelecimento dele, com o site aberto.</li>
+    <li>Antes e depois: captura do Google antes, site novo depois.</li>
+    <li>Um número, qualquer um: visitas na primeira semana, reservas, pedidos de orçamento.</li>
+    <li>Autorização escrita para usar nome, imagem e logo.</li>
+    <li>Pedido de indicação na hora. O momento de maior satisfação nunca mais será tão alto.</li>
+  </ul>
+  <div class="term">Fico feliz que tenha gostado. Posso te pedir um favor? A maior parte do meu trabalho vem por indicação. Você conhece outro dono de negócio que esteja na mesma situação que você estava?</div>
+</section>
+
+<!-- 13 -->
+<section id="ferramentas">
+  <h2><span class="num">13</span> Ferramentas e onde as coisas ficam</h2>
+  <p class="sec-lede">Os links reais de cada ferramenta ficam no <a href="index.html#ferramentas">painel</a>.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Para quê</th><th>Onde</th><th>Quem mantém</th></tr></thead>
+    <tbody>
+      <tr><td>Funil de vendas</td><td>Planilha ou quadro compartilhado, atualizado após cada contato</td><td>Dono do projeto</td></tr>
+      <tr><td>Backlog de produto</td><td>Quadro compartilhado, com marcos e pesos visíveis</td><td>Ambos</td></tr>
+      <tr><td>Conversas do dia a dia</td><td>Grupo de WhatsApp. Decisões vão para o resumo semanal</td><td>Ambos</td></tr>
+      <tr><td>Arquivos de projeto</td><td>Drive compartilhado, uma pasta por cliente</td><td>Entrega</td></tr>
+      <tr><td>Código</td><td>GitHub, repositório por cliente e por produto</td><td>Entrega</td></tr>
+      <tr><td>Publicação</td><td>Vercel</td><td>Entrega</td></tr>
+      <tr><td>Senhas e acessos</td><td>Gerenciador compartilhado. Nunca no WhatsApp</td><td>Ambos</td></tr>
+      <tr><td>Gravações de reunião</td><td>Pasta no Drive, uma por cliente</td><td>Quem conduziu</td></tr>
+      <tr><td>Lista de supressão</td><td>Planilha única, consultada antes de todo envio</td><td>Prospecção</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><h4>Acesso de cliente nunca fica só com um de nós</h4><p>Domínio, hospedagem e perfil do Google de cada cliente ficam registrados no gerenciador compartilhado no dia em que são criados.</p></div>
+</section>
+
+<!-- 14 -->
+<section id="numeros">
+  <h2><span class="num">14</span> Números que acompanhamos</h2>
+  <p class="sec-lede">Os valores atuais de cada indicador são registrados no <a href="index.html#indicadores">painel</a> e revistos na reunião semanal.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Serviços</h3>
+      <div class="tbl-wrap" style="margin:8px 0 0"><table>
+        <thead><tr><th>Indicador</th><th>Meta inicial</th></tr></thead>
+        <tbody>
+          <tr><td>Prospects abordados por semana</td><td>150 a 200</td></tr>
+          <tr><td>Taxa de resposta</td><td>acima de 5%</td></tr>
+          <tr><td>Reuniões de diagnóstico por semana</td><td>2 a 3</td></tr>
+          <tr><td>Taxa de fechamento das propostas</td><td>acima de 30%</td></tr>
+          <tr><td>Ciclo do primeiro contato ao pagamento</td><td>abaixo de 30 dias</td></tr>
+          <tr><td>Clientes em manutenção mensal</td><td>100% dos entregues</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Produtos próprios</h3>
+      <div class="tbl-wrap" style="margin:8px 0 0"><table>
+        <thead><tr><th>Indicador</th><th>Meta inicial</th></tr></thead>
+        <tbody>
+          <tr><td>Receita recorrente mensal</td><td>crescente mês a mês</td></tr>
+          <tr><td>Clientes ativos</td><td>3 na validação, 10 na escala</td></tr>
+          <tr><td>Cancelamento mensal</td><td>abaixo de 5%</td></tr>
+          <tr><td>Custo de infraestrutura sobre a receita</td><td>abaixo de 15%</td></tr>
+          <tr><td>Marcos entregues por ciclo</td><td>ao menos 1 por pessoa</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+  <h3>Como ler quando algo não vai bem</h3>
+  <ul class="clean">
+    <li><strong>Resposta baixa e envio alto:</strong> o problema está nas três observações da auditoria, não no volume.</li>
+    <li><strong>Resposta boa e poucas reuniões:</strong> o relatório não está convertendo em conversa.</li>
+    <li><strong>Reuniões boas e poucas propostas:</strong> não estamos pedindo o próximo passo.</li>
+    <li><strong>Propostas boas e poucos fechamentos:</strong> preço errado, ou cliente fora do perfil.</li>
+    <li><strong>Fechamentos bons e dinheiro baixo:</strong> o problema é cobrança, e ela tem dono.</li>
+    <li><strong>Produto com cancelamento alto:</strong> vendemos para quem não era o perfil, ou o suporte não está acontecendo.</li>
+  </ul>
+</section>
+
+<!-- 15 -->
+<section id="checklists">
+  <h2><span class="num">15</span> Checklists</h2>
+  <div class="grid3">
+    <div class="card"><h4>Antes de abordar um prospect</h4><ul class="clean" style="margin-top:8px"><li>Pontuação acima de 60.</li><li>Três observações verdadeiras e específicas escritas.</li><li>Não está na lista de supressão nem foi abordado pelo outro.</li></ul></div>
+    <div class="card"><h4>Antes da reunião de diagnóstico</h4><ul class="clean" style="margin-top:8px"><li>Site e Google do negócio revistos.</li><li>Confirmação enviada na véspera e na manhã.</li><li>Gravação ligada, com aviso ao cliente.</li></ul></div>
+    <div class="card"><h4>Antes de apresentar proposta</h4><ul class="clean" style="margin-top:8px"><li>O decisor estará na sala.</li><li>Escopo e o que não está incluído escritos.</li><li>Um caso real com número.</li><li>Elegibilidade ao voucher verificada, se cliente irlandês.</li></ul></div>
+    <div class="card"><h4>Ao fechar</h4><ul class="clean" style="margin-top:8px"><li>Ficha de passagem preenchida.</li><li>Fatura do sinal emitida no mesmo dia.</li><li>Kickoff agendado e pedido de conteúdo enviado.</li></ul></div>
+    <div class="card"><h4>Ao publicar</h4><ul class="clean" style="margin-top:8px"><li>Testado no celular, em rede móvel.</li><li>Formulário testado com envio real.</li><li>Acessos registrados no gerenciador compartilhado.</li><li>Manutenção ativada e prazo de validação comunicado por escrito.</li></ul></div>
+    <div class="card"><h4>Ao encerrar</h4><ul class="clean" style="margin-top:8px"><li>Vídeo, foto, antes e depois, número.</li><li>Autorização de uso assinada e indicação pedida.</li><li>Saldo faturado e caso escrito para o portfólio.</li></ul></div>
+    <div class="card"><h4>Ao fechar um cliente de produto</h4><ul class="clean" style="margin-top:8px"><li>Contrato e cobrança recorrente ativados.</li><li>Onboarding agendado.</li><li>Cliente registrado na apuração mensal, com quem originou a venda.</li></ul></div>
+  </div>
+</section>
+
+<footer>
+  <p>Manual de Operação da Parceria · Marcus &amp; Michael · versão 1.1 · setembro de 2026</p>
+  <p style="margin-top:6px">Este manual é revisado na última sexta de cada mês. Regra nova entra quando um problema novo aparece, e sai quando deixa de fazer sentido. Página publicada em outubro de 2026 a partir do documento acordado pelos dois sócios.</p>
+</footer>
+
+</main>
+
+</div>
+<script src="../assets/share.js?v=20261002b"></script>
+<script>
+  Share.enhance('.tbl-wrap, .stat-row, .grid2, .grid3, .flow, .card, .callout, .term', { hint: 'Compartilhar' });
+</script>
+</body>
+</html>

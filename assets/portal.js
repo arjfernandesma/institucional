@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════
    PORTAL DA EQUIPE — hub de navegação por perfil
    Colaborador(a): onboarding, cursos, playbook, materiais.
-   Admin: tudo isso + área do admin (manual operacional, painel).
+   Sócio: tudo isso + área da sociedade (manual da parceria, painel).
+   Admin: tudo isso + área do admin (workflow, manual operacional, painel).
    ═══════════════════════════════════════════════════════════════════ */
 (() => {
   'use strict';
@@ -18,6 +19,7 @@
     { id: 'cursos', label: 'Cursos' },
     { id: 'playbook', label: 'Playbook' },
     { id: 'materiais', label: 'Materiais' },
+    { id: 'sociedade', label: 'Sociedade', role: 'socio' },
     { id: 'admin', label: 'Admin', role: 'admin' },
   ];
 
@@ -42,6 +44,14 @@
     { g: 'Do zero à produção', items: [['08', 'lifecycle', 'Da ideia à produção: o ciclo completo de um SaaS'], ['08', 'lifecycle-gates', 'Os cinco portões'], ['08', 'lifecycle-golive', 'Checklist de go-live']] },
     { g: 'Infraestrutura', items: [['09', 'harness', 'O harness'], ['10', 'contexto', 'Gestão de contexto'], ['11', 'web', 'Claude Code na web']] },
     { g: 'Operação', items: [['12', 'antipadroes', 'Anti-padrões'], ['13', 'rotina', 'Rotina semanal']] },
+  ];
+
+  const PARCERIA_CHAPTERS = [
+    { g: 'Base', items: [['01', 'principios', 'Princípios'], ['02', 'papeis', 'Papéis'], ['03', 'rotina', 'Rotina de trabalho']] },
+    { g: 'Mercado e venda', items: [['04', 'mercado', 'Onde atuamos e para quem'], ['05', 'comercial', 'Processo comercial'], ['06', 'passagem', 'Da venda para a entrega'], ['07', 'projetos', 'Projetos, do início ao fim']] },
+    { g: 'Produtos', items: [['08', 'produtos', 'Produtos próprios'], ['08', 'pontos', 'Pontos de construção'], ['08', 'divisao', 'Divisão da receita recorrente'], ['08', 'saida', 'Se um dos dois sair']] },
+    { g: 'Dinheiro', items: [['09', 'pagamento', 'Pagamento dos clientes'], ['10', 'despesas', 'Despesas e fundo'], ['11', 'externos', 'Parcerias externas']] },
+    { g: 'Operação', items: [['12', 'encerramento', 'Encerramento de projeto'], ['13', 'ferramentas', 'Ferramentas'], ['14', 'numeros', 'Números'], ['15', 'checklists', 'Checklists']] },
   ];
 
   const MANUAL_CHAPTERS = [
@@ -114,6 +124,7 @@
 
   /* ── Render ─────────────────────────────────────────────────────── */
   const isAdmin = () => Auth.can('admin', session);
+  const isSocio = () => Auth.can('socio', session);
 
   function renderNav() {
     const items = NAV.filter(n => !n.role || Auth.can(n.role, session));
@@ -132,6 +143,7 @@
     const hour = new Date().getHours();
     const greet = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
     const admin = isAdmin();
+    const socio = isSocio();
 
     const heroCard = examPassed
       ? `<div class="eyebrow">Onboarding concluído ✓</div><h3>Você está pronta(o) para vender.</h3><p>Use o Playbook e a Cola rápida no dia a dia, e volte à Academia para revisar um tema quando precisar.</p><a class="btn btn-gold" href="playbook/">Abrir o Playbook →</a>`
@@ -161,11 +173,14 @@
             <div class="eyebrow">Portal da equipe · Marcus Fernandes</div>
             <h1 class="h1">${greet}, <em>${esc(session.name)}</em>.</h1>
             <p class="lead">${admin
-              ? 'Você está na visão de admin: tudo o que a equipe de vendas vê, mais o manual operacional, o painel e as pendências.'
+              ? 'Você está na visão de admin: tudo o que a equipe de vendas vê, mais a área da sociedade, o workflow de engenharia, o manual operacional, o painel e as pendências.'
+              : socio
+              ? 'Você está na visão de sócio: tudo o que a equipe de vendas vê, mais a área da sociedade, com o manual da parceria e o painel de rituais, papéis, pontos e decisões.'
               : 'Tudo o que você precisa para vender nossos sites e automações no Brasil e na Europa está aqui: aprenda na Academia, consulte o Playbook, use os materiais.'}</p>
             <div class="hero-actions">
               <a class="btn btn-primary btn-lg" href="onboarding/">🎓 Academia de Vendas</a>
               <a class="btn btn-outline btn-lg" href="playbook/">📘 Playbook</a>
+              ${socio ? '<a class="btn btn-outline btn-lg" href="sociedade/">🤝 Sociedade</a>' : ''}
               ${admin ? '<a class="btn btn-outline btn-lg" href="#admin">⚙️ Área do admin</a>' : ''}
             </div>
           </div>
@@ -217,6 +232,7 @@
           </div>
         </section>
 
+        ${socio ? renderSociedade() : ''}
         ${admin ? renderAdmin() : ''}
 
         <footer class="p-footer">
@@ -226,6 +242,33 @@
       </div>`;
 
     if (admin) wireAdmin();
+  }
+
+  function renderSociedade() {
+    const chaptersOf = (list, base) => list.map(g => `<div class="chapter-group"><div class="g">${g.g}</div><div class="chapter-list">${g.items.map(([n, id, t]) => `<a href="${base}#${id}"><span class="n">${n}</span>${t}</a>`).join('')}</div></div>`).join('');
+    let cfg = null; try { cfg = JSON.parse(localStorage.getItem('mf_sociedade_v1') || 'null'); } catch { /* ignore */ }
+    const w = cfg?.rituals?.weekly;
+    const DOW = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+    const weeklyTxt = w ? `${DOW[w.dow]} às ${w.time} (${w.tz})` : 'ainda não definida';
+    const ack = cfg?.ack || {};
+    const ackTxt = ['marcus', 'michael'].map(k => `${k === 'marcus' ? 'Marcus' : 'Michael'}: ${ack[k] ? 'aceito em ' + ack[k].slice(0, 10) : 'pendente'}`).join(' · ');
+    return `
+      <section class="p-section" id="sociedade">
+        <div class="p-section-head"><div><div class="eyebrow">Sócios</div><h2>Área da sociedade</h2><p>O que só os dois sócios veem: o Manual de Operação da Parceria (os termos que lemos e aceitamos) e o painel onde ficam as definições do dia a dia: horários dos rituais, papéis, pontos de construção, fundo, decisões.</p></div><span class="role-pill socio">Sócio</span></div>
+        <div class="tile-grid" style="margin-bottom:1.25rem">
+          <a class="tile socio-tile featured" href="sociedade/">
+            <div class="t-icon">🤝</div>
+            <div class="t-body"><h3>Painel da sociedade</h3><p>Rituais e horários (com fuso de cada um e calendário para baixar), papéis por função, pontos de construção do produto, calculadora da divisão recorrente, fundo de operação, registro de decisões, pauta e resumo da reunião semanal, ferramentas e indicadores.</p>
+              <div class="t-foot"><span>Reunião semanal: ${esc(weeklyTxt)}</span><span>Aceite do manual · ${esc(ackTxt)}</span></div></div>
+            <span class="btn btn-primary">Abrir →</span>
+          </a>
+          <a class="tile socio-tile" href="sociedade/manual.html"><div class="t-icon">📜</div><h4>Manual de Operação da Parceria</h4><p>Como tocamos a parceria no dia a dia: princípios, papéis, rotina, processo, produtos próprios e a divisão da receita, pagamento, despesas, encerramento, ferramentas, números e checklists.</p><div class="t-foot"><span>15 capítulos · v1.1 · set/2026</span><span>Se não está escrito, não foi combinado</span></div></a>
+          <a class="tile socio-tile" href="sociedade/#rituais"><div class="t-icon">📅</div><h4>Horários das reuniões</h4><p>Check-in de segunda, reunião semanal de 45 min, revisão mensal na última sexta, ciclo de produto a cada duas semanas. Defina, veja no fuso de cada um e baixe o calendário.</p><div class="t-foot"><span>Painel · rituais</span></div></a>
+          <a class="tile socio-tile" href="sociedade/#divisao"><div class="t-icon">🧮</div><h4>Divisão da receita recorrente</h4><p>Operação 20%, originação 15%, venda 15%, construção 50% por pontos. Simule com os números reais do mês.</p><div class="t-foot"><span>Painel · calculadora</span></div></a>
+          <a class="tile socio-tile" href="playbook/comercial.html"><div class="t-icon">★</div><h4>Playbook Comercial</h4><p>O terceiro documento da parceria: o processo comercial em detalhe, para consulta durante as reuniões.</p><div class="t-foot"><span>Área do colaborador</span></div></a>
+        </div>
+        <details class="chapters" open><summary>Manual da Parceria: ir direto a um capítulo</summary>${chaptersOf(PARCERIA_CHAPTERS, 'sociedade/manual.html')}</details>
+      </section>`;
   }
 
   function renderAdmin() {
@@ -277,12 +320,13 @@
           <div class="admin-band">
             <h3 style="font-family:var(--ff-display);font-weight:600;font-size:1.2rem;margin-bottom:.25rem">Como administrar</h3>
             <dl class="kv" style="margin-top:.8rem">
-              <dt>Senhas</dt><dd>Em <code>assets/auth.js</code>, um hash SHA-256 por perfil (<code>roles.colaborador</code> e <code>roles.admin</code>). Gere com <code>printf '%s' 'Senha' | sha256sum</code>. Trocar a senha derruba as sessões daquele perfil.</dd>
+              <dt>Senhas</dt><dd>Em <code>assets/auth.js</code>, um hash SHA-256 por perfil (<code>roles.colaborador</code>, <code>roles.socio</code> e <code>roles.admin</code>). Gere com <code>printf '%s' 'Senha' | sha256sum</code>. Trocar a senha derruba as sessões daquele perfil.</dd>
               <dt>Login individual</dt><dd>Trocar <code>provider</code> para <code>'clerk'</code> e colar a publishable key. O perfil vem de <code>publicMetadata.role</code>.</dd>
               <dt>Conteúdo do curso</dt><dd>Tudo em <code>onboarding/content.js</code>: módulos, lições, quizzes, simulações, prova, cola rápida e glossário.</dd>
               <dt>Playbooks</dt><dd><code>playbook/comercial.html</code> (processo; manda em divergência) e <code>playbook/index.html</code> (Dublin, scripts PT/EN). Área do colaborador.</dd>
               <dt>Ciclo de desenvolvimento</dt><dd><code>admin/workflow-engenharia.html</code>. Só admin. Ao mudar o método, revisar o Playbook Comercial (par comercial).</dd>
               <dt>Manual BR</dt><dd><code>admin/manual-operacional.html</code>. Só admin.</dd>
+              <dt>Sociedade</dt><dd><code>sociedade/manual.html</code> (termos) e <code>sociedade/index.html</code> + <code>sociedade/painel.js</code> (definições). Perfil <code>socio</code> (o admin também vê). As definições ficam no navegador de quem edita: use "Compartilhar definições" no painel para mandar ao outro sócio.</dd>
               <dt>Este portal</dt><dd><code>index.html</code> + <code>assets/portal.js</code> (menus, trilhas, checklist, pendências).</dd>
               <dt>Proteção</dt><dd>Cada página inclui <code>assets/guard.js</code> com <code>data-role</code>. Sem sessão, volta para o portal.</dd>
             </dl>
@@ -318,9 +362,9 @@
     const params = new URLSearchParams(location.search);
     const next = params.get('next');
     let denied = null;
+    const needRole = params.get('need') || 'colaborador';
     if (next && next.startsWith('/') && !next.startsWith('//')) {
-      const needAdmin = params.get('need') === 'admin';
-      if (!needAdmin || isAdmin()) { location.replace(next); return; }
+      if (Auth.can(needRole, s)) { location.replace(next); return; }
       denied = next;
     }
     if (params.toString()) history.replaceState(null, '', location.pathname + location.hash);
@@ -332,9 +376,9 @@
     if (denied) {
       const b = document.createElement('div');
       b.className = 'container'; b.style.paddingBottom = '0';
-      b.innerHTML = `<div class="callout callout-warn" id="denied" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap"><div style="flex:1"><div class="co-title">Página só para admin</div><div class="co-body">A página <code>${esc(denied)}</code> faz parte da área do admin. Você está como ${Auth.roleLabel(s.role)}. Se você é o admin, troque de conta com a senha de admin.</div></div><button class="btn btn-outline" id="switch-account">Trocar de conta</button></div>`;
+      b.innerHTML = `<div class="callout callout-warn" id="denied" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap"><div style="flex:1"><div class="co-title">Página só para ${esc(Auth.roleLabel(needRole).toLowerCase())}</div><div class="co-body">A página <code>${esc(denied)}</code> faz parte da área de ${esc(Auth.roleLabel(needRole).toLowerCase())}. Você está como ${Auth.roleLabel(s.role)}. Se essa área é sua, troque de conta com a senha correspondente.</div></div><button class="btn btn-outline" id="switch-account">Trocar de conta</button></div>`;
       $('#view').prepend(b);
-      $('#switch-account').addEventListener('click', async () => { await Auth.logout(); location.href = location.pathname + '?next=' + encodeURIComponent(denied) + '&need=admin'; });
+      $('#switch-account').addEventListener('click', async () => { await Auth.logout(); location.href = location.pathname + '?next=' + encodeURIComponent(denied) + '&need=' + encodeURIComponent(needRole); });
     }
     if (location.hash) { const el = $(location.hash); if (el) el.scrollIntoView(); }
   }
@@ -343,7 +387,8 @@
     $('#app').hidden = true; $('#gate').hidden = false;
     const params = new URLSearchParams(location.search);
     const note = $('#gate-note');
-    if (params.get('need') === 'admin') { note.textContent = 'A página que você tentou abrir é da área do admin. Entre com a senha de admin.'; note.hidden = false; }
+    const need = params.get('need');
+    if (need && need !== 'colaborador') { note.textContent = `A página que você tentou abrir é da área de ${Auth.roleLabel(need).toLowerCase()}. Entre com a senha correspondente.`; note.hidden = false; }
     else if (params.get('next')) { note.textContent = 'Entre para continuar até a página que você abriu.'; note.hidden = false; }
     if (Auth.mode === 'clerk') {
       $('#gate-form').hidden = true; $('#clerk-mount').hidden = false;

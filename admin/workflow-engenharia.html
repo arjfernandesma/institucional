@@ -6,8 +6,8 @@
 <meta name="description" content="Método de trabalho com Claude Code para as três frentes da consultoria: onde delegar, onde verificar, e onde o vibe coding vira dívida.">
 <meta name="robots" content="noindex, nofollow">
 <title>Workflow de Engenharia — Admin</title>
-<script src="../assets/auth.js?v=20260930b"></script>
-<script src="../assets/guard.js?v=20260930b" data-role="admin"></script>
+<script src="../assets/auth.js?v=20261002"></script>
+<script src="../assets/guard.js?v=20261002" data-role="admin"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -181,6 +181,34 @@ footer{border-top:1px solid var(--line);padding-top:20px;margin-top:20px;font-si
 .xref a{font-family:"JetBrains Mono",monospace; font-size:11px; padding:5px 10px; border:1px solid var(--line-2); border-radius:4px; text-decoration:none; color:var(--ink-2)}
 .xref a:hover{border-color:var(--teal); color:var(--teal)}
 
+/* ═══════════ LIFECYCLE — estilos ═══════════ */
+.lc-fig{margin:18px 0 6px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.lc-fig svg{display:block;width:100%;min-width:560px;height:auto}
+.lc-legend{display:flex;flex-wrap:wrap;gap:14px;font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--ink-2);margin:6px 0 22px}
+.lc-legend span{display:inline-flex;align-items:center;gap:6px}
+.lc-legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.lc-legend i.g{width:11px;height:11px;border-radius:2px;transform:rotate(45deg)}
+.lc-phase{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.lc-phase:last-child{border-bottom:none}
+.lc-n{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:600;color:var(--paper);background:var(--teal)}
+.lc-phase.v1 .lc-n{background:var(--amber)}
+.lc-phase.ops .lc-n{background:var(--good)}
+.lc-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.lc-title{font-family:"Bricolage Grotesque",sans-serif;font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.lc-meta{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--ink-3);letter-spacing:.04em}
+.lc-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:10px;max-width:70ch}
+.lc-rows{display:grid;gap:8px;border-left:2px solid var(--line);padding-left:14px}
+.lc-row{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;font-size:14px;line-height:1.55}
+.lc-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.lc-gate{display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:7px 12px;border-radius:6px;background:var(--amber-soft);
+  border:1px solid color-mix(in srgb,var(--amber) 30%,transparent);font-size:13.5px;color:var(--ink)}
+.lc-gate b{font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--amber);letter-spacing:.06em}
+.lc-gate.ok{background:var(--good-soft);border-color:color-mix(in srgb,var(--good) 30%,transparent)}
+.lc-gate.ok b{color:var(--good)}
+@media (max-width:560px){.lc-phase{grid-template-columns:34px minmax(0,1fr);gap:11px}.lc-n{width:34px;height:34px;font-size:11px}.lc-row{grid-template-columns:1fr;gap:2px}}
+@media print{.lc-phase{break-inside:avoid;page-break-inside:avoid}}
+
 /* ═══════════ CICLO — estilos ═══════════ */
 .cy-modes{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 6px}
 .cy-mode{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:600;
@@ -336,7 +364,7 @@ html{-webkit-text-size-adjust:100%}
 
 <nav class="nav">
   <div class="nav-brand">Workflow de Engenharia</div>
-  <div class="nav-sub">Marcus · Claude Code · v1.0</div>
+  <div class="nav-sub">Marcus · Claude Code · v1.1</div>
 
   <div class="nav-grp">Princípio</div>
   <a href="#verificacao">Confiança = verificação</a>
@@ -348,6 +376,11 @@ html{-webkit-text-size-adjust:100%}
   <a href="#sites">Sites locais</a>
   <a href="#projetos">Projetos maiores</a>
   <a href="#saas">SaaS próprios</a>
+
+  <div class="nav-grp">Do zero à produção</div>
+  <a href="#lifecycle">Da ideia à produção</a>
+  <a href="#lifecycle-gates">Os cinco portões</a>
+  <a href="#lifecycle-golive">Checklist de go-live</a>
 
   <div class="nav-grp">Infraestrutura</div>
   <a href="#harness">O harness</a>
@@ -370,12 +403,12 @@ html{-webkit-text-size-adjust:100%}
 <header class="mast">
   <div class="eyebrow">Método de trabalho · Construção assistida por IA</div>
   <h1>Workflow de Engenharia</h1>
-  <p class="lede">Como construir as três frentes da consultoria com Claude Code sem acumular dívida técnica: onde confiar, onde verificar, e onde a linha entre as duas coisas realmente fica.</p>
+  <p class="lede">Como construir as três frentes da consultoria com Claude Code sem acumular dívida técnica: onde confiar, onde verificar, e onde a linha entre as duas coisas realmente fica. Inclui o ciclo completo de um SaaS, da ideia à operação em produção.</p>
   <div class="mast-meta">
     <span class="tag">Sites €600–1.000</span>
     <span class="tag">Projetos €1.000+</span>
     <span class="tag">SaaS próprios</span>
-    <span class="tag">v1.0 · set/2026</span>
+    <span class="tag">v1.1 · out/2026</span>
     <span class="tag">Somente admin</span>
   </div>
   <div class="xref"><a href="../playbook/comercial.html">↗ Par comercial: Playbook Comercial</a><a href="manual-operacional.html">↗ Manual Operacional (Brasil)</a><a href="../index.html#admin">↗ Painel do admin</a></div>
@@ -975,9 +1008,265 @@ Não relate preferências de estilo.</div>
   </div>
 </section>
 
+<!-- ═══ LIFECYCLE ═══ -->
+<section id="lifecycle">
+  <h2><span class="num">08</span> Da ideia à produção: o ciclo completo de um SaaS</h2>
+  <p class="sec-lede">As seções anteriores descrevem como executar <em>uma tarefa</em> com a IA. Esta descreve o produto inteiro: oito fases, cinco portões, e a regra de que o código que fica nasce na velocidade 2. Serve para qualquer sistema que vai ter usuário, dado ou dinheiro de outra pessoa.</p>
+
+  <figure class="lc-fig">
+      <svg viewBox="0 0 720 312" role="img" aria-label="Linha do tempo do ciclo completo de um SaaS: ideia, validação, spike, spec e arquitetura, MVP, endurecimento, lançamento e operação, com cinco portões de decisão e o retorno da operação para o backlog">
+      <defs><marker id="lcArrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line-2)"/></marker></defs>
+      <rect x="30" y="52" width="238" height="26" rx="6" fill="var(--amber-soft)"/><text x="149" y="69" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--amber)" text-anchor="middle" letter-spacing="1">VELOCIDADE 1 · EXPLORAÇÃO</text>
+      <rect x="276" y="52" width="416" height="26" rx="6" fill="var(--teal-soft)"/><text x="484" y="69" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="var(--teal)" text-anchor="middle" letter-spacing="1">VELOCIDADE 2 · CONSOLIDAÇÃO · CÓDIGO QUE FICA</text>
+      <line x1="30" y1="150" x2="696" y2="150" stroke="var(--line-2)" stroke-width="2"/>
+      <path d="M664,210 C664,270 406,270 406,212" fill="none" stroke="var(--good)" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#lcArrow)"/>
+      <text x="535" y="274" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--good)" text-anchor="middle">cada melhoria volta ao ciclo (seção 04)</text>
+      <path d="M95,144 C78,112 46,108 34,138" fill="none" stroke="var(--bad)" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#lcArrow)"/>
+      <text x="22" y="94" font-family="JetBrains Mono, monospace" font-size="8.5" fill="var(--bad)" text-anchor="start">não passou? refaz ou arquiva</text>
+      <circle cx="62" cy="150" r="17" fill="var(--amber)"/><text x="62" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">1</text>
+      <text x="62" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Ideia</text>
+      <text x="62" y="202" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">1–2 dias</text>
+      <circle cx="148" cy="150" r="17" fill="var(--amber)"/><text x="148" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">2</text>
+      <text x="148" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Validação</text>
+      <text x="148" y="202" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">1 semana</text>
+      <circle cx="234" cy="150" r="17" fill="var(--amber)"/><text x="234" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">3</text>
+      <text x="234" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Spike</text>
+      <text x="234" y="202" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">≤ 1 semana</text>
+      <circle cx="320" cy="150" r="17" fill="var(--teal)"/><text x="320" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">4</text>
+      <text x="320" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Spec e</text>
+      <text x="320" y="200" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">arquitetura</text>
+      <text x="320" y="216" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">2–3 dias</text>
+      <circle cx="406" cy="150" r="17" fill="var(--teal)"/><text x="406" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">5</text>
+      <text x="406" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">MVP</text>
+      <text x="406" y="202" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">2–6 semanas</text>
+      <circle cx="492" cy="150" r="17" fill="var(--teal)"/><text x="492" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">6</text>
+      <text x="492" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Endureci-</text>
+      <text x="492" y="200" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">mento</text>
+      <text x="492" y="216" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">1 semana</text>
+      <circle cx="578" cy="150" r="17" fill="var(--teal)"/><text x="578" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">7</text>
+      <text x="578" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Lançamento</text>
+      <text x="578" y="202" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">1 dia</text>
+      <circle cx="664" cy="150" r="17" fill="var(--good)"/><text x="664" y="154" font-family="JetBrains Mono, monospace" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">8</text>
+      <text x="664" y="186" font-family="Public Sans, sans-serif" font-size="12" font-weight="600" fill="var(--ink)" text-anchor="middle">Operação</text>
+      <text x="664" y="202" font-family="JetBrains Mono, monospace" font-size="9.5" fill="var(--ink-3)" text-anchor="middle">contínuo</text>
+      <rect x="96" y="141" width="18" height="18" rx="2" transform="rotate(45 105 150)" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="105" y="107" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="var(--amber)" text-anchor="middle">G1</text>
+      <text x="105" y="118" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">problema</text>
+      <text x="105" y="129" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">confirmado</text>
+      <rect x="268" y="141" width="18" height="18" rx="2" transform="rotate(45 277 150)" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="277" y="107" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="var(--amber)" text-anchor="middle">G2</text>
+      <text x="277" y="118" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">produto</text>
+      <text x="277" y="129" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">ou lixo</text>
+      <rect x="354" y="141" width="18" height="18" rx="2" transform="rotate(45 363 150)" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="363" y="107" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="var(--amber)" text-anchor="middle">G3</text>
+      <text x="363" y="118" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">SPEC.md</text>
+      <text x="363" y="129" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">assinado</text>
+      <rect x="526" y="141" width="18" height="18" rx="2" transform="rotate(45 535 150)" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="535" y="107" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="var(--amber)" text-anchor="middle">G4</text>
+      <text x="535" y="118" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">go /</text>
+      <text x="535" y="129" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">no-go</text>
+      <rect x="612" y="141" width="18" height="18" rx="2" transform="rotate(45 621 150)" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/>
+      <text x="621" y="107" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="600" fill="var(--amber)" text-anchor="middle">G5</text>
+      <text x="621" y="118" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">5 usuários</text>
+      <text x="621" y="129" font-family="Public Sans, sans-serif" font-size="9" fill="var(--ink-2)" text-anchor="middle">reais</text>
+      <text x="30" y="300" font-family="Public Sans, sans-serif" font-size="11.5" fill="var(--ink-2)">Durações para um SaaS pequeno, uma pessoa, com Claude Code. O que não muda é a ordem e os portões.</text>
+      </svg>
+    <figcaption>Linha do tempo do ciclo. Os losangos são portões: perguntas com evidência, não reuniões. O tracejado verde é o retorno permanente da operação para o ciclo de tarefas.</figcaption>
+  </figure>
+  <div class="lc-legend"><span><i style="background:var(--amber)"></i>velocidade 1: descartável</span><span><i style="background:var(--teal)"></i>velocidade 2: código que fica</span><span><i style="background:var(--good)"></i>operação</span><span><i class="g" style="border:2px solid var(--amber)"></i>portão de decisão</span></div>
+
+  <div class="callout">
+    <h4>As três regras que atravessam o ciclo</h4>
+    <p><strong>Deploy desde o dia 1.</strong> O esqueleto vai para um preview na Vercel no primeiro commit da fase 5. "Publicar depois" é onde a surpresa mora.</p>
+    <p><strong>O portão é uma evidência, não uma opinião.</strong> Cada G abaixo nomeia o que precisa existir para passar. Sem a evidência, não passou, por mais pronto que pareça.</p>
+    <p><strong>A IA executa; a verificação é sua.</strong> Em todas as fases o que Claude produz só conta quando você leu a saída do teste, o diff ou a resposta do usuário com os próprios olhos.</p>
+  </div>
+
+  <h3>As oito fases, uma a uma</h3>
+  <div class="lc-phase v1">
+    <div class="lc-n">01</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Ideia e hipótese</span><span class="lc-meta">1–2 dias · você · sem sessão</span></div>
+      <p class="lc-sub">Uma página, não um pitch. Se a ideia não cabe em uma frase com uma métrica, ainda não é uma ideia: é um desejo.</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Você</div><div>Escrever <code>IDEA.md</code>: para quem, qual dor, o que muda, como você saberia que funcionou (uma métrica), por que você. Dez linhas.</div></div><div class="lc-row"><div class="lc-lbl">Claude</div><div>Adversário, não executor. <em>"Me dê as cinco razões mais prováveis para isso falhar e quem já tentou."</em> Nada de código.</div></div><div class="lc-row"><div class="lc-lbl">Artefato</div><div><code>IDEA.md</code> versionado num repositório vazio. O repositório nasce aqui, com <code>CLAUDE.md</code> de uma linha.</div></div><div class="lc-row"><div class="lc-lbl">Modo</div><div>Nenhum. É pensamento seu.</div></div></div>
+      <div class="lc-gate "><b>SAÍDA</b><span>A hipótese cabe em uma frase e tem uma métrica que você consegue medir sem construir nada.</span></div>
+    </div>
+  </div>
+  <div class="lc-phase v1">
+    <div class="lc-n">02</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Validação sem código</span><span class="lc-meta">1 semana · você · Claude como apoio</span></div>
+      <p class="lc-sub">A pergunta não é "dá para construir". É "alguém precisa disso o bastante para mudar de hábito ou pagar". Responda antes de abrir o editor.</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Você</div><div>Cinco conversas com pessoas do perfil, sem vender. Uma landing page com formulário. Se der, pré-venda ou lista de espera com compromisso.</div></div><div class="lc-row"><div class="lc-lbl">Claude</div><div>Roteiro de entrevista, landing page a partir do template dos sites locais, análise das respostas em padrões. Mesmo quadrante dos sites: verificável e barato.</div></div><div class="lc-row"><div class="lc-lbl">Artefato</div><div>Notas das conversas no repositório, landing no ar, planilha com as respostas e a decisão escrita.</div></div><div class="lc-row"><div class="lc-lbl">Modo</div><div>Modo 1 para a landing (descartável), nenhum para as conversas.</div></div></div>
+      <div class="lc-gate "><b>G1</b><span><strong>Problema confirmado:</strong> três pessoas descreveram a dor sem você induzir, ou alguém pagou ou assinou com compromisso. Se não: refaz a hipótese ou arquiva. Arquivar aqui custa uma semana; arquivar depois do MVP custa dois meses.</span></div>
+    </div>
+  </div>
+  <div class="lc-phase v1">
+    <div class="lc-n">03</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Spike: responder uma pergunta</span><span class="lc-meta">≤ 1 semana · velocidade 1 · modo 1</span></div>
+      <p class="lc-sub">O vibe coding legítimo mora aqui. Branch <code>spike/</code>, dados falsos, uma pergunta por spike: a parte difícil é viável? O fluxo central faz sentido na mão de alguém?</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Você</div><div>Escolher <em>uma</em> pergunta. Mostrar o protótipo a duas pessoas da fase 2. Não apaixonar-se pelo código.</div></div><div class="lc-row"><div class="lc-lbl">Claude</div><div>Prompt direto, iteração rápida, sem teste, sem spec. Se não funcionar em duas tentativas: <code>/clear</code> e reformula.</div></div><div class="lc-row"><div class="lc-lbl">Artefato</div><div><code>LEARNINGS.md</code> com o que o spike ensinou: o que funcionou, o que não, decisões que você tomaria diferente. O código não é artefato.</div></div><div class="lc-row"><div class="lc-lbl">Modo</div><div>Modo 1. Prazo máximo de uma semana, depois ou vira produto ou vai para o lixo.</div></div></div>
+      <div class="lc-gate "><b>G2</b><span><strong>Produto ou lixo:</strong> a pergunta foi respondida e a decisão está escrita. O código do spike é referência, não base: ele não é promovido, é reescrito na fase 5.</span></div>
+    </div>
+  </div>
+  <div class="lc-phase v2">
+    <div class="lc-n">04</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Spec e arquitetura</span><span class="lc-meta">2–3 dias · ambos · modo 3</span></div>
+      <p class="lc-sub">A velocidade 2 começa aqui. Tudo o que toca dado, dinheiro ou outra pessoa nasce especificado.</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Você</div><div>Entrar em plan mode e deixar Claude te entrevistar (seção 04, etapa 03). Decidir o que fica fora. Escolher a stack padrão da casa, não a novidade da semana. Ler o spec linha por linha.</div></div><div class="lc-row"><div class="lc-lbl">Claude</div><div>Entrevista com <code>AskUserQuestion</code>, escreve <code>SPEC.md</code>, propõe modelo de dados, fronteiras de autenticação e autorização, pontos de cobrança, e a quebra em tarefas com critério de pronto.</div></div><div class="lc-row"><div class="lc-lbl">Artefato</div><div><code>SPEC.md</code>, <code>CLAUDE.md</code> completo (stack, comandos, convenções, o que nunca fazer), decisões de arquitetura em <code>docs/adr/</code> (uma página cada), lista de tarefas verificáveis.</div></div><div class="lc-row"><div class="lc-lbl">Decisões</div><div>Multi-tenant ou um banco por cliente · onde mora o segredo · o que é síncrono e o que é fila · como se faz backup e como se restaura · o que é feature flag.</div></div></div>
+      <div class="lc-gate "><b>G3</b><span><strong>SPEC.md assinado:</strong> você assinaria embaixo dele, toda tarefa termina com algo que prova que funciona, e o esqueleto já tem deploy de preview (ver fase 5).</span></div>
+    </div>
+  </div>
+  <div class="lc-phase v2">
+    <div class="lc-n">05</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Construção do MVP</span><span class="lc-meta">2–6 semanas · Claude executa, você verifica · modos 2 e 3</span></div>
+      <p class="lc-sub">Uma tarefa por sessão limpa, no loop implementar → verificar → revisar da seção 04. Deploy desde o primeiro commit: um preview na Vercel a cada PR, nunca "depois a gente publica".</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Ordem</div><div>1) esqueleto, autenticação e deploy de preview no dia 1 · 2) o fluxo principal ponta a ponta, com dado real de teste · 3) cobrança e limites · 4) o resto, por valor para o usuário, nunca por facilidade.</div></div><div class="lc-row"><div class="lc-lbl">Você</div><div>Descrever cada tarefa em uma frase apontando um padrão existente. Ler a saída do teste, não a afirmação. Ler o diff. Se parou de ler, o quadrante mudou.</div></div><div class="lc-row"><div class="lc-lbl">Claude</div><div>Implementa seguindo o padrão do projeto, escreve o teste junto, roda a suíte, itera até passar. Revisão adversarial por subagente antes do merge no que toca dado ou dinheiro.</div></div><div class="lc-row"><div class="lc-lbl">Harness</div><div>Hooks que bloqueiam turno com teste falhando, <code>/goal</code> para tarefas longas, CI no PR, lint e typecheck obrigatórios. Seção 09.</div></div><div class="lc-row"><div class="lc-lbl">Artefato</div><div>PRs pequenos com preview, <code>CHANGELOG.md</code>, suíte verde, <code>CLAUDE.md</code> atualizado com cada decisão nova.</div></div></div>
+      <div class="lc-gate "><b>SAÍDA</b><span>O fluxo principal funciona ponta a ponta no preview, com dados reais seus, e você consegue explicar em uma frase o que cada PR mudou.</span></div>
+    </div>
+  </div>
+  <div class="lc-phase v2">
+    <div class="lc-n">06</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Endurecimento</span><span class="lc-meta">1 semana · ambos · modo 3</span></div>
+      <p class="lc-sub">A diferença entre "funciona para mim" e "pode receber o dado de outra pessoa". Nada aqui é opcional quando há dado, dinheiro ou terceiros.</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Segurança</div><div>Revisão adversarial dedicada: autorização por tenant em toda rota, segredos fora do código, injeção, uploads, limites de taxa. <em>"Ataque este sistema como alguém que quer ler dados de outro cliente."</em></div></div><div class="lc-row"><div class="lc-lbl">Dados</div><div>LGPD e GDPR: política de privacidade, consentimento onde há formulário, exportação e exclusão de dados do usuário, retenção definida. Backup automático <strong>e restauração testada uma vez</strong>.</div></div><div class="lc-row"><div class="lc-lbl">Operação</div><div>Rastreio de erros com alerta, logs legíveis, métrica de disponibilidade, página de status simples, runbook de incidente: o que fazer quando cair, onde olhar, quem avisa o cliente.</div></div><div class="lc-row"><div class="lc-lbl">Produto</div><div>Estados vazios, erros amigáveis, acessibilidade mínima (teclado, contraste, rótulos), performance no celular, e-mails transacionais revisados.</div></div><div class="lc-row"><div class="lc-lbl">Custo</div><div>Quotas de API externas, limite de gasto na nuvem com alerta, estimativa de custo por usuário.</div></div></div>
+      <div class="lc-gate "><b>G4</b><span><strong>Go / no-go:</strong> o checklist de go-live abaixo está todo marcado, a restauração do backup foi feita de verdade, e você dormiria tranquilo com um estranho usando o sistema.</span></div>
+    </div>
+  </div>
+  <div class="lc-phase v2">
+    <div class="lc-n">07</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Lançamento</span><span class="lc-meta">1 dia · você · modo 2</span></div>
+      <p class="lc-sub">Lançar é um procedimento, não um evento. Tudo o que pode ser testado antes já foi; o dia é para executar a lista.</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Antes</div><div>Domínio e DNS apontados, variáveis de produção conferidas, migração do banco com plano de volta, feature flags fechando o que ainda não deve aparecer, termos e privacidade publicados, canal de suporte definido.</div></div><div class="lc-row"><div class="lc-lbl">Claude</div><div>Gera as release notes a partir do <code>CHANGELOG.md</code>, revisa o checklist contra o repositório, prepara o roteiro de onboarding manual dos primeiros usuários.</div></div><div class="lc-row"><div class="lc-lbl">Você</div><div>Cria a tag <code>v1.0.0</code>, publica, e acompanha pessoalmente os cinco primeiros usuários: onboarding feito por você, não pelo produto. É a última pesquisa de usuário gratuita que você vai ter.</div></div><div class="lc-row"><div class="lc-lbl">Artefato</div><div>Tag, release notes, post de lançamento, métrica de ativação medindo desde a primeira hora.</div></div></div>
+      <div class="lc-gate "><b>G5</b><span><strong>Cinco usuários reais</strong> completaram o fluxo principal sem você intervir. Antes disso, ainda não lançou: está em beta assistido, e tudo bem chamar assim.</span></div>
+    </div>
+  </div>
+  <div class="lc-phase ops">
+    <div class="lc-n">08</div>
+    <div>
+      <div class="lc-head"><span class="lc-title">Operação e evolução</span><span class="lc-meta">contínuo · ambos · o ciclo da seção 04, de novo</span></div>
+      <p class="lc-sub">O produto só existe enquanto alguém mede, conversa e corrige. A partir daqui, cada melhoria é uma tarefa nova que entra pelo quadrante.</p>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Semanal</div><div>Revisar erros e a métrica da fase 1. Falar com um usuário. Priorizar o backlog por valor, não por reclamação mais alta. Atualizar dependências com a suíte como rede. Olhar o custo. Encaixa na rotina da seção 13.</div></div><div class="lc-row"><div class="lc-lbl">Cada feature</div><div>Volta ao ciclo: quadrante → exploração → spec se tocar dado, dinheiro ou outra pessoa → sessão limpa → implementar → verificar → revisar. Feature de descoberta pode nascer como spike; o que fica, nasce na velocidade 2.</div></div><div class="lc-row"><div class="lc-lbl">Mensal</div><div>Retrospectiva de uma página: o que quebrou, o que custou mais do que devia, o que o <code>CLAUDE.md</code> precisa aprender. Teste de restauração do backup.</div></div><div class="lc-row"><div class="lc-lbl">Quando parar</div><div>Sem uso real por 90 dias, ou métrica da fase 1 parada por três meses: decidir explicitamente entre pivotar, manter no mínimo ou desligar com aviso aos usuários. Produto zumbi custa atenção, e atenção é o gargalo.</div></div></div>
+      <div class="lc-gate ok"><b>CONTÍNUO</b><span>A métrica escrita na fase 1 é medida toda semana e discutida com alguém além de você.</span></div>
+    </div>
+  </div>
+
+  <h3 id="lifecycle-gates">Os cinco portões</h3>
+  <p class="sec-lede" style="margin-bottom:14px">Um portão responde a uma pergunta com uma evidência. Se a evidência não existe, a resposta é não, e "não" tem um caminho definido.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Portão</th><th>Pergunta</th><th>Evidência que passa</th><th>Se não passar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>G1</strong> · depois da validação</td><td>Alguém tem esse problema de verdade?</td><td>Três pessoas descreveram a dor sem indução, ou um pagamento ou compromisso</td><td>Refazer a hipótese (fase 1) ou arquivar com uma nota de por quê</td></tr>
+        <tr><td><strong>G2</strong> · depois do spike</td><td>A parte difícil é viável e o fluxo faz sentido?</td><td><code>LEARNINGS.md</code> com a pergunta respondida e a decisão</td><td>Novo spike com pergunta diferente (máximo dois) ou arquivar</td></tr>
+        <tr><td><strong>G3</strong> · depois do spec</td><td>Sabemos o que construir e como provar que funciona?</td><td><code>SPEC.md</code> que você assinaria, tarefas com critério de pronto, preview no ar</td><td>Voltar à entrevista; não começar a fase 5 com spec incompleto</td></tr>
+        <tr><td><strong>G4</strong> · depois do endurecimento</td><td>Pode receber o dado de um estranho?</td><td>Checklist de go-live todo marcado, restauração de backup feita, revisão de segurança sem item aberto</td><td>Continuar na fase 6; nunca lançar com item de segurança ou dados aberto</td></tr>
+        <tr><td><strong>G5</strong> · depois do lançamento</td><td>O produto funciona sem você no meio?</td><td>Cinco usuários reais completaram o fluxo principal sem intervenção</td><td>Continuar em beta assistido; cada intervenção vira item de backlog</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Quem faz o quê, por fase</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Fase</th><th>Você</th><th>Claude</th><th>Modo</th></tr></thead>
+      <tbody>
+        <tr><td>1 · Ideia</td><td>Pensa e escreve</td><td>Faz o papel de adversário</td><td class="num-cell">—</td></tr>
+        <tr><td>2 · Validação</td><td>Conversa com pessoas</td><td>Roteiros, landing, análise</td><td class="num-cell">1</td></tr>
+        <tr><td>3 · Spike</td><td>Escolhe a pergunta, mostra a duas pessoas</td><td>Prototipa rápido, sem teste</td><td class="num-cell">1</td></tr>
+        <tr><td>4 · Spec</td><td>Decide e assina</td><td>Entrevista, escreve o spec, quebra em tarefas</td><td class="num-cell">3</td></tr>
+        <tr><td>5 · MVP</td><td>Descreve tarefas, lê evidência e diff</td><td>Implementa, testa, itera, revisa</td><td class="num-cell">2–3</td></tr>
+        <tr><td>6 · Endurecimento</td><td>Decide o que é aceitável, testa a restauração</td><td>Ataca, audita, corrige, escreve o runbook</td><td class="num-cell">3</td></tr>
+        <tr><td>7 · Lançamento</td><td>Executa a lista, acompanha os primeiros usuários</td><td>Release notes, conferência do checklist</td><td class="num-cell">2</td></tr>
+        <tr><td>8 · Operação</td><td>Mede, conversa, prioriza</td><td>Corrige, atualiza, implementa pelo ciclo</td><td class="num-cell">1–3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Prompts que abrem cada fase</h3>
+  <div class="term"><strong>Fase 1 · adversário</strong>
+Leia IDEA.md. Me dê as cinco razões mais prováveis para isso falhar,
+quem já tentou algo parecido e o que aconteceu, e qual é a única
+métrica que provaria que a hipótese está certa. Não proponha solução.</div>
+  <div class="term"><strong>Fase 4 · entrevista e spec</strong>
+Quero construir [uma frase]. LEARNINGS.md tem o que o spike ensinou.
+Me entreviste em detalhe com AskUserQuestion: modelo de dados,
+autenticação e autorização por cliente, cobrança, limites, o que fica
+fora do escopo e o que pode dar errado em produção. Depois escreva
+SPEC.md e uma lista de tarefas em que cada uma termina com um teste.</div>
+  <div class="term"><strong>Fase 6 · revisão adversarial</strong>
+Você é um atacante com uma conta comum neste sistema. Tente ler, alterar
+ou apagar dados de outro cliente, escalar permissão, e gastar meu
+dinheiro em APIs externas. Para cada caminho, mostre a rota, a prova e
+a correção. Depois revise segredos, uploads e limites de taxa.</div>
+  <div class="term"><strong>Fase 7 · conferência de lançamento</strong>
+Confira o checklist de go-live contra o repositório e o ambiente de
+produção. Para cada item, diga se está feito com a evidência (arquivo,
+variável, teste) ou o que falta. Não marque nada como feito por suposição.</div>
+
+  <h3 id="lifecycle-golive">Checklist de go-live</h3>
+  <p class="sec-lede" style="margin-bottom:10px">É o portão G4 em forma de lista. Imprima, marque à mão, guarde no repositório como <code>docs/go-live.md</code> com a data.</p>
+  <div class="grid2">
+    <div class="card">
+      <h4 style="margin-top:0">Segurança e dados</h4>
+      <ul class="clean do">
+        <li>Toda rota verifica autorização por cliente, com teste que tenta cruzar dados</li>
+        <li>Segredos só em variáveis de ambiente; nenhum no histórico do git</li>
+        <li>Limite de taxa em login, formulários e APIs públicas</li>
+        <li>Política de privacidade e termos publicados; consentimento onde há coleta</li>
+        <li>Exportar e excluir dados do usuário funcionam</li>
+        <li>Backup automático ativo e <strong>uma restauração feita e cronometrada</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Operação</h4>
+      <ul class="clean do">
+        <li>Rastreio de erros com alerta chegando no seu telefone</li>
+        <li>Logs legíveis por requisição; nenhum dado pessoal em log</li>
+        <li>Página de status ou canal onde o cliente vê que você sabe do problema</li>
+        <li>Runbook de incidente: onde olhar, como voltar a versão anterior, quem avisa</li>
+        <li>Limite de gasto na nuvem e quotas de APIs externas com alerta</li>
+        <li>Migração do banco com plano de volta testado no preview</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Produto</h4>
+      <ul class="clean do">
+        <li>Fluxo principal percorrido por alguém que não é você, sem ajuda</li>
+        <li>Estados vazios, erros e carregamento tratados nas telas principais</li>
+        <li>Funciona no celular e por teclado; contraste mínimo conferido</li>
+        <li>E-mails transacionais chegam e fazem sentido lidos no celular</li>
+        <li>Métrica de ativação definida e medindo antes do primeiro usuário</li>
+        <li>Canal de suporte definido e respondido por você nas primeiras semanas</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Repositório</h4>
+      <ul class="clean do">
+        <li><code>CLAUDE.md</code> diz como rodar, testar, publicar e o que nunca fazer</li>
+        <li><code>SPEC.md</code> e ADRs refletem o que foi construído, não o que foi planejado</li>
+        <li>Suíte verde no CI; lint e typecheck obrigatórios no PR</li>
+        <li>Tag <code>v1.0.0</code> e <code>CHANGELOG.md</code> prontos</li>
+        <li>Feature flags fechando o que ainda não deve aparecer</li>
+        <li>Nenhum código de spike em <code>main</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>O erro mais caro deste ciclo</h4>
+    <p>Pular da fase 3 para a 5: promover o spike a produto porque "já está quase pronto". O spike respondeu uma pergunta; ele não foi construído para receber dado de terceiro, e cada semana que passa torna a reescrita mais cara. O caminho é sempre 3 → G2 → 4 → G3 → 5, mesmo quando o spike parece bom.</p>
+  </div>
+</section>
+
 <!-- ═══ HARNESS ═══ -->
 <section id="harness">
-  <h2><span class="num">08</span> O harness</h2>
+  <h2><span class="num">09</span> O harness</h2>
   <p class="sec-lede">O conjunto de CLAUDE.md, skills, hooks e subagentes determina o resultado mais do que o modelo. É a parte do sistema que você controla.</p>
 
   <h3>CLAUDE.md — o arquivo que Claude lê toda sessão</h3>
@@ -1028,7 +1317,7 @@ que eu deveria reusar.</div>
 
 <!-- ═══ CONTEXTO ═══ -->
 <section id="contexto">
-  <h2><span class="num">09</span> Gestão de contexto</h2>
+  <h2><span class="num">10</span> Gestão de contexto</h2>
   <p class="sec-lede">É o recurso mais escasso da operação. Quase toda boa prática deriva dessa única restrição.</p>
 
   <div class="tbl-wrap">
@@ -1058,7 +1347,7 @@ que eu deveria reusar.</div>
 
 <!-- ═══ WEB ═══ -->
 <section id="web">
-  <h2><span class="num">10</span> Claude Code na web</h2>
+  <h2><span class="num">11</span> Claude Code na web</h2>
   <p class="sec-lede">É o seu ambiente principal. Vale conhecer o que ele faz melhor e onde ele não serve.</p>
 
   <div class="grid2">
@@ -1107,7 +1396,7 @@ que eu deveria reusar.</div>
 
 <!-- ═══ ANTIPADRÕES ═══ -->
 <section id="antipadroes">
-  <h2><span class="num">11</span> Anti-padrões</h2>
+  <h2><span class="num">12</span> Anti-padrões</h2>
   <p class="sec-lede">Cinco formas de perder tempo que aparecem sempre. Reconhecer cedo economiza horas.</p>
 
   <div class="grid2">
@@ -1152,7 +1441,7 @@ que eu deveria reusar.</div>
 
 <!-- ═══ ROTINA ═══ -->
 <section id="rotina">
-  <h2><span class="num">12</span> Rotina semanal</h2>
+  <h2><span class="num">13</span> Rotina semanal</h2>
   <p class="sec-lede">Com emprego em tempo integral, o tempo de construção é escasso e fragmentado. A rotina precisa aproveitar blocos curtos sem perder continuidade.</p>
 
   <div class="tbl-wrap">
@@ -1185,15 +1474,15 @@ que eu deveria reusar.</div>
 </section>
 
 <footer>
-  <p>Workflow de Engenharia · Marcus · versão 1.0 · setembro de 2026</p>
-  <p style="margin-top:6px">Par técnico do Playbook Comercial e do Manual de Operação. Revisado na última sexta de cada mês.</p>
+  <p>Workflow de Engenharia · Marcus · versão 1.1 · outubro de 2026</p>
+  <p style="margin-top:6px">Par técnico do Playbook Comercial e do Manual de Operação. Revisado na última sexta de cada mês. Seção 08 (ciclo completo de um SaaS) adicionada em outubro de 2026.</p>
 </footer>
 
 </main>
 </div>
-<script src="../assets/share.js?v=20260930b"></script>
+<script src="../assets/share.js?v=20261002"></script>
 <script>
-  Share.enhance('figure, .tbl-wrap, .stat-row, .grid2, .grid3, .flow, .card, .callout', { hint: 'Compartilhar' });
+  Share.enhance('figure, .tbl-wrap, .stat-row, .grid2, .grid3, .flow, .card, .callout, .lc-phase, .term', { hint: 'Compartilhar' });
 </script>
 </body>
 </html>

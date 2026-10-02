@@ -87,9 +87,11 @@ details.chapters[open] summary::before { transform: rotate(90deg); }
 .status-dot.progress { background: var(--gold); }
 
 .admin-band { background: var(--surface-2); border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border); }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+.two-col > * { min-width: 0; }
 .team-table td:first-child { font-weight: 600; }
-.kv { display: grid; grid-template-columns: max-content 1fr; gap: .35rem 1rem; font-size: .9rem; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .35rem 1rem; font-size: .9rem; }
+.kv dd { min-width: 0; overflow-wrap: anywhere; }
 .kv dt { font-family: var(--ff-mono); font-size: .68rem; color: var(--text-3); letter-spacing: .08em; text-transform: uppercase; padding-top: .2rem; }
 .kv dd code { background: var(--surface-2); padding: .1rem .35rem; border-radius: 4px; }
 
@@ -102,6 +104,6 @@ details.chapters[open] summary::before { transform: rotate(90deg); }
   .portal-nav, .portal-user { display: none; }
   .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
   .p-hero { grid-template-columns: 1fr; }
-  .two-col { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: minmax(0, 1fr); }
   .tile.featured { grid-template-columns: 1fr; }
 }

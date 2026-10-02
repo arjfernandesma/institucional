@@ -39,8 +39,9 @@
   const WORKFLOW_CHAPTERS = [
     { g: 'Princípio', items: [['01', 'verificacao', 'Confiança = verificação'], ['02', 'matriz', 'A matriz de decisão'], ['03', 'modos', 'Os três modos'], ['04', 'ciclo', 'O ciclo, passo a passo']] },
     { g: 'As três frentes', items: [['05', 'sites', 'Sites locais'], ['06', 'projetos', 'Projetos maiores'], ['07', 'saas', 'SaaS próprios']] },
-    { g: 'Infraestrutura', items: [['08', 'harness', 'O harness'], ['09', 'contexto', 'Gestão de contexto'], ['10', 'web', 'Claude Code na web']] },
-    { g: 'Operação', items: [['11', 'antipadroes', 'Anti-padrões'], ['12', 'rotina', 'Rotina semanal']] },
+    { g: 'Do zero à produção', items: [['08', 'lifecycle', 'Da ideia à produção: o ciclo completo de um SaaS'], ['08', 'lifecycle-gates', 'Os cinco portões'], ['08', 'lifecycle-golive', 'Checklist de go-live']] },
+    { g: 'Infraestrutura', items: [['09', 'harness', 'O harness'], ['10', 'contexto', 'Gestão de contexto'], ['11', 'web', 'Claude Code na web']] },
+    { g: 'Operação', items: [['12', 'antipadroes', 'Anti-padrões'], ['13', 'rotina', 'Rotina semanal']] },
   ];
 
   const MANUAL_CHAPTERS = [
@@ -241,8 +242,8 @@
         <div class="tile-grid" style="margin-bottom:1.25rem">
           <a class="tile admin-tile featured" href="admin/workflow-engenharia.html">
             <div class="t-icon">⚙️</div>
-            <div class="t-body"><h3>Workflow de Engenharia</h3><p>O método de trabalho que norteia o ciclo de desenvolvimento com Claude Code nas três frentes (sites locais, projetos maiores, SaaS próprios): onde delegar, onde verificar, o harness, gestão de contexto, anti-padrões e a rotina semanal. Par técnico do Playbook Comercial.</p>
-              <div class="t-foot"><span>12 capítulos · v1.0 · set/2026</span><span>Revisado na última sexta de cada mês</span></div></div>
+            <div class="t-body"><h3>Workflow de Engenharia</h3><p>O método de trabalho com Claude Code para as três frentes (sites locais, projetos maiores, SaaS próprios) e o ciclo completo de um SaaS, da ideia à operação em produção: oito fases, cinco portões, checklist de go-live. Par técnico do Playbook Comercial.</p>
+              <div class="t-foot"><span>13 capítulos · v1.1 · out/2026</span><span>Revisado na última sexta de cada mês</span></div></div>
             <span class="btn btn-primary">Abrir →</span>
           </a>
           <a class="tile admin-tile" href="admin/manual-operacional.html"><div class="t-icon">📕</div><h4>Manual Operacional (Brasil)</h4><p>Modelo de negócio, estrutura fiscal, catálogo, pacotes, contratos, pagamento, entrega, SLA, suporte, cancelamento e FAQ.</p><div class="t-foot"><span>16 capítulos · abr/2026</span></div></a>

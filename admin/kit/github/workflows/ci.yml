@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backlog:
+    name: backlog · entrega documentada
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: PR de tarefa tem [x], CHANGELOG e diário do STATUS
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: node scripts/check-backlog.mjs
+
+  verify:
+    name: verify · lint, typecheck, testes, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test -- --coverage
+      - run: pnpm build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: coverage, path: coverage, if-no-files-found: ignore }
+
+  integration:
+    name: integration · banco efêmero, integração e e2e
+    runs-on: ubuntu-latest
+    needs: verify
+    services:
+      db:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: app
+          POSTGRES_DB: app_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U app"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgres://app:app@localhost:5432/app_test
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: migrações + seed no banco efêmero
+        run: pnpm db:migrate && pnpm db:seed
+      - run: pnpm test:integration
+      - name: e2e
+        run: |
+          pnpm exec playwright install --with-deps chromium
+          pnpm test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: { name: e2e-report, path: playwright-report, if-no-files-found: ignore }
+
+# Preview por PR: configure o projeto na Vercel (produção = main). Nunca mergear com o CI vermelho.

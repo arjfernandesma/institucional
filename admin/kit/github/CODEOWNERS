@@ -1,0 +1,8 @@
+# Mudança nestes caminhos pede revisão do dono ou do responsável técnico.
+# Troque @dono e @tecnico pelos usuários do GitHub.
+/SPEC.md                 @dono @tecnico
+/docs/adr/               @dono @tecnico
+/.claude/                @tecnico
+/supabase/migrations/    @tecnico
+/prisma/migrations/      @tecnico
+/.github/                @tecnico

@@ -13,7 +13,8 @@ Site interno da consultoria (sites, Google Business Profile, agendamento e autom
 | `colaborador/objecoes.html` | Infográfico das 7 objeções (Vendas & PNL) | colaborador e admin |
 | `sociedade/manual.html` | **Manual de Operação da Parceria** (Marcus & Michael, v1.1): princípios, papéis, rotina, processo, produtos próprios e divisão da receita, pagamento, despesas, encerramento, ferramentas, números, checklists | sócio e admin |
 | `sociedade/index.html` + `painel.js` | **Painel da sociedade**: rituais e horários (fuso de cada sócio, calendário .ics, links do Google Agenda), pauta e resumo da reunião semanal, papéis, pontos de construção, calculadora da divisão recorrente, fundo de operação, decisões, indicadores, ferramentas, documentos, aceite do manual e sincronização entre sócios | sócio e admin |
-| `admin/workflow-engenharia.html` | **Workflow de Engenharia** (v1.0): método de trabalho com Claude Code para as três frentes e o ciclo completo de um SaaS (ideia → produção → operação) | só admin |
+| `admin/workflow-engenharia.html` | **Workflow de Engenharia** (v1.2): método de trabalho com Claude Code: três frentes, ciclo completo de um SaaS (8 fases, 5 portões), 4 modos, backlog, sessões, harness e CI | só admin |
+| `admin/kit/` | **Kit de início** para um projeto novo (CLAUDE.md, IDEA/PRD/SPEC, docs/, hooks, skills, ci.yml, scripts do painel). `kit.js` monta o .zip no navegador; as pastas `claude/` e `github/` viram `.claude/` e `.github/` no zip | só admin (página); arquivos estáticos |
 | `admin/manual-operacional.html` | **Manual Operacional (Brasil)**: modelo de negócio, fiscal, contratos, pagamento, SLA, cancelamento | só admin |
 | `assets/auth.js` | Autenticação compartilhada (senha por perfil hoje; Clerk depois) | — |
 | `assets/guard.js` | Protege cada página por perfil (`data-role="colaborador|socio|admin"`) e injeta a barra de navegação do portal (com botão PDF) | — |

@@ -181,6 +181,19 @@ footer{border-top:1px solid var(--line);padding-top:20px;margin-top:20px;font-si
 .xref a{font-family:"JetBrains Mono",monospace; font-size:11px; padding:5px 10px; border:1px solid var(--line-2); border-radius:4px; text-decoration:none; color:var(--ink-2)}
 .xref a:hover{border-color:var(--teal); color:var(--teal)}
 
+/* ═══════════ KIT — estilos ═══════════ */
+.kit-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
+.kit-btn{font:600 14px/1 "Public Sans",system-ui,sans-serif;background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:6px;padding:11px 16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.kit-btn:hover{background:var(--teal);border-color:var(--teal)}
+.kit-btn:disabled{opacity:.5;cursor:wait}
+.kit-btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.kit-btn.ghost:hover{color:var(--teal);border-color:var(--teal);background:transparent}
+.kit-status{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink-2)}
+.kit-list .tbl-wrap{margin:10px 0}
+.kit-dl{font-family:"JetBrains Mono",monospace;font-size:11.5px;text-decoration:none;border:1px solid var(--line-2);border-radius:4px;padding:4px 8px;color:var(--teal);white-space:nowrap}
+.kit-dl:hover{border-color:var(--teal)}
+@media print{.kit-actions{display:none}}
+
 /* ═══════════ LIFECYCLE — estilos ═══════════ */
 .lc-fig{margin:18px 0 6px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .lc-fig svg{display:block;width:100%;min-width:560px;height:auto}
@@ -364,13 +377,13 @@ html{-webkit-text-size-adjust:100%}
 
 <nav class="nav">
   <div class="nav-brand">Workflow de Engenharia</div>
-  <div class="nav-sub">Marcus · Claude Code · v1.1</div>
+  <div class="nav-sub">Marcus · Claude Code · v1.2</div>
 
   <div class="nav-grp">Princípio</div>
   <a href="#verificacao">Confiança = verificação</a>
   <a href="#matriz">A matriz de decisão</a>
-  <a href="#modos">Os três modos</a>
-  <a href="#ciclo">O ciclo, passo a passo</a>
+  <a href="#modos">Os quatro modos</a>
+  <a href="#ciclo">O ciclo da tarefa</a>
 
   <div class="nav-grp">As três frentes</div>
   <a href="#sites">Sites locais</a>
@@ -382,14 +395,24 @@ html{-webkit-text-size-adjust:100%}
   <a href="#lifecycle-gates">Os cinco portões</a>
   <a href="#lifecycle-golive">Checklist de go-live</a>
 
+  <div class="nav-grp">Operação do método</div>
+  <a href="#repositorio">O repositório</a>
+  <a href="#backlog">Backlog e tarefas</a>
+  <a href="#sessoes">Sessões e coordenação</a>
+  <a href="#colaboradores">Colaboradores</a>
+
   <div class="nav-grp">Infraestrutura</div>
-  <a href="#harness">O harness</a>
+  <a href="#harness">Harness, hooks, skills e CI</a>
   <a href="#contexto">Gestão de contexto</a>
   <a href="#web">Claude Code na web</a>
 
   <div class="nav-grp">Operação</div>
-  <a href="#antipadroes">Anti-padrões</a>
+  <a href="#antipadroes">Anti-padrões e lições</a>
   <a href="#rotina">Rotina semanal</a>
+
+  <div class="nav-grp">Começar</div>
+  <a href="#kit">Kit para um projeto novo</a>
+  <a href="#kit-download">Arquivos para baixar</a>
 
   <div class="nav-grp">Portal · Admin</div>
   <a class="ext" href="../index.html#admin">⌂ Área do admin</a>
@@ -403,12 +426,12 @@ html{-webkit-text-size-adjust:100%}
 <header class="mast">
   <div class="eyebrow">Método de trabalho · Construção assistida por IA</div>
   <h1>Workflow de Engenharia</h1>
-  <p class="lede">Como construir as três frentes da consultoria com Claude Code sem acumular dívida técnica: onde confiar, onde verificar, e onde a linha entre as duas coisas realmente fica. Inclui o ciclo completo de um SaaS, da ideia à operação em produção.</p>
+  <p class="lede">Como construir as três frentes da consultoria com Claude Code sem acumular dívida técnica: onde confiar, onde verificar, e onde a linha entre as duas coisas realmente fica. Inclui o ciclo completo de um SaaS, da ideia à operação em produção, e o método operacional extraído do NattyCore: repositório, backlog, sessões, hooks, CI e o kit de arquivos para começar um projeto novo.</p>
   <div class="mast-meta">
     <span class="tag">Sites €600–1.000</span>
     <span class="tag">Projetos €1.000+</span>
     <span class="tag">SaaS próprios</span>
-    <span class="tag">v1.1 · out/2026</span>
+    <span class="tag">v1.2 · out/2026</span>
     <span class="tag">Somente admin</span>
   </div>
   <div class="xref"><a href="../playbook/comercial.html">↗ Par comercial: Playbook Comercial</a><a href="manual-operacional.html">↗ Manual Operacional (Brasil)</a><a href="../index.html#admin">↗ Painel do admin</a></div>
@@ -521,33 +544,39 @@ html{-webkit-text-size-adjust:100%}
 
 <!-- ═══ MODOS ═══ -->
 <section id="modos">
-  <h2><span class="num">03</span> Os três modos, em prática</h2>
-  <p class="sec-lede">Cada modo tem um ritual próprio. A diferença entre eles não é esforço — é onde o esforço é gasto.</p>
+  <h2><span class="num">03</span> Os quatro modos, em prática</h2>
+  <p class="sec-lede">O modo de trabalho depende do risco, e fica escrito na linha da tarefa no backlog (seção 10). A diferença entre eles não é esforço — é onde o esforço é gasto, e quem verifica.</p>
 
-  <div class="grid3">
+  <div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr))">
     <div class="card">
-      <span class="pill pill-good">MODO 1</span>
-      <h4 style="margin-top:10px">Exploratório</h4>
-      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">Prompt direto, sem plano. Escopo pequeno, resultado descartável. Se não funcionar em duas tentativas, <code>/clear</code> e reformula.</p>
-      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Sinal de saída:</strong> quando você quiser guardar o resultado.</p>
+      <span class="pill pill-good">M1 · VIBE CODING</span>
+      <h4 style="margin-top:10px">Só no spike</h4>
+      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">Prompt direto, sem plano, sem teste. Vive em branch <code>spike/*</code> e o código é descartado: sai dali só o <code>docs/LEARNINGS.md</code>. Se não funcionar em duas tentativas, <code>/clear</code> e reformula.</p>
+      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Quando:</strong> fase 3 (spike). Nunca em código que fica.</p>
     </div>
     <div class="card">
-      <span class="pill pill-teal">MODO 2</span>
-      <h4 style="margin-top:10px">Planejado</h4>
-      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">Plan mode primeiro (<code>Shift+Tab</code>), plano revisado por você, depois implementação com teste. Quatro fases: explorar, planejar, implementar, commitar.</p>
-      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Gatilho:</strong> muda mais de um arquivo, ou você não conhece bem o código.</p>
+      <span class="pill pill-teal">M2 · PLANEJADO</span>
+      <h4 style="margin-top:10px">Código comum, sem dado sensível</h4>
+      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">Plan mode → testes primeiro → implementação. O teste decide. Revisão adversarial por subagente antes do PR.</p>
+      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Quando:</strong> muda mais de um arquivo, ou você não conhece bem o código, e nada toca dado de terceiro.</p>
     </div>
     <div class="card">
-      <span class="pill pill-amber">MODO 3</span>
-      <h4 style="margin-top:10px">Especificado</h4>
-      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">Entrevista → <code>SPEC.md</code> versionado → sessão nova e limpa para implementar → revisão adversarial por subagente.</p>
-      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Gatilho:</strong> feature que atravessa sessões, ou custo de erro alto.</p>
+      <span class="pill pill-amber">M3 · ESPECIFICADO</span>
+      <h4 style="margin-top:10px">Dados, autenticação, sincronização, dinheiro</h4>
+      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">Spec detalhado (skill <code>spec-interview</code>) → OK do dono no plano → testes → implementação → revisão adversarial <strong>e</strong> sessão revisora separada. Quem escreve não revisa o próprio M3.</p>
+      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Quando:</strong> custo de erro alto, ou feature que atravessa sessões.</p>
+    </div>
+    <div class="card">
+      <span class="pill pill-bad">MG · MANUAL GUIADO</span>
+      <h4 style="margin-top:10px">Infraestrutura, credenciais, DNS, produção</h4>
+      <p style="font-size:14px;color:var(--ink-2);margin-top:6px">O Claude escreve o roteiro (<code>docs/roteiro-*.md</code>); o humano executa cada passo e cola a evidência no PR. Nenhuma sessão roda comando contra produção, e um hook garante isso.</p>
+      <p style="font-size:13px;color:var(--ink-3);margin-top:8px"><strong>Quando:</strong> migração em produção, variáveis, domínio, chaves, seed remoto.</p>
     </div>
   </div>
 
   <h3>O modo 3 em detalhe — o que muda o resultado</h3>
   <div class="prose">
-    <p>A prática que mais separa código bom de código "quase certo" é fazer Claude entrevistar você antes de escrever qualquer coisa. Ele pergunta sobre coisas que você ainda não considerou: casos de borda, trade-offs, decisões de UX.</p>
+    <p>A prática que mais separa código bom de código "quase certo" é fazer Claude entrevistar você antes de escrever qualquer coisa (skill <code>spec-interview</code>, que nunca implementa na mesma sessão). Ele pergunta sobre coisas que você ainda não considerou: casos de borda, trade-offs, decisões de UX.</p>
   </div>
 
   <div class="term">claude (plan mode)
@@ -575,8 +604,8 @@ completo em SPEC.md</div>
 
 <!-- ═══ CICLO ═══ -->
 <section id="ciclo">
-  <h2><span class="num">04</span> O ciclo, passo a passo</h2>
-  <p class="sec-lede">O ciclo de desenvolvimento não é uma linha reta — é um loop com dois pontos de retorno. Entender onde estão esses retornos é o que separa avançar de ficar girando.</p>
+  <h2><span class="num">04</span> O ciclo da tarefa, passo a passo</h2>
+  <p class="sec-lede">Uma tarefa = uma sessão do Claude = uma branch = um PR. É o ciclo da skill <code>task-cycle</code>: nove etapas, um loop com dois pontos de retorno e uma regra de parada. Entender onde estão esses retornos é o que separa avançar de ficar girando.</p>
 
   <figure class="cy-loopfig">
     <svg viewBox="0 0 700 252" role="img" aria-label="O loop central: implementar, verificar, revisar, e o retorno quando falha">
@@ -635,11 +664,11 @@ completo em SPEC.md</div>
 
   <h3>Escolha o modo e percorra</h3>
   <div class="cy-modes" role="group" aria-label="Modo de trabalho">
-    <button class="cy-mode" type="button" data-mode="1" aria-pressed="false">Modo 1 · Exploratório</button>
-    <button class="cy-mode" type="button" data-mode="2" aria-pressed="true">Modo 2 · Planejado</button>
-    <button class="cy-mode" type="button" data-mode="3" aria-pressed="false">Modo 3 · Especificado</button>
+    <button class="cy-mode" type="button" data-mode="1" aria-pressed="false">M1 · Vibe coding (spike)</button>
+    <button class="cy-mode" type="button" data-mode="2" aria-pressed="true">M2 · Planejado</button>
+    <button class="cy-mode" type="button" data-mode="3" aria-pressed="false">M3 · Especificado</button>
   </div>
-  <p class="cy-modehint" id="cyHint">Etapas apagadas não fazem parte deste modo. Clique em qualquer etapa para abrir o detalhe.</p>
+  <p class="cy-modehint" id="cyHint">Etapas apagadas não fazem parte deste modo. Clique em qualquer etapa para abrir o detalhe. Tarefa MG não passa pelo ciclo: o Claude escreve o roteiro e o humano executa.</p>
 
   <div class="cy-bar">
     <button class="cy-play" type="button" id="cyPlay" data-state="idle">▶ Percorrer o ciclo</button>
@@ -652,94 +681,77 @@ completo em SPEC.md</div>
 <script>
 (function(){
   var STEPS = [
-    { n:"01", id:"quadrante", t:"Definir o quadrante", modes:[1,2,3], who:"voce",
-      sub:"Trinta segundos que decidem o resto do trabalho.",
-      you:"Responder duas perguntas: o resultado é verificável por máquina? Quanto custa o erro chegar em produção?",
-      claude:"Nada ainda. Esta etapa é sua e não envolve sessão.",
-      exit:"Você sabe em qual dos três modos vai trabalhar." },
+    { n:"01", id:"situar", t:"Situar", modes:[1,2,3], who:"claude",
+      sub:"Ler antes de tocar: STATUS, tarefa, SPEC, requisitos. Depois a branch.",
+      you:"Apontar a tarefa T-NN (a próxima [ ] com todas as dependências [x]) e nada mais. Quem abre a sessão é a Central.",
+      claude:"Lê docs/STATUS.md, a linha da tarefa no BACKLOG, as seções do SPEC que ela cita e os requisitos ligados. Confere dependências e portão. Cria a branch feat/T-NN-slug.",
+      cmd:"Leia CLAUDE.md, docs/STATUS.md e docs/BACKLOG.md. Execute a T-NN\nusando a skill task-cycle. O dono não lê código: inclua no PR\na seção \"Em linguagem simples\". Não abra outras sessões;\nquem coordena é a Central.",
+      exit:"A sessão sabe o que a tarefa pede, o que a prova (Pronto quando) e de onde partiu a branch." },
 
-    { n:"02", id:"explorar", t:"Explorar antes de escrever", modes:[2,3], who:"claude",
-      sub:"Plan mode. Claude lê e responde, sem tocar em arquivo.",
-      you:"Entrar em plan mode e apontar onde olhar. Nomear os arquivos, não descrever de longe.",
-      claude:"Lê o código, mapeia como as peças conversam, responde perguntas. Nenhuma edição.",
-      cmd:"Shift+Tab  (até aparecer ⏸ plan mode on)\n\nLeia /src/auth e entenda como tratamos sessão e login.\nVeja também como as variáveis de ambiente são carregadas.",
-      exit:"Você consegue explicar o que existe hoje sem abrir o editor." },
+    { n:"02", id:"planejar", t:"Planejar (plan mode)", modes:[2,3], who:"ambos",
+      sub:"Arquivos, testes que provam o “Pronto quando”, e o que não será feito.",
+      you:"Em M3, ler e aprovar o plano antes de qualquer edição. Em M2, conferir que o “Pronto quando” está coberto por um teste.",
+      claude:"Lista os arquivos que mudam, os testes que provam o critério e o que fica fora. Nenhuma edição ainda.",
+      cmd:"Shift+Tab  (até aparecer ⏸ plan mode on)\n\nPlaneje a T-NN: arquivos que mudam, testes que provam o\n\"Pronto quando\" e o que NÃO será feito. Não edite nada ainda.",
+      exit:"Plano aprovado (M3) ou conferido (M2). Nenhum arquivo tocado." },
 
-    { n:"03", id:"entrevista", t:"Deixar Claude te entrevistar", modes:[3], who:"ambos",
-      sub:"A etapa que mais separa código bom de código “quase certo”.",
-      you:"Responder com honestidade, inclusive “não sei”. As perguntas que você não tinha considerado são o ponto.",
-      claude:"Pergunta sobre casos de borda, trade-offs, decisões de UX e o que fica fora de escopo.",
-      cmd:"Quero construir [descrição curta]. Me entreviste em detalhe\nusando a ferramenta AskUserQuestion.\n\nCave nas partes difíceis que eu talvez não tenha considerado.\nContinue até cobrirmos tudo, depois escreva SPEC.md",
-      exit:"Claude para de fazer perguntas novas e o SPEC.md está escrito." },
+    { n:"03", id:"testes", t:"Testes primeiro", modes:[2,3], who:"claude",
+      sub:"Os testes vermelhos são intencionais. O marcador avisa os hooks.",
+      you:"Ler os testes como se fossem o contrato: eles dizem o que “pronto” significa.",
+      claude:"Cria o marcador .claude/tdd-red, escreve os testes do “Pronto quando” e dos requisitos, roda, vê falhar pelo motivo certo, apaga o marcador.",
+      cmd:"touch .claude/tdd-red\n# escreve os testes, roda a suíte, vê falhar pelo motivo certo\nrm .claude/tdd-red",
+      exit:"Testes escritos e vermelhos pelo motivo certo." },
 
-    { n:"04", id:"spec", t:"Revisar e versionar o SPEC.md", modes:[3], who:"voce",
-      sub:"Documento no repositório, não anotação de sessão.",
-      you:"Ler linha por linha e corrigir. Ele precisa nomear arquivos e interfaces, dizer o que está fora de escopo, e terminar com uma verificação ponta a ponta.",
-      claude:"Ajusta o que você apontar. Nada de implementar ainda.",
-      exit:"O spec está commitado e você assinaria embaixo dele." },
+    { n:"04", id:"implementar", t:"Implementar", modes:[1,2,3], who:"claude",
+      sub:"A menor mudança que deixa os testes verdes.",
+      you:"Nada, enquanto os testes decidem. Em M1 (spike), iterar rápido e sem teste: o código é descartável.",
+      claude:"Segue um padrão já existente no projeto. Se o SPEC estiver errado, edita o SPEC no mesmo PR e avisa. Bug fora do escopo vira tarefa nova no backlog, não correção de passagem.",
+      cmd:"Implemente seguindo o padrão de /lib/scoring/web.ts. Rode a suíte\ne corrija o que falhar. Nada fora do escopo da T-NN.",
+      loop:"Duas tentativas falhas no mesmo ponto → parar, resumir o que aprendeu, recomeçar em sessão limpa",
+      exit:"Testes verdes. Nenhuma mudança fora do escopo da tarefa." },
 
-    { n:"05", id:"limpa", t:"Abrir sessão limpa", modes:[2,3], who:"voce",
-      sub:"O contexto da exploração já cumpriu a função dele.",
-      you:"Fechar a sessão de planejamento e abrir outra, nomeada pela tarefa.",
-      claude:"Começa do zero, com contexto inteiro dedicado à execução.",
-      cmd:"/clear\n/rename blankspot-scoring",
-      exit:"A sessão nova só tem o CLAUDE.md, o spec e a primeira tarefa." },
+    { n:"05", id:"verificar", t:"Verificar", modes:[2,3], who:"claude",
+      sub:"Evidência, não impressão.",
+      you:"Ler a saída do teste, não a afirmação de que passou. Olhar os screenshots.",
+      claude:"Roda verify (lint, typecheck, unitários, build), integração e e2e. Tira screenshots em celular e desktop quando há tela. Guarda as saídas para o PR.",
+      cmd:"pnpm verify && pnpm test:integration && pnpm test:e2e\n\n# e sem lembrar: lint-on-edit a cada edição,\n# verify-on-stop impede o turno de terminar vermelho",
+      loop:"Falhou → volta à etapa 04",
+      exit:"Você viu a saída passando, com os próprios olhos." },
 
-    { n:"06", id:"tarefas", t:"Quebrar em tarefas verificáveis", modes:[2,3], who:"ambos",
-      sub:"Tarefa sem critério de pronto não entra na lista.",
-      you:"Conferir que cada tarefa cabe numa frase e termina com algo que prova que funciona.",
-      claude:"Propõe a quebra a partir do spec e sugere o teste de cada uma.",
-      exit:"Toda tarefa da lista tem uma forma de dizer “passou”." },
+    { n:"06", id:"revisar", t:"Revisar", modes:[2,3], who:"claude",
+      sub:"Revisão adversarial em contexto limpo. Em M3, também a sessão revisora separada.",
+      you:"Em M3, pedir à Central a sessão revisora e esperar os achados antes de pedir merge. Quem escreve não revisa o próprio M3.",
+      claude:"Subagente (skill adversarial-review) compara o diff com o SPEC e a tarefa e relata só correção. Corrige o que é real; registra no PR o que foi conscientemente ignorado.",
+      cmd:"Use a skill adversarial-review para revisar o diff da T-NN\ncontra o SPEC. Relate só lacunas de correção. Não relate estilo.",
+      loop:"Lacuna real → volta à etapa 04. A correção de uma revisão também passa por revisão",
+      exit:"Achados corrigidos ou registrados. Em M3, a sessão revisora também relatou." },
 
-    { n:"07", id:"implementar", t:"Implementar uma tarefa", modes:[1,2,3], who:"claude",
-      sub:"Uma por sessão. Escopo de uma frase.",
-      you:"Descrever a tarefa com precisão e apontar um padrão existente a seguir.",
-      claude:"Escreve o código seguindo o padrão do projeto, não um genérico.",
-      cmd:"Implemente o cálculo de score seguindo o padrão de\n/lib/scoring/web.ts. Escreva o teste junto, rode a suíte\ne corrija o que falhar.",
-      exit:"O código existe e o teste dele foi escrito." },
+    { n:"07", id:"entregar", t:"Entregar", modes:[2,3], who:"claude",
+      sub:"Entregue = PR aberto e CI verde. Os três documentos de entrega vão no mesmo PR.",
+      you:"Ler a seção “Em linguagem simples” e a evidência. Em M3, ler o diff inteiro.",
+      claude:"Commit com o porquê, git add só dos arquivos da tarefa. No mesmo PR: [x] + link em BACKLOG.md, linha em CHANGELOG.md, linha no diário de STATUS.md, status-snapshot. PR com evidência e “Em linguagem simples”.",
+      cmd:"git add <arquivos da tarefa>\ngit commit -m \"T-NN: o porquê da mudança\"\nnode scripts/status-snapshot.mjs\n# PR: evidência + lista do que ficou fora + Em linguagem simples",
+      exit:"PR aberto; jobs backlog, verify e integration verdes." },
 
-    { n:"08", id:"verificar", t:"Rodar a verificação", modes:[2,3], who:"claude",
-      sub:"O portão que transforma “parece pronto” em “está pronto”.",
-      you:"Ler a evidência — a saída do teste, não a afirmação de que passou.",
-      claude:"Roda teste, build ou screenshot, lê o resultado e itera sozinho até passar.",
-      cmd:"# opções, da mais leve à mais rígida\n\n\"rode os testes e corrija o que falhar\"\n/goal  — um avaliador recheca a cada turno\nStop hook — bloqueia o turno de terminar com teste falhando",
-      loop:"Falhou → volta à etapa 07",
-      exit:"Você viu a saída do teste passando, com os próprios olhos." },
+    { n:"08", id:"publicar", t:"Publicar e observar", modes:[2,3], who:"ambos",
+      sub:"Merge só com pedido do dono e CI verde. Publicar é começar a observar.",
+      you:"Pedir o merge. Se houver migração ou infra, executar o roteiro MG e colar a evidência. Testar no celular, em rede móvel.",
+      claude:"Confere o deploy e os erros nas primeiras horas. Nunca roda comando contra produção.",
+      exit:"Funciona em produção com dado real. Migração aplicada por roteiro, com evidência no PR." },
 
-    { n:"09", id:"revisar", t:"Revisão adversarial", modes:[3], who:"claude",
-      sub:"Um subagente em contexto fresco, que não viu o raciocínio.",
-      you:"Instruir explicitamente a relatar só o que afeta correção — senão ele inventa achados.",
-      claude:"Compara o diff com o spec e aponta lacunas, sem o viés de quem escreveu o código.",
-      cmd:"Use um subagente para revisar o diff contra o SPEC.md.\nVerifique que cada requisito foi implementado, que os casos\nde borda têm teste, e que nada fora do escopo mudou.\n\nRelate lacunas de correção. Não relate estilo.",
-      loop:"Lacuna real → volta à etapa 07",
-      exit:"As lacunas relatadas ou foram corrigidas ou você decidiu conscientemente ignorá-las." },
-
-    { n:"10", id:"commit", t:"Commit e PR", modes:[2,3], who:"claude",
-      sub:"Com mensagem que explica o porquê, não o quê.",
-      you:"Ler o diff inteiro se o quadrante for de custo alto. Ler o resumo se for de delegação.",
-      claude:"Commita, abre o PR e descreve a mudança.",
-      cmd:"commit com mensagem descritiva e abra um PR",
-      exit:"O PR está aberto e o CI passou." },
-
-    { n:"11", id:"publicar", t:"Publicar e observar", modes:[2,3], who:"ambos",
-      sub:"Publicar não é terminar — é começar a observar.",
-      you:"Testar no celular, em rede móvel. Conferir o comportamento real, não o esperado.",
-      claude:"Faz o deploy e roda o checklist de publicação.",
-      exit:"Funciona em produção com dado real, não só no ambiente local." },
-
-    { n:"12", id:"aprender", t:"Devolver o aprendizado ao projeto", modes:[2,3], who:"voce",
+    { n:"09", id:"aprender", t:"Devolver o aprendizado", modes:[2,3], who:"voce",
       sub:"A etapa que quase todo mundo pula, e que faz a próxima tarefa custar menos.",
-      you:"O que você teve que explicar duas vezes vira linha no CLAUDE.md. O que virou processo vira skill. O que não pode falhar vira hook.",
-      claude:"Escreve o hook ou a skill se você pedir.",
-      cmd:"Escreva um hook que roda eslint depois de cada edição de arquivo",
-      loop:"Próxima tarefa → volta à etapa 07",
+      you:"O que você explicou duas vezes vira linha em CLAUDE.md › Armadilhas. O que não pode falhar vira hook ou teste. Decisão vira ADR. Depois: arquivar a sessão.",
+      claude:"Escreve o hook, o teste ou o ADR se você pedir.",
+      cmd:"Escreva um hook que bloqueia edição em migrações já commitadas",
+      loop:"Próxima tarefa → sessão nova, etapa 01",
       exit:"A próxima sessão começa sabendo o que esta descobriu." },
 
-    { n:"13", id:"descartar", t:"Descartar ou promover", modes:[1], who:"voce",
-      sub:"Todo spike termina numa das duas coisas. Nunca em silêncio.",
-      you:"Decidir: a pergunta foi respondida e o código vai fora, ou a ideia se provou e vai para o modo 3 — reescrita do zero, não limpa.",
-      claude:"Escreve o spec a partir do que o spike ensinou, se você promover.",
-      exit:"A branch spike/ foi apagada, ou existe um SPEC.md novo. Nenhum spike fica pendurado." }
+    { n:"10", id:"descartar", t:"Descartar ou promover (só spike)", modes:[1], who:"voce",
+      sub:"Todo spike termina numa das duas coisas, por escrito. Nunca em silêncio.",
+      you:"Decidir no docs/LEARNINGS.md: a pergunta foi respondida e o código vai fora; ou a ideia se provou e vai para a fase 4, reescrita do zero, não limpa. É o portão G2.",
+      claude:"Escreve o LEARNINGS.md com a resposta e, se você promover, a entrevista do spec começa em outra sessão.",
+      exit:"A branch spike/ foi apagada ou arquivada; docs/LEARNINGS.md registra a resposta e a decisão (G2)." }
   ];
 
   var WHO = { voce:"você", claude:"claude", ambos:"os dois" };
@@ -811,7 +823,7 @@ completo em SPEC.md</div>
   function stepThrough(order, k){
     if(k > 0) setOpen(order[k-1], false);
     if(k >= order.length){
-      statusEl.innerHTML = '<b>Ciclo completo.</b> A partir daqui: nova tarefa volta à etapa 07';
+      statusEl.innerHTML = '<b>Ciclo completo.</b> Próxima tarefa = sessão nova, a partir da etapa 01';
       playBtn.textContent = '↻ Percorrer de novo';
       playBtn.dataset.state = 'idle';
       timer = null;
@@ -1075,6 +1087,30 @@ Não relate preferências de estilo.</div>
   </figure>
   <div class="lc-legend"><span><i style="background:var(--amber)"></i>velocidade 1: descartável</span><span><i style="background:var(--teal)"></i>velocidade 2: código que fica</span><span><i style="background:var(--good)"></i>operação</span><span><i class="g" style="border:2px solid var(--amber)"></i>portão de decisão</span></div>
 
+  <h3 style="margin-top:8px">Fase, artefato e portão</h3>
+  <p class="sec-lede" style="margin-bottom:10px"><strong>Primeiro o papel, depois o código.</strong> Ideia, PRD, casos de uso, requisitos, SPEC e backlog existem antes da primeira linha de produção. Todo código responde a uma tarefa, e toda tarefa responde a um requisito. Os modelos de todos estes arquivos estão no <a href="#kit-download">kit para baixar</a>.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Fase</th><th>Artefato</th><th>Portão na saída</th></tr></thead>
+      <tbody>
+        <tr><td class="num-cell">1</td><td>Ideia e hipótese</td><td><code>IDEA.md</code></td><td>—</td></tr>
+        <tr><td class="num-cell">2</td><td>Validação sem código</td><td>entrevistas, compromissos</td><td><strong>G1</strong> · alguém tem esse problema de verdade?</td></tr>
+        <tr><td class="num-cell">3</td><td>Spike (protótipo descartável)</td><td>branch <code>spike/*</code> + <code>docs/LEARNINGS.md</code></td><td><strong>G2</strong> · a parte difícil é viável e o fluxo faz sentido?</td></tr>
+        <tr><td class="num-cell">4</td><td>Spec e arquitetura</td><td><code>PRD.md</code>, <code>SPEC.md</code>, <code>docs/USE_CASES.md</code>, <code>docs/REQUIREMENTS.md</code>, <code>docs/adr/</code>, <code>docs/BACKLOG.md</code>, <code>docs/STATUS.md</code></td><td><strong>G3</strong> · sabemos o que construir e como provar? (SPEC assinado, tarefas com critério de pronto, preview no ar)</td></tr>
+        <tr><td class="num-cell">5</td><td>MVP</td><td>tarefas do backlog, um PR por tarefa</td><td>—</td></tr>
+        <tr><td class="num-cell">6</td><td>Endurecimento</td><td><code>docs/go-live.md</code></td><td><strong>G4</strong> · pode receber o dado de um estranho? (checklist marcado, restauração de backup testada, sem item de segurança aberto)</td></tr>
+        <tr><td class="num-cell">7</td><td>Lançamento</td><td>tag de versão, <code>CHANGELOG.md</code></td><td>—</td></tr>
+        <tr><td class="num-cell">8</td><td>Operação e evolução</td><td>métrica de sucesso do <code>PRD.md</code></td><td><strong>G5</strong> · funciona sem você no meio? (usuários reais completam o fluxo principal sem ajuda)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <h4>Três regras sobre os portões</h4>
+    <p><strong>"Não se aplica" é permitido, por escrito.</strong> Um portão pode ser marcado como não aplicável numa versão, desde que o motivo esteja no <code>docs/STATUS.md</code>. Exemplo: o G1 na v1 de uso pessoal.</p>
+    <p><strong>Desvio registrado, não escondido.</strong> Se a ordem das fases mudar, o <code>STATUS.md</code> recebe o desvio e a consequência.</p>
+    <p><strong>T-00 antes do G3.</strong> A primeira tarefa do MVP (esqueleto com CI e preview) pode rodar antes do G3, porque o próprio G3 pede o preview no ar.</p>
+  </div>
+
   <div class="callout">
     <h4>As três regras que atravessam o ciclo</h4>
     <p><strong>Deploy desde o dia 1.</strong> O esqueleto vai para um preview na Vercel no primeiro commit da fase 5. "Publicar depois" é onde a surpresa mora.</p>
@@ -1151,7 +1187,7 @@ Não relate preferências de estilo.</div>
     <div>
       <div class="lc-head"><span class="lc-title">Operação e evolução</span><span class="lc-meta">contínuo · ambos · o ciclo da seção 04, de novo</span></div>
       <p class="lc-sub">O produto só existe enquanto alguém mede, conversa e corrige. A partir daqui, cada melhoria é uma tarefa nova que entra pelo quadrante.</p>
-      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Semanal</div><div>Revisar erros e a métrica da fase 1. Falar com um usuário. Priorizar o backlog por valor, não por reclamação mais alta. Atualizar dependências com a suíte como rede. Olhar o custo. Encaixa na rotina da seção 13.</div></div><div class="lc-row"><div class="lc-lbl">Cada feature</div><div>Volta ao ciclo: quadrante → exploração → spec se tocar dado, dinheiro ou outra pessoa → sessão limpa → implementar → verificar → revisar. Feature de descoberta pode nascer como spike; o que fica, nasce na velocidade 2.</div></div><div class="lc-row"><div class="lc-lbl">Mensal</div><div>Retrospectiva de uma página: o que quebrou, o que custou mais do que devia, o que o <code>CLAUDE.md</code> precisa aprender. Teste de restauração do backup.</div></div><div class="lc-row"><div class="lc-lbl">Quando parar</div><div>Sem uso real por 90 dias, ou métrica da fase 1 parada por três meses: decidir explicitamente entre pivotar, manter no mínimo ou desligar com aviso aos usuários. Produto zumbi custa atenção, e atenção é o gargalo.</div></div></div>
+      <div class="lc-rows"><div class="lc-row"><div class="lc-lbl">Semanal</div><div>Revisar erros e a métrica da fase 1. Falar com um usuário. Priorizar o backlog por valor, não por reclamação mais alta. Atualizar dependências com a suíte como rede. Olhar o custo. Encaixa na rotina da seção 17.</div></div><div class="lc-row"><div class="lc-lbl">Cada feature</div><div>Volta ao ciclo: quadrante → exploração → spec se tocar dado, dinheiro ou outra pessoa → sessão limpa → implementar → verificar → revisar. Feature de descoberta pode nascer como spike; o que fica, nasce na velocidade 2.</div></div><div class="lc-row"><div class="lc-lbl">Mensal</div><div>Retrospectiva de uma página: o que quebrou, o que custou mais do que devia, o que o <code>CLAUDE.md</code> precisa aprender. Teste de restauração do backup.</div></div><div class="lc-row"><div class="lc-lbl">Quando parar</div><div>Sem uso real por 90 dias, ou métrica da fase 1 parada por três meses: decidir explicitamente entre pivotar, manter no mínimo ou desligar com aviso aos usuários. Produto zumbi custa atenção, e atenção é o gargalo.</div></div></div>
       <div class="lc-gate ok"><b>CONTÍNUO</b><span>A métrica escrita na fase 1 é medida toda semana e discutida com alguém além de você.</span></div>
     </div>
   </div>
@@ -1264,10 +1300,207 @@ variável, teste) ou o que falta. Não marque nada como feito por suposição.</
   </div>
 </section>
 
+<!-- ═══ REPOSITÓRIO ═══ -->
+<section id="repositorio">
+  <h2><span class="num">09</span> O repositório e os documentos</h2>
+  <p class="sec-lede">As regras ficam no repositório, não na memória. <code>CLAUDE.md</code>, skills, hooks e CI fazem o Claude e as pessoas seguirem o mesmo processo em toda sessão. Esta é a estrutura, extraída do NattyCore; troque nomes mantendo a função de cada arquivo.</p>
+
+  <h3 style="margin-top:0">A ideia em uma página</h3>
+  <ul class="clean do">
+    <li><strong>Primeiro o papel, depois o código.</strong> Ideia, PRD, casos de uso, requisitos, SPEC e backlog antes da primeira linha de produção.</li>
+    <li><strong>Fases e portões.</strong> Oito fases; entre algumas, um portão que só se responde com evidência (seção 08).</li>
+    <li><strong>Uma tarefa = uma sessão = uma branch = um PR.</strong> Nada de duas tarefas na mesma sessão, nem duas sessões na mesma tarefa.</li>
+    <li><strong>O modo depende do risco.</strong> M1 só no spike; M2 planejado e testado; M3 especificado e revisado por outra sessão; MG fica com o humano, por roteiro (seção 03).</li>
+    <li><strong>As regras ficam no repositório.</strong> <code>CLAUDE.md</code>, hooks, skills e CI, versionados, valem para todos.</li>
+    <li><strong>Uma sessão central coordena.</strong> O dono conversa com uma sessão só; ela abre as de tarefa e leva recados (seção 11).</li>
+    <li><strong>O aprendizado volta para o projeto.</strong> Cada erro vira regra no <code>CLAUDE.md</code>, um hook, um teste ou um ADR.</li>
+  </ul>
+
+  <h3>A estrutura</h3>
+  <div class="term">CLAUDE.md                 regras para o Claude e para as pessoas (curto, sempre carregado)
+IDEA.md                   problema, hipótese, para quem
+PRD.md                    o quê e por quê; §5 = escopo do v1 (contrato) e o que fica FORA
+SPEC.md                   como: dados, telas, regras, casos de borda, verificação
+CHANGELOG.md              uma linha por tarefa entregue
+docs/
+  STATUS.md               fase atual, portões com evidência, ambientes, diário (LEIA PRIMEIRO)
+  BACKLOG.md              tarefas, dependências, modo e critério de pronto
+  USE_CASES.md            UC-NN
+  REQUIREMENTS.md         RF/RN/RNF, cada um ligado a tarefa e teste; §4 casos de borda; §5 rastreio
+  methodology.md          regras de domínio canônicas (se o produto tiver)
+  adr/NNN-titulo.md       uma decisão por arquivo; nunca contrariar sem ADR novo
+  LEARNINGS.md            resultado do spike (G2)
+  go-live.md              checklist do G4
+  roteiro-*.md            roteiros para o humano executar (infra, produção)
+.claude/
+  settings.json           hooks e permissões (por exemplo, negar leitura de .env)
+  hooks/                  scripts que bloqueiam ou verificam automaticamente
+  skills/                 procedimentos reutilizáveis (task-cycle, spec-interview, adversarial-review)
+.github/workflows/ci.yml  backlog + verify + integration/e2e
+scripts/status-snapshot.mjs  gera o painel a partir dos .md</div>
+
+  <h3>O que vai no CLAUDE.md</h3>
+  <p class="sec-lede" style="margin-bottom:10px">Pouco e direto, porque ele é carregado em toda sessão. Regra de corte: "remover isso faria o Claude errar?"</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Seção</th><th>O que entra</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Onde está o quê</strong></td><td>Mapa dos documentos: STATUS primeiro, depois BACKLOG, PRD, SPEC, requisitos, ADRs</td></tr>
+        <tr><td><strong>Comandos</strong></td><td><code>verify</code>, testes de integração, banco local, geração de tipos</td></tr>
+        <tr><td><strong>Como trabalhar</strong></td><td>Uma tarefa por sessão; plan mode antes de mudar mais de um arquivo; test-first no domínio; divergência do SPEC só editando o SPEC no mesmo PR; nada fora do escopo; <code>git add</code> só dos arquivos da tarefa</td></tr>
+        <tr><td><strong>Como falar com o dono</strong></td><td>No máximo três blocos curtos, sem jargão (seção 11)</td></tr>
+        <tr><td><strong>Sessões</strong></td><td>Quem coordena, quando arquivar, o que nunca arquivar</td></tr>
+        <tr><td><strong>Regras de entrega</strong></td><td>O que precisa estar no PR (seção 10)</td></tr>
+        <tr><td><strong>Decisões não óbvias</strong></td><td>Por exemplo: "o RLS é a autorização", "o UUID é gerado no cliente"</td></tr>
+        <tr><td><strong>Armadilhas</strong></td><td>Cada erro que já aconteceu, com o jeito certo. É a seção que mais cresce, e a que se esvazia ao copiar o modelo para um projeto novo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Segurança e produção</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4 style="margin-top:0">Sempre</h4>
+      <ul class="clean do">
+        <li>A autorização mora no banco (RLS). O app usa a sessão do usuário; a chave de serviço só em scripts e testes locais.</li>
+        <li>Testes destrutivos só no banco efêmero (Docker local ou CI), nunca no hospedado.</li>
+        <li>Segredos só em <code>.env*</code>, que o Claude não pode ler (<code>settings.json</code> nega).</li>
+        <li>Migração em produção é tarefa MG: o Claude escreve o roteiro, o humano executa e cola a evidência.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Nunca</h4>
+      <ul class="clean dont">
+        <li>Sessão rodando comando contra produção (<code>db push</code>, <code>link</code>, seed remoto). O hook <code>guard-bash</code> bloqueia.</li>
+        <li>Editar migração já commitada. A correção vai numa migração nova; o hook <code>protect-files</code> bloqueia.</li>
+        <li>Mergear com o CI vermelho.</li>
+        <li>Promover código de spike a produto.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BACKLOG ═══ -->
+<section id="backlog">
+  <h2><span class="num">10</span> Backlog e tarefas</h2>
+  <p class="sec-lede">O backlog é a fila de trabalho e, ao mesmo tempo, o contrato: o job do CI e o script do painel leem o formato da linha. Mudou o formato, ajuste o script.</p>
+
+  <h3 style="margin-top:0">O formato da linha</h3>
+  <div class="term">- [ ] **T-NN · título** · M3 (dados) · Depende de: T-01, T-18
+  Descrição curta, seções do SPEC citadas, requisitos (RF/RN) cobertos.
+  **Pronto quando:** critério verificável (comando, teste ou cenário).</div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4 style="margin-top:0">Regras do backlog</h4>
+      <ul class="clean">
+        <li>Tarefa sem <strong>"Pronto quando"</strong> verificável não entra.</li>
+        <li>A <strong>próxima tarefa</strong> é a primeira <code>[ ]</code> com todas as dependências <code>[x]</code> e os portões liberados.</li>
+        <li>O <strong>modo</strong> (M1, M2, M3, MG) fica na linha da tarefa. Dado, autenticação, sincronização e dinheiro são M3; infra e produção são MG.</li>
+        <li><strong>Bug ou achado de revisão vira tarefa nova</strong> (ex.: T-22 "Correções do sync"), com dependências próprias, em vez de ser corrigido "de passagem".</li>
+        <li>Com mais de uma pessoa, a tarefa é reservada antes de começar: issue com responsável ou <code>(@pessoa)</code> na linha.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Regras de entrega: tudo no mesmo PR</h4>
+      <ul class="clean do">
+        <li><code>[x]</code> e o link do PR na linha da tarefa em <code>docs/BACKLOG.md</code></li>
+        <li>Uma linha em <code>CHANGELOG.md</code></li>
+        <li>Uma linha no diário de <code>docs/STATUS.md</code></li>
+        <li>Evidência: saída do <code>verify</code>, integração/e2e, screenshots em celular e desktop quando houver tela</li>
+        <li>A seção <strong>"Em linguagem simples"</strong>, para quem não lê código</li>
+        <li><strong>Entregue = PR aberto e CI verde.</strong> O job <code>backlog</code> confere os três documentos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>Regra de parada</h4>
+    <p>Duas tentativas falhas no mesmo ponto: parar, resumir o que aprendeu e recomeçar com contexto limpo, em vez de empilhar correções. Vale para o Claude e para você.</p>
+  </div>
+</section>
+
+<!-- ═══ SESSÕES ═══ -->
+<section id="sessoes">
+  <h2><span class="num">11</span> Sessões e coordenação</h2>
+  <p class="sec-lede">O dono do produto conversa com uma sessão só. Ela abre as sessões de tarefa, leva recados e só chama o humano quando ele é necessário. Sessões duplicadas para a mesma tarefa foram a maior fonte de trabalho perdido no NattyCore.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Sessão</th><th>Faz</th><th>Não faz</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Central</strong></td><td>Responde "como está?" lendo sessões, PRs e CI. Lista as sessões existentes e abre <strong>uma tarefa por vez</strong>. Abre a sessão revisora de toda tarefa M3 e leva os achados de volta. Traz ao dono só o que exige decisão dele, em uma frase, com recomendação. Faz o merge só com pedido do dono e CI verde; depois arquiva as sessões e atualiza o painel.</td><td>Não implementa tarefas. Não mergeia por conta própria.</td></tr>
+        <tr><td><strong>De tarefa</strong></td><td>Executa uma tarefa com a skill <code>task-cycle</code>, do começo ao fim.</td><td>Não abre outras sessões. Não pega uma segunda tarefa.</td></tr>
+        <tr><td><strong>Revisora</strong></td><td>Só lê, testa e relata. Obrigatória em M3, antes do merge.</td><td>Não altera código.</td></tr>
+        <tr><td><strong>Do painel</strong> (rotina diária)</td><td>Regrava o painel visual todo dia a partir do <code>status.json</code>.</td><td>Nunca é arquivada.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Prompt-padrão para abrir uma tarefa</h3>
+  <div class="term">Leia CLAUDE.md, docs/STATUS.md e docs/BACKLOG.md. Execute a T-NN usando
+a skill task-cycle. O dono não lê código: inclua no PR a seção
+"Em linguagem simples". Não abra outras sessões; quem coordena é a Central.
+
+(Tarefa MG: "Escreva o roteiro para o dono; não rode nada contra o projeto remoto.")</div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4 style="margin-top:0">Como o dono recebe as respostas</h4>
+      <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 10px">Sempre em três blocos curtos. Sem tabelas, IDs, hashes ou nomes de jobs no chat: o detalhe técnico vai no PR.</p>
+      <ul class="clean">
+        <li><strong>Feito:</strong> o que mudou, em 1 a 3 linhas.</li>
+        <li><strong>Sua ação:</strong> o que só ele pode fazer, ou "nenhuma".</li>
+        <li><strong>Próximo:</strong> uma recomendação.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">O painel do projeto</h4>
+      <p style="font-size:14.5px;color:var(--ink-2);margin:6px 0 10px"><code>scripts/status-snapshot.mjs</code> lê <code>BACKLOG.md</code>, <code>STATUS.md</code>, <code>REQUIREMENTS.md</code>, <code>LEARNINGS.md</code> e <code>go-live.md</code> e gera um JSON que alimenta uma página com fases, portões, tarefas e PRs.</p>
+      <ul class="clean">
+        <li>Atualizado ao fim de cada tarefa e por uma rotina diária.</li>
+        <li>O formato da linha de tarefa, os títulos <code>##</code> e as colunas das tabelas são contrato.</li>
+        <li>Resolve o <code>STATUS.md</code> desatualizado quando várias tarefas fecham no mesmo dia.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COLABORADORES ═══ -->
+<section id="colaboradores">
+  <h2><span class="num">12</span> Trabalhando com colaboradores</h2>
+  <p class="sec-lede">O método foi pensado para uma pessoa, mas escala se os papéis ficarem explícitos. Uma pessoa pode acumular papéis, mas <strong>quem escreve não revisa o próprio M3</strong>.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Papel</th><th>Responsabilidade</th><th>Na parceria</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dono do produto</strong></td><td>PRD, escopo, assinatura dos portões, decisões de regra de negócio e merge final</td><td>Quem originou o produto (Manual da Parceria, 8.5)</td></tr>
+        <tr><td><strong>Desenvolvedor(a)</strong></td><td>Puxa uma tarefa do backlog, conduz a sessão de tarefa e responde pelo PR</td><td>Quem pegou o marco no planejamento de ciclo</td></tr>
+        <tr><td><strong>Revisor(a)</strong></td><td>Revisa o PR além da sessão revisora; obrigatório em M3</td><td>O outro sócio: ninguém valida o próprio trabalho</td></tr>
+        <tr><td><strong>Operador(a) de infra</strong></td><td>Executa os roteiros MG (produção, credenciais, DNS) e cola a evidência</td><td>Quem tem a função de operação</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Regras para mais de uma pessoa</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-n">1</div><div class="flow-b"><h4>Reservar a tarefa antes de começar</h4><p>Issue no GitHub com responsável, ou <code>(@pessoa)</code> na linha do backlog num commit rápido. Duas pessoas não pegam a mesma tarefa.</p></div></div>
+    <div class="flow-step"><div class="flow-n">2</div><div class="flow-b"><h4>Cada pessoa com a sua Central</h4><p>Ou uma Central compartilhada que só um coordenador usa. Nunca duas sessões para a mesma tarefa.</p></div></div>
+    <div class="flow-step"><div class="flow-n">3</div><div class="flow-b"><h4>Paralelo só entre tarefas independentes</h4><p>Sem <code>Depende de</code> em comum e sem tocar os mesmos arquivos. Conflitos em <code>CHANGELOG</code>, <code>STATUS</code> e <code>BACKLOG</code> são esperados: resolve mantendo as linhas dos dois lados.</p></div></div>
+    <div class="flow-step"><div class="flow-n">4</div><div class="flow-b"><h4>Proteção da <code>main</code></h4><p>Com GitHub pago ou repositório público: PR obrigatório, CI obrigatório, 1 aprovação humana e 2 em M3. No plano gratuito privado o GitHub não bloqueia, e a regra fica só no <code>CLAUDE.md</code>.</p></div></div>
+    <div class="flow-step"><div class="flow-n">5</div><div class="flow-b"><h4><code>CODEOWNERS</code></h4><p>Migrações, <code>.claude/</code>, <code>SPEC.md</code> e ADRs pedem o dono ou o responsável técnico.</p></div></div>
+    <div class="flow-step"><div class="flow-n">6</div><div class="flow-b"><h4>Decisões ficam escritas</h4><p>Decisão de regra vai no SPEC ou num ADR, no mesmo PR, não só no chat. Uma decisão tomada numa sessão precisa chegar à sessão que implementa.</p></div></div>
+    <div class="flow-step"><div class="flow-n">7</div><div class="flow-b"><h4>Roteiros MG com evidência</h4><p>O PR de tarefa MG só é mergeado depois que o operador cola a evidência (URL, resposta do health check, prints).</p></div></div>
+    <div class="flow-step"><div class="flow-n">8</div><div class="flow-b"><h4>Contexto do colaborador</h4><p>Lê <code>CLAUDE.md</code>, <code>STATUS.md</code> e <code>BACKLOG.md</code>, nessa ordem, antes de abrir a primeira sessão. O <code>README.md</code> aponta para eles.</p></div></div>
+    <div class="flow-step"><div class="flow-n">9</div><div class="flow-b"><h4>Configuração do Claude no repositório</h4><p>Hooks, skills e <code>settings.json</code> versionados valem para todos. Preferências pessoais ficam no <code>settings.local.json</code>, que não é commitado.</p></div></div>
+  </div>
+</section>
+
 <!-- ═══ HARNESS ═══ -->
 <section id="harness">
-  <h2><span class="num">09</span> O harness</h2>
-  <p class="sec-lede">O conjunto de CLAUDE.md, skills, hooks e subagentes determina o resultado mais do que o modelo. É a parte do sistema que você controla.</p>
+  <h2><span class="num">13</span> O harness: hooks, skills e CI</h2>
+  <p class="sec-lede">O conjunto de CLAUDE.md, skills, hooks, subagentes e CI determina o resultado mais do que o modelo. É a parte do sistema que você controla, e tudo abaixo está pronto no <a href="#kit-download">kit</a>.</p>
 
   <h3>CLAUDE.md — o arquivo que Claude lê toda sessão</h3>
   <div class="prose">
@@ -1292,18 +1525,34 @@ variável, teste) ou o que falta. Não marque nada como feito por suposição.</
   <div class="prose">
     <p>CLAUDE.md é conselho; hook é lei. Para qualquer coisa que não pode falhar, use hook.</p>
   </div>
-  <ul class="clean do">
-    <li>Lint e typecheck após cada edição de arquivo</li>
-    <li>Bloqueio de escrita em pastas sensíveis (migrations, secrets)</li>
-    <li>Stop hook que impede o turno de encerrar com teste falhando</li>
-    <li>Varredura de segredo antes de qualquer commit</li>
-  </ul>
-  <p class="prose" style="margin-top:10px">Claude escreve os hooks para você: <em>"escreva um hook que roda eslint depois de cada edição"</em>.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Hook</th><th>Evento</th><th>O que faz</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">session-start</td><td>início da sessão</td><td>Instala as dependências do lockfile (o container pode vir com versões velhas) e sobe só os serviços que os testes usam</td></tr>
+        <tr><td class="mono">protect-files</td><td>antes de editar</td><td>Bloqueia arquivos sensíveis: <code>.env</code>, migrações já commitadas, arquivos gerados, lockfile</td></tr>
+        <tr><td class="mono">guard-bash</td><td>antes de um comando</td><td>Bloqueia comandos perigosos (contra o banco de produção, force push, <code>git add -A</code>); no <code>git commit</code>, procura segredos e exige typecheck e testes verdes</td></tr>
+        <tr><td class="mono">lint-on-edit</td><td>depois de editar</td><td>Roda o lint no arquivo e devolve os erros ao Claude</td></tr>
+        <tr><td class="mono">verify-on-stop</td><td>fim do turno</td><td>Não deixa a sessão "terminar" com testes vermelhos (no máximo 3 bloqueios, e respeita a fase vermelha do TDD, marcada por <code>.claude/tdd-red</code>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose" style="margin-top:10px">Também no <code>settings.json</code>: negar a leitura de <code>.env*</code>. E Claude escreve hooks novos para você: <em>"escreva um hook que roda eslint depois de cada edição"</em>.</p>
 
   <h3>Skills — conhecimento sob demanda</h3>
   <div class="prose">
     <p>A diferença para o CLAUDE.md é o custo: CLAUDE.md carrega em toda sessão; skill carrega quando o contexto pede. Tudo que é específico de um domínio ou de um fluxo ocasional vira skill.</p>
-    <p>As suas naturais: geração do site a partir do template, auditoria de prospect, checklist de publicação, e o padrão de tradução do Claude Design para Next.js.</p>
+    <p>As suas naturais: geração do site a partir do template, auditoria de prospect, checklist de publicação, e o padrão de tradução do Claude Design para Next.js. As três do método vêm no kit:</p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Skill</th><th>Para quê</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">task-cycle</td><td>O ciclo da seção 04, do começo ao fim: situar, planejar, testes primeiro, implementar, verificar, revisar, entregar, publicar, devolver o aprendizado</td></tr>
+        <tr><td class="mono">spec-interview</td><td>Entrevista o dono antes de codar uma feature nova; produz o spec com escopo, fora de escopo, interfaces, regras, casos de borda, suposições e verificação. <strong>Não implementa na mesma sessão.</strong></td></tr>
+        <tr><td class="mono">adversarial-review</td><td>Um subagente em contexto limpo compara o diff com o SPEC e a tarefa e só relata problemas de correção: requisito faltando, caso de borda sem teste, mudança fora do escopo, segurança, teste fraco</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <h3>Subagentes — contexto emprestado</h3>
@@ -1313,11 +1562,19 @@ variável, teste) ou o que falta. Não marque nada como feito por suposição.</
   <div class="term">Use subagentes para investigar como o sistema de autenticação
 trata refresh de token, e se já existe algum utilitário de OAuth
 que eu deveria reusar.</div>
+
+  <h3>CI — o juiz final</h3>
+  <div class="prose"><p>Três jobs em todo PR e em toda push na <code>main</code>. Preview do deploy a cada PR (Vercel). Produção = <code>main</code>. <strong>Nunca mergear com o CI vermelho.</strong></p></div>
+  <div class="grid3">
+    <div class="card"><span class="pill pill-amber">JOB 1</span><h4 style="margin-top:10px">backlog</h4><p style="font-size:14px;color:var(--ink-2);margin-top:6px">O PR de tarefa tem o <code>[x]</code> e o link do PR no BACKLOG, a linha no CHANGELOG e a linha no diário do STATUS. Script <code>check-backlog.mjs</code>.</p></div>
+    <div class="card"><span class="pill pill-teal">JOB 2</span><h4 style="margin-top:10px">verify</h4><p style="font-size:14px;color:var(--ink-2);margin-top:6px">Lint, typecheck, testes unitários com cobertura e build. O mesmo comando que o hook <code>verify-on-stop</code> roda localmente.</p></div>
+    <div class="card"><span class="pill pill-good">JOB 3</span><h4 style="margin-top:10px">integration</h4><p style="font-size:14px;color:var(--ink-2);margin-top:6px">Sobe o banco efêmero (migrações + seed) e roda os testes de integração e o e2e. Nenhum teste destrutivo toca o banco hospedado.</p></div>
+  </div>
 </section>
 
 <!-- ═══ CONTEXTO ═══ -->
 <section id="contexto">
-  <h2><span class="num">10</span> Gestão de contexto</h2>
+  <h2><span class="num">14</span> Gestão de contexto</h2>
   <p class="sec-lede">É o recurso mais escasso da operação. Quase toda boa prática deriva dessa única restrição.</p>
 
   <div class="tbl-wrap">
@@ -1347,7 +1604,7 @@ que eu deveria reusar.</div>
 
 <!-- ═══ WEB ═══ -->
 <section id="web">
-  <h2><span class="num">11</span> Claude Code na web</h2>
+  <h2><span class="num">15</span> Claude Code na web</h2>
   <p class="sec-lede">É o seu ambiente principal. Vale conhecer o que ele faz melhor e onde ele não serve.</p>
 
   <div class="grid2">
@@ -1396,8 +1653,8 @@ que eu deveria reusar.</div>
 
 <!-- ═══ ANTIPADRÕES ═══ -->
 <section id="antipadroes">
-  <h2><span class="num">12</span> Anti-padrões</h2>
-  <p class="sec-lede">Cinco formas de perder tempo que aparecem sempre. Reconhecer cedo economiza horas.</p>
+  <h2><span class="num">16</span> Anti-padrões e lições aprendidas</h2>
+  <p class="sec-lede">Seis formas de perder tempo que aparecem sempre, e oito lições que o NattyCore cobrou caro. Reconhecer cedo economiza horas.</p>
 
   <div class="grid2">
     <div class="card">
@@ -1437,11 +1694,23 @@ que eu deveria reusar.</div>
       <p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Correção:</strong> instrua a relatar só o que afeta correção. O resto é opcional.</p>
     </div>
   </div>
+
+  <h3>Lições aprendidas no NattyCore (para não repetir)</h3>
+  <div class="grid2">
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">Sessões duplicadas para a mesma tarefa</h4><p style="font-size:14px;color:var(--ink-2)">Trabalho perdido e branches mortas.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> a Central lista as sessões antes de abrir outra.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">Merge de tarefa M3 sem a sessão revisora (T-06)</h4><p style="font-size:14px;color:var(--ink-2)">A revisão feita depois encontrou três falhas de sincronização que viraram outra tarefa.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> revisar antes do merge sai mais barato.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">A correção de uma revisão também precisa de revisão</h4><p style="font-size:14px;color:var(--ink-2)">A T-22 corrigiu um problema e abriu outro, que só a revisão seguinte pegou.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> toda correção volta pela etapa 06.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">PR de infraestrutura mergeado sem a evidência do roteiro (T-18)</h4><p style="font-size:14px;color:var(--ink-2)">O código entrou, mas a produção ficou sem confirmação.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> a evidência no PR vem antes do merge.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">O STATUS.md fica desatualizado</h4><p style="font-size:14px;color:var(--ink-2)">Quando várias tarefas fecham no mesmo dia, ninguém atualiza.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> rotina do painel e uma linha no diário a cada PR, conferida pelo CI.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">O container vem com dependências velhas</h4><p style="font-size:14px;color:var(--ink-2)">Testes falhando por versão errada, não por código errado.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> o hook de início sempre roda <code>pnpm install</code>.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">Limite do Docker Hub (429)</h4><p style="font-size:14px;color:var(--ink-2)">Subir tudo no compose estourou a cota de pull.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> subir só os serviços que os testes usam.</p></div>
+    <div class="card"><span class="pill pill-bad">LIÇÃO</span><h4 style="margin-top:10px">Respostas longas cansam o dono</h4><p style="font-size:14px;color:var(--ink-2)">Tabelas, IDs e hashes no chat, e a decisão se perde no meio.</p><p style="font-size:14px;color:var(--good);margin-top:8px"><strong>Regra:</strong> três blocos (Feito · Sua ação · Próximo); o detalhe técnico vai no PR.</p></div>
+  </div>
 </section>
 
 <!-- ═══ ROTINA ═══ -->
 <section id="rotina">
-  <h2><span class="num">13</span> Rotina semanal</h2>
+  <h2><span class="num">17</span> Rotina semanal</h2>
   <p class="sec-lede">Com emprego em tempo integral, o tempo de construção é escasso e fragmentado. A rotina precisa aproveitar blocos curtos sem perder continuidade.</p>
 
   <div class="tbl-wrap">
@@ -1473,14 +1742,47 @@ que eu deveria reusar.</div>
   </div>
 </section>
 
+<!-- ═══ KIT ═══ -->
+<section id="kit">
+  <h2><span class="num">18</span> Kit para começar um projeto novo</h2>
+  <p class="sec-lede">Oito passos e os arquivos prontos. Tudo o que o método pede está aqui para baixar: documentos de raiz, <code>docs/</code>, hooks, skills, CI e os scripts do painel, extraídos do NattyCore e generalizados.</p>
+
+  <h3 style="margin-top:0">Checklist de início</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-n">1</div><div class="flow-b"><h4>Escrever o <code>IDEA.md</code></h4><p>E decidir se o G1 se aplica. Se não, o motivo vai no <code>STATUS.md</code>.</p></div></div>
+    <div class="flow-step"><div class="flow-n">2</div><div class="flow-b"><h4>Spike em <code>spike/*</code>, se houver uma parte arriscada</h4><p>Registrar o <code>docs/LEARNINGS.md</code> e decidir o G2.</p></div></div>
+    <div class="flow-step"><div class="flow-n">3</div><div class="flow-b"><h4>Escrever os documentos da fase 4</h4><p><code>PRD.md</code> (com o <strong>fora de escopo</strong>), <code>SPEC.md</code>, <code>USE_CASES.md</code>, <code>REQUIREMENTS.md</code>, os primeiros ADRs e o <code>BACKLOG.md</code> com modo e "Pronto quando" em cada tarefa. Use a skill <code>spec-interview</code>.</p></div></div>
+    <div class="flow-step"><div class="flow-n">4</div><div class="flow-b"><h4>Criar o <code>STATUS.md</code></h4><p>Com as 8 fases, os 5 portões e o diário.</p></div></div>
+    <div class="flow-step"><div class="flow-n">5</div><div class="flow-b"><h4>Copiar o kit</h4><p><code>.claude/</code> (hooks, skills e settings), <code>CLAUDE.md</code> (esvaziando as Armadilhas), <code>ci.yml</code> e <code>status-snapshot.mjs</code>, e ajustar comandos e caminhos.</p></div></div>
+    <div class="flow-step"><div class="flow-n">6</div><div class="flow-b"><h4>T-00: esqueleto, CI verde e preview por PR</h4><p>Depois, assinar o G3.</p></div></div>
+    <div class="flow-step"><div class="flow-n">7</div><div class="flow-b"><h4>Criar a sessão Central e a rotina diária do painel</h4><p>A Central abre as tarefas; a rotina regrava o painel.</p></div></div>
+    <div class="flow-step"><div class="flow-n">8</div><div class="flow-b"><h4>Seguir o backlog, uma tarefa por vez</h4><p>E devolver cada aprendizado ao <code>CLAUDE.md</code>.</p></div></div>
+  </div>
+
+  <h3 id="kit-download">Arquivos para baixar</h3>
+  <p class="sec-lede" style="margin-bottom:12px">Baixe o kit inteiro em um .zip (as pastas <code>.claude</code> e <code>.github</code> já saem com o nome certo) ou arquivo por arquivo. Depois: <code>chmod +x .claude/hooks/*.sh</code>, ajuste os comandos no <code>CLAUDE.md</code> e nos hooks, e esvazie as Armadilhas.</p>
+  <div class="kit-actions">
+    <button class="kit-btn" type="button" id="kit-zip">⬇ Baixar o kit completo (.zip)</button>
+    <a class="kit-btn ghost" href="kit/README.md" download="KIT-README.md">Ler o README do kit</a>
+    <span class="kit-status" id="kit-status"></span>
+  </div>
+  <div id="kit-list" class="kit-list"><p class="prose">Carregando a lista de arquivos…</p></div>
+
+  <div class="callout" style="margin-top:16px">
+    <h4>O que ajustar ao copiar</h4>
+    <p>Os comandos (<code>pnpm verify</code>, <code>test:integration</code>, <code>db:migrate</code>), os caminhos de migração no <code>protect-files</code>, os padrões de produção no <code>guard-bash</code>, os usuários do <code>CODEOWNERS</code> e os nomes de script do <code>ci.yml</code>. O que não muda: a função de cada arquivo, o formato da linha do backlog e as três regras de entrega.</p>
+  </div>
+</section>
+
 <footer>
-  <p>Workflow de Engenharia · Marcus · versão 1.1 · outubro de 2026</p>
-  <p style="margin-top:6px">Par técnico do Playbook Comercial e do Manual de Operação. Revisado na última sexta de cada mês. Seção 08 (ciclo completo de um SaaS) adicionada em outubro de 2026.</p>
+  <p>Workflow de Engenharia · Marcus · versão 1.2 · outubro de 2026</p>
+  <p style="margin-top:6px">Par técnico do Playbook Comercial e do Manual de Operação. Revisado na última sexta de cada mês. Seção 08 (ciclo completo de um SaaS), seções 09–12 e 18 (método operacional e kit, extraídos do NattyCore) adicionadas em outubro de 2026.</p>
 </footer>
 
 </main>
 </div>
 <script src="../assets/share.js?v=20261002b"></script>
+<script src="kit/kit.js?v=20261002b"></script>
 <script>
   Share.enhance('figure, .tbl-wrap, .stat-row, .grid2, .grid3, .flow, .card, .callout, .lc-phase, .term', { hint: 'Compartilhar' });
 </script>

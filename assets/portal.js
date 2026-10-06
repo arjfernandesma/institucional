@@ -39,11 +39,13 @@
   ];
 
   const WORKFLOW_CHAPTERS = [
-    { g: 'Princípio', items: [['01', 'verificacao', 'Confiança = verificação'], ['02', 'matriz', 'A matriz de decisão'], ['03', 'modos', 'Os três modos'], ['04', 'ciclo', 'O ciclo, passo a passo']] },
+    { g: 'Princípio', items: [['01', 'verificacao', 'Confiança = verificação'], ['02', 'matriz', 'A matriz de decisão'], ['03', 'modos', 'Os quatro modos (M1, M2, M3, MG)'], ['04', 'ciclo', 'O ciclo da tarefa (9 etapas)']] },
     { g: 'As três frentes', items: [['05', 'sites', 'Sites locais'], ['06', 'projetos', 'Projetos maiores'], ['07', 'saas', 'SaaS próprios']] },
-    { g: 'Do zero à produção', items: [['08', 'lifecycle', 'Da ideia à produção: o ciclo completo de um SaaS'], ['08', 'lifecycle-gates', 'Os cinco portões'], ['08', 'lifecycle-golive', 'Checklist de go-live']] },
-    { g: 'Infraestrutura', items: [['09', 'harness', 'O harness'], ['10', 'contexto', 'Gestão de contexto'], ['11', 'web', 'Claude Code na web']] },
-    { g: 'Operação', items: [['12', 'antipadroes', 'Anti-padrões'], ['13', 'rotina', 'Rotina semanal']] },
+    { g: 'Do zero à produção', items: [['08', 'lifecycle', 'Da ideia à produção: 8 fases'], ['08', 'lifecycle-gates', 'Os cinco portões'], ['08', 'lifecycle-golive', 'Checklist de go-live']] },
+    { g: 'Operação do método', items: [['09', 'repositorio', 'O repositório e os documentos'], ['10', 'backlog', 'Backlog e tarefas'], ['11', 'sessoes', 'Sessões e coordenação'], ['12', 'colaboradores', 'Trabalhando com colaboradores']] },
+    { g: 'Infraestrutura', items: [['13', 'harness', 'Harness: hooks, skills e CI'], ['14', 'contexto', 'Gestão de contexto'], ['15', 'web', 'Claude Code na web']] },
+    { g: 'Operação', items: [['16', 'antipadroes', 'Anti-padrões e lições'], ['17', 'rotina', 'Rotina semanal']] },
+    { g: 'Começar', items: [['18', 'kit', 'Kit para um projeto novo'], ['18', 'kit-download', 'Arquivos para baixar (.zip)']] },
   ];
 
   const PARCERIA_CHAPTERS = [
@@ -285,8 +287,8 @@
         <div class="tile-grid" style="margin-bottom:1.25rem">
           <a class="tile admin-tile featured" href="admin/workflow-engenharia.html">
             <div class="t-icon">⚙️</div>
-            <div class="t-body"><h3>Workflow de Engenharia</h3><p>O método de trabalho com Claude Code para as três frentes (sites locais, projetos maiores, SaaS próprios) e o ciclo completo de um SaaS, da ideia à operação em produção: oito fases, cinco portões, checklist de go-live. Par técnico do Playbook Comercial.</p>
-              <div class="t-foot"><span>13 capítulos · v1.1 · out/2026</span><span>Revisado na última sexta de cada mês</span></div></div>
+            <div class="t-body"><h3>Workflow de Engenharia</h3><p>O método de trabalho com Claude Code: três frentes, o ciclo completo de um SaaS (oito fases, cinco portões), quatro modos, backlog, sessões, hooks, skills, CI e o kit de arquivos para começar um projeto novo, pronto para baixar. Par técnico do Playbook Comercial.</p>
+              <div class="t-foot"><span>18 capítulos · kit para download · v1.2 · out/2026</span><span>Revisado na última sexta de cada mês</span></div></div>
             <span class="btn btn-primary">Abrir →</span>
           </a>
           <a class="tile admin-tile" href="admin/manual-operacional.html"><div class="t-icon">📕</div><h4>Manual Operacional (Brasil)</h4><p>Modelo de negócio, estrutura fiscal, catálogo, pacotes, contratos, pagamento, entrega, SLA, suporte, cancelamento e FAQ.</p><div class="t-foot"><span>16 capítulos · abr/2026</span></div></a>
